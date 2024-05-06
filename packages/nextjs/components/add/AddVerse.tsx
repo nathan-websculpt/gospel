@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { SaveVerse } from "./SaveVerse";
 import { getGospelOfJohn } from "~~/helpers/John";
 import { notification } from "~~/utils/scaffold-eth";
 
@@ -24,7 +25,6 @@ export const AddVerse = () => {
   }, [selectedIndex]);
 
   const getVerse = async () => {
-    console.log("getting verse ...");
     if (!selectedChapter || !selectedVerse) {
       notification.error("need a chapter AND verse selected to retrieve a verse.");
       return;
@@ -33,7 +33,6 @@ export const AddVerse = () => {
     for (let i = 0; i < versesArray.length; i++) {
       if (versesArray[i].ChapterNumber.toString() === selectedChapter) {
         if (versesArray[i].VerseNumber.toString() === selectedVerse) {
-          console.log("got the verse ...");
           setSelectedIndex(i);
           return;
         }
@@ -68,20 +67,35 @@ export const AddVerse = () => {
         </button>
       </div>
 
-      <div>
+      <div className="px-6 pt-10 pb-8 mt-6 shadow-xl bg-primary sm:mx-auto sm:max-w-11/12 md:w-full sm:rounded-lg sm:px-10">
         {selectedVerseObject !== undefined && (
           <>
-            <p>{selectedVerseObject?.FullVerseChapter}</p>
-            <p>{selectedVerseObject?.VerseContent}</p>
-            <p>STRING LENGTH: {selectedVerseObject?.StringLength}</p>
+            <p className="text-lg">{selectedVerseObject?.FullVerseChapter}</p>
+            <p className="text-2xl">{selectedVerseObject?.VerseContent}</p>
+            <p className="text-sm">STRING LENGTH: {selectedVerseObject?.StringLength}</p>
           </>
         )}
       </div>
 
-      <div className="mt-6">
+
+      <div className="mt-6 mb-6">
         <button className="btn btn-primary" onClick={() => getNextVerse()}>
           GET NEXT
         </button>
+      </div>
+      
+      <hr />
+
+      <div className="mt-32">
+        {selectedVerseObject !== undefined && (
+          <>
+            <SaveVerse
+              content={selectedVerseObject?.VerseContent}
+              chapterNum={BigInt(selectedVerseObject?.ChapterNumber)}
+              verseNum={BigInt(selectedVerseObject?.VerseNumber)}
+            />
+          </>
+        )}
       </div>
     </>
   );
