@@ -155,6 +155,29 @@ export class Verse extends Entity {
   set transactionHash(value: Bytes) {
     this.set("transactionHash", Value.fromBytes(value));
   }
+
+  get confirmations(): ConfirmationLoader {
+    return new ConfirmationLoader(
+      "Verse",
+      this.get("id")!
+        .toBytes()
+        .toHexString(),
+      "confirmations"
+    );
+  }
+
+  get confirmationCount(): i32 {
+    let value = this.get("confirmationCount");
+    if (!value || value.kind == ValueKind.NULL) {
+      return 0;
+    } else {
+      return value.toI32();
+    }
+  }
+
+  set confirmationCount(value: i32) {
+    this.set("confirmationCount", Value.fromI32(value));
+  }
 }
 
 export class Confirmation extends Entity {
@@ -213,17 +236,17 @@ export class Confirmation extends Entity {
     this.set("confirmedBy", Value.fromBytes(value));
   }
 
-  get verseId(): BigInt {
+  get verseId(): Bytes {
     let value = this.get("verseId");
     if (!value || value.kind == ValueKind.NULL) {
       throw new Error("Cannot return null for a required field.");
     } else {
-      return value.toBigInt();
+      return value.toBytes();
     }
   }
 
-  set verseId(value: BigInt) {
-    this.set("verseId", Value.fromBigInt(value));
+  set verseId(value: Bytes) {
+    this.set("verseId", Value.fromBytes(value));
   }
 
   get blockNumber(): BigInt {
@@ -263,5 +286,40 @@ export class Confirmation extends Entity {
 
   set transactionHash(value: Bytes) {
     this.set("transactionHash", Value.fromBytes(value));
+  }
+
+  get verse(): Bytes | null {
+    let value = this.get("verse");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBytes();
+    }
+  }
+
+  set verse(value: Bytes | null) {
+    if (!value) {
+      this.unset("verse");
+    } else {
+      this.set("verse", Value.fromBytes(<Bytes>value));
+    }
+  }
+}
+
+export class ConfirmationLoader extends Entity {
+  _entity: string;
+  _field: string;
+  _id: string;
+
+  constructor(entity: string, id: string, field: string) {
+    super();
+    this._entity = entity;
+    this._id = id;
+    this._field = field;
+  }
+
+  load(): Confirmation[] {
+    let value = store.loadRelated(this._entity, this._id, this._field);
+    return changetype<Confirmation[]>(value);
   }
 }

@@ -1,4 +1,4 @@
-type Verse @entity(immutable: true) {
+type Verse @entity {
   id: Bytes!
   signer: Bytes!
   verseId: BigInt!
@@ -8,13 +8,16 @@ type Verse @entity(immutable: true) {
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
+  confirmations: [Confirmation!] @derivedFrom(field: "verse")
+  confirmationCount: Int!
 }
 
 type Confirmation @entity(immutable: true) {
   id: Bytes!
   confirmedBy: Bytes!
-  verseId: BigInt!
+  verseId: Bytes!
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
+  verse: Verse
 }

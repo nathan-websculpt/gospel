@@ -20,6 +20,7 @@ export function handleVerse(
   entity.verseNumber = event.params.verseNumber;
   entity.chapterNumber = event.params.chapterNumber;
   entity.verseContent = event.params.verseContent;
+  entity.confirmationCount = 0;
 
   entity.blockNumber = event.block.number;
   entity.blockTimestamp = event.block.timestamp;
@@ -37,7 +38,14 @@ export function handleConfirmation(event: ConfirmationEvent): void {
 
   entity.blockNumber = event.block.number;
   entity.blockTimestamp = event.block.timestamp;
-  entity.transactionHash = event.transaction.hash;
+  entity.transactionHash = event.transaction.hash;  
+
+  let verseEntity = Verse.load(event.params.verseId);
+  if (verseEntity !== null) {
+    entity.verse = verseEntity.id;
+    verseEntity.confirmationCount++;
+    verseEntity.save();
+  }
 
   entity.save();
 }

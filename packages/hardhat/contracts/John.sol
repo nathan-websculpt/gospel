@@ -31,7 +31,7 @@ contract John is Ownable, ReentrancyGuard {
 
 	event Confirmation(
 		address confirmedBy, //TODO: indexed
-		uint256 verseId
+		bytes verseId
 	);
 
 	constructor(address _contractOwner) {
@@ -49,7 +49,8 @@ contract John is Ownable, ReentrancyGuard {
 		emit Verse(msg.sender, numberOfVerses, _verseNumber, _chapterNumber, _verseContent);
 	}
 
-	function confirmVerse(uint256 _verseId) external {
+	//TODO: prevent same address from confirming twice
+	function confirmVerse(bytes memory _verseId) external {
 		emit Confirmation(msg.sender, _verseId);
 	}
 

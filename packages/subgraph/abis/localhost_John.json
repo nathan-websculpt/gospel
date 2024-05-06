@@ -21,9 +21,9 @@
       },
       {
         "indexed": false,
-        "internalType": "uint256",
+        "internalType": "bytes",
         "name": "verseId",
-        "type": "uint256"
+        "type": "bytes"
       }
     ],
     "name": "Confirmation",
@@ -111,9 +111,9 @@
   {
     "inputs": [
       {
-        "internalType": "uint256",
+        "internalType": "bytes",
         "name": "_verseId",
-        "type": "uint256"
+        "type": "bytes"
       }
     ],
     "name": "confirmVerse",

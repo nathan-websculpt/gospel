@@ -27,8 +27,8 @@ export class Confirmation__Params {
     return this._event.parameters[0].value.toAddress();
   }
 
-  get verseId(): BigInt {
-    return this._event.parameters[1].value.toBigInt();
+  get verseId(): Bytes {
+    return this._event.parameters[1].value.toBytes();
   }
 }
 
@@ -287,8 +287,8 @@ export class ConfirmVerseCall__Inputs {
     this._call = call;
   }
 
-  get _verseId(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
+  get _verseId(): Bytes {
+    return this._call.inputValues[0].value.toBytes();
   }
 }
 
