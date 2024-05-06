@@ -6,14 +6,14 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 
 const deployedContracts = {
   31337: {
-    YourContract: {
-      address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+    John: {
+      address: "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
       abi: [
         {
           inputs: [
             {
               internalType: "address",
-              name: "_owner",
+              name: "_contractOwner",
               type: "address",
             },
           ],
@@ -24,41 +24,121 @@ const deployedContracts = {
           anonymous: false,
           inputs: [
             {
-              indexed: true,
+              indexed: false,
               internalType: "address",
-              name: "greetingSetter",
+              name: "confirmedBy",
               type: "address",
             },
             {
               indexed: false,
-              internalType: "string",
-              name: "newGreeting",
-              type: "string",
+              internalType: "uint256",
+              name: "verseId",
+              type: "uint256",
+            },
+          ],
+          name: "Confirmation",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "previousOwner",
+              type: "address",
             },
             {
+              indexed: true,
+              internalType: "address",
+              name: "newOwner",
+              type: "address",
+            },
+          ],
+          name: "OwnershipTransferred",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
               indexed: false,
-              internalType: "bool",
-              name: "premium",
-              type: "bool",
+              internalType: "address",
+              name: "signer",
+              type: "address",
             },
             {
               indexed: false,
               internalType: "uint256",
-              name: "value",
+              name: "verseId",
               type: "uint256",
             },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "verseNumber",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "chapterNumber",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "string",
+              name: "verseContent",
+              type: "string",
+            },
           ],
-          name: "GreetingChange",
+          name: "Verse",
           type: "event",
         },
         {
-          inputs: [],
-          name: "greeting",
-          outputs: [
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_verseNumber",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "_chapterNumber",
+              type: "uint256",
+            },
             {
               internalType: "string",
-              name: "",
+              name: "_verseContent",
               type: "string",
+            },
+          ],
+          name: "addVerse",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_verseId",
+              type: "uint256",
+            },
+          ],
+          name: "confirmVerse",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "numberOfVerses",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
             },
           ],
           stateMutability: "view",
@@ -79,57 +159,53 @@ const deployedContracts = {
         },
         {
           inputs: [],
-          name: "premium",
-          outputs: [
-            {
-              internalType: "bool",
-              name: "",
-              type: "bool",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "string",
-              name: "_newGreeting",
-              type: "string",
-            },
-          ],
-          name: "setGreeting",
+          name: "renounceOwnership",
           outputs: [],
-          stateMutability: "payable",
-          type: "function",
-        },
-        {
-          inputs: [],
-          name: "totalCounter",
-          outputs: [
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-          ],
-          stateMutability: "view",
+          stateMutability: "nonpayable",
           type: "function",
         },
         {
           inputs: [
             {
               internalType: "address",
-              name: "",
+              name: "newOwner",
               type: "address",
             },
           ],
-          name: "userGreetingCounter",
-          outputs: [
+          name: "transferOwnership",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
             {
               internalType: "uint256",
               name: "",
               type: "uint256",
+            },
+          ],
+          name: "verses",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "verseId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "verseNumber",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "chapterNumber",
+              type: "uint256",
+            },
+            {
+              internalType: "string",
+              name: "verseContent",
+              type: "string",
             },
           ],
           stateMutability: "view",
@@ -147,7 +223,11 @@ const deployedContracts = {
           type: "receive",
         },
       ],
-      inheritedFunctions: {},
+      inheritedFunctions: {
+        owner: "@openzeppelin/contracts/access/Ownable.sol",
+        renounceOwnership: "@openzeppelin/contracts/access/Ownable.sol",
+        transferOwnership: "@openzeppelin/contracts/access/Ownable.sol",
+      },
     },
   },
 } as const;
