@@ -1,0 +1,20 @@
+type Verse @entity(immutable: true) {
+  id: Bytes!
+  signer: Bytes!
+  verseId: BigInt!
+  verseNumber: BigInt!
+  chapterNumber: BigInt!
+  verseContent: String!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Confirmation @entity(immutable: true) {
+  id: Bytes!
+  confirmedBy: Bytes!
+  verseId: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
