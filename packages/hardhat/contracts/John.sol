@@ -33,8 +33,9 @@ contract John is Ownable, ReentrancyGuard {
 	mapping(address => uint256[]) public confirmations;
 	uint256 public numberOfVerses = 0;
 
+	//TODO: indexed parameters
 	event Verse(
-		address signer, //TODO: indexed
+		address signer, 
 		uint256 verseId,
 		uint256 verseNumber,
 		uint256 chapterNumber,
@@ -42,19 +43,19 @@ contract John is Ownable, ReentrancyGuard {
 	);
 
 	event Confirmation(
-		address confirmedBy, //TODO: indexed
+		address confirmedBy,
 		bytes verseId
 	);
 
 	event Donation(
-		address donor, //TODO: indexed
+		address donor,
 		uint256 amount
 	);
 
-	modifier hasNotConfirmed(address user, uint256 verseId) {
+	modifier hasNotConfirmed(address addr, uint256 verseId) {
 		bool canContinue = true;
-		for (uint256 i = 0; i < confirmations[user].length; i++) {
-			if (confirmations[user][i] == verseId) {
+		for (uint256 i = 0; i < confirmations[addr].length; i++) {
+			if (confirmations[addr][i] == verseId) {
 				canContinue = false;
 				break;
 			}
@@ -67,11 +68,11 @@ contract John is Ownable, ReentrancyGuard {
 		_transferOwnership(_contractOwner);
 	}
 
-	function addVerse(
+	function _storeVerse(
 		uint256 _verseNumber,
 		uint256 _chapterNumber,
 		string memory _verseContent
-	) external onlyOwner {
+	) private {
 		numberOfVerses++;
 		VerseStr storage thisVerse = verses[numberOfVerses];
 		thisVerse.verseId = numberOfVerses;
@@ -86,6 +87,14 @@ contract John is Ownable, ReentrancyGuard {
 			_chapterNumber,
 			_verseContent
 		);
+	}
+
+	function addVerse(
+		uint256 _verseNumber,
+		uint256 _chapterNumber,
+		string memory _verseContent
+	) external onlyOwner {
+		_storeVerse(_verseNumber, _chapterNumber, _verseContent);
 	}
 
 	function addBatchVerses(
@@ -104,20 +113,7 @@ contract John is Ownable, ReentrancyGuard {
 		);
 
 		for (uint256 i = 0; i < length; i++) {
-			numberOfVerses++;
-			VerseStr storage thisVerse = verses[numberOfVerses];
-			thisVerse.verseId = numberOfVerses;
-			thisVerse.verseNumber = _verseNumber[i];
-			thisVerse.chapterNumber = _chapterNumber[i];
-			thisVerse.verseContent = _verseContent[i];
-
-			emit Verse(
-				msg.sender,
-				numberOfVerses,
-				_verseNumber[i],
-				_chapterNumber[i],
-				_verseContent[i]
-			);
+			_storeVerse(_verseNumber[i], _chapterNumber[i], _verseContent[i]);
 		}
 	}
 
@@ -130,8 +126,9 @@ contract John is Ownable, ReentrancyGuard {
 	}
 
 	function withdraw() external onlyOwner nonReentrant {
+		address contractOwner = owner();
 		require(address(this).balance > 0, "There is nothing to withdraw.");
-		(bool success, ) = payable(msg.sender).call{
+		(bool success, ) = payable(contractOwner).call{
 			value: address(this).balance
 		}("");
 		require(success, "Failed to send Ether");
