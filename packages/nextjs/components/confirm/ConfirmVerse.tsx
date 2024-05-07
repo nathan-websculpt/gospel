@@ -31,7 +31,7 @@ export const ConfirmVerse = (_verse: DisplayVerseProps) => {
         <p className="text-2xl">{_verse?.content}</p>
         <p>Confirmations: <span>{_verse?.confirmationCount}</span></p>
 
-        <button className="btn btn-primary" onClick={() => writeAsync()}>
+        <button className="btn btn-secondary" onClick={() => writeAsync()}>
           CONFIRM ON-CHAIN
         </button>
       </div>
