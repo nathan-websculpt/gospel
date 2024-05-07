@@ -2,10 +2,12 @@ import { Bytes, log, BigInt } from "@graphprotocol/graph-ts";
 import {
   Verse as VerseEvent,
   Confirmation as ConfirmationEvent,
+  Donation as DonationEvent,
 } from "../generated/John/John";
 import {
   Verse,
   Confirmation,
+  Donation
 } from "../generated/schema";
 
 export function handleVerse(
@@ -46,6 +48,20 @@ export function handleConfirmation(event: ConfirmationEvent): void {
     verseEntity.confirmationCount++;
     verseEntity.save();
   }
+
+  entity.save();
+}
+
+export function handleDonation(event: DonationEvent): void {
+  let entity = new Donation(
+    event.transaction.hash.concatI32(event.logIndex.toI32())
+  );
+  entity.donor = event.params.donor;
+  entity.amount = event.params.amount;
+
+  entity.blockNumber = event.block.number;
+  entity.blockTimestamp = event.block.timestamp;
+  entity.transactionHash = event.transaction.hash;
 
   entity.save();
 }

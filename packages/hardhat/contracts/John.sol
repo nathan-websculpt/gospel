@@ -8,6 +8,17 @@ import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 /**
  * Not Production Ready
  * Dev/Testing
+ *
+ * I want to see how well this works and do some cost-analysis
+ *
+ *
+ *      CHECKLIST
+ * Can't confirm twice
+ * onlyOwner can add
+ * onlyOwner can batch add
+ *
+ *
+ *
  * @author nathan-websculpt https://github.com/nathan-websculpt
  */
 contract John is Ownable, ReentrancyGuard {
@@ -19,6 +30,7 @@ contract John is Ownable, ReentrancyGuard {
 	}
 
 	mapping(uint256 => VerseStr) public verses;
+	mapping(address => uint256[]) public confirmations;
 	uint256 public numberOfVerses = 0;
 
 	event Verse(
@@ -33,6 +45,20 @@ contract John is Ownable, ReentrancyGuard {
 		address confirmedBy, //TODO: indexed
 		bytes verseId
 	);
+
+	event Donation(address donor, uint256 amount);
+
+	modifier hasNotConfirmed(address user, uint256 verseId) {
+		bool canContinue = true;
+		for (uint256 i = 0; i < confirmations[user].length; i++) {
+			if (confirmations[user][i] == verseId) {
+				canContinue = false;
+				break;
+			}
+		}
+		require(canContinue, "This address has already confirmed this verse.");
+		_;
+	}
 
 	constructor(address _contractOwner) {
 		_transferOwnership(_contractOwner);
@@ -92,11 +118,15 @@ contract John is Ownable, ReentrancyGuard {
 		}
 	}
 
-	//TODO: prevent same address from confirming twice
-	function confirmVerse(bytes memory _verseId) external {
+	function confirmVerse(
+		bytes memory _verseId,
+		uint256 _numericalId
+	) external hasNotConfirmed(msg.sender, _numericalId) {
+		confirmations[msg.sender].push(_numericalId);
 		emit Confirmation(msg.sender, _verseId);
 	}
 
+	//TODO: require bal > 0
 	function withdraw() external onlyOwner nonReentrant {
 		(bool success, ) = payable(msg.sender).call{
 			value: address(this).balance
@@ -104,7 +134,13 @@ contract John is Ownable, ReentrancyGuard {
 		require(success, "Failed to send Ether");
 	}
 
-	receive() external payable {}
+	function donate() public payable {
+		emit Donation(msg.sender, msg.value);
+	}
+
+	receive() external payable {
+		donate();
+	}
 }
 
 //TODO: add donate functionality

@@ -32,6 +32,28 @@ export class Confirmation__Params {
   }
 }
 
+export class Donation extends ethereum.Event {
+  get params(): Donation__Params {
+    return new Donation__Params(this);
+  }
+}
+
+export class Donation__Params {
+  _event: Donation;
+
+  constructor(event: Donation) {
+    this._event = event;
+  }
+
+  get donor(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get amount(): BigInt {
+    return this._event.parameters[1].value.toBigInt();
+  }
+}
+
 export class OwnershipTransferred extends ethereum.Event {
   get params(): OwnershipTransferred__Params {
     return new OwnershipTransferred__Params(this);
@@ -130,6 +152,38 @@ export class John__versesResult {
 export class John extends ethereum.SmartContract {
   static bind(address: Address): John {
     return new John("John", address);
+  }
+
+  confirmations(param0: Address, param1: BigInt): BigInt {
+    let result = super.call(
+      "confirmations",
+      "confirmations(address,uint256):(uint256)",
+      [
+        ethereum.Value.fromAddress(param0),
+        ethereum.Value.fromUnsignedBigInt(param1)
+      ]
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_confirmations(
+    param0: Address,
+    param1: BigInt
+  ): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "confirmations",
+      "confirmations(address,uint256):(uint256)",
+      [
+        ethereum.Value.fromAddress(param0),
+        ethereum.Value.fromUnsignedBigInt(param1)
+      ]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
   numberOfVerses(): BigInt {
@@ -328,12 +382,42 @@ export class ConfirmVerseCall__Inputs {
   get _verseId(): Bytes {
     return this._call.inputValues[0].value.toBytes();
   }
+
+  get _numericalId(): BigInt {
+    return this._call.inputValues[1].value.toBigInt();
+  }
 }
 
 export class ConfirmVerseCall__Outputs {
   _call: ConfirmVerseCall;
 
   constructor(call: ConfirmVerseCall) {
+    this._call = call;
+  }
+}
+
+export class DonateCall extends ethereum.Call {
+  get inputs(): DonateCall__Inputs {
+    return new DonateCall__Inputs(this);
+  }
+
+  get outputs(): DonateCall__Outputs {
+    return new DonateCall__Outputs(this);
+  }
+}
+
+export class DonateCall__Inputs {
+  _call: DonateCall;
+
+  constructor(call: DonateCall) {
+    this._call = call;
+  }
+}
+
+export class DonateCall__Outputs {
+  _call: DonateCall;
+
+  constructor(call: DonateCall) {
     this._call = call;
   }
 }

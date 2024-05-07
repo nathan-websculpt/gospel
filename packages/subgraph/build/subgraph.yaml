@@ -9,7 +9,7 @@ dataSources:
     network: localhost
     source:
       abi: John
-      address: "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0"
+      address: "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9"
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -17,6 +17,7 @@ dataSources:
       entities:
         - Verse
         - Confirmation
+        - Donation
       abis:
         - name: John
           file: John\abis\localhost_John.json
@@ -25,4 +26,6 @@ dataSources:
           handler: handleVerse
         - event: Confirmation(address,bytes)
           handler: handleConfirmation
+        - event: Donation(address,uint256)
+          handler: handleDonation
       file: John\John.wasm

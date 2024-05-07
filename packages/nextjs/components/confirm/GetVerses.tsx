@@ -62,6 +62,7 @@ export const GetVerses = () => {
               verseNum={verse.verseNumber}
               verseId={verse.id}
               confirmationCount={verse.confirmationCount}
+              numericalId={BigInt(verse.verseId)}
             />
           </div>
         ))}

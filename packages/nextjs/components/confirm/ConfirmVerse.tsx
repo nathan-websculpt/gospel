@@ -6,6 +6,7 @@ interface DisplayVerseProps {
   chapterNum: string;
   verseNum: string;
   confirmationCount: number;
+  numericalId: bigint;
 }
 
 export const ConfirmVerse = (_verse: DisplayVerseProps) => {
@@ -15,7 +16,7 @@ export const ConfirmVerse = (_verse: DisplayVerseProps) => {
     try {
       await writeYourContractAsync({
         functionName: "confirmVerse",
-        args: [_verse?.verseId],
+        args: [_verse?.verseId, _verse?.numericalId],
       });
     } catch (e) {
       console.error("Error calling confirmVerse on contract:", e);

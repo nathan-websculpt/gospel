@@ -36,6 +36,10 @@ export const menuLinks: HeaderMenuLink[] = [
     href: "/addbulk",
   },
   {
+    label: "Donate",
+    href: "/donate",
+  },
+  {
     label: "Debug Contracts",
     href: "/debug",
     icon: <BugAntIcon className="w-4 h-4" />,
