@@ -142,6 +142,3 @@ contract John is Ownable, ReentrancyGuard {
 		donate();
 	}
 }
-
-//TODO: add donate functionality
-//only owner can withdraw
