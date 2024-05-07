@@ -32,6 +32,10 @@ export const menuLinks: HeaderMenuLink[] = [
     href: "/add",
   },
   {
+    label: "Batch Add",
+    href: "/addbulk",
+  },
+  {
     label: "Debug Contracts",
     href: "/debug",
     icon: <BugAntIcon className="w-4 h-4" />,

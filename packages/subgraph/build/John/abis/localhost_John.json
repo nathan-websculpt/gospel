@@ -88,6 +88,29 @@
   {
     "inputs": [
       {
+        "internalType": "uint256[]",
+        "name": "_verseNumber",
+        "type": "uint256[]"
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "_chapterNumber",
+        "type": "uint256[]"
+      },
+      {
+        "internalType": "string[]",
+        "name": "_verseContent",
+        "type": "string[]"
+      }
+    ],
+    "name": "addBatchVerses",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "uint256",
         "name": "_verseNumber",
         "type": "uint256"

@@ -232,6 +232,44 @@ export class ConstructorCall__Outputs {
   }
 }
 
+export class AddBatchVersesCall extends ethereum.Call {
+  get inputs(): AddBatchVersesCall__Inputs {
+    return new AddBatchVersesCall__Inputs(this);
+  }
+
+  get outputs(): AddBatchVersesCall__Outputs {
+    return new AddBatchVersesCall__Outputs(this);
+  }
+}
+
+export class AddBatchVersesCall__Inputs {
+  _call: AddBatchVersesCall;
+
+  constructor(call: AddBatchVersesCall) {
+    this._call = call;
+  }
+
+  get _verseNumber(): Array<BigInt> {
+    return this._call.inputValues[0].value.toBigIntArray();
+  }
+
+  get _chapterNumber(): Array<BigInt> {
+    return this._call.inputValues[1].value.toBigIntArray();
+  }
+
+  get _verseContent(): Array<string> {
+    return this._call.inputValues[2].value.toStringArray();
+  }
+}
+
+export class AddBatchVersesCall__Outputs {
+  _call: AddBatchVersesCall;
+
+  constructor(call: AddBatchVersesCall) {
+    this._call = call;
+  }
+}
+
 export class AddVerseCall extends ethereum.Call {
   get inputs(): AddVerseCall__Inputs {
     return new AddVerseCall__Inputs(this);

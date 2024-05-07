@@ -37,8 +37,12 @@ contract John is Ownable, ReentrancyGuard {
 	constructor(address _contractOwner) {
 		_transferOwnership(_contractOwner);
 	}
-	
-	function addVerse(uint256 _verseNumber, uint256 _chapterNumber, string memory _verseContent) external onlyOwner {
+
+	function addVerse(
+		uint256 _verseNumber,
+		uint256 _chapterNumber,
+		string memory _verseContent
+	) external onlyOwner {
 		numberOfVerses++;
 		VerseStr storage thisVerse = verses[numberOfVerses];
 		thisVerse.verseId = numberOfVerses;
@@ -46,7 +50,46 @@ contract John is Ownable, ReentrancyGuard {
 		thisVerse.chapterNumber = _chapterNumber;
 		thisVerse.verseContent = _verseContent;
 
-		emit Verse(msg.sender, numberOfVerses, _verseNumber, _chapterNumber, _verseContent);
+		emit Verse(
+			msg.sender,
+			numberOfVerses,
+			_verseNumber,
+			_chapterNumber,
+			_verseContent
+		);
+	}
+
+	function addBatchVerses(
+		uint256[] memory _verseNumber,
+		uint256[] memory _chapterNumber,
+		string[] memory _verseContent
+	) external onlyOwner {
+		uint256 length = _verseNumber.length;
+		require(
+			length == _chapterNumber.length,
+			"Invalid array lengths - lengths did not match."
+		);
+		require(
+			length == _verseContent.length,
+			"Invalid array lengths - lengths did not match."
+		);
+
+		for (uint256 i = 0; i < length; i++) {
+			numberOfVerses++;
+			VerseStr storage thisVerse = verses[numberOfVerses];
+			thisVerse.verseId = numberOfVerses;
+			thisVerse.verseNumber = _verseNumber[i];
+			thisVerse.chapterNumber = _chapterNumber[i];
+			thisVerse.verseContent = _verseContent[i];
+
+			emit Verse(
+				msg.sender,
+				numberOfVerses,
+				_verseNumber[i],
+				_chapterNumber[i],
+				_verseContent[i]
+			);
+		}
 	}
 
 	//TODO: prevent same address from confirming twice
@@ -54,11 +97,15 @@ contract John is Ownable, ReentrancyGuard {
 		emit Confirmation(msg.sender, _verseId);
 	}
 
-
 	function withdraw() external onlyOwner nonReentrant {
-		(bool success, ) = payable(msg.sender).call{ value: address(this).balance }("");
+		(bool success, ) = payable(msg.sender).call{
+			value: address(this).balance
+		}("");
 		require(success, "Failed to send Ether");
 	}
 
 	receive() external payable {}
 }
+
+//TODO: add donate functionality
+//only owner can withdraw
