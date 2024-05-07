@@ -125,9 +125,9 @@ contract John is Ownable, ReentrancyGuard {
 		confirmations[msg.sender].push(_numericalId);
 		emit Confirmation(msg.sender, _verseId);
 	}
-
-	//TODO: require bal > 0
+	
 	function withdraw() external onlyOwner nonReentrant {
+		require(address(this).balance > 0, "There is nothing to withdraw.");
 		(bool success, ) = payable(msg.sender).call{
 			value: address(this).balance
 		}("");

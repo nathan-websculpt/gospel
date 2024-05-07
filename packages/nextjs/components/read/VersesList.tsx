@@ -53,16 +53,16 @@ export const VersesList = () => {
           </button>
         </div>
 
-        {data?.verses?.map(verse => (
-          <div key={verse.id.toString()} className="flex flex-row">
-            <div className="flex flex-row">
-              <p className="mr-4 text-lg">
+        <div className="px-6 pt-10 pb-8 mt-6 shadow-xl bg-primary sm:mx-auto sm:max-w-11/12 md:w-full sm:rounded-lg sm:px-10">
+          {data?.verses?.map(verse => (
+            <div key={verse.id.toString()} className="flex flex-row gap-6">
+              <p className="text-lg text-nowrap">
                 {verse.chapterNumber} : {verse.verseNumber}
               </p>
-              <p className="text-lg">{verse.verseContent}</p>
+              <p className="text-2xl">{verse.verseContent}</p>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
 
         <div className="flex justify-end gap-3 mx-5 mt-5">
           <button className="btn btn-sm" disabled={!pageNum} onClick={() => setPageNum(0)}>
