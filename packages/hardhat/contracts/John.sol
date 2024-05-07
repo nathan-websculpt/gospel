@@ -46,7 +46,10 @@ contract John is Ownable, ReentrancyGuard {
 		bytes verseId
 	);
 
-	event Donation(address donor, uint256 amount);
+	event Donation(
+		address donor, //TODO: indexed
+		uint256 amount
+	);
 
 	modifier hasNotConfirmed(address user, uint256 verseId) {
 		bool canContinue = true;
@@ -125,7 +128,7 @@ contract John is Ownable, ReentrancyGuard {
 		confirmations[msg.sender].push(_numericalId);
 		emit Confirmation(msg.sender, _verseId);
 	}
-	
+
 	function withdraw() external onlyOwner nonReentrant {
 		require(address(this).balance > 0, "There is nothing to withdraw.");
 		(bool success, ) = payable(msg.sender).call{
