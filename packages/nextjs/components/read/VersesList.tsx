@@ -11,7 +11,6 @@ export const VersesList = () => {
   const [data, setData] = useState({});
   const [queryLoading, setQueryLoading] = useState(false);
 
-
   useEffect(() => {
     preQuery();
   }, [pageSize, pageNum]);
@@ -62,8 +61,8 @@ export const VersesList = () => {
   } else {
     return (
       <>
-        <div>
-        <input
+        <div className="flex flex-row mb-12">
+          <input
             className="w-full pl-4 bg-secondary text-secondary-content"
             placeholder="Search by text"
             value={userSearchInput}
@@ -81,6 +80,7 @@ export const VersesList = () => {
             onChange={event => setPageSize(parseInt(event.target.value))}
             value={pageSize.toString()}
           >
+            <option value="100">Show 100</option>
             <option value="25">Show 25</option>
             <option value="10">Show 10</option>
             <option value="1">Show 1</option>
