@@ -1,0 +1,491 @@
+{
+  "address": "0x29BB1313321dbA27Ad074DD6AD2943040319B439",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_contractOwner",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "confirmedBy",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "verseId",
+          "type": "bytes"
+        }
+      ],
+      "name": "Confirmation",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "donor",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "Donation",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "signer",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "verseId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "verseNumber",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "chapterNumber",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "verseContent",
+          "type": "string"
+        }
+      ],
+      "name": "Verse",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "_verseNumber",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "_chapterNumber",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "string[]",
+          "name": "_verseContent",
+          "type": "string[]"
+        }
+      ],
+      "name": "addBatchVerses",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_verseNumber",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_chapterNumber",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "_verseContent",
+          "type": "string"
+        }
+      ],
+      "name": "addVerse",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "_verseId",
+          "type": "bytes"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_numericalId",
+          "type": "uint256"
+        }
+      ],
+      "name": "confirmVerse",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "confirmations",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "donate",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "numberOfVerses",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "verses",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "verseId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "verseNumber",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "chapterNumber",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "verseContent",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "withdraw",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "receive"
+    }
+  ],
+  "transactionHash": "0x589597a96c3c2946975b466a03ea5355f10186b67da2245d22efdd825863f074",
+  "receipt": {
+    "to": null,
+    "from": "0x3D0c4D6571399B76d4c57E1057D300557eAE9f08",
+    "contractAddress": "0x29BB1313321dbA27Ad074DD6AD2943040319B439",
+    "transactionIndex": 14,
+    "gasUsed": "925391",
+    "logsBloom": "0x00000000000000000400400000000000000001000000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000020000000000000000000800000000000000000000000000000000400000000000000000000000000000000000000040000000000020000000000000000000000000000000000000000000000000000000000000000000000000802000000000000000008000000000000000000000000000000000000000000020000000000000400000000000000000000000000000000000000000000000000000",
+    "blockHash": "0xe65dd04541bb463526e7ce3945440dc29387f0cf0d364cf30c6996aa0d201a68",
+    "transactionHash": "0x589597a96c3c2946975b466a03ea5355f10186b67da2245d22efdd825863f074",
+    "logs": [
+      {
+        "transactionIndex": 14,
+        "blockNumber": 119794805,
+        "transactionHash": "0x589597a96c3c2946975b466a03ea5355f10186b67da2245d22efdd825863f074",
+        "address": "0x29BB1313321dbA27Ad074DD6AD2943040319B439",
+        "topics": [
+          "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0",
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000003d0c4d6571399b76d4c57e1057d300557eae9f08"
+        ],
+        "data": "0x",
+        "logIndex": 16,
+        "blockHash": "0xe65dd04541bb463526e7ce3945440dc29387f0cf0d364cf30c6996aa0d201a68"
+      },
+      {
+        "transactionIndex": 14,
+        "blockNumber": 119794805,
+        "transactionHash": "0x589597a96c3c2946975b466a03ea5355f10186b67da2245d22efdd825863f074",
+        "address": "0x29BB1313321dbA27Ad074DD6AD2943040319B439",
+        "topics": [
+          "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0",
+          "0x0000000000000000000000003d0c4d6571399b76d4c57e1057d300557eae9f08",
+          "0x0000000000000000000000001e7aabb9d0c701208e875131d0a1cfcdaba79350"
+        ],
+        "data": "0x",
+        "logIndex": 17,
+        "blockHash": "0xe65dd04541bb463526e7ce3945440dc29387f0cf0d364cf30c6996aa0d201a68"
+      }
+    ],
+    "blockNumber": 119794805,
+    "cumulativeGasUsed": "2346094",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0x1e7aAbB9D0C701208E875131d0A1cFcDAba79350"
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "6f807b3ca08fd96768e7404082cb5daa",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_contractOwner\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"confirmedBy\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"verseId\",\"type\":\"bytes\"}],\"name\":\"Confirmation\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"donor\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"Donation\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"signer\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"verseId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"verseNumber\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"chapterNumber\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"verseContent\",\"type\":\"string\"}],\"name\":\"Verse\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256[]\",\"name\":\"_verseNumber\",\"type\":\"uint256[]\"},{\"internalType\":\"uint256[]\",\"name\":\"_chapterNumber\",\"type\":\"uint256[]\"},{\"internalType\":\"string[]\",\"name\":\"_verseContent\",\"type\":\"string[]\"}],\"name\":\"addBatchVerses\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_verseNumber\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_chapterNumber\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"_verseContent\",\"type\":\"string\"}],\"name\":\"addVerse\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"_verseId\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"_numericalId\",\"type\":\"uint256\"}],\"name\":\"confirmVerse\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"confirmations\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"donate\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"numberOfVerses\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"verses\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"verseId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"verseNumber\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"chapterNumber\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"verseContent\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"withdraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}],\"devdoc\":{\"author\":\"nathan-websculpt https://github.com/nathan-websculpt 0x1e7aAbB9D0C701208E875131d0A1cFcDAba79350 Please see my repo: 'crowd-fund-v4' to see how a council-of-members can vote on text before it is processed.\",\"kind\":\"dev\",\"methods\":{\"owner()\":{\"details\":\"Returns the address of the current owner.\"},\"renounceOwnership()\":{\"details\":\"Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.\"},\"transferOwnership(address)\":{\"details\":\"Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"notice\":\"WARNING: CONTRACT IS CURRENTLY FOR PROOF-OF-CONCEPT WARNING: CONTRACT HAS NOT BEEN AUDITED Dev/Testing: I want to see how well this works and do some cost-analysis. At the time of writing, I can not confirm that the goal of this contract will be achieved; THEREFORE, I can not assert that this will properly represent The Gospel of John (KJV) [neither in-part, nor in-full]; This will hopefully serve the purpose of saying, \\\"Look, it is possible.\\\" But, if you wanted to read The Gospel of John (KJV) yourself, this contract (or, this iteration of this contract) is not the right source. One area where this text will be lacking is that it will not contain any of the original italics. The intention of this smart contract is to store/confirm (verse-by-verse) The Gospel of John (KJV) on Optimism, and (if all goes well) this could evolve to become a template for other books/documents. Ideally, I believe that this would be better with a council-of-members voting on the validity of a section-of-text BEFORE it is stored. This is more than protecting books against censorship. The blockchain could also allow us to timestamp the moment a group of people agreed upon the contents of a book/written-work/document. I do intend to try this with items like the Declaration of Independence, as well. WARNING: CONTRACT IS CURRENTLY FOR PROOF-OF-CONCEPT WARNING: CONTRACT HAS NOT BEEN AUDITED If you wish to donate, please do not use this contract's functionality. Instead, simply send funds to: 0x1e7aAbB9D0C701208E875131d0A1cFcDAba79350 My most-sincere feeling of gratitude goes to anyone wanting to help out.\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/John.sol\":\"John\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/access/Ownable.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v4.7.0) (access/Ownable.sol)\\n\\npragma solidity ^0.8.0;\\n\\nimport \\\"../utils/Context.sol\\\";\\n\\n/**\\n * @dev Contract module which provides a basic access control mechanism, where\\n * there is an account (an owner) that can be granted exclusive access to\\n * specific functions.\\n *\\n * By default, the owner account will be the one that deploys the contract. This\\n * can later be changed with {transferOwnership}.\\n *\\n * This module is used through inheritance. It will make available the modifier\\n * `onlyOwner`, which can be applied to your functions to restrict their use to\\n * the owner.\\n */\\nabstract contract Ownable is Context {\\n    address private _owner;\\n\\n    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);\\n\\n    /**\\n     * @dev Initializes the contract setting the deployer as the initial owner.\\n     */\\n    constructor() {\\n        _transferOwnership(_msgSender());\\n    }\\n\\n    /**\\n     * @dev Throws if called by any account other than the owner.\\n     */\\n    modifier onlyOwner() {\\n        _checkOwner();\\n        _;\\n    }\\n\\n    /**\\n     * @dev Returns the address of the current owner.\\n     */\\n    function owner() public view virtual returns (address) {\\n        return _owner;\\n    }\\n\\n    /**\\n     * @dev Throws if the sender is not the owner.\\n     */\\n    function _checkOwner() internal view virtual {\\n        require(owner() == _msgSender(), \\\"Ownable: caller is not the owner\\\");\\n    }\\n\\n    /**\\n     * @dev Leaves the contract without owner. It will not be possible to call\\n     * `onlyOwner` functions anymore. Can only be called by the current owner.\\n     *\\n     * NOTE: Renouncing ownership will leave the contract without an owner,\\n     * thereby removing any functionality that is only available to the owner.\\n     */\\n    function renounceOwnership() public virtual onlyOwner {\\n        _transferOwnership(address(0));\\n    }\\n\\n    /**\\n     * @dev Transfers ownership of the contract to a new account (`newOwner`).\\n     * Can only be called by the current owner.\\n     */\\n    function transferOwnership(address newOwner) public virtual onlyOwner {\\n        require(newOwner != address(0), \\\"Ownable: new owner is the zero address\\\");\\n        _transferOwnership(newOwner);\\n    }\\n\\n    /**\\n     * @dev Transfers ownership of the contract to a new account (`newOwner`).\\n     * Internal function without access restriction.\\n     */\\n    function _transferOwnership(address newOwner) internal virtual {\\n        address oldOwner = _owner;\\n        _owner = newOwner;\\n        emit OwnershipTransferred(oldOwner, newOwner);\\n    }\\n}\\n\",\"keccak256\":\"0xa94b34880e3c1b0b931662cb1c09e5dfa6662f31cba80e07c5ee71cd135c9673\",\"license\":\"MIT\"},\"@openzeppelin/contracts/security/ReentrancyGuard.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v4.8.0) (security/ReentrancyGuard.sol)\\n\\npragma solidity ^0.8.0;\\n\\n/**\\n * @dev Contract module that helps prevent reentrant calls to a function.\\n *\\n * Inheriting from `ReentrancyGuard` will make the {nonReentrant} modifier\\n * available, which can be applied to functions to make sure there are no nested\\n * (reentrant) calls to them.\\n *\\n * Note that because there is a single `nonReentrant` guard, functions marked as\\n * `nonReentrant` may not call one another. This can be worked around by making\\n * those functions `private`, and then adding `external` `nonReentrant` entry\\n * points to them.\\n *\\n * TIP: If you would like to learn more about reentrancy and alternative ways\\n * to protect against it, check out our blog post\\n * https://blog.openzeppelin.com/reentrancy-after-istanbul/[Reentrancy After Istanbul].\\n */\\nabstract contract ReentrancyGuard {\\n    // Booleans are more expensive than uint256 or any type that takes up a full\\n    // word because each write operation emits an extra SLOAD to first read the\\n    // slot's contents, replace the bits taken up by the boolean, and then write\\n    // back. This is the compiler's defense against contract upgrades and\\n    // pointer aliasing, and it cannot be disabled.\\n\\n    // The values being non-zero value makes deployment a bit more expensive,\\n    // but in exchange the refund on every call to nonReentrant will be lower in\\n    // amount. Since refunds are capped to a percentage of the total\\n    // transaction's gas, it is best to keep them low in cases like this one, to\\n    // increase the likelihood of the full refund coming into effect.\\n    uint256 private constant _NOT_ENTERED = 1;\\n    uint256 private constant _ENTERED = 2;\\n\\n    uint256 private _status;\\n\\n    constructor() {\\n        _status = _NOT_ENTERED;\\n    }\\n\\n    /**\\n     * @dev Prevents a contract from calling itself, directly or indirectly.\\n     * Calling a `nonReentrant` function from another `nonReentrant`\\n     * function is not supported. It is possible to prevent this from happening\\n     * by making the `nonReentrant` function external, and making it call a\\n     * `private` function that does the actual work.\\n     */\\n    modifier nonReentrant() {\\n        _nonReentrantBefore();\\n        _;\\n        _nonReentrantAfter();\\n    }\\n\\n    function _nonReentrantBefore() private {\\n        // On the first call to nonReentrant, _status will be _NOT_ENTERED\\n        require(_status != _ENTERED, \\\"ReentrancyGuard: reentrant call\\\");\\n\\n        // Any calls to nonReentrant after this point will fail\\n        _status = _ENTERED;\\n    }\\n\\n    function _nonReentrantAfter() private {\\n        // By storing the original value once again, a refund is triggered (see\\n        // https://eips.ethereum.org/EIPS/eip-2200)\\n        _status = _NOT_ENTERED;\\n    }\\n}\\n\",\"keccak256\":\"0x190dd6f8d592b7e4e930feb7f4313aeb8e1c4ad3154c27ce1cf6a512fc30d8cc\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/Context.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts v4.4.1 (utils/Context.sol)\\n\\npragma solidity ^0.8.0;\\n\\n/**\\n * @dev Provides information about the current execution context, including the\\n * sender of the transaction and its data. While these are generally available\\n * via msg.sender and msg.data, they should not be accessed in such a direct\\n * manner, since when dealing with meta-transactions the account sending and\\n * paying for execution may not be the actual sender (as far as an application\\n * is concerned).\\n *\\n * This contract is only required for intermediate, library-like contracts.\\n */\\nabstract contract Context {\\n    function _msgSender() internal view virtual returns (address) {\\n        return msg.sender;\\n    }\\n\\n    function _msgData() internal view virtual returns (bytes calldata) {\\n        return msg.data;\\n    }\\n}\\n\",\"keccak256\":\"0xe2e337e6dde9ef6b680e07338c493ebea1b5fd09b43424112868e9cc1706bca7\",\"license\":\"MIT\"},\"contracts/John.sol\":{\"content\":\"//SPDX-License-Identifier: MIT\\r\\npragma solidity >=0.8.0 <0.9.0;\\r\\n\\r\\nimport \\\"@openzeppelin/contracts/access/Ownable.sol\\\";\\r\\nimport \\\"@openzeppelin/contracts/security/ReentrancyGuard.sol\\\";\\r\\n\\r\\n/**\\r\\n * WARNING: CONTRACT IS CURRENTLY FOR PROOF-OF-CONCEPT\\r\\n * WARNING: CONTRACT HAS NOT BEEN AUDITED\\r\\n * Dev/Testing: I want to see how well this works and do some cost-analysis.\\r\\n *\\r\\n *\\r\\n * At the time of writing, I can not confirm that the goal of this contract will be achieved;\\r\\n * THEREFORE, I can not assert that this will properly represent The Gospel of John (KJV) [neither in-part, nor in-full];\\r\\n * This will hopefully serve the purpose of saying, \\\"Look, it is possible.\\\"\\r\\n * But, if you wanted to read The Gospel of John (KJV) yourself, this contract (or, this iteration of this contract) is not the right source.\\r\\n * One area where this text will be lacking is that it will not contain any of the original italics.\\r\\n *\\r\\n * The intention of this smart contract is to store/confirm (verse-by-verse) The Gospel of John (KJV) on Optimism,\\r\\n * and (if all goes well) this could evolve to become a template for other books/documents.\\r\\n *\\r\\n * Ideally, I believe that this would be better with a council-of-members voting on the validity of a section-of-text BEFORE it is stored.\\r\\n * This is more than protecting books against censorship. The blockchain could also allow us to timestamp the moment a group of\\r\\n * people agreed upon the contents of a book/written-work/document.\\r\\n * I do intend to try this with items like the Declaration of Independence, as well.\\r\\n *\\r\\n * WARNING: CONTRACT IS CURRENTLY FOR PROOF-OF-CONCEPT\\r\\n * WARNING: CONTRACT HAS NOT BEEN AUDITED\\r\\n * If you wish to donate, please do not use this contract's functionality.\\r\\n * Instead, simply send funds to: 0x1e7aAbB9D0C701208E875131d0A1cFcDAba79350\\r\\n * My most-sincere feeling of gratitude goes to anyone wanting to help out.\\r\\n *\\r\\n * @author\\r\\n * nathan-websculpt\\r\\n * https://github.com/nathan-websculpt\\r\\n * 0x1e7aAbB9D0C701208E875131d0A1cFcDAba79350\\r\\n *\\r\\n * Please see my repo: 'crowd-fund-v4' to see how a council-of-members can vote on text before it is processed.\\r\\n */\\r\\n\\r\\ncontract John is Ownable, ReentrancyGuard {\\r\\n\\tstruct VerseStr {\\r\\n\\t\\tuint256 verseId;\\r\\n\\t\\tuint256 verseNumber;\\r\\n\\t\\tuint256 chapterNumber;\\r\\n\\t\\tstring verseContent;\\r\\n\\t}\\r\\n\\r\\n\\tmapping(uint256 => VerseStr) public verses;\\r\\n\\tmapping(address => uint256[]) public confirmations;\\r\\n\\tuint256 public numberOfVerses = 0;\\r\\n\\r\\n\\t//TODO: indexed parameters\\r\\n\\tevent Verse(\\r\\n\\t\\taddress signer,\\r\\n\\t\\tuint256 verseId,\\r\\n\\t\\tuint256 verseNumber,\\r\\n\\t\\tuint256 chapterNumber,\\r\\n\\t\\tstring verseContent\\r\\n\\t);\\r\\n\\r\\n\\tevent Confirmation(address confirmedBy, bytes verseId);\\r\\n\\r\\n\\tevent Donation(address donor, uint256 amount);\\r\\n\\r\\n\\tmodifier hasNotConfirmed(address addr, uint256 verseId) {\\r\\n\\t\\tbool canContinue = true;\\r\\n\\t\\tfor (uint256 i = 0; i < confirmations[addr].length; i++) {\\r\\n\\t\\t\\tif (confirmations[addr][i] == verseId) {\\r\\n\\t\\t\\t\\tcanContinue = false;\\r\\n\\t\\t\\t\\tbreak;\\r\\n\\t\\t\\t}\\r\\n\\t\\t}\\r\\n\\t\\trequire(canContinue, \\\"This address has already confirmed this verse.\\\");\\r\\n\\t\\t_;\\r\\n\\t}\\r\\n\\r\\n\\tconstructor(address _contractOwner) {\\r\\n\\t\\t_transferOwnership(_contractOwner);\\r\\n\\t}\\r\\n\\r\\n\\treceive() external payable {\\r\\n\\t\\tdonate();\\r\\n\\t}\\r\\n\\r\\n\\tfunction addVerse(\\r\\n\\t\\tuint256 _verseNumber,\\r\\n\\t\\tuint256 _chapterNumber,\\r\\n\\t\\tstring memory _verseContent\\r\\n\\t) external onlyOwner {\\r\\n\\t\\t_storeVerse(_verseNumber, _chapterNumber, _verseContent);\\r\\n\\t}\\r\\n\\r\\n\\tfunction addBatchVerses(\\r\\n\\t\\tuint256[] memory _verseNumber,\\r\\n\\t\\tuint256[] memory _chapterNumber,\\r\\n\\t\\tstring[] memory _verseContent\\r\\n\\t) external onlyOwner {\\r\\n\\t\\tuint256 length = _verseNumber.length;\\r\\n\\t\\trequire(\\r\\n\\t\\t\\tlength == _chapterNumber.length,\\r\\n\\t\\t\\t\\\"Invalid array lengths - lengths did not match.\\\"\\r\\n\\t\\t);\\r\\n\\t\\trequire(\\r\\n\\t\\t\\tlength == _verseContent.length,\\r\\n\\t\\t\\t\\\"Invalid array lengths - lengths did not match.\\\"\\r\\n\\t\\t);\\r\\n\\r\\n\\t\\tfor (uint256 i = 0; i < length; i++) {\\r\\n\\t\\t\\t_storeVerse(_verseNumber[i], _chapterNumber[i], _verseContent[i]);\\r\\n\\t\\t}\\r\\n\\t}\\r\\n\\r\\n\\tfunction confirmVerse(\\r\\n\\t\\tbytes memory _verseId,\\r\\n\\t\\tuint256 _numericalId\\r\\n\\t) external hasNotConfirmed(msg.sender, _numericalId) {\\r\\n\\t\\tconfirmations[msg.sender].push(_numericalId);\\r\\n\\t\\temit Confirmation(msg.sender, _verseId);\\r\\n\\t}\\r\\n\\r\\n\\tfunction withdraw() external onlyOwner nonReentrant {\\r\\n\\t\\taddress contractOwner = owner();\\r\\n\\t\\trequire(address(this).balance > 0, \\\"There is nothing to withdraw.\\\");\\r\\n\\t\\t(bool success, ) = payable(contractOwner).call{\\r\\n\\t\\t\\tvalue: address(this).balance\\r\\n\\t\\t}(\\\"\\\");\\r\\n\\t\\trequire(success, \\\"Failed to send Ether\\\");\\r\\n\\t}\\r\\n\\r\\n\\tfunction donate() public payable {\\r\\n\\t\\temit Donation(msg.sender, msg.value);\\r\\n\\t}\\r\\n\\r\\n\\tfunction _storeVerse(\\r\\n\\t\\tuint256 _verseNumber,\\r\\n\\t\\tuint256 _chapterNumber,\\r\\n\\t\\tstring memory _verseContent\\r\\n\\t) private {\\r\\n\\t\\tnumberOfVerses++;\\r\\n\\t\\tVerseStr storage thisVerse = verses[numberOfVerses];\\r\\n\\t\\tthisVerse.verseId = numberOfVerses;\\r\\n\\t\\tthisVerse.verseNumber = _verseNumber;\\r\\n\\t\\tthisVerse.chapterNumber = _chapterNumber;\\r\\n\\t\\tthisVerse.verseContent = _verseContent;\\r\\n\\r\\n\\t\\temit Verse(\\r\\n\\t\\t\\tmsg.sender,\\r\\n\\t\\t\\tnumberOfVerses,\\r\\n\\t\\t\\t_verseNumber,\\r\\n\\t\\t\\t_chapterNumber,\\r\\n\\t\\t\\t_verseContent\\r\\n\\t\\t);\\r\\n\\t}\\r\\n}\\r\\n\",\"keccak256\":\"0x53979ebb9c20ea4aa85ca21ca0fa8cb097559e53bb7ca3d4b6a11d18710ac3ba\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x6080604052600060045534801561001557600080fd5b50604051610faf380380610faf833981016040819052610034916100a0565b61003d33610050565b6001805561004a81610050565b506100d0565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b6000602082840312156100b257600080fd5b81516001600160a01b03811681146100c957600080fd5b9392505050565b610ed0806100df6000396000f3fe6080604052600436106100a05760003560e01c8063ce5b52df11610064578063ce5b52df1461014b578063dfe0743e1461016b578063e21a53e11461018f578063ed88c68e146101bf578063f2fde38b146101c7578063f84fd9ef146101e757600080fd5b80631760e43b146100b45780633ccfd60b146100d4578063715018a6146100e95780638d3a3652146100fe5780638da5cb5b1461011e57600080fd5b366100af576100ad610207565b005b600080fd5b3480156100c057600080fd5b506100ad6100cf366004610917565b610241565b3480156100e057600080fd5b506100ad61038c565b3480156100f557600080fd5b506100ad61049c565b34801561010a57600080fd5b506100ad610119366004610997565b6104ae565b34801561012a57600080fd5b506000546040516001600160a01b0390911681526020015b60405180910390f35b34801561015757600080fd5b506100ad610166366004610a76565b6104c6565b34801561017757600080fd5b5061018160045481565b604051908152602001610142565b34801561019b57600080fd5b506101af6101aa366004610b6e565b61058a565b6040516101429493929190610bcd565b6100ad610207565b3480156101d357600080fd5b506100ad6101e2366004610c18565b61063d565b3480156101f357600080fd5b50610181610202366004610c33565b6106b6565b604080513381523460208201527f5d8bc849764969eb1bcc6d0a2f55999d0167c1ccec240a4f39cf664ca9c4148e910160405180910390a1565b3381600160005b6001600160a01b0384166000908152600360205260409020548110156102c0576001600160a01b038416600090815260036020526040902080548491908390811061029557610295610c5d565b9060005260206000200154036102ae57600091506102c0565b806102b881610c73565b915050610248565b508061032a5760405162461bcd60e51b815260206004820152602e60248201527f5468697320616464726573732068617320616c726561647920636f6e6669726d60448201526d32b2103a3434b9903b32b939b29760911b60648201526084015b60405180910390fd5b33600081815260036020908152604080832080546001810182559084529190922001869055517fdb85b4147646207c053d84dd4712536ee15745eee70de44f65ecdf94359ae43a9161037d918890610c9a565b60405180910390a15050505050565b6103946106e7565b61039c610741565b6000546001600160a01b0316476103f55760405162461bcd60e51b815260206004820152601d60248201527f5468657265206973206e6f7468696e6720746f2077697468647261772e0000006044820152606401610321565b6000816001600160a01b03164760405160006040518083038185875af1925050503d8060008114610442576040519150601f19603f3d011682016040523d82523d6000602084013e610447565b606091505b505090508061048f5760405162461bcd60e51b81526020600482015260146024820152732330b4b632b2103a379039b2b7321022ba3432b960611b6044820152606401610321565b505061049a60018055565b565b6104a46106e7565b61049a600061079a565b6104b66106e7565b6104c18383836107ea565b505050565b6104ce6106e7565b8251825181146104f05760405162461bcd60e51b815260040161032190610cc6565b815181146105105760405162461bcd60e51b815260040161032190610cc6565b60005b818110156105835761057185828151811061053057610530610c5d565b602002602001015185838151811061054a5761054a610c5d565b602002602001015185848151811061056457610564610c5d565b60200260200101516107ea565b8061057b81610c73565b915050610513565b5050505050565b6002602081905260009182526040909120805460018201549282015460038301805492949391926105ba90610d14565b80601f01602080910402602001604051908101604052809291908181526020018280546105e690610d14565b80156106335780601f1061060857610100808354040283529160200191610633565b820191906000526020600020905b81548152906001019060200180831161061657829003601f168201915b5050505050905084565b6106456106e7565b6001600160a01b0381166106aa5760405162461bcd60e51b815260206004820152602660248201527f4f776e61626c653a206e6577206f776e657220697320746865207a65726f206160448201526564647265737360d01b6064820152608401610321565b6106b38161079a565b50565b600360205281600052604060002081815481106106d257600080fd5b90600052602060002001600091509150505481565b6000546001600160a01b0316331461049a5760405162461bcd60e51b815260206004820181905260248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e65726044820152606401610321565b6002600154036107935760405162461bcd60e51b815260206004820152601f60248201527f5265656e7472616e637947756172643a207265656e7472616e742063616c6c006044820152606401610321565b6002600155565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b600480549060006107fa83610c73565b90915550506004546000818152600260208190526040909120918255600182018590558101839055600381016108308382610d9c565b507f89b2f4d3098c733ba5a3913b09a6d590bb158d7e61f3ab5fc7027166a83c553a3360045486868660405161086a959493929190610e5c565b60405180910390a150505050565b634e487b7160e01b600052604160045260246000fd5b604051601f8201601f1916810167ffffffffffffffff811182821017156108b7576108b7610878565b604052919050565b600067ffffffffffffffff8311156108d9576108d9610878565b6108ec601f8401601f191660200161088e565b905082815283838301111561090057600080fd5b828260208301376000602084830101529392505050565b6000806040838503121561092a57600080fd5b823567ffffffffffffffff81111561094157600080fd5b8301601f8101851361095257600080fd5b610961858235602084016108bf565b95602094909401359450505050565b600082601f83011261098157600080fd5b610990838335602085016108bf565b9392505050565b6000806000606084860312156109ac57600080fd5b8335925060208401359150604084013567ffffffffffffffff8111156109d157600080fd5b6109dd86828701610970565b9150509250925092565b600067ffffffffffffffff821115610a0157610a01610878565b5060051b60200190565b600082601f830112610a1c57600080fd5b81356020610a31610a2c836109e7565b61088e565b82815260059290921b84018101918181019086841115610a5057600080fd5b8286015b84811015610a6b5780358352918301918301610a54565b509695505050505050565b600080600060608486031215610a8b57600080fd5b833567ffffffffffffffff80821115610aa357600080fd5b610aaf87838801610a0b565b9450602091508186013581811115610ac657600080fd5b610ad288828901610a0b565b945050604086013581811115610ae757600080fd5b8601601f81018813610af857600080fd5b8035610b06610a2c826109e7565b81815260059190911b8201840190848101908a831115610b2557600080fd5b8584015b83811015610b5d57803586811115610b415760008081fd5b610b4f8d8983890101610970565b845250918601918601610b29565b508096505050505050509250925092565b600060208284031215610b8057600080fd5b5035919050565b6000815180845260005b81811015610bad57602081850181015186830182015201610b91565b506000602082860101526020601f19601f83011685010191505092915050565b848152836020820152826040820152608060608201526000610bf26080830184610b87565b9695505050505050565b80356001600160a01b0381168114610c1357600080fd5b919050565b600060208284031215610c2a57600080fd5b61099082610bfc565b60008060408385031215610c4657600080fd5b610c4f83610bfc565b946020939093013593505050565b634e487b7160e01b600052603260045260246000fd5b600060018201610c9357634e487b7160e01b600052601160045260246000fd5b5060010190565b6001600160a01b0383168152604060208201819052600090610cbe90830184610b87565b949350505050565b6020808252602e908201527f496e76616c6964206172726179206c656e67746873202d206c656e677468732060408201526d3234b2103737ba1036b0ba31b41760911b606082015260800190565b600181811c90821680610d2857607f821691505b602082108103610d4857634e487b7160e01b600052602260045260246000fd5b50919050565b601f8211156104c157600081815260208120601f850160051c81016020861015610d755750805b601f850160051c820191505b81811015610d9457828155600101610d81565b505050505050565b815167ffffffffffffffff811115610db657610db6610878565b610dca81610dc48454610d14565b84610d4e565b602080601f831160018114610dff5760008415610de75750858301515b600019600386901b1c1916600185901b178555610d94565b600085815260208120601f198616915b82811015610e2e57888601518255948401946001909101908401610e0f565b5085821015610e4c5787850151600019600388901b60f8161c191681555b5050505050600190811b01905550565b60018060a01b038616815284602082015283604082015282606082015260a060808201526000610e8f60a0830184610b87565b97965050505050505056fea2646970667358221220004deac1e189f5520df230e22fb83e8ddee7ee6ce045aaacd43dec4da6d6975b64736f6c63430008110033",
+  "deployedBytecode": "0x6080604052600436106100a05760003560e01c8063ce5b52df11610064578063ce5b52df1461014b578063dfe0743e1461016b578063e21a53e11461018f578063ed88c68e146101bf578063f2fde38b146101c7578063f84fd9ef146101e757600080fd5b80631760e43b146100b45780633ccfd60b146100d4578063715018a6146100e95780638d3a3652146100fe5780638da5cb5b1461011e57600080fd5b366100af576100ad610207565b005b600080fd5b3480156100c057600080fd5b506100ad6100cf366004610917565b610241565b3480156100e057600080fd5b506100ad61038c565b3480156100f557600080fd5b506100ad61049c565b34801561010a57600080fd5b506100ad610119366004610997565b6104ae565b34801561012a57600080fd5b506000546040516001600160a01b0390911681526020015b60405180910390f35b34801561015757600080fd5b506100ad610166366004610a76565b6104c6565b34801561017757600080fd5b5061018160045481565b604051908152602001610142565b34801561019b57600080fd5b506101af6101aa366004610b6e565b61058a565b6040516101429493929190610bcd565b6100ad610207565b3480156101d357600080fd5b506100ad6101e2366004610c18565b61063d565b3480156101f357600080fd5b50610181610202366004610c33565b6106b6565b604080513381523460208201527f5d8bc849764969eb1bcc6d0a2f55999d0167c1ccec240a4f39cf664ca9c4148e910160405180910390a1565b3381600160005b6001600160a01b0384166000908152600360205260409020548110156102c0576001600160a01b038416600090815260036020526040902080548491908390811061029557610295610c5d565b9060005260206000200154036102ae57600091506102c0565b806102b881610c73565b915050610248565b508061032a5760405162461bcd60e51b815260206004820152602e60248201527f5468697320616464726573732068617320616c726561647920636f6e6669726d60448201526d32b2103a3434b9903b32b939b29760911b60648201526084015b60405180910390fd5b33600081815260036020908152604080832080546001810182559084529190922001869055517fdb85b4147646207c053d84dd4712536ee15745eee70de44f65ecdf94359ae43a9161037d918890610c9a565b60405180910390a15050505050565b6103946106e7565b61039c610741565b6000546001600160a01b0316476103f55760405162461bcd60e51b815260206004820152601d60248201527f5468657265206973206e6f7468696e6720746f2077697468647261772e0000006044820152606401610321565b6000816001600160a01b03164760405160006040518083038185875af1925050503d8060008114610442576040519150601f19603f3d011682016040523d82523d6000602084013e610447565b606091505b505090508061048f5760405162461bcd60e51b81526020600482015260146024820152732330b4b632b2103a379039b2b7321022ba3432b960611b6044820152606401610321565b505061049a60018055565b565b6104a46106e7565b61049a600061079a565b6104b66106e7565b6104c18383836107ea565b505050565b6104ce6106e7565b8251825181146104f05760405162461bcd60e51b815260040161032190610cc6565b815181146105105760405162461bcd60e51b815260040161032190610cc6565b60005b818110156105835761057185828151811061053057610530610c5d565b602002602001015185838151811061054a5761054a610c5d565b602002602001015185848151811061056457610564610c5d565b60200260200101516107ea565b8061057b81610c73565b915050610513565b5050505050565b6002602081905260009182526040909120805460018201549282015460038301805492949391926105ba90610d14565b80601f01602080910402602001604051908101604052809291908181526020018280546105e690610d14565b80156106335780601f1061060857610100808354040283529160200191610633565b820191906000526020600020905b81548152906001019060200180831161061657829003601f168201915b5050505050905084565b6106456106e7565b6001600160a01b0381166106aa5760405162461bcd60e51b815260206004820152602660248201527f4f776e61626c653a206e6577206f776e657220697320746865207a65726f206160448201526564647265737360d01b6064820152608401610321565b6106b38161079a565b50565b600360205281600052604060002081815481106106d257600080fd5b90600052602060002001600091509150505481565b6000546001600160a01b0316331461049a5760405162461bcd60e51b815260206004820181905260248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e65726044820152606401610321565b6002600154036107935760405162461bcd60e51b815260206004820152601f60248201527f5265656e7472616e637947756172643a207265656e7472616e742063616c6c006044820152606401610321565b6002600155565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b600480549060006107fa83610c73565b90915550506004546000818152600260208190526040909120918255600182018590558101839055600381016108308382610d9c565b507f89b2f4d3098c733ba5a3913b09a6d590bb158d7e61f3ab5fc7027166a83c553a3360045486868660405161086a959493929190610e5c565b60405180910390a150505050565b634e487b7160e01b600052604160045260246000fd5b604051601f8201601f1916810167ffffffffffffffff811182821017156108b7576108b7610878565b604052919050565b600067ffffffffffffffff8311156108d9576108d9610878565b6108ec601f8401601f191660200161088e565b905082815283838301111561090057600080fd5b828260208301376000602084830101529392505050565b6000806040838503121561092a57600080fd5b823567ffffffffffffffff81111561094157600080fd5b8301601f8101851361095257600080fd5b610961858235602084016108bf565b95602094909401359450505050565b600082601f83011261098157600080fd5b610990838335602085016108bf565b9392505050565b6000806000606084860312156109ac57600080fd5b8335925060208401359150604084013567ffffffffffffffff8111156109d157600080fd5b6109dd86828701610970565b9150509250925092565b600067ffffffffffffffff821115610a0157610a01610878565b5060051b60200190565b600082601f830112610a1c57600080fd5b81356020610a31610a2c836109e7565b61088e565b82815260059290921b84018101918181019086841115610a5057600080fd5b8286015b84811015610a6b5780358352918301918301610a54565b509695505050505050565b600080600060608486031215610a8b57600080fd5b833567ffffffffffffffff80821115610aa357600080fd5b610aaf87838801610a0b565b9450602091508186013581811115610ac657600080fd5b610ad288828901610a0b565b945050604086013581811115610ae757600080fd5b8601601f81018813610af857600080fd5b8035610b06610a2c826109e7565b81815260059190911b8201840190848101908a831115610b2557600080fd5b8584015b83811015610b5d57803586811115610b415760008081fd5b610b4f8d8983890101610970565b845250918601918601610b29565b508096505050505050509250925092565b600060208284031215610b8057600080fd5b5035919050565b6000815180845260005b81811015610bad57602081850181015186830182015201610b91565b506000602082860101526020601f19601f83011685010191505092915050565b848152836020820152826040820152608060608201526000610bf26080830184610b87565b9695505050505050565b80356001600160a01b0381168114610c1357600080fd5b919050565b600060208284031215610c2a57600080fd5b61099082610bfc565b60008060408385031215610c4657600080fd5b610c4f83610bfc565b946020939093013593505050565b634e487b7160e01b600052603260045260246000fd5b600060018201610c9357634e487b7160e01b600052601160045260246000fd5b5060010190565b6001600160a01b0383168152604060208201819052600090610cbe90830184610b87565b949350505050565b6020808252602e908201527f496e76616c6964206172726179206c656e67746873202d206c656e677468732060408201526d3234b2103737ba1036b0ba31b41760911b606082015260800190565b600181811c90821680610d2857607f821691505b602082108103610d4857634e487b7160e01b600052602260045260246000fd5b50919050565b601f8211156104c157600081815260208120601f850160051c81016020861015610d755750805b601f850160051c820191505b81811015610d9457828155600101610d81565b505050505050565b815167ffffffffffffffff811115610db657610db6610878565b610dca81610dc48454610d14565b84610d4e565b602080601f831160018114610dff5760008415610de75750858301515b600019600386901b1c1916600185901b178555610d94565b600085815260208120601f198616915b82811015610e2e57888601518255948401946001909101908401610e0f565b5085821015610e4c5787850151600019600388901b60f8161c191681555b5050505050600190811b01905550565b60018060a01b038616815284602082015283604082015282606082015260a060808201526000610e8f60a0830184610b87565b97965050505050505056fea2646970667358221220004deac1e189f5520df230e22fb83e8ddee7ee6ce045aaacd43dec4da6d6975b64736f6c63430008110033",
+  "devdoc": {
+    "author": "nathan-websculpt https://github.com/nathan-websculpt 0x1e7aAbB9D0C701208E875131d0A1cFcDAba79350 Please see my repo: 'crowd-fund-v4' to see how a council-of-members can vote on text before it is processed.",
+    "kind": "dev",
+    "methods": {
+      "owner()": {
+        "details": "Returns the address of the current owner."
+      },
+      "renounceOwnership()": {
+        "details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner."
+      },
+      "transferOwnership(address)": {
+        "details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "notice": "WARNING: CONTRACT IS CURRENTLY FOR PROOF-OF-CONCEPT WARNING: CONTRACT HAS NOT BEEN AUDITED Dev/Testing: I want to see how well this works and do some cost-analysis. At the time of writing, I can not confirm that the goal of this contract will be achieved; THEREFORE, I can not assert that this will properly represent The Gospel of John (KJV) [neither in-part, nor in-full]; This will hopefully serve the purpose of saying, \"Look, it is possible.\" But, if you wanted to read The Gospel of John (KJV) yourself, this contract (or, this iteration of this contract) is not the right source. One area where this text will be lacking is that it will not contain any of the original italics. The intention of this smart contract is to store/confirm (verse-by-verse) The Gospel of John (KJV) on Optimism, and (if all goes well) this could evolve to become a template for other books/documents. Ideally, I believe that this would be better with a council-of-members voting on the validity of a section-of-text BEFORE it is stored. This is more than protecting books against censorship. The blockchain could also allow us to timestamp the moment a group of people agreed upon the contents of a book/written-work/document. I do intend to try this with items like the Declaration of Independence, as well. WARNING: CONTRACT IS CURRENTLY FOR PROOF-OF-CONCEPT WARNING: CONTRACT HAS NOT BEEN AUDITED If you wish to donate, please do not use this contract's functionality. Instead, simply send funds to: 0x1e7aAbB9D0C701208E875131d0A1cFcDAba79350 My most-sincere feeling of gratitude goes to anyone wanting to help out.",
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 7,
+        "contract": "contracts/John.sol:John",
+        "label": "_owner",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_address"
+      },
+      {
+        "astId": 123,
+        "contract": "contracts/John.sol:John",
+        "label": "_status",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 211,
+        "contract": "contracts/John.sol:John",
+        "label": "verses",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_mapping(t_uint256,t_struct(VerseStr)206_storage)"
+      },
+      {
+        "astId": 216,
+        "contract": "contracts/John.sol:John",
+        "label": "confirmations",
+        "offset": 0,
+        "slot": "3",
+        "type": "t_mapping(t_address,t_array(t_uint256)dyn_storage)"
+      },
+      {
+        "astId": 219,
+        "contract": "contracts/John.sol:John",
+        "label": "numberOfVerses",
+        "offset": 0,
+        "slot": "4",
+        "type": "t_uint256"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_array(t_uint256)dyn_storage": {
+        "base": "t_uint256",
+        "encoding": "dynamic_array",
+        "label": "uint256[]",
+        "numberOfBytes": "32"
+      },
+      "t_mapping(t_address,t_array(t_uint256)dyn_storage)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => uint256[])",
+        "numberOfBytes": "32",
+        "value": "t_array(t_uint256)dyn_storage"
+      },
+      "t_mapping(t_uint256,t_struct(VerseStr)206_storage)": {
+        "encoding": "mapping",
+        "key": "t_uint256",
+        "label": "mapping(uint256 => struct John.VerseStr)",
+        "numberOfBytes": "32",
+        "value": "t_struct(VerseStr)206_storage"
+      },
+      "t_string_storage": {
+        "encoding": "bytes",
+        "label": "string",
+        "numberOfBytes": "32"
+      },
+      "t_struct(VerseStr)206_storage": {
+        "encoding": "inplace",
+        "label": "struct John.VerseStr",
+        "members": [
+          {
+            "astId": 199,
+            "contract": "contracts/John.sol:John",
+            "label": "verseId",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 201,
+            "contract": "contracts/John.sol:John",
+            "label": "verseNumber",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 203,
+            "contract": "contracts/John.sol:John",
+            "label": "chapterNumber",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 205,
+            "contract": "contracts/John.sol:John",
+            "label": "verseContent",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_string_storage"
+          }
+        ],
+        "numberOfBytes": "128"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}

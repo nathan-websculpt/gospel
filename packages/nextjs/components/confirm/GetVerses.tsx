@@ -13,7 +13,7 @@ export const GetVerses = () => {
       limit: pageSize,
       offset: pageNum * pageSize,
     },
-    pollInterval: 6000,
+    // pollInterval: 6000, //no longer needs to poll
   });
 
   useEffect(() => {
