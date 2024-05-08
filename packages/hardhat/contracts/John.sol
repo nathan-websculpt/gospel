@@ -1,26 +1,43 @@
 //SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0 <0.9.0;
 
-// Use openzeppelin to inherit battle-tested implementations (ERC20, ERC721, etc)
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 /**
- * Not Production Ready
- * Dev/Testing
- *
- * I want to see how well this works and do some cost-analysis
- *
- *
- *      CHECKLIST
- * Can't confirm twice
- * onlyOwner can add
- * onlyOwner can batch add
+ * WARNING: CONTRACT IS CURRENTLY FOR PROOF-OF-CONCEPT
+ * WARNING: CONTRACT HAS NOT BEEN AUDITED
+ * Dev/Testing: I want to see how well this works and do some cost-analysis.
  *
  *
+ * At the time of writing, I can not confirm that the goal of this contract will be achieved;
+ * THEREFORE, I can not assert that this will properly represent The Gospel of John (KJV) [neither in-part, nor in-full];
+ * This will hopefully serve the purpose of saying, "Look, it is possible."
+ * But, if you wanted to read The Gospel of John (KJV) yourself, this contract (or, this iteration of this contract) is not the right source.
+ * One area where this text will be lacking is that it will not contain any of the original italics.
  *
- * @author nathan-websculpt https://github.com/nathan-websculpt
+ * The intention of this smart contract is to store/confirm (verse-by-verse) The Gospel of John (KJV) on Optimism,
+ * and (if all goes well) this could evolve to become a template for other books/documents.
+ *
+ * Ideally, I believe that this would be better with a council-of-members voting on the validity of a section-of-text BEFORE it is stored.
+ * This is more than protecting books against censorship. The blockchain could also allow us to timestamp the moment a group of
+ * people agreed upon the contents of a book/written-work/document.
+ * I do intend to try this with items like the Declaration of Independence, as well.
+ *
+ * WARNING: CONTRACT IS CURRENTLY FOR PROOF-OF-CONCEPT
+ * WARNING: CONTRACT HAS NOT BEEN AUDITED
+ * If you wish to donate, please do not use this contract's functionality.
+ * Instead, simply send funds to: 0x1e7aAbB9D0C701208E875131d0A1cFcDAba79350
+ * My most-sincere feeling of gratitude goes to anyone wanting to help out.
+ *
+ * @author
+ * nathan-websculpt
+ * https://github.com/nathan-websculpt
+ * 0x1e7aAbB9D0C701208E875131d0A1cFcDAba79350
+ *
+ * Please see my repo: 'crowd-fund-v4' to see how a council-of-members can vote on text before it is processed.
  */
+
 contract John is Ownable, ReentrancyGuard {
 	struct VerseStr {
 		uint256 verseId;
@@ -35,22 +52,16 @@ contract John is Ownable, ReentrancyGuard {
 
 	//TODO: indexed parameters
 	event Verse(
-		address signer, 
+		address signer,
 		uint256 verseId,
 		uint256 verseNumber,
 		uint256 chapterNumber,
 		string verseContent
 	);
 
-	event Confirmation(
-		address confirmedBy,
-		bytes verseId
-	);
+	event Confirmation(address confirmedBy, bytes verseId);
 
-	event Donation(
-		address donor,
-		uint256 amount
-	);
+	event Donation(address donor, uint256 amount);
 
 	modifier hasNotConfirmed(address addr, uint256 verseId) {
 		bool canContinue = true;
@@ -68,25 +79,8 @@ contract John is Ownable, ReentrancyGuard {
 		_transferOwnership(_contractOwner);
 	}
 
-	function _storeVerse(
-		uint256 _verseNumber,
-		uint256 _chapterNumber,
-		string memory _verseContent
-	) private {
-		numberOfVerses++;
-		VerseStr storage thisVerse = verses[numberOfVerses];
-		thisVerse.verseId = numberOfVerses;
-		thisVerse.verseNumber = _verseNumber;
-		thisVerse.chapterNumber = _chapterNumber;
-		thisVerse.verseContent = _verseContent;
-
-		emit Verse(
-			msg.sender,
-			numberOfVerses,
-			_verseNumber,
-			_chapterNumber,
-			_verseContent
-		);
+	receive() external payable {
+		donate();
 	}
 
 	function addVerse(
@@ -138,7 +132,24 @@ contract John is Ownable, ReentrancyGuard {
 		emit Donation(msg.sender, msg.value);
 	}
 
-	receive() external payable {
-		donate();
+	function _storeVerse(
+		uint256 _verseNumber,
+		uint256 _chapterNumber,
+		string memory _verseContent
+	) private {
+		numberOfVerses++;
+		VerseStr storage thisVerse = verses[numberOfVerses];
+		thisVerse.verseId = numberOfVerses;
+		thisVerse.verseNumber = _verseNumber;
+		thisVerse.chapterNumber = _chapterNumber;
+		thisVerse.verseContent = _verseContent;
+
+		emit Verse(
+			msg.sender,
+			numberOfVerses,
+			_verseNumber,
+			_chapterNumber,
+			_verseContent
+		);
 	}
 }
