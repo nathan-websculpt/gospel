@@ -1,3 +1,10 @@
+# Gospel of John on Optimism
+
+- proof-of-concept
+- Gospel of John stored (separated verse-by-verse) onchain
+
+### Built with Scaffold-ETH 2
+
 # 🏗 Scaffold-ETH 2
 
 <h4 align="center">
