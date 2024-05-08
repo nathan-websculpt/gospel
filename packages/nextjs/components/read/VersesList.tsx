@@ -61,7 +61,7 @@ export const VersesList = () => {
   } else {
     return (
       <>
-        <div className="flex flex-row mb-12">
+        <div className="flex flex-col mb-12 md:flex-row">
           <input
             className="w-full pl-4 bg-secondary text-secondary-content"
             placeholder="Search by text"
@@ -71,6 +71,17 @@ export const VersesList = () => {
           <button className="px-8 py-2 text-xl bg-primary" onClick={() => preQuery()}>
             SEARCH
           </button>
+        </div>
+
+        <div className="flex self-center w-full mb-6 md:w-1/3">
+          {data?.verses?.length > 0 && (
+            <div className="flex flex-col items-center w-full">
+              <p className="text-sm text-center break-all md:text-lg text-wrap md:break-normal">If you are reading this, you are reading 
+              the KJV Gospel of John from the blockchain on Optimism Mainnet
+              at Smart Contract address: 0x29BB1313321dbA27Ad074DD6AD2943040319B439</p>
+              <p className="text-4xl text-center break-all text-wrap md:break-normal">Gospel of John <span className="text-lg">(KJV)</span></p>
+            </div>
+          )}
         </div>
 
         <div className="flex justify-center gap-3 mb-3">
@@ -98,10 +109,10 @@ export const VersesList = () => {
         <div className="px-6 pt-10 pb-8 mt-6 shadow-xl bg-primary sm:mx-auto sm:max-w-11/12 md:w-full sm:rounded-lg sm:px-10">
           {data?.verses?.map(verse => (
             <div key={verse.id.toString()} className="flex flex-row gap-6">
-              <p className="text-lg text-nowrap">
+              <p className="text-sm md:text-lg text-nowrap">
                 {verse.chapterNumber} : {verse.verseNumber}
               </p>
-              <p className="text-2xl">{verse.verseContent}</p>
+              <p className="text-md md:text-2xl">{verse.verseContent}</p>
             </div>
           ))}
         </div>
