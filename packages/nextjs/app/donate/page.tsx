@@ -12,7 +12,7 @@ const DonatePage: NextPage = () => {
           <h1 className="text-center">
             <span className="block mb-2 text-4xl">Donate Now!</span>
             <span className="block text-2xl font-bold">
-              TODO: Add copy here...
+              For test/dev purposes only. If you wish to donate, please send funds to websculpt.eth
             </span>
           </h1>
         </div>
