@@ -1,29 +1,59 @@
 import { useEffect, useState } from "react";
-import { useQuery } from "@apollo/client";
+import { useApolloClient, useQuery } from "@apollo/client";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
-import { GQL_VERSES_For_Display } from "~~/helpers/getQueries";
+import { GQL_VERSES_For_Display_with_search } from "~~/helpers/getQueries";
 
 export const VersesList = () => {
+  const client = useApolloClient();
+  const [userSearchInput, setUserSearchInput] = useState("");
   const [pageSize, setPageSize] = useState(25);
   const [pageNum, setPageNum] = useState(0);
+  const [data, setData] = useState({});
+  const [queryLoading, setQueryLoading] = useState(false);
 
-  const { loading, error, data } = useQuery(GQL_VERSES_For_Display(), {
-    variables: {
-      limit: pageSize,
-      offset: pageNum * pageSize,
-    },
-    // pollInterval: 6000, no longer needs to poll
-  });
 
   useEffect(() => {
-    if (error !== undefined && error !== null) console.log("GQL_VERSES_For_Display Query Error: ", error);
-  }, [error]);
+    preQuery();
+  }, [pageSize, pageNum]);
 
-  useEffect(() => {
-    if (data !== undefined && data !== null) console.log("GQL_VERSES_For_Display Query DATA: ", data);
-  }, [data]);
+  const preQuery = async () => {
+    if (userSearchInput.trim().length === 0) {
+      doQuery({
+        limit: pageSize,
+        offset: pageNum * pageSize,
+      });
+    } else {
+      doQuery({
+        limit: pageSize,
+        offset: pageNum * pageSize,
+        searchBy: userSearchInput,
+      });
+    }
+  };
 
-  if (loading) {
+  //NOTE: useLazyQuery gets executed again IF ANY of the Options change
+  //^^^https://github.com/apollographql/apollo-client/issues/5912#issuecomment-797060422
+  //Here, I am just using the Apollo Client directly in order to allow:
+  //     - the table to initially load with data
+  //     - then, the filtering of the data via the Search Bar
+  const doQuery = async (options: object) => {
+    setQueryLoading(true);
+    await client
+      .query({
+        query: GQL_VERSES_For_Display_with_search(userSearchInput),
+        variables: options,
+        fetchPolicy: "no-cache",
+      })
+      .then(d => {
+        setData(d.data);
+      })
+      .catch(e => {
+        console.log("QUERY ERROR: ", e);
+      });
+    setQueryLoading(false);
+  };
+
+  if (queryLoading) {
     return (
       <div className="flex flex-col items-center gap-2 p-2 m-4 mx-auto border shadow-xl border-base-300 bg-base-200 sm:rounded-lg">
         <span className="loading loading-spinner loading-lg"></span>
@@ -32,6 +62,18 @@ export const VersesList = () => {
   } else {
     return (
       <>
+        <div>
+        <input
+            className="w-full pl-4 bg-secondary text-secondary-content"
+            placeholder="Search by text"
+            value={userSearchInput}
+            onChange={e => setUserSearchInput(e.target.value)}
+          ></input>
+          <button className="px-8 py-2 text-xl bg-primary" onClick={() => preQuery()}>
+            SEARCH
+          </button>
+        </div>
+
         <div className="flex justify-center gap-3 mb-3">
           <span className="my-auto text-lg">Page {pageNum + 1}</span>
           <select
