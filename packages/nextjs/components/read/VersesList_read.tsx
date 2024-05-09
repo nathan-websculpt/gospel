@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useApolloClient } from "@apollo/client";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
-import { GQL_VERSES_For_Display_with_search } from "~~/helpers/getQueries";
+import { GQL_VERSES_For_Display_search_by_chapter } from "~~/helpers/getQueries";
+import { notification } from "~~/utils/scaffold-eth";
 
-export const VersesList = () => {
+export const VersesList_Read = () => {
   const client = useApolloClient();
   const [userSearchInput, setUserSearchInput] = useState("");
   const [pageSize, setPageSize] = useState(25);
@@ -22,11 +23,19 @@ export const VersesList = () => {
         offset: pageNum * pageSize,
       });
     } else {
-      doQuery({
-        limit: pageSize,
-        offset: pageNum * pageSize,
-        searchBy: userSearchInput,
-      });
+      if (isNaN(+userSearchInput)) {
+        notification.warning("Please input a valid Chapter Number");
+      } else {
+        if (+userSearchInput > 21 || +userSearchInput < 1) {
+          notification.warning("There are only 21 Chapters");
+        } else {
+          doQuery({
+            limit: pageSize,
+            offset: pageNum * pageSize,
+            searchBy: userSearchInput,
+          });
+        }
+      }
     }
   };
 
@@ -39,7 +48,7 @@ export const VersesList = () => {
     setQueryLoading(true);
     await client
       .query({
-        query: GQL_VERSES_For_Display_with_search(userSearchInput),
+        query: GQL_VERSES_For_Display_search_by_chapter(userSearchInput),
         variables: options,
         fetchPolicy: "no-cache",
       })
@@ -81,10 +90,10 @@ export const VersesList = () => {
           )}
         </div>
 
-        <div className="flex flex-col gap-1 mb-12 md:flex-row">
+        <div className="flex flex-col justify-center gap-1 mb-12 md:justify-end md:flex-row">
           <input
-            className="w-full h-12 pl-4 bg-secondary text-secondary-content"
-            placeholder="Search by text"
+            className="h-12 pl-4 bg-secondary text-secondary-content"
+            placeholder="Search by chapter"
             value={userSearchInput}
             onChange={e => setUserSearchInput(e.target.value)}
           ></input>

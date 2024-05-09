@@ -2,8 +2,20 @@
 
 - proof-of-concept
 - Gospel of John stored (separated verse-by-verse) onchain
+- Queried and Searchable via a (The Graph) subgraph
+- [Live Site](https://gospel-of-john.vercel.app/)
+- [About Project](https://gospel-of-john.vercel.app/about)
+- [Contract on Op Mainnet](https://optimistic.etherscan.io/address/0x29BB1313321dbA27Ad074DD6AD2943040319B439)
 
-### Built with Scaffold-ETH 2
+### What's next?
+
+Ideally, I believe that this would be better with a council-of-members voting on the validity of a section-of-text BEFORE it is stored.
+
+Please see the following repo to see how a council-of-members can vote on text before it is processed: **['crowd-fund-v4'](https://github.com/nathan-websculpt/crowd-fund-v4)**.
+
+And this repo to see how a (self-governed) council-of-members can have access to donations: **['general-fund'](https://github.com/nathan-websculpt/general-fund)**.
+
+### Built with Scaffold-ETH 2 👇
 
 # 🏗 Scaffold-ETH 2
 

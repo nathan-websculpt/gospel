@@ -24,6 +24,10 @@ export const menuLinks: HeaderMenuLink[] = [
     href: "/read",
   },
   {
+    label: "SEARCH",
+    href: "/search",
+  },
+  {
     label: "Confirm Verses",
     href: "/confirm",
   },
