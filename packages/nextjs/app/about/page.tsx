@@ -5,7 +5,7 @@ import type { NextPage } from "next";
 const AboutPage: NextPage = () => {
   return (
     <>
-      <article className="mx-auto mt-8 mb-12 prose lg:prose-lg">
+      <article className="px-4 mx-auto mt-8 mb-12 prose lg:prose-lg md:px-0">
         <h1>Books onchain</h1>
         <p className="lead">
           Those that are involved in blockchain feel that one of the main reasons that the blockchain will go mainstream
@@ -90,6 +90,24 @@ const AboutPage: NextPage = () => {
             </a>
           </li>
           <li>
+            <a
+              href="https://optimistic.etherscan.io/tx/0x589597a96c3c2946975b466a03ea5355f10186b67da2245d22efdd825863f074"
+              target="_blank"
+              className="link"
+            >
+              Contract Creation Tx
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://optimistic.etherscan.io/tx/0xa4d047108f81334d3e184086754d0c1144f725305b14273547454bf007c7b139"
+              target="_blank"
+              className="link"
+            >
+              Batch Save Tx
+            </a>
+          </li>
+          <li>
             <a href="https://twitter.com/sculpt_web" target="_blank" className="link">
               Twitter
             </a>
@@ -125,6 +143,14 @@ const AboutPage: NextPage = () => {
           </a>
           .
         </p>
+        <p>
+          And this repo to see how a (self-governed) council-of-members can have access to donations:{" "}
+          <span> </span>
+          <a href="https://github.com/nathan-websculpt/general-fund" target="_blank" className="link">
+            'general-fund'
+          </a>
+          .
+        </p>
         <br />
         <p className="lead">
           <em>If you wish to donate</em>, please do not use this contract's functionality (as it is being tested
@@ -135,7 +161,7 @@ const AboutPage: NextPage = () => {
             <strong>websculpt.eth</strong>
           </li>
           <li>
-            <strong>0x1e7aAbB9D0C701208E875131d0A1cFcDAba79350</strong>
+            <strong className="break-all">0x1e7aAbB9D0C701208E875131d0A1cFcDAba79350</strong>
           </li>
         </ul>
         <p>My most-sincere feeling of gratitude goes to anyone wanting to help out.</p>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useApolloClient, useQuery } from "@apollo/client";
+import { useApolloClient } from "@apollo/client";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 import { GQL_VERSES_For_Display_with_search } from "~~/helpers/getQueries";
 
@@ -64,8 +64,8 @@ export const VersesList = () => {
         <div className="flex self-center w-full mb-6">
           {data?.verses?.length > 0 && (
             <>
-              <article className="mx-auto mt-8 mb-12 prose lg:prose-lg">
-                <h1>Gospel of John (KJV)</h1>
+              <article className="px-4 mx-auto mt-8 mb-12 prose lg:prose-lg md:px-0">
+                <h1 className="text-center">Gospel of John (KJV)</h1>
                 <blockquote>Contract has not been audited, and it should be considered a proof-of-concept.</blockquote>
                 <p>
                   Can not currently confirm that this properly represents The Gospel of John (KJV) [neither in-part, nor
@@ -73,16 +73,17 @@ export const VersesList = () => {
                 </p>
                 <p>
                   If you are reading this, you are reading from the blockchain on Optimism Mainnet at Smart Contract
-                  address: 0x29BB1313321dbA27Ad074DD6AD2943040319B439
+                  address:
                 </p>
+                <p className="break-all">0x29BB1313321dbA27Ad074DD6AD2943040319B439</p>
               </article>
             </>
           )}
         </div>
 
-        <div className="flex flex-col mb-12 md:flex-row">
+        <div className="flex flex-col gap-1 mb-12 md:flex-row">
           <input
-            className="w-full pl-4 bg-secondary text-secondary-content"
+            className="w-full h-12 pl-4 bg-secondary text-secondary-content"
             placeholder="Search by text"
             value={userSearchInput}
             onChange={e => setUserSearchInput(e.target.value)}

@@ -10,8 +10,8 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <div className="flex flex-col flex-grow pt-10">
-        <article className="mx-auto mt-8 mb-12 prose lg:prose-lg">
+      <div className="flex flex-col w-full">
+        <article className="px-4 mx-auto mt-8 mb-12 prose md:px-0 lg:prose-lg">
           <h1>onchain Gospel of John</h1>
           <blockquote>
             While this Smart Contract is live on Optimism Mainnet, it has not been audited, and it should be considered
@@ -19,7 +19,7 @@ const Home: NextPage = () => {
           </blockquote>
           <p>
             Can not currently confirm that this properly represents The Gospel of John (KJV) [neither in-part, nor
-            in-full]; But, that is sort of the point of this project...
+            in-full]. But, that is sort of the point of this project.
           </p>
           <p className="lead">This will hopefully serve the purpose of saying, "Look, it is possible."</p>
           <p>
@@ -27,7 +27,7 @@ const Home: NextPage = () => {
             (or verse) <em>before</em> it is saved.
           </p>
           <Link href="/about" passHref className="link">
-            Click to Learn More about this project &mdash; it is about more than just censor-proofing books
+            Click to Learn More about this project &mdash; it's more than just censor-proofing books
           </Link>{" "}
         </article>
 
