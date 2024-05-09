@@ -40,9 +40,12 @@ export const menuLinks: HeaderMenuLink[] = [
     href: "/donate",
   },
   {
-    label: "Debug Contracts",
+    label: "Debug Contract",
     href: "/debug",
-    icon: <BugAntIcon className="w-4 h-4" />,
+  },
+  {
+    label: "About",
+    href: "/about",
   },
 ];
 

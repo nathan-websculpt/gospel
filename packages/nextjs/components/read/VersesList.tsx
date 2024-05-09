@@ -61,6 +61,25 @@ export const VersesList = () => {
   } else {
     return (
       <>
+        <div className="flex self-center w-full mb-6">
+          {data?.verses?.length > 0 && (
+            <>
+              <article className="mx-auto mt-8 mb-12 prose lg:prose-lg">
+                <h1>Gospel of John (KJV)</h1>
+                <blockquote>Contract has not been audited, and it should be considered a proof-of-concept.</blockquote>
+                <p>
+                  Can not currently confirm that this properly represents The Gospel of John (KJV) [neither in-part, nor
+                  in-full].
+                </p>
+                <p>
+                  If you are reading this, you are reading from the blockchain on Optimism Mainnet at Smart Contract
+                  address: 0x29BB1313321dbA27Ad074DD6AD2943040319B439
+                </p>
+              </article>
+            </>
+          )}
+        </div>
+
         <div className="flex flex-col mb-12 md:flex-row">
           <input
             className="w-full pl-4 bg-secondary text-secondary-content"
@@ -71,17 +90,6 @@ export const VersesList = () => {
           <button className="px-8 py-2 text-xl bg-primary" onClick={() => preQuery()}>
             SEARCH
           </button>
-        </div>
-
-        <div className="flex self-center w-full mb-6 md:w-1/3">
-          {data?.verses?.length > 0 && (
-            <div className="flex flex-col items-center w-full">
-              <p className="text-sm text-center break-all md:text-lg text-wrap md:break-normal">If you are reading this, you are reading 
-              the KJV Gospel of John from the blockchain on Optimism Mainnet
-              at Smart Contract address: 0x29BB1313321dbA27Ad074DD6AD2943040319B439</p>
-              <p className="text-4xl text-center break-all text-wrap md:break-normal">Gospel of John <span className="text-lg">(KJV)</span></p>
-            </div>
-          )}
         </div>
 
         <div className="flex justify-center gap-3 mb-3">
