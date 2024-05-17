@@ -1,6 +1,6 @@
 // NOT READY / NOT PRODUCTION READY
-// Not intended to be considered a PERFECT source (which is the point of this project) -- TODO: link to directive
-// sourced from https://newbook.store/BibleViewer/26004 -- which (unfortunately) still has to be a private repo
+// Not intended to be considered a PERFECT source (which is the point of this project) -- https://gospel-of-john.vercel.app/about
+// sourced from https://newbook.store/BibleViewer/26046 -- which (unfortunately) still has to be a private repo
 // from same builder as this project: https://github.com/nathan-websculpt
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
