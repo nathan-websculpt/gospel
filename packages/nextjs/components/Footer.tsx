@@ -22,15 +22,6 @@ export const Footer = () => {
       <div>
         <div className="fixed bottom-0 left-0 z-10 flex items-center justify-between w-full p-4 pointer-events-none">
           <div className="flex flex-col gap-2 pointer-events-auto md:flex-row">
-            {/* TODO: remove */}
-            {nativeCurrencyPrice > 0 && (
-              <div>
-                <div className="gap-1 font-normal cursor-auto btn btn-primary btn-sm">
-                  <CurrencyDollarIcon className="w-4 h-4" />
-                  <span>{nativeCurrencyPrice}</span>
-                </div>
-              </div>
-            )}
             {isLocalNetwork && (
               <>
                 <Faucet />

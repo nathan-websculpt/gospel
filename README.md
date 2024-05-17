@@ -6,6 +6,8 @@
 - [Live Site](https://gospel-of-john.vercel.app/)
 - [About Project](https://gospel-of-john.vercel.app/about)
 - [Contract on Op Mainnet](https://optimistic.etherscan.io/address/0x29BB1313321dbA27Ad074DD6AD2943040319B439)
+- [Read Now](https://gospel-of-john.vercel.app/read)
+- [Search](https://gospel-of-john.vercel.app/search)
 
 ### What's next?
 
