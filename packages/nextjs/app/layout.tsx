@@ -4,14 +4,17 @@ import { ScaffoldEthAppWithProviders } from "~~/components/ScaffoldEthAppWithPro
 import { ThemeProvider } from "~~/components/ThemeProvider";
 import "~~/styles/globals.css";
 
-const baseUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : `http://localhost:${process.env.PORT || 3000}`;
+// const baseUrl = process.env.VERCEL_URL
+//   ? `https://${process.env.VERCEL_URL}`
+//   : `http://localhost:${process.env.PORT || 3000}`;
+// you would have to be authenticated in vercel to see this, won't work for socials
+const baseUrl = "https://www.gospelonchain.com";
 const imageUrl = `${baseUrl}/thumbnail.jpg`;
 
 const title = "Gospel Onchain";
 const titleTemplate = "%s | Gospel Onchain";
-const description = "An endeavor to store the Gospels on the blockchain, where the text cannot be removed or altered | Gospel of John stored on Optimism in May of 2024.";
+const description =
+  "An endeavor to store the Gospels on the blockchain, where the text cannot be removed or altered | Gospel of John stored on Optimism in May of 2024.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
