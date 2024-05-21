@@ -40,7 +40,7 @@ export const Footer = () => {
           <div className="flex items-center justify-center w-full gap-2 text-sm">
             <div className="text-center">
               <a href="https://github.com/nathan-websculpt/gospel" target="_blank" rel="noreferrer" className="link">
-                Fork this project
+                Project on Github
               </a>
             </div>
             <span>·</span>

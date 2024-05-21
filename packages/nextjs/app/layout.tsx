@@ -9,9 +9,9 @@ const baseUrl = process.env.VERCEL_URL
   : `http://localhost:${process.env.PORT || 3000}`;
 const imageUrl = `${baseUrl}/thumbnail.jpg`;
 
-const title = "Onchain Gospel of John";
-const titleTemplate = "%s | Scaffold-ETH 2";
-const description = "Built with 🏗 Scaffold-ETH 2";
+const title = "Gospel Onchain";
+const titleTemplate = "%s | Gospel Onchain";
+const description = "An endeavor to store the Gospels on the blockchain";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
