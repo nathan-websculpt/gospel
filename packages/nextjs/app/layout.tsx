@@ -11,7 +11,7 @@ const imageUrl = `${baseUrl}/thumbnail.jpg`;
 
 const title = "Gospel Onchain";
 const titleTemplate = "%s | Gospel Onchain";
-const description = "An endeavor to store the Gospels on the blockchain";
+const description = "An endeavor to store the Gospels on the blockchain, where the text cannot be removed or altered | Gospel of John stored on Optimism in May of 2024.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),

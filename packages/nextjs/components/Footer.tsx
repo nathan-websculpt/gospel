@@ -60,8 +60,13 @@ export const Footer = () => {
             </div>
             <span>·</span>
             <div className="text-center">
-              <a href="https://t.me/joinchat/KByvmRe5wkR-8F_zz6AjpA" target="_blank" rel="noreferrer" className="link">
-                Support
+              <a
+                href="https://speedrunethereum.com/"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-center gap-1"
+              >
+                Become a Developer at <span className="link">SpeedRun Ethereum</span>
               </a>
             </div>
           </div>

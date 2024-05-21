@@ -3,7 +3,7 @@
 import { NextPage } from "next";
 import { GetVerses } from "~~/components/confirm/GetVerses";
 
-const Read: NextPage = () => {
+const Confirm: NextPage = () => {
   return (
     <>
       <div className="flex items-center justify-center">
@@ -15,4 +15,4 @@ const Read: NextPage = () => {
   );
 };
 
-export default Read;
+export default Confirm;

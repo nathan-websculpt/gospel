@@ -121,7 +121,7 @@ export const Header = () => {
           </div>
           <div className="flex flex-col">
             <span className="font-bold leading-tight">Gospel Onchain</span>
-            <span className="text-xs">Gospel of John</span>
+            <span className="text-xs">Gospel of John on blockchain</span>
           </div>
         </Link>
         <ul className="hidden gap-2 px-1 lg:flex lg:flex-nowrap menu menu-horizontal">
