@@ -3,11 +3,11 @@
 - proof-of-concept
 - Gospel of John stored (separated verse-by-verse) onchain
 - Queried and Searchable via a (The Graph) subgraph
-- [Live Site](https://gospel-of-john.vercel.app/)
-- [About Project](https://gospel-of-john.vercel.app/about)
+- [Live Site](https://www.gospelonchain.com/)
+- [About Project](https://www.gospelonchain.com/about)
 - [Contract on Op Mainnet](https://optimistic.etherscan.io/address/0x29BB1313321dbA27Ad074DD6AD2943040319B439)
-- [Read Now](https://gospel-of-john.vercel.app/read)
-- [Search](https://gospel-of-john.vercel.app/search)
+- [Read Now](https://www.gospelonchain.com/read)
+- [Search](https://www.gospelonchain.com/search)
 
 ### What's next?
 
