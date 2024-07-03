@@ -29,6 +29,7 @@ export const Footer = () => {
                   <MagnifyingGlassIcon className="w-4 h-4" />
                   <span>Block Explorer</span>
                 </Link>
+                <span>CURRENT ENV: {process.env.NEXT_PUBLIC_VERCEL_ENV}</span>
               </>
             )}
           </div>
