@@ -29,7 +29,6 @@ export const Footer = () => {
                   <MagnifyingGlassIcon className="w-4 h-4" />
                   <span>Block Explorer</span>
                 </Link>
-                <span>CURRENT ENV: {process.env.NEXT_PUBLIC_VERCEL_ENV}</span>
               </>
             )}
           </div>
@@ -61,14 +60,7 @@ export const Footer = () => {
             </div>
             <span>·</span>
             <div className="text-center">
-              <a
-                href="https://speedrunethereum.com/"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center justify-center gap-1"
-              >
-                Become a Developer at <span className="link">SpeedRun Ethereum</span>
-              </a>
+              <span>CURRENT ENV: {process.env.NEXT_PUBLIC_VERCEL_ENV}</span>
             </div>
           </div>
         </ul>
