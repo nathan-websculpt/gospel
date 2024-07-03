@@ -30,6 +30,7 @@ export const Footer = () => {
                   <span>Block Explorer</span>
                 </Link>
                 <span>CURRENT ENV: {process.env.NEXT_PUBLIC_VERCEL_ENV}</span>
+                
               </>
             )}
           </div>
