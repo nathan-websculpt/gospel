@@ -20,36 +20,28 @@ export const menuLinks: HeaderMenuLink[] = [
     href: "/",
   },
   {
-    label: "READ",
+    label: "Read",
     href: "/read",
   },
   {
-    label: "SEARCH",
+    label: "Search",
     href: "/search",
   },
   {
-    label: "Confirm Verses",
+    label: "Confirm",
     href: "/confirm",
-  },
-  {
-    label: "Add Verse",
-    href: "/add",
-  },
-  {
-    label: "Batch Add",
-    href: "/addbulk",
   },
   {
     label: "Donate",
     href: "/donate",
   },
   {
-    label: "Debug Contract",
-    href: "/debug",
-  },
-  {
     label: "About",
     href: "/about",
+  },
+  {
+    label: "FOR DEVS",
+    href: "/developers",
   },
 ];
 
@@ -83,6 +75,8 @@ export const HeaderMenuLinks = () => {
  * Site header
  */
 export const Header = () => {
+  const pathname = usePathname();
+  const dontShowConnectOnThesePages = ["/", "/read", "/search", "/about"];
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const burgerMenuRef = useRef<HTMLDivElement>(null);
   useOutsideClick(
@@ -128,10 +122,15 @@ export const Header = () => {
           <HeaderMenuLinks />
         </ul>
       </div>
-      <div className="flex-grow mr-4 navbar-end">
-        <RainbowKitCustomConnectButton />
-        <FaucetButton />
-      </div>
+      {/* July, 2024 -- no need in showing connect button on read/search pages */}
+      {!dontShowConnectOnThesePages.includes(pathname) && (
+        <>
+          <div className="flex-grow mr-4 navbar-end">
+            <RainbowKitCustomConnectButton />
+            <FaucetButton />
+          </div>
+        </>
+      )}
     </div>
   );
 };

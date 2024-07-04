@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { IntegerVariant, isValidInteger } from "../scaffold-eth";
+import { IntegerVariant, isValidInteger } from "../../../components/scaffold-eth";
+import { parseEther } from "viem";
 import { useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 import { notification } from "~~/utils/scaffold-eth";
-import { parseEther } from "viem";
 
 export const Donate = () => {
   const [donationInput, setDonationInput] = useState("");

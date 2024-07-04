@@ -153,8 +153,7 @@ const AboutPage: NextPage = () => {
         </p>
         <br />
         <p className="lead">
-          <em>If you wish to donate</em>, please do not use this contract's functionality (as it is being tested
-          against). Instead, simply send funds to:{" "}
+          <em>If you wish to donate</em>, simply send funds to:{" "}
         </p>
         <ul>
           <li>

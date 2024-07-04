@@ -6,7 +6,7 @@ interface VerseProps {
   verseNum: bigint[];
 }
 
-export const SaveBulkVerse = (_v: VerseProps) => {
+export const SaveVerses = (_v: VerseProps) => {
   const { writeContractAsync: writeYourContractAsync } = useScaffoldWriteContract("John");
 
   const writeAsync = async () => {
