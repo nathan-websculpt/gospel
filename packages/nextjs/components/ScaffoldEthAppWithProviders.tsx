@@ -9,8 +9,6 @@ import { Toaster } from "react-hot-toast";
 import { WagmiProvider } from "wagmi";
 import { Footer } from "~~/components/site-wide/Footer";
 import { Header } from "~~/components/site-wide/Header";
-import { Footer } from "~~/components/site-wide/Footer";
-import { Header } from "~~/components/site-wide/Header";
 import { BlockieAvatar } from "~~/components/scaffold-eth";
 import { ProgressBar } from "~~/components/scaffold-eth/ProgressBar";
 import { useNativeCurrencyPrice } from "~~/hooks/scaffold-eth";
