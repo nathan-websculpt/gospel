@@ -2,10 +2,8 @@ import React from "react";
 import Link from "next/link";
 import { hardhat } from "viem/chains";
 import { CurrencyDollarIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { HeartIcon } from "@heroicons/react/24/outline";
-import { SwitchTheme } from "~~/components/SwitchTheme";
-import { BuidlGuidlLogo } from "~~/components/assets/BuidlGuidlLogo";
 import { Faucet } from "~~/components/scaffold-eth";
+import { SwitchTheme } from "~~/components/site-wide/SwitchTheme";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 import { useGlobalState } from "~~/services/store/store";
 
@@ -29,6 +27,7 @@ export const Footer = () => {
                   <MagnifyingGlassIcon className="w-4 h-4" />
                   <span>Block Explorer</span>
                 </Link>
+                <span>CURRENT ENV: {process.env.NEXT_PUBLIC_VERCEL_ENV}</span>
               </>
             )}
           </div>
@@ -39,29 +38,40 @@ export const Footer = () => {
         <ul className="w-full menu menu-horizontal">
           <div className="flex items-center justify-center w-full gap-2 text-sm">
             <div className="text-center">
-              <a href="https://github.com/nathan-websculpt/gospel" target="_blank" rel="noreferrer" className="link">
-                Project on Github
+              <a
+                href="https://github.com/nathan-websculpt/gospel"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-center gap-1"
+              >
+                Want to see the code? <span className="link">Project on Github</span>
               </a>
             </div>
             <span>·</span>
-            <div className="flex items-center justify-center gap-2">
-              <p className="m-0 text-center">
-                Built with <HeartIcon className="inline-block w-4 h-4" /> at
-              </p>
+            <div className="text-center">
               <a
-                className="flex items-center justify-center gap-1"
-                href="https://buidlguidl.com/"
+                href="https://optimistic.etherscan.io/address/0x29BB1313321dbA27Ad074DD6AD2943040319B439"
                 target="_blank"
                 rel="noreferrer"
+                className="flex items-center justify-center gap-1"
               >
-                <BuidlGuidlLogo className="w-3 h-5 pb-1" />
-                <span className="link">BuidlGuidl</span>
+                Stored onto Optimism at <span className="link">Contract 0x29B...</span>
+              </a>
+            </div>
+            <span>·</span>
+            <div className="text-center">
+              <a
+                href="https://twitter.com/sculpt_web"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-center gap-1"
+              >
+                Follow this developer on <span className="link">Twitter</span>
               </a>
             </div>
             <span>·</span>
             <div className="text-center">
               <span>CURRENT ENV: {process.env.NEXT_PUBLIC_VERCEL_ENV}</span>
-              
             </div>
           </div>
         </ul>
