@@ -4,10 +4,12 @@ export const getMetadata = ({
   title,
   description,
   imageRelativePath = "/thumbnail.jpg",
+  robots = null,
 }: {
   title: string;
   description: string;
   imageRelativePath?: string;
+  robots?: null | string | Robots
 }): Metadata => {
   // const baseUrl = process.env.VERCEL_URL
   //   ? `https://${process.env.VERCEL_URL}`
@@ -32,5 +34,6 @@ export const getMetadata = ({
       description: description,
       images: [imageUrl],
     },
+    robots: robots,
   };
 };
