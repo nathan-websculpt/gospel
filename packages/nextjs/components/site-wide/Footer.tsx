@@ -43,7 +43,8 @@ export const Footer = () => {
                 rel="noreferrer"
                 className="flex items-center justify-center gap-1"
               >
-                Want to see the code? <span className="link">Project on Github</span>
+                <span className="hidden xl:flex">Want to see the code? </span>
+                <span className="link">Project on Github</span>
               </a>
             </div>
             <span>·</span>
@@ -54,7 +55,8 @@ export const Footer = () => {
                 rel="noreferrer"
                 className="flex items-center justify-center gap-1"
               >
-                Stored onto Optimism at <span className="link">Contract 0x29B...</span>
+                <span className="hidden xl:flex">Stored onto Optimism at </span>
+                <span className="link">Contract 0x29B...</span>
               </a>
             </div>
             <span>·</span>
@@ -65,7 +67,8 @@ export const Footer = () => {
                 rel="noreferrer"
                 className="flex items-center justify-center gap-1"
               >
-                Follow this developer on <span className="link">Twitter</span>
+                <span className="hidden xl:flex">Follow this </span>
+                <span className="link">Developer on Twitter</span>
               </a>
             </div>
           </div>
