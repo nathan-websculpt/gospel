@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { useApolloClient } from "@apollo/client";
+import { VersesDisplay_ListView } from "~~/components/VersesDisplay_listview";
 import { LoadingSpinner } from "~~/components/helpers/LoadingSpinner";
 import { PaginationBottom } from "~~/components/helpers/PaginationBottom";
 import { PaginationTop } from "~~/components/helpers/PaginationTop";
-import { VersesDisplay_ListView } from "~~/components/VersesDisplay_listview";
-import { getJohnMetaData } from "~~/json_bible/JohnMeta";
 import {
   GQL_VERSEID_by_chapter_and_verse,
   GQL_VERSES_after_verseid,
   GQL_VERSES_by_chapter,
 } from "~~/helpers/getQueries";
+import { getJohnMetaData } from "~~/json_bible/JohnMeta";
 
 export const VersesList_Read = () => {
   const [isFirstRun, setIsFirstRun] = useState(true);
@@ -185,7 +185,7 @@ export const VersesList_Read = () => {
         <div className="flex flex-row gap-4 place-items-center">
           <label className="btn btn-circle btn-primary hover:btn-neutral swap swap-rotate">
             {/* this hidden checkbox controls the state */}
-            <input type="checkbox" onChange={handleToggle} checked={isListMode} />
+            <input className="focus:outline-none" type="checkbox" onChange={handleToggle} checked={isListMode} />
 
             {/* icons from: https://heroicons.com/solid */}
             {/* LIST icon */}
@@ -213,7 +213,7 @@ export const VersesList_Read = () => {
           {metaData !== undefined && metaData !== null && (
             <>
               <select
-                className="w-32 px-2 py-2 mr-1 text-xs sm:px-6 sm:py-2 sm:mr-2 bg-primary sm:text-sm md:text-md lg:text-lg sm:w-44"
+                className="w-32 px-2 py-2 mr-1 text-xs sm:px-6 sm:py-2 sm:mr-2 bg-primary sm:text-sm md:text-md lg:text-lg sm:w-44 focus:outline-none focus:ring-2 focus:ring-accent"
                 value={selectedChapter}
                 onChange={changeChapter}
               >
@@ -226,7 +226,7 @@ export const VersesList_Read = () => {
               </select>
 
               <select
-                className="w-32 px-2 py-2 mr-2 text-xs sm:px-6 sm:py-2 sm:mr-4 bg-primary sm:text-sm md:text-md lg:text-lg sm:w-44"
+                className="w-32 px-2 py-2 mr-2 text-xs sm:px-6 sm:py-2 sm:mr-4 bg-primary sm:text-sm md:text-md lg:text-lg sm:w-44 focus:outline-none focus:ring-2 focus:ring-accent"
                 value={selectedVerse}
                 onChange={changeVerse}
               >
@@ -244,7 +244,7 @@ export const VersesList_Read = () => {
             </>
           )}
           <button
-            className="px-4 py-2 text-xs sm:px-6 sm:py-2 sm:px-8 bg-primary sm:text-sm md:text-md lg:text-lg"
+            className="px-4 py-2 text-xs sm:px-6 sm:py-2 sm:px-8 bg-primary sm:text-sm md:text-md lg:text-lg focus:outline-none focus:ring-2 focus:ring-accent"
             onClick={() => getClicked()}
           >
             GET

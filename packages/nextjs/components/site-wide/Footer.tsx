@@ -68,10 +68,6 @@ export const Footer = () => {
                 Follow this developer on <span className="link">Twitter</span>
               </a>
             </div>
-            <span>·</span>
-            <div className="text-center">
-              <span>CURRENT ENV: {process.env.NEXT_PUBLIC_VERCEL_ENV}</span>
-            </div>
           </div>
         </ul>
       </div>

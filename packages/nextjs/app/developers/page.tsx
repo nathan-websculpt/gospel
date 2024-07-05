@@ -90,6 +90,12 @@ const Developers: NextPage = () => {
           </div>
         </div>
       </div>
+      <div className="flex flex-row gap-6 p-2 sm:p4 xl:p-10">
+        <p className="px-4 py-1 text-sm font-thin sm:text-md xl:text-xl bg-primary text-primary-content">
+          CURRENT ENVIRONMENT:
+          <span className="font-semibold text-md sm:text-xl xl:text-2xl"> {process.env.NEXT_PUBLIC_VERCEL_ENV}</span>
+        </p>
+      </div>
     </>
   );
 };
