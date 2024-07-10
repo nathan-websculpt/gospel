@@ -2,6 +2,7 @@
 
 import { CardDisplay } from "./_components/CardDisplay";
 import { NextPage } from "next";
+import { JsonLD } from "~~/components/helpers/JsonLD";
 
 const Developers: NextPage = () => {
   return (
@@ -101,6 +102,15 @@ const Developers: NextPage = () => {
           <span className="font-semibold text-md sm:text-xl xl:text-2xl"> {process.env.NEXT_PUBLIC_VERCEL_ENV}</span>
         </p>
       </div>
+
+      <JsonLD
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "webpage",
+          name: "Developers Section",
+          description: "View new features, see open source code, debug, and test here.",
+        }}
+      />
     </>
   );
 };

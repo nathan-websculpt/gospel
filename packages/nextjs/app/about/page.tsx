@@ -1,6 +1,7 @@
 "use client";
 
 import type { NextPage } from "next";
+import { JsonLD } from "~~/components/helpers/JsonLD";
 
 const AboutPage: NextPage = () => {
   return (
@@ -144,8 +145,7 @@ const AboutPage: NextPage = () => {
           .
         </p>
         <p>
-          And this repo to see how a (self-governed) council-of-members can have access to donations:{" "}
-          <span> </span>
+          And this repo to see how a (self-governed) council-of-members can have access to donations: <span> </span>
           <a href="https://github.com/nathan-websculpt/general-fund" target="_blank" className="link">
             'general-fund'
           </a>
@@ -165,6 +165,16 @@ const AboutPage: NextPage = () => {
         </ul>
         <p>My most-sincere feeling of gratitude goes to anyone wanting to help out.</p>
       </article>
+
+      <JsonLD
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "webpage",
+          name: "About Page",
+          description:
+            "Learn more about the project that aims to store the Gospels (and more) on the blockchain | The blockchain is where texts like the Bible could be safe from censorship.",
+        }}
+      />
     </>
   );
 };
