@@ -5,6 +5,8 @@ export const metadata = getMetadata({
   description:
     "View new features, see open source code, debug, and test here.",
   robots: { index: true, follow: false },
+  canonicalRelativePath: "/developers",
+  keywords: "developers, debug, test, onchain, gospel"
 });
 
 const AddVersesPageLayout = ({ children }: { children: React.ReactNode }) => {

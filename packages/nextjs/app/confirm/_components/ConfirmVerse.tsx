@@ -35,7 +35,7 @@ export const ConfirmVerse = (_verse: DisplayVerseProps) => {
         </p>
 
         <button className="btn btn-secondary" onClick={() => writeAsync()}>
-          CONFIRM ON-CHAIN
+          CONFIRM ONCHAIN
         </button>
       </div>
     </>

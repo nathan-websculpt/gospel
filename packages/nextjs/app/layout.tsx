@@ -17,7 +17,8 @@ const title =
     : "Gospel Onchain";
 const titleTemplate = "%s | Gospel Onchain";
 const description =
-  "An endeavor to store the Gospels on the blockchain, where the text cannot be removed or altered | Gospel of John stored on Optimism in May of 2024.";
+  "Can we put the Bible on the blockchain? Could crypto provide a record of scripture that is available to all, forever unchangeable, and free from censorship?";
+const keywords = "blockchain, bible, gospel, onchain, kjv, books, scripture, censorship";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -50,6 +51,10 @@ export const metadata: Metadata = {
   icons: {
     icon: [{ url: "/favicon.png", sizes: "32x32", type: "image/png" }],
   },
+  alternates: {
+    canonical: "https://www.gospelonchain.com/",
+  },
+  keywords: keywords,
 };
 
 const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {

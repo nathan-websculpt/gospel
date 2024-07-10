@@ -2,17 +2,40 @@
 
 import Link from "next/link";
 import type { NextPage } from "next";
-import { useAccount } from "wagmi";
 import { MagnifyingGlassIcon, ShieldCheckIcon } from "@heroicons/react/24/outline";
 
 const Home: NextPage = () => {
-  const { address: connectedAddress } = useAccount();
-
   return (
     <>
       <div className="flex flex-col w-full">
-        {/* <article className="px-4 mx-auto mt-8 mb-12 prose md:px-0 lg:prose-lg">
+        <article className="px-4 mx-auto mt-8 mb-12 prose md:px-0 lg:prose-lg xl:prose-xl">
           <h1>onchain Gospel of John</h1>
+          <h2 className="flex flex-col">
+            <span className="font-thin text-md xl:text-xl">I set out to fully ask the question: </span>
+            Could we put the Bible on the blockchain?
+          </h2>
+          <h3>Could “crypto” become a new way to protect scripture?</h3>
+          <p>
+            The blockchain could provide a decentralized and immutable record of the Bible &mdash; a way to ensure that
+            the scriptures are:
+          </p>
+          <ul>
+            <li>unbannable</li>
+            <li>unburnable</li>
+            <li>unchangeable</li>
+            <li>and available to all</li>
+          </ul>
+          <p>
+            Making books/documents unbannable can mean that everyone has access to them &mdash; regardless of
+            geopolitical or ideological restrictions. Readers all over the world could freely engage with these texts
+            without fear of censorship.
+          </p>
+          <Link href="/read" passHref className="link">
+            <h1 className="flex flex-col">
+              <span className="text-sm font-thin xl:text-xl">Read [from the blockchain] Now: </span>(KJV)
+              Gospel of John
+            </h1>
+          </Link>{" "}
           <blockquote>
             While this Smart Contract is live on Optimism Mainnet, it has not been audited, and it should be considered
             a proof-of-concept.
@@ -22,14 +45,21 @@ const Home: NextPage = () => {
             in-full]. But, that is sort of the point of this project.
           </p>
           <p className="lead">This will hopefully serve the purpose of saying, "Look, it is possible."</p>
+          <p>Could it be better?</p>
           <p>
-            Ideally I think this would be much better with a council-of-members that vote on the validity of a sentence
-            (or verse) <em>before</em> it is saved.
+            The problem with this project as it stands is that I have stored a book, and THEN I am asking for{" "}
+            <span> </span>
+            <Link href="/confirm" passHref className="link" target="_blank">
+              confirmations
+            </Link>{" "}
+            after the fact. Ideally I think this would be much better with a council-of-members that all vote on the
+            validity of a sentence (or verse) <em>before</em> it is saved.
           </p>
+          <p>Want to get into the technicals?</p>
           <Link href="/about" passHref className="link">
             Click to Learn More about this project &mdash; it's more than just censor-proofing books
           </Link>{" "}
-        </article> */}
+        </article>
 
         <div className="flex-grow w-full px-8 py-12 mt-16 bg-base-300">
           <div className="flex flex-col items-center justify-center gap-12 sm:flex-row">

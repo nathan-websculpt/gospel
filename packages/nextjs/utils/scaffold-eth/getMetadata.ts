@@ -5,11 +5,15 @@ export const getMetadata = ({
   description,
   imageRelativePath = "/thumbnail.jpg",
   robots = null,
+  canonicalRelativePath = "/",
+  keywords = null,
 }: {
   title: string;
   description: string;
   imageRelativePath?: string;
-  robots?: null | string | Robots
+  robots?: null | string | Robots;
+  canonicalRelativePath?: string;
+  keywords?: null | string;
 }): Metadata => {
   // const baseUrl = process.env.VERCEL_URL
   //   ? `https://${process.env.VERCEL_URL}`
@@ -23,6 +27,7 @@ export const getMetadata = ({
     openGraph: {
       title: title,
       description: description,
+      keywords: keywords,
       images: [
         {
           url: imageUrl,
@@ -35,5 +40,8 @@ export const getMetadata = ({
       images: [imageUrl],
     },
     robots: robots,
+    alternates: {
+      canonical: baseUrl + canonicalRelativePath,
+    },
   };
 };

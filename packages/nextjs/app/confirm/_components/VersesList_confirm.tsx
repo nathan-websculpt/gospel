@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { ConfirmVerse } from "./ConfirmVerse";
 import { useApolloClient } from "@apollo/client";
 import { useInterval } from "usehooks-ts";
@@ -6,8 +7,8 @@ import { useAccount } from "wagmi";
 import { LoadingSpinner } from "~~/components/helpers/LoadingSpinner";
 import { PaginationBottom } from "~~/components/helpers/PaginationBottom";
 import { PaginationTop } from "~~/components/helpers/PaginationTop";
-import { getJohnMetaData } from "~~/json_bible/JohnMeta";
 import { GQL_VERSES_For_Confirmation } from "~~/helpers/getQueries";
+import { getJohnMetaData } from "~~/json_bible/JohnMeta";
 
 // has three view modes
 //    1. Next-Up View
@@ -168,6 +169,19 @@ export const VersesList_Confirm = () => {
 
   return (
     <>
+      <div className="flex self-center w-full">
+        <article className="px-4 mx-auto mt-8 prose mb-14 lg:prose-lg md:px-0">
+          <h2 className="text-center">Want to confirm a verse?</h2>
+          <h3 className="text-center prose-h4:">Please verify the text against the original</h3>
+          <h4 className="text-center">
+            You can confirm verses for pennies on
+            <span> </span>
+            <Link href="https://www.optimism.io/" passHref className="link" target="_blank">
+              Optimism
+            </Link>{" "}
+          </h4>
+        </article>
+      </div>
       <div className="flex flex-col items-center justify-center gap-1 mb-12 lg:justify-between lg:flex-row lg:px-12">
         <div className="flex flex-row gap-4 place-items-center">
           {Number.isNaN(parseInt(selectedVerse)) ? (

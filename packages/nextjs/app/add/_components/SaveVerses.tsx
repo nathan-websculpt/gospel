@@ -13,7 +13,7 @@ export const SaveVerses = (_v: VerseProps) => {
     try {
       await writeYourContractAsync({
         functionName: "addBatchVerses",
-        args: [_v?.verseNum , _v?.chapterNum, _v?.content],
+        args: [_v?.verseNum, _v?.chapterNum, _v?.content],
       });
     } catch (e) {
       console.error("Error calling addBatchVerses on contract:", e);
@@ -23,7 +23,7 @@ export const SaveVerses = (_v: VerseProps) => {
   return (
     <>
       <button className="btn btn-primary" onClick={() => writeAsync()}>
-        BATCH SAVE ON-CHAIN
+        BATCH SAVE ONCHAIN
       </button>
     </>
   );
