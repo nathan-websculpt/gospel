@@ -3,6 +3,7 @@
 import Link from "next/link";
 import type { NextPage } from "next";
 import { MagnifyingGlassIcon, ShieldCheckIcon } from "@heroicons/react/24/outline";
+import { JsonLD } from "~~/components/helpers/JsonLD";
 
 const Home: NextPage = () => {
   return (
@@ -32,8 +33,7 @@ const Home: NextPage = () => {
           </p>
           <Link href="/read" passHref className="link">
             <h1 className="flex flex-col">
-              <span className="text-sm font-thin xl:text-xl">Read [from the blockchain] Now: </span>(KJV)
-              Gospel of John
+              <span className="text-sm font-thin xl:text-xl">Read [from the blockchain] Now: </span>(KJV) Gospel of John
             </h1>
           </Link>{" "}
           <blockquote>
@@ -85,6 +85,15 @@ const Home: NextPage = () => {
           </div>
         </div>
       </div>
+
+      <JsonLD
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "website",
+          name: "Gospel Onchain",
+          url: "https://www.gospelonchain.com",
+        }}
+      />
     </>
   );
 };

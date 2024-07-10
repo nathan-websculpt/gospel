@@ -1,6 +1,7 @@
 "use client";
 
 import type { NextPage } from "next";
+import { JsonLD } from "~~/components/helpers/JsonLD";
 
 const DonatePage: NextPage = () => {
   return (
@@ -44,7 +45,9 @@ const DonatePage: NextPage = () => {
           <li>Help with copy</li>
           <li>Help with photos/graphics/videos</li>
           <li>A director (my assistant) that can help manage everything not-code</li>
-          <li><em>Long Term: </em>Protocol devs for a new protocol...</li>
+          <li>
+            <em>Long Term: </em>Protocol devs for a new protocol...
+          </li>
         </ul>
         <h4>
           No, I can't afford to pay you, but with enough outreach &mdash; this is the sort of idea that can get funded.
@@ -57,6 +60,16 @@ const DonatePage: NextPage = () => {
           , if some people would be nice enough to fund this.{" "}
         </p>
       </article>
+
+      <JsonLD
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "webpage",
+          name: "Donate to this project",
+          description:
+            "You can support this project today! Become a part of history, help put the Bible on the blockchain.",
+        }}
+      />
     </>
   );
 };
