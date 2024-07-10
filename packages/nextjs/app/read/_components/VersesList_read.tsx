@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { useApolloClient } from "@apollo/client";
 import { VersesDisplay_ListView } from "~~/components/VersesDisplay_listview";
 import { LoadingSpinner } from "~~/components/helpers/LoadingSpinner";
@@ -161,25 +162,42 @@ export const VersesList_Read = () => {
 
   return (
     <>
-      {/* <div className="flex self-center w-full mb-6">
+      <div className="flex self-center w-full">
+        <article className="px-4 mx-auto mt-8 prose lg:prose-lg md:px-0">
+          <h1 className="text-center">Gospel of John (KJV)</h1>
+          <p>
+            Should there be a full Bible on the blockchain?
+            <span> </span>
+            <Link href="/about" passHref className="link">
+              Learn more
+            </Link>{" "}
+          </p>
+        </article>
+      </div>
+      <div className="flex self-center w-full mb-6">
         {data?.verses?.length > 0 && (
           <>
             <article className="px-4 mx-auto mt-8 mb-12 prose lg:prose-lg md:px-0">
-              <h1 className="text-center">Gospel of John (KJV)</h1>
-              <blockquote>Contract has not been audited, and it should be considered a proof-of-concept.</blockquote>
               <p>
-                Can not currently confirm that this properly represents The Gospel of John (KJV) [neither in-part, nor
-                in-full].
+                Can not currently confirm that this proof-of-concept properly represents The Gospel of John (KJV)
+                [neither in-part, nor in-full].
               </p>
-              <p>
-                If you are reading this, you are reading from the blockchain on Optimism Mainnet at Smart Contract
-                address:
-              </p>
-              <p className="break-all">0x29BB1313321dbA27Ad074DD6AD2943040319B439</p>
+              <blockquote>
+                But, that is the point of this project. You can
+                <span> </span>
+                <Link href="/confirm" passHref className="link">
+                  confirm verses onchain,
+                </Link>{" "}
+                and if that isn't enough &mdash; let's discuss
+                <span> </span>
+                <Link href="/about" passHref className="link">
+                  what projects like this will look like in the future.
+                </Link>{" "}
+              </blockquote>
             </article>
           </>
         )}
-      </div> */}
+      </div>
 
       <div className="flex flex-col items-center justify-center gap-1 mb-12 lg:justify-between lg:flex-row lg:px-12">
         <div className="flex flex-row gap-4 place-items-center">

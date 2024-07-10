@@ -6,6 +6,11 @@ import { NextPage } from "next";
 const Developers: NextPage = () => {
   return (
     <>
+      <div className="flex">
+        <article className="px-4 mt-8 prose lg:prose-lg md:px-14">
+          <h3>View new features, see open source code, debug, and test here.</h3>
+        </article>
+      </div>
       <div className="flex flex-col-reverse justify-between gap-6 xl:flex-row">
         <div className="flex flex-col gap-6 p-2 sm:p4 xl:p-10">
           <div className="grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">

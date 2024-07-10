@@ -81,25 +81,12 @@ export const VersesList_Search = () => {
 
   return (
     <>
-      {/* <div className="flex self-center w-full mb-6">
-          {data?.verses?.length > 0 && (
-            <>
-              <article className="px-4 mx-auto mt-8 mb-12 prose lg:prose-lg md:px-0">
-                <h1 className="text-center">Gospel of John (KJV)</h1>
-                <blockquote>Contract has not been audited, and it should be considered a proof-of-concept.</blockquote>
-                <p>
-                  Can not currently confirm that this properly represents The Gospel of John (KJV) [neither in-part, nor
-                  in-full].
-                </p>
-                <p>
-                  If you are reading this, you are reading from the blockchain on Optimism Mainnet at Smart Contract
-                  address:
-                </p>
-                <p className="break-all">0x29BB1313321dbA27Ad074DD6AD2943040319B439</p>
-              </article>
-            </>
-          )}
-        </div> */}
+      <div className="flex self-center w-full">
+        <article className="px-4 mx-auto mt-8 mb-16 prose lg:prose-lg md:px-0">
+          <h1 className="text-center">Gospel of John (KJV)</h1>
+          <h3 className="text-center">Search for Bible verses on the blockchain</h3>
+        </article>
+      </div>
 
       <div className="flex flex-row justify-center w-full gap-1 px-4 mx-auto mb-12 lg:w-11/12 xl:w-3/4 xl:px-0">
         <div className="flex flex-row w-11/12 xl:w-3/4">
