@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     icon: [{ url: "/favicon.png", sizes: "32x32", type: "image/png" }],
   },
   alternates: {
-    canonical: "https://www.gospelonchain.com/",
+    canonical: "https://www.gospelonchain.com",
   },
   keywords: keywords,
 };
