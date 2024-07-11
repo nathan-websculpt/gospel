@@ -24,10 +24,10 @@ export const getMetadata = ({
   return {
     title: title,
     description: description,
+    keywords: keywords,
     openGraph: {
       title: title,
       description: description,
-      keywords: keywords,
       images: [
         {
           url: imageUrl,
