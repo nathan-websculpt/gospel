@@ -10,7 +10,7 @@ export const PaginationBottom = ({ pageNum, setPageNum }: PaginationProps) => {
     <>
       <div className="flex justify-end gap-3 mx-5 mt-5">
         <button
-          className="btn btn-sm focus:outline-none focus:ring-2 focus:ring-accent"
+          className="btn btn-sm btn-primary"
           disabled={!pageNum}
           onClick={() => setPageNum(0)}
         >
@@ -19,7 +19,7 @@ export const PaginationBottom = ({ pageNum, setPageNum }: PaginationProps) => {
         </button>
         <span>...</span>
         <button
-          className="btn btn-sm focus:outline-none focus:ring-2 focus:ring-accent"
+          className="btn btn-sm btn-primary"
           disabled={!pageNum}
           onClick={() => setPageNum(prev => prev - 1)}
         >
@@ -27,7 +27,7 @@ export const PaginationBottom = ({ pageNum, setPageNum }: PaginationProps) => {
         </button>
         <span className="self-center font-medium text-primary-content">Page {pageNum + 1}</span>
         <button
-          className="btn btn-sm focus:outline-none focus:ring-2 focus:ring-accent"
+          className="btn btn-sm btn-primary"
           onClick={() => setPageNum(prev => prev + 1)}
         >
           <ArrowRightIcon className="w-4 h-4" />

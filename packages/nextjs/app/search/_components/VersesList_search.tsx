@@ -97,17 +97,11 @@ export const VersesList_Search = () => {
             onChange={e => setUserSearchInput(e.target.value)}
             onKeyDown={e => (e.key === "Enter" ? handleSearch() : null)}
           ></input>
-          <button
-            className="px-4 py-2 md:px-8 bg-primary focus:outline-none focus:ring-2 focus:ring-accent"
-            onClick={() => handleSearch()}
-          >
+          <button className="px-4 rounded-none md:px-6 btn btn-primary" onClick={() => handleSearch()}>
             <MagnifyingGlassCircleIcon className="w-8 h-8" />
           </button>
         </div>
-        <button
-          className="px-2 py-2 ml-2 text-sm md:px-6 xl:text-xl bg-primary focus:outline-none focus:ring-2 focus:ring-accent"
-          onClick={() => clearSearch()}
-        >
+        <button className="px-2 ml-2 rounded-none md:px-10 btn btn-primary" onClick={() => clearSearch()}>
           <XCircleIcon className="w-8 h-8" />
         </button>
       </div>

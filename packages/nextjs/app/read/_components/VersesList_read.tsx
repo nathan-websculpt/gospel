@@ -231,7 +231,7 @@ export const VersesList_Read = () => {
           {metaData !== undefined && metaData !== null && (
             <>
               <select
-                className="w-32 px-2 py-2 mr-1 text-xs sm:px-6 sm:py-2 sm:mr-2 bg-primary sm:text-sm md:text-md lg:text-lg sm:w-44 focus:outline-none focus:ring-2 focus:ring-accent"
+                className="w-32 px-2 py-2 mr-1 text-xs rounded-none sm:px-6 sm:py-2 sm:mr-2 sm:text-sm md:text-md lg:text-lg sm:w-44 btn btn-primary"
                 value={selectedChapter}
                 onChange={changeChapter}
               >
@@ -244,7 +244,7 @@ export const VersesList_Read = () => {
               </select>
 
               <select
-                className="w-32 px-2 py-2 mr-2 text-xs sm:px-6 sm:py-2 sm:mr-4 bg-primary sm:text-sm md:text-md lg:text-lg sm:w-44 focus:outline-none focus:ring-2 focus:ring-accent"
+                className="w-32 px-2 py-2 mr-2 text-xs rounded-none sm:px-6 sm:py-2 sm:mr-4 sm:text-sm md:text-md lg:text-lg sm:w-44 btn btn-primary"
                 value={selectedVerse}
                 onChange={changeVerse}
               >
@@ -262,7 +262,7 @@ export const VersesList_Read = () => {
             </>
           )}
           <button
-            className="px-4 py-2 text-xs sm:px-6 sm:py-2 sm:px-8 bg-primary sm:text-sm md:text-md lg:text-lg focus:outline-none focus:ring-2 focus:ring-accent"
+            className="px-4 py-2 text-xs rounded-none sm:px-6 sm:py-2 sm:px-8 sm:text-sm md:text-md lg:text-lg btn btn-primary"
             onClick={() => getClicked()}
           >
             GET
