@@ -240,7 +240,7 @@ export const VersesList_Confirm = () => {
           {metaData !== undefined && metaData !== null && (
             <>
               <select
-                className="w-32 px-6 py-2 mr-4 text-xs sm:w-44 bg-primary sm:text-sm md:text-md lg:text-lg"
+                className="w-32 px-6 py-2 mr-4 text-xs rounded-none sm:w-44 sm:text-sm md:text-md lg:text-lg btn btn-primary"
                 value={selectedChapter}
                 onChange={changeChapter}
               >
@@ -253,7 +253,7 @@ export const VersesList_Confirm = () => {
               </select>
 
               <select
-                className="w-32 px-6 py-2 text-xs sm:w-44 bg-primary sm:text-sm md:text-md lg:text-lg"
+                className="w-32 px-6 py-2 text-xs rounded-none sm:w-44 sm:text-sm md:text-md lg:text-lg btn btn-primary"
                 value={selectedVerse}
                 onChange={changeVerse}
               >

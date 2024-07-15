@@ -82,7 +82,7 @@ export const AddVerses = () => {
         />
 
         <button className="btn btn-primary" onClick={() => getVerses()}>
-          GET VERSE
+          GET VERSES
         </button>
       </div>
 
