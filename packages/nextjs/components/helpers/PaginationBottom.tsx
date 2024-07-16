@@ -9,7 +9,7 @@ interface PaginationProps {
 export const PaginationBottom = ({ pageNum, setPageNum, scrollTo }: PaginationProps) => {
   const handleClick = thisPageNum => {
     setPageNum(thisPageNum);
-    const thisScrollToSpot = scrollTo === null || scrollTo === undefined ? 0 : scrollTo.current.offsetTop;
+    const thisScrollToSpot = scrollTo === null || scrollTo === undefined ? 0 : scrollTo.current.offsetTop - 10;
     window.scrollTo({ top: thisScrollToSpot, behavior: "smooth" });
   };
 

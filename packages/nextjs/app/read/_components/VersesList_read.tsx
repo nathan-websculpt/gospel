@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import { ArticleOne } from "./ArticleOne";
+import { ArticleTwo } from "./ArticleTwo";
 import { useApolloClient } from "@apollo/client";
 import { VersesDisplay_ListView } from "~~/components/VersesDisplay_listview";
 import { LoadingSpinner } from "~~/components/helpers/LoadingSpinner";
@@ -163,39 +164,11 @@ export const VersesList_Read = () => {
 
   return (
     <>
-      <div className="flex self-center w-full">
-        <article className="px-4 mx-auto mt-8 prose lg:prose-lg md:px-0">
-          <h1 className="text-center">Gospel of John (KJV)</h1>
-          <p>
-            Should there be a full Bible on the blockchain?
-            <span> </span>
-            <Link href="/about" passHref className="link">
-              Learn more
-            </Link>{" "}
-          </p>
-        </article>
-      </div>
+      <ArticleOne />
       <div className="flex self-center w-full mb-6">
         {data?.verses?.length > 0 && (
           <>
-            <article className="px-4 mx-auto mt-8 mb-12 prose lg:prose-lg md:px-0">
-              <p>
-                Can not currently confirm that this proof-of-concept properly represents The Gospel of John (KJV)
-                [neither in-part, nor in-full].
-              </p>
-              <blockquote>
-                But, that is the point of this project. You can
-                <span> </span>
-                <Link href="/confirm" passHref className="link">
-                  confirm verses onchain,
-                </Link>{" "}
-                and if that isn't enough &mdash; let's discuss
-                <span> </span>
-                <Link href="/about" passHref className="link">
-                  what projects like this will look like in the future.
-                </Link>{" "}
-              </blockquote>
-            </article>
+            <ArticleTwo />
           </>
         )}
       </div>
