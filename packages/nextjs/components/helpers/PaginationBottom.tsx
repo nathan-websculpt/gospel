@@ -6,30 +6,24 @@ interface PaginationProps {
 }
 
 export const PaginationBottom = ({ pageNum, setPageNum }: PaginationProps) => {
+  const handleClick = thisPageNum => {
+    setPageNum(thisPageNum);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <>
       <div className="flex justify-end gap-3 mx-5 mt-5">
-        <button
-          className="btn btn-sm btn-primary"
-          disabled={!pageNum}
-          onClick={() => setPageNum(0)}
-        >
+        <button className="btn btn-sm btn-primary" disabled={!pageNum} onClick={() => handleClick(0)}>
           <ArrowLeftIcon className="w-4 h-4" />
           <ArrowLeftIcon className="w-4 h-4" />
         </button>
         <span>...</span>
-        <button
-          className="btn btn-sm btn-primary"
-          disabled={!pageNum}
-          onClick={() => setPageNum(prev => prev - 1)}
-        >
+        <button className="btn btn-sm btn-primary" disabled={!pageNum} onClick={() => handleClick(pageNum - 1)}>
           <ArrowLeftIcon className="w-4 h-4" />
         </button>
         <span className="self-center font-medium text-primary-content">Page {pageNum + 1}</span>
-        <button
-          className="btn btn-sm btn-primary"
-          onClick={() => setPageNum(prev => prev + 1)}
-        >
+        <button className="btn btn-sm btn-primary" onClick={() => handleClick(pageNum + 1)}>
           <ArrowRightIcon className="w-4 h-4" />
         </button>
       </div>
