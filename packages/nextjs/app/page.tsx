@@ -33,7 +33,7 @@ const Home: NextPage = () => {
           </p>
           <Link href="/read" passHref className="link">
             <h1 className="flex flex-col">
-              <span className="text-sm font-thin xl:text-xl">Read [from the blockchain] Now: </span>(KJV) Gospel of John
+              <span className="font-thin text-md xl:text-xl">Read [from the blockchain] Now: </span>(KJV) Gospel of John
             </h1>
           </Link>{" "}
           <blockquote>

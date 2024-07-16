@@ -201,7 +201,7 @@ export const VersesList_Read = () => {
 
       <div className="flex flex-col items-center justify-center gap-1 mb-12 lg:justify-between lg:flex-row lg:px-12">
         <div className="flex flex-row gap-4 place-items-center">
-          <label className="btn btn-circle btn-primary hover:btn-neutral swap swap-rotate">
+          <label className="btn btn-circle btn-primary swap swap-rotate">
             {/* this hidden checkbox controls the state */}
             <input className="focus:outline-none" type="checkbox" onChange={handleToggle} checked={isListMode} />
 
