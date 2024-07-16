@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useApolloClient } from "@apollo/client";
 import { MagnifyingGlassCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import { VersesDisplay_ListView } from "~~/components/VersesDisplay_listview";
@@ -16,6 +16,7 @@ export const VersesList_Search = () => {
   const [pageNum, setPageNum] = useState(0);
   const [data, setData] = useState({});
   const [queryLoading, setQueryLoading] = useState(true);
+  const scrollToRef = useRef(null);
 
   useEffect(() => {
     if (!isFirstRun) preQuery();
@@ -105,7 +106,7 @@ export const VersesList_Search = () => {
           <XCircleIcon className="w-8 h-8" />
         </button>
       </div>
-      <div>
+      <div ref={scrollToRef}>
         <PaginationTop pageNum={pageNum} pageSize={pageSize} setPageNum={setPageNum} setPageSize={setPageSize} />
         {queryLoading ? (
           <LoadingSpinner />
@@ -113,7 +114,7 @@ export const VersesList_Search = () => {
           <>{data?.verses?.length > 0 && <VersesDisplay_ListView verses={data.verses} />}</>
         )}
 
-        <PaginationBottom pageNum={pageNum} setPageNum={setPageNum} />
+        <PaginationBottom pageNum={pageNum} setPageNum={setPageNum} scrollTo={scrollToRef} />
       </div>
     </>
   );

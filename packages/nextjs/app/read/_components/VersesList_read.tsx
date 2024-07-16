@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useApolloClient } from "@apollo/client";
 import { VersesDisplay_ListView } from "~~/components/VersesDisplay_listview";
@@ -30,6 +30,7 @@ export const VersesList_Read = () => {
   const [pageNum, setPageNum] = useState(0);
   const [data, setData] = useState({});
   const [queryLoading, setQueryLoading] = useState(true);
+  const scrollToRef = useRef(null);
 
   useEffect(() => {
     if (!isFirstRun) preQuery();
@@ -270,7 +271,7 @@ export const VersesList_Read = () => {
         </div>
       </div>
 
-      <div>
+      <div ref={scrollToRef}>
         <PaginationTop pageNum={pageNum} pageSize={pageSize} setPageNum={setPageNum} setPageSize={setPageSize} />
         {queryLoading ? (
           <LoadingSpinner />
@@ -290,7 +291,7 @@ export const VersesList_Read = () => {
             )}
           </>
         )}
-        <PaginationBottom pageNum={pageNum} setPageNum={setPageNum} />
+        <PaginationBottom pageNum={pageNum} setPageNum={setPageNum} scrollTo={scrollToRef} />
       </div>
     </>
   );

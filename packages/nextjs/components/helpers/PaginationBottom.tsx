@@ -3,12 +3,14 @@ import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 interface PaginationProps {
   pageNum: number;
   setPageNum: (pn: number) => void;
+  scrollTo: any | null | undefined;
 }
 
-export const PaginationBottom = ({ pageNum, setPageNum }: PaginationProps) => {
+export const PaginationBottom = ({ pageNum, setPageNum, scrollTo }: PaginationProps) => {
   const handleClick = thisPageNum => {
     setPageNum(thisPageNum);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    const thisScrollToSpot = scrollTo === null || scrollTo === undefined ? 0 : scrollTo.current.offsetTop;
+    window.scrollTo({ top: thisScrollToSpot, behavior: "smooth" });
   };
 
   return (
