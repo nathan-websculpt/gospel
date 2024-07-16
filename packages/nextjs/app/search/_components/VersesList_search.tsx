@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { ArticleOne } from "./ArticleOne";
 import { useApolloClient } from "@apollo/client";
 import { MagnifyingGlassCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import { VersesDisplay_ListView } from "~~/components/VersesDisplay_listview";
@@ -82,13 +83,7 @@ export const VersesList_Search = () => {
 
   return (
     <>
-      <div className="flex self-center w-full">
-        <article className="px-4 mx-auto mt-8 mb-16 prose lg:prose-lg md:px-0">
-          <h1 className="text-center">Gospel of John (KJV)</h1>
-          <h3 className="text-center">Search for Bible verses on the blockchain</h3>
-        </article>
-      </div>
-
+      <ArticleOne />
       <div className="flex flex-row justify-center w-full gap-1 px-4 mx-auto mb-12 lg:w-11/12 xl:w-3/4 xl:px-0">
         <div className="flex flex-row w-11/12 xl:w-3/4">
           <input
