@@ -12,7 +12,7 @@ const AboutPage: NextPage = () => {
           Those that are involved in blockchain feel that one of the main reasons that the blockchain will go mainstream
           is the fact that &mdash; once stored &mdash; data can be made-such that it can never be changed again.
         </p>
-        <h3>I think that this is great for:</h3>
+        <p className="font-semibold text-md xl:text-2xl text-primary-content">I think that this is great for:</p>
         <ul>
           <li>books</li>
           <li>novellas</li>
@@ -38,9 +38,9 @@ const AboutPage: NextPage = () => {
         <blockquote>
           Why is it a good idea to have people voting on its validity <em>before</em> a verse/sentence is saved?
         </blockquote>
-        <h4>
+        <h3>
           Because one of the best attributes of the blockchain (for this project in particular) is the immutability.
-        </h4>
+        </h3>
         <h2 className="text-2xl font-extrabold pt-14 xl:text-5xl">The idea being...</h2>
         <p className="lead">
           Rather than having the ability to edit lines if mistakes are made &mdash; plan to prevent mistakes from being
@@ -64,7 +64,7 @@ const AboutPage: NextPage = () => {
           </a>
           .
         </p>
-        <h4>Other links...</h4>
+        <h3>Other links...</h3>
         <ul>
           <li>
             <a

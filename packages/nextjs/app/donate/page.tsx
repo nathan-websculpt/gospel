@@ -29,7 +29,9 @@ const DonatePage: NextPage = () => {
           </li>
         </ul>
         <p>My most-sincere feeling of gratitude goes to anyone wanting to help out.</p>
-        <h3>In terms of people, this project currently needs:</h3>
+        <p className="font-semibold text-md xl:text-2xl text-primary-content">
+          In terms of people, this project currently needs:
+        </p>
         <ul>
           <li>
             People spreading the site around{" "}
