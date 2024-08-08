@@ -122,45 +122,22 @@ export const GQL_VERSES_For_Display_with_search = (searchInput: string) => {
 };
 
 //for the CONFIRMATION page
-export const GQL_VERSES_For_Confirmation = (chapterInput: string, verseInput: string) => {
-  if (verseInput === undefined || verseInput === null || isNaN(verseInput))
-    return gql`
-      query ($limit: Int!, $offset: Int!) {
-        verses(orderBy: verseId, orderDirection: asc, first: $limit, skip: $offset) {
-          id
-          verseId
-          chapterNumber
-          verseNumber
-          verseContent
-          confirmationCount
-          confirmations {
-            confirmedBy
-          }
+export const GQL_VERSES_For_Confirmation = () => {
+  return gql`
+    query ($limit: Int!, $offset: Int!) {
+      verses(orderBy: verseId, orderDirection: asc, first: $limit, skip: $offset) {
+        id
+        verseId
+        chapterNumber
+        verseNumber
+        verseContent
+        confirmationCount
+        confirmations {
+          confirmedBy
         }
       }
-    `;
-  else
-    return gql`
-      query ($limit: Int!, $offset: Int!, $searchByChapter: Int!, $searchByVerse: Int!) {
-        verses(
-          where: { and: [{ chapterNumber: $searchByChapter }, { verseNumber: $searchByVerse }] }
-          orderBy: verseId
-          orderDirection: asc
-          first: $limit
-          skip: $offset
-        ) {
-          id
-          verseId
-          chapterNumber
-          verseNumber
-          verseContent
-          confirmationCount
-          confirmations {
-            confirmedBy
-          }
-        }
-      }
-    `;
+    }
+  `;
 };
 
 //returns last verse added
