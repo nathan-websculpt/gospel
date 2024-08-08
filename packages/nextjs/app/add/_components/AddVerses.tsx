@@ -64,6 +64,7 @@ export const AddVerses = () => {
         className="w-full sm:w-3/4 input input-bordered input-accent"
         value={amountInBatch}
         onChange={e => handleAmtInBatchChange(e.target.value)}
+        aria-label="Amount"
       />
       <p className="text-sm font-bold md:text-md lg:text-lg">choose where to start</p>
       <div className="flex flex-col gap-2 md:flex-row md:justfy-between">
@@ -72,6 +73,7 @@ export const AddVerses = () => {
           className="w-full sm:w-3/4 input input-bordered input-accent"
           value={selectedChapter}
           onChange={e => handleSelectedChapterChange(e.target.value)}
+          aria-label="Chapter"
         />
 
         <input
@@ -79,6 +81,7 @@ export const AddVerses = () => {
           className="w-full sm:w-3/4 input input-bordered input-accent"
           value={selectedVerse}
           onChange={e => handleSelectedVerseChange(e.target.value)}
+          aria-label="Verse"
         />
 
         <button className="btn btn-primary" onClick={() => getVerses()}>
