@@ -163,21 +163,6 @@ export const GQL_VERSES_For_Confirmation = (chapterInput: string, verseInput: st
     `;
 };
 
-//for the FULLY CONFIRMED page
-export const GQL_VERSES_Fully_Confirmed = () => {
-  return gql`
-    query ($limit: Int!, $offset: Int!) {
-      verses(orderBy: verseId, orderDirection: asc, first: $limit, skip: $offset, where: { confirmed: true }) {
-        id
-        verseId
-        chapterNumber
-        verseNumber
-        verseContent
-      }
-    }
-  `;
-};
-
 //returns last verse added
 //for use on the Add Verses page
 export const GQL_VERSE_Last_Added = () => {
