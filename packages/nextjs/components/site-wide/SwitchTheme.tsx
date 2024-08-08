@@ -32,10 +32,11 @@ export const SwitchTheme = ({ className }: { className?: string }) => {
         className="toggle toggle-primary bg-primary hover:bg-primary border-primary"
         onChange={handleToggle}
         checked={isDarkMode}
+        aria-label="toggle dark-mode"
       />
       <label htmlFor="theme-toggle" className={`swap swap-rotate ${!isDarkMode ? "swap-active" : ""}`}>
-        <SunIcon className="swap-on h-5 w-5" />
-        <MoonIcon className="swap-off h-5 w-5" />
+        <SunIcon className="w-5 h-5 swap-on" />
+        <MoonIcon className="w-5 h-5 swap-off" />
       </label>
     </div>
   );

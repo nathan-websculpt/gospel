@@ -34,7 +34,7 @@ export const Footer = () => {
         </div>
       </div>
       <div className="w-full">
-        <ul className="w-full menu menu-horizontal">
+        <div className="w-full menu menu-horizontal">
           <div className="flex items-center justify-center w-full gap-2 text-sm">
             <div className="text-center">
               <a
@@ -72,7 +72,7 @@ export const Footer = () => {
               </a>
             </div>
           </div>
-        </ul>
+        </div>
       </div>
     </div>
   );
