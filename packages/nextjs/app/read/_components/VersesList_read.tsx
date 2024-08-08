@@ -177,7 +177,13 @@ export const VersesList_Read = () => {
         <div className="flex flex-row gap-4 place-items-center">
           <label className="btn btn-circle btn-primary swap swap-rotate">
             {/* this hidden checkbox controls the state */}
-            <input className="focus:outline-none" type="checkbox" onChange={handleToggle} checked={isListMode} />
+            <input
+              className="focus:outline-none"
+              type="checkbox"
+              onChange={handleToggle}
+              checked={isListMode}
+              aria-labelledby="Change View Mode"
+            />
 
             {/* icons from: https://heroicons.com/solid */}
             {/* LIST icon */}
@@ -208,6 +214,7 @@ export const VersesList_Read = () => {
                 className="w-32 px-2 py-2 mr-1 text-xs rounded-none sm:px-6 sm:py-2 sm:mr-2 sm:text-sm md:text-md lg:text-lg sm:w-44 btn btn-primary"
                 value={selectedChapter}
                 onChange={changeChapter}
+                aria-labelledby="Change Chapter"
               >
                 <option>{defaultChapterValue}</option>
                 {metaData.map(md => (
@@ -221,6 +228,7 @@ export const VersesList_Read = () => {
                 className="w-32 px-2 py-2 mr-2 text-xs rounded-none sm:px-6 sm:py-2 sm:mr-4 sm:text-sm md:text-md lg:text-lg sm:w-44 btn btn-primary"
                 value={selectedVerse}
                 onChange={changeVerse}
+                aria-labelledby="Change Verse"
               >
                 <option>{defaultVerseValue}</option>
                 {versesList !== undefined && versesList !== null && (
@@ -238,6 +246,7 @@ export const VersesList_Read = () => {
           <button
             className="px-4 py-2 text-xs rounded-none sm:px-6 sm:py-2 sm:px-8 sm:text-sm md:text-md lg:text-lg btn btn-primary"
             onClick={() => getClicked()}
+            aria-labelledby="Get Selected Verses"
           >
             GET
           </button>
