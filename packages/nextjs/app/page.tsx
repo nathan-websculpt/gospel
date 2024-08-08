@@ -32,9 +32,9 @@ const Home: NextPage = () => {
             without fear of censorship.
           </p>
           <Link href="/read" passHref className="link">
-            <h1 className="flex flex-col">
-              <span className="font-thin text-md xl:text-xl">Read [from the blockchain] Now: </span>(KJV) Gospel of John
-            </h1>
+            <h2 className="flex flex-col pb-6 text-2xl xl:text-5xl">
+              <span className="font-thin">Read [from the blockchain] Now: </span>(KJV) Gospel of John
+            </h2>
           </Link>{" "}
           <blockquote>
             While this Smart Contract is live on Optimism Mainnet, it has not been audited, and it should be considered

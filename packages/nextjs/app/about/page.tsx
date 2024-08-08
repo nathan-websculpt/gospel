@@ -29,7 +29,7 @@ const AboutPage: NextPage = () => {
           that we may need to <em>protect what we have written down</em>.{" "}
         </p>
         <h2>This project works well enough for proof-of-concept</h2>
-        <h1>But it is not truly up to the task</h1>
+        <h2 className="text-2xl font-extrabold xl:text-5xl">But it is not truly up to the task</h2>
         <p>
           I think that ideally we would want the ability for multiple people to vote on the validity of a sentence (or
           verse) before it is saved. I have other projects that utilize this sort of functionality (proposals and
@@ -41,15 +41,14 @@ const AboutPage: NextPage = () => {
         <h4>
           Because one of the best attributes of the blockchain (for this project in particular) is the immutability.
         </h4>
-        <br />
-        <h1>The idea being...</h1>
+        <h2 className="text-2xl font-extrabold pt-14 xl:text-5xl">The idea being...</h2>
         <p className="lead">
           Rather than having the ability to edit lines if mistakes are made &mdash; plan to prevent mistakes from being
           possible. I think it would be better to allow people to vote on the text (verse-by-verse/sentence-by-sentence)
           before anything is saved. Sound crazy? Recall that I said, “…this is not a necessity for the majority of
           books.”{" "}
         </p>
-        <h2>This is more than just censor-proofing books</h2>
+        <h2 className="text-2xl font-extrabold xl:text-5xl">This is more than just censor-proofing books</h2>
         <p>
           <strong>The blockchain</strong> could also allow us to timestamp the moment a group of people agreed that this
           is the Bible (or any other book) as we knew it in our time.{" "}
@@ -114,7 +113,7 @@ const AboutPage: NextPage = () => {
             </a>
           </li>
         </ul>
-        <h1>More Details</h1>
+        <h2 className="text-2xl font-extrabold xl:text-5xl">More Details</h2>
         <blockquote>
           <p>
             <code>In Dev/Testing:</code> CONTRACT IS CURRENTLY FOR PROOF-OF-CONCEPT; CONTRACT HAS NOT BEEN AUDITED; The
