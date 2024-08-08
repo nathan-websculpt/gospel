@@ -22,7 +22,7 @@ const AboutPage: NextPage = () => {
           <li>religious-works</li>
           <li>anything that we do not want to ever become censored</li>
         </ul>
-        <h4>In short: There could be a blockchain version of a book that is unchangeable (immutable).</h4>
+        <p className="font-semibold text-primary-content">In short: There could be a blockchain version of a book that is unchangeable (immutable).</p>
         <p>
           <strong>Perhaps this is not a necessity</strong> for the <em>majority of books</em> that are likely to never
           fall <em>victim to censorship</em>; <strong>however</strong>, there are aspects of our history that show us

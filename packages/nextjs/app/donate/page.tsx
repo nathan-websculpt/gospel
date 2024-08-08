@@ -51,9 +51,9 @@ const DonatePage: NextPage = () => {
             <em>Long Term: </em>Protocol devs for a new protocol...
           </li>
         </ul>
-        <h4>
+        <p className="font-semibold text-primary-content">
           No, I can't afford to pay you, but with enough outreach &mdash; this is the sort of idea that can get funded.
-        </h4>
+        </p>
         <p>
           <strong>So, if you are interested</strong> in the <em>possibility of getting paid</em> then you are in luck{" "}
           <em>
