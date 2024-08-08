@@ -20,7 +20,7 @@ export const PaginationBottom = ({ pageNum, setPageNum, scrollTo }: PaginationPr
           className="btn btn-sm btn-primary"
           disabled={!pageNum}
           onClick={() => handleClick(0)}
-          aria-labelledby="Page One"
+          aria-label="Page One"
         >
           <ArrowLeftIcon className="w-4 h-4" />
           <ArrowLeftIcon className="w-4 h-4" />
@@ -30,12 +30,12 @@ export const PaginationBottom = ({ pageNum, setPageNum, scrollTo }: PaginationPr
           className="btn btn-sm btn-primary"
           disabled={!pageNum}
           onClick={() => handleClick(pageNum - 1)}
-          aria-labelledby="Previous Page"
+          aria-label="Previous Page"
         >
           <ArrowLeftIcon className="w-4 h-4" />
         </button>
         <span className="self-center font-medium text-primary-content">Page {pageNum + 1}</span>
-        <button className="btn btn-sm btn-primary" onClick={() => handleClick(pageNum + 1)} aria-labelledby="Next Page">
+        <button className="btn btn-sm btn-primary" onClick={() => handleClick(pageNum + 1)} aria-label="Next Page">
           <ArrowRightIcon className="w-4 h-4" />
         </button>
       </div>
