@@ -13,7 +13,7 @@ export const PaginationTop = ({ pageNum, pageSize, setPageNum, setPageSize }: Pa
           disabled={!pageNum}
           className="text-sm btn btn-primary sm:text-md xl:text-xl"
           onClick={() => setPageNum(prev => prev - 1)}
-          aria-labelledby="Previous Page"
+          aria-label="Previous Page"
         >
           Prev
         </button>
@@ -24,7 +24,7 @@ export const PaginationTop = ({ pageNum, pageSize, setPageNum, setPageSize }: Pa
             className="px-2 py-1 text-sm text-center rounded-none sm:px-4 sm:py-2 sm:text-md xl:text-xl btn btn-primary"
             onChange={event => setPageSize(parseInt(event.target.value))}
             value={pageSize.toString()}
-            aria-labelledby="Change Amount Returned"
+            aria-label="Change Amount Returned"
           >
             <option value="100">Show 100</option>
             <option value="25">Show 25</option>
@@ -34,7 +34,7 @@ export const PaginationTop = ({ pageNum, pageSize, setPageNum, setPageSize }: Pa
         <button
           className="text-sm btn btn-primary sm:text-md xl:text-xl"
           onClick={() => setPageNum(prev => prev + 1)}
-          aria-labelledby="Next Page"
+          aria-label="Next Page"
         >
           Next
         </button>

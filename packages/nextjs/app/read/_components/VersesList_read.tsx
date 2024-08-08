@@ -182,7 +182,7 @@ export const VersesList_Read = () => {
               type="checkbox"
               onChange={handleToggle}
               checked={isListMode}
-              aria-labelledby="Change View Mode"
+              aria-label="Change View Mode"
             />
 
             {/* icons from: https://heroicons.com/solid */}
@@ -214,7 +214,7 @@ export const VersesList_Read = () => {
                 className="w-32 px-2 py-2 mr-1 text-xs rounded-none sm:px-6 sm:py-2 sm:mr-2 sm:text-sm md:text-md lg:text-lg sm:w-44 btn btn-primary"
                 value={selectedChapter}
                 onChange={changeChapter}
-                aria-labelledby="Change Chapter"
+                aria-label="Change Chapter"
               >
                 <option>{defaultChapterValue}</option>
                 {metaData.map(md => (
@@ -228,7 +228,7 @@ export const VersesList_Read = () => {
                 className="w-32 px-2 py-2 mr-2 text-xs rounded-none sm:px-6 sm:py-2 sm:mr-4 sm:text-sm md:text-md lg:text-lg sm:w-44 btn btn-primary"
                 value={selectedVerse}
                 onChange={changeVerse}
-                aria-labelledby="Change Verse"
+                aria-label="Change Verse"
               >
                 <option>{defaultVerseValue}</option>
                 {versesList !== undefined && versesList !== null && (
@@ -246,7 +246,7 @@ export const VersesList_Read = () => {
           <button
             className="px-4 py-2 text-xs rounded-none sm:px-6 sm:py-2 sm:px-8 sm:text-sm md:text-md lg:text-lg btn btn-primary"
             onClick={() => getClicked()}
-            aria-labelledby="Get Selected Verses"
+            aria-label="Get Selected Verses"
           >
             GET
           </button>
