@@ -13,15 +13,7 @@ export default function robots(): MetadataRoute.Robots {
       rules: {
         userAgent: "*",
         allow: ["/"],
-        disallow: [
-          "/blockexplorer/",
-          "/debug/",
-          "/add/",
-          "/donate-dev/",
-          "/edit-mode/",
-          "/fully-confirmed/",
-          "/onchain-test/",
-        ],
+        disallow: ["/debug/", "/add/", "/donate-dev/"],
       },
       sitemap: ["https://www.gospelonchain.com/sitemap.xml"],
     };
