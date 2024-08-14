@@ -149,7 +149,8 @@ const AboutPage: NextPage = () => {
           .
         </p>
         <p>
-          Click to view progress on the : <span> </span>
+          Click to view progress on the :{" "}
+          <span> </span>
           <a href="https://github.com/nathan-websculpt/council" target="_blank" className="link">
             Council Project
           </a>
