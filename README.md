@@ -1,10 +1,10 @@
-###### **NOTE:** Main branch will go ahead of prod branch
+#### **NOTE:** Main branch will go ahead of prod branch
 
 - main will be used to work on adding books
 - [prod branch](https://github.com/nathan-websculpt/gospel/tree/_0_vercel_op_mainnet) will be the live proof-of-concept (currently just one book)
 - All of the work on council-votes will be moving over to [A new repo](https://github.com/nathan-websculpt/council)
 
-##### A Bible on the Blockchain? 👀
+### A Bible on the Blockchain? 👀
 
 # Gospel of John on Optimism
 
