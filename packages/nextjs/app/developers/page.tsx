@@ -19,7 +19,7 @@ const Developers: NextPage = () => {
               isLocalOnlyFeature={false}
               localHref={"/add"}
               prodHref={"https://github.com/nathan-websculpt/gospel"}
-              prodBadge={"View on GitHub"}
+              prodBadge={"GitHub"}
               imgSrc={"/img/mock_img/add_verses.png"}
               imgAlt={"add verses"}
               title={"Add Verses"}
@@ -32,7 +32,7 @@ const Developers: NextPage = () => {
               isLocalOnlyFeature={false}
               localHref={"/confirm"}
               prodHref={"https://github.com/nathan-websculpt/gospel"}
-              prodBadge={"View on GitHub"}
+              prodBadge={"GitHub"}
               imgSrc={"/img/mock_img/confirm_verses.png"}
               imgAlt={"confirm verses"}
               title={"Confirm Verses"}
@@ -43,7 +43,7 @@ const Developers: NextPage = () => {
               isLocalOnlyFeature={false}
               localHref={"/debug"}
               prodHref={"https://github.com/nathan-websculpt/gospel"}
-              prodBadge={"View on GitHub"}
+              prodBadge={"GitHub"}
               imgSrc={"/img/mock_img/debug_contract.png"}
               imgAlt={"debug contract"}
               title={"Debug Contract"}
@@ -54,7 +54,7 @@ const Developers: NextPage = () => {
               isLocalOnlyFeature={false}
               localHref={"/donate-dev"}
               prodHref={"https://github.com/nathan-websculpt/gospel"}
-              prodBadge={"View on GitHub"}
+              prodBadge={"GitHub"}
               imgSrc={"/img/mock_img/donate_dev.png"}
               imgAlt={"donate"}
               title={"Donate"}
@@ -65,7 +65,7 @@ const Developers: NextPage = () => {
               isLocalOnlyFeature={true}
               localHref={"/onchain-test"}
               prodHref={"https://github.com/nathan-websculpt/council"}
-              prodBadge={"View on GitHub"}
+              prodBadge={"GitHub"}
               imgSrc={"/img/mock_img/test_contract.png"}
               imgAlt={"test contract"}
               title={"Test Contract"}
@@ -76,7 +76,7 @@ const Developers: NextPage = () => {
               isLocalOnlyFeature={true}
               localHref={"/edit-mode"}
               prodHref={"https://github.com/nathan-websculpt/council"}
-              prodBadge={"View on GitHub"}
+              prodBadge={"GitHub"}
               imgSrc={"/img/mock_img/edit_mode.png"}
               imgAlt={"contract management"}
               title={"Contract Management"}
@@ -87,7 +87,7 @@ const Developers: NextPage = () => {
               isLocalOnlyFeature={true}
               localHref={"/fully-confirmed"}
               prodHref={"https://github.com/nathan-websculpt/council"}
-              prodBadge={"View on GitHub"}
+              prodBadge={"GitHub"}
               imgSrc={"/img/mock_img/fully_confirmed.png"}
               imgAlt={"fully-confirmed verses"}
               title={"Fully Confirmed Verses"}
