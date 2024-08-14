@@ -1,3 +1,11 @@
+###### **NOTE:** Main branch will go ahead of prod branch
+
+- main will be used to work on adding books
+- [prod branch](https://github.com/nathan-websculpt/gospel/tree/_0_vercel_op_mainnet) will be the live proof-of-concept (currently just one book)
+- All of the work on council-votes will be moving over to [A new repo](https://github.com/nathan-websculpt/council)
+
+##### A Bible on the Blockchain? 👀
+
 # Gospel of John on Optimism
 
 - proof-of-concept
@@ -13,7 +21,9 @@
 
 Ideally, I believe that this would be better with a council-of-members voting on the validity of a section-of-text BEFORE it is stored.
 
-Please see the following repo to see how a council-of-members can vote on text before it is processed: **['crowd-fund-v4'](https://github.com/nathan-websculpt/crowd-fund-v4)**.
+Progress on **['The Council Project'](https://github.com/nathan-websculpt/council)** (*The new repo*)
+
+Please see the following repo to learn more about how a council-of-members can vote on text before it is processed: **['crowd-fund-v4'](https://github.com/nathan-websculpt/crowd-fund-v4)**.
 
 And this repo to see how a (self-governed) council-of-members can have access to donations: **['general-fund'](https://github.com/nathan-websculpt/general-fund)**.
 

@@ -64,7 +64,7 @@ const Developers: NextPage = () => {
             <CardDisplay
               isLocalOnlyFeature={true}
               localHref={"/onchain-test"}
-              prodHref={"https://github.com/nathan-websculpt/gospel"}
+              prodHref={"https://github.com/nathan-websculpt/council"}
               prodBadge={"View on GitHub"}
               imgSrc={"/img/mock_img/test_contract.png"}
               imgAlt={"test contract"}
@@ -75,7 +75,7 @@ const Developers: NextPage = () => {
             <CardDisplay
               isLocalOnlyFeature={true}
               localHref={"/edit-mode"}
-              prodHref={"https://github.com/nathan-websculpt/gospel"}
+              prodHref={"https://github.com/nathan-websculpt/council"}
               prodBadge={"View on GitHub"}
               imgSrc={"/img/mock_img/edit_mode.png"}
               imgAlt={"contract management"}
@@ -86,7 +86,7 @@ const Developers: NextPage = () => {
             <CardDisplay
               isLocalOnlyFeature={true}
               localHref={"/fully-confirmed"}
-              prodHref={"https://github.com/nathan-websculpt/gospel"}
+              prodHref={"https://github.com/nathan-websculpt/council"}
               prodBadge={"View on GitHub"}
               imgSrc={"/img/mock_img/fully_confirmed.png"}
               imgAlt={"fully-confirmed verses"}
