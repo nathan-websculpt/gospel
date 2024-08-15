@@ -1,12 +1,23 @@
 {
   "localhost": {
     "John": {
-      "address": "0x0165878A594ca255338adfa4d48449f69242Eb8F"
+      "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+    },
+    "Mark": {
+      "address": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
     }
   },
   "optimismSepolia": {
     "John": {
       "address": "0xa5BAF105bad838cf1Cd4518dc59ba51Df283aab0"
+    }
+  },
+  "optimism": {
+    "John": {
+      "address": "0xbF7766D1488Fe89337174847D533052fc17B475b"
+    },
+    "Mark": {
+      "address": "0x821001b6Bcf64d65C4258219B5559725Ca095bf6"
     }
   }
 }
