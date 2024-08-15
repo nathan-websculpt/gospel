@@ -3,7 +3,7 @@ import { DeployFunction } from "hardhat-deploy/types";
 import { Contract } from "ethers";
 
 /**
- * Deploys a contract named "John" using the deployer account and
+ * Deploys a contract named "Mark" using the deployer account and
  * constructor arguments set to the deployer address
  *
  * @param hre HardhatRuntimeEnvironment object.
@@ -24,7 +24,7 @@ const deployJohn: DeployFunction = async function (hre: HardhatRuntimeEnvironmen
   //const owner = "0x1e7aAbB9D0C701208E875131d0A1cFcDAba79350"; //PROD WALLET
   const owner = "0xf0ADAE0823444d70Eb5826F3C26b3704611c759A"; //todo change to fe wallet
 
-  await deploy("John", {
+  await deploy("Mark", {
     from: deployer,
     // Contract constructor arguments
     args: [owner],
@@ -35,12 +35,12 @@ const deployJohn: DeployFunction = async function (hre: HardhatRuntimeEnvironmen
   });
 
   // Get the deployed contract to interact with it after deploying.
-  const john = await hre.ethers.getContract<Contract>("John", deployer);
-  console.log("👋 deployed at address:", await john.getAddress());
+  const mark = await hre.ethers.getContract<Contract>("Mark", deployer);
+  console.log("👋 deployed at address:", await mark.getAddress());
 };
 
 export default deployJohn;
 
 // Tags are useful if you have multiple deploy files and only want to run one of them.
-// e.g. yarn deploy --tags John
-deployJohn.tags = ["John"];
+// e.g. yarn deploy --tags Mark
+deployJohn.tags = ["Mark"];

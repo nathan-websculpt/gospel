@@ -9,7 +9,8 @@ export const AddVerses = () => {
   const [selectedChapter, setSelectedChapter] = useState("");
   const [selectedVerse, setSelectedVerse] = useState("");
   const [selectedIndex, setSelectedIndex] = useState("");
-  const [amountInBatch, setAmountInBatch] = useState("150");
+  // const [amountInBatch, setAmountInBatch] = useState("150");
+  const [amountInBatch, setAmountInBatch] = useState("8");
   const [selectedVersesObject, setSelectedVersesObject] = useState<object[]>(undefined);
   const [isFirstRun, setIsFirstRun] = useState(true);
 
