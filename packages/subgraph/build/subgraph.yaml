@@ -9,7 +9,7 @@ dataSources:
     network: localhost
     source:
       abi: John
-      address: "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+      address: "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9"
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -29,3 +29,28 @@ dataSources:
         - event: Donation(address,uint256)
           handler: handleDonation
       file: John\John.wasm
+  - kind: ethereum/contract
+    name: Mark
+    network: localhost
+    source:
+      abi: Mark
+      address: "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9"
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Verse
+        - Confirmation
+        - Donation
+      abis:
+        - name: Mark
+          file: Mark\abis\localhost_Mark.json
+      eventHandlers:
+        - event: Verse(address,uint256,uint256,uint256,string)
+          handler: handleVerse
+        - event: Confirmation(address,bytes)
+          handler: handleConfirmation
+        - event: Donation(address,uint256)
+          handler: handleDonation
+      file: Mark\Mark.wasm
