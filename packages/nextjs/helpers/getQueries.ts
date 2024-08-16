@@ -8,7 +8,7 @@ export const GQL_VERSES_by_chapter = (chapterNumberInput: string) => {
     return gql`
       query ($limit: Int!, $offset: Int!, $searchByBook: String, $searchByChapterNumber: String) {
         verses(
-          where: { book_: { title: $searchByBook }, chapterNumber_gte: $searchByChapterNumber }
+          where: { book_: { id: $searchByBook }, chapterNumber_gte: $searchByChapterNumber }
           orderBy: verseId
           orderDirection: asc
           first: $limit
@@ -26,7 +26,7 @@ export const GQL_VERSES_by_chapter = (chapterNumberInput: string) => {
     return gql`
       query ($limit: Int!, $offset: Int!, $searchByBook: String) {
         verses(
-          where: { book_: { title: $searchByBook } }
+          where: { book_: { id: $searchByBook } }
           orderBy: verseId
           orderDirection: asc
           first: $limit
@@ -47,8 +47,16 @@ export const GQL_VERSES_by_chapter = (chapterNumberInput: string) => {
 // part two is GQL_VERSES_after_verseid
 export const GQL_VERSEID_by_chapter_and_verse = () => {
   return gql`
-    query ($searchByChapterNumber: String, $searchByVerseNumber: String) {
-      verses(where: { and: [{ chapterNumber: $searchByChapterNumber }, { verseNumber: $searchByVerseNumber }] }) {
+    query ($searchByBook: String, $searchByChapterNumber: String, $searchByVerseNumber: String) {
+      verses(
+        where: {
+          and: [
+            { book_: { id: $searchByBook } }
+            { chapterNumber: $searchByChapterNumber }
+            { verseNumber: $searchByVerseNumber }
+          ]
+        }
+      ) {
         verseId
       }
     }
@@ -60,9 +68,9 @@ export const GQL_VERSEID_by_chapter_and_verse = () => {
 // GQL_VERSEID_by_chapter_and_verse
 export const GQL_VERSES_after_verseid = () => {
   return gql`
-    query ($limit: Int!, $offset: Int!, $searchByNumericalVerseId: String) {
+    query ($limit: Int!, $offset: Int!, $searchByBook: String, $searchByNumericalVerseId: String) {
       verses(
-        where: { verseId_gte: $searchByNumericalVerseId }
+        where: { and: [{ book_: { id: $searchByBook } }, { verseId_gte: $searchByNumericalVerseId }] }
         orderBy: verseId
         orderDirection: asc
         first: $limit

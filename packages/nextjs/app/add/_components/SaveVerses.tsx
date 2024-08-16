@@ -42,18 +42,12 @@ export const SaveVerses = (_v: VerseProps) => {
     }
   };
 
-  const changeContract = e => {
-    setSelectedContract(e.target.value);
-    setSelectedBookId(e.target.selectedOptions[0].getAttribute("data-bookid"));
-  };
-
   return (
     <>
       <BookDDL
         selectedContract={selectedContract}
         setSelectedContract={setSelectedContract}
         setSelectedBookId={setSelectedBookId}
-        changeContract={changeContract}
       />
 
       <button className="btn btn-primary" onClick={() => writeAsync()}>
