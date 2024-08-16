@@ -19,10 +19,12 @@ export const VersesList_Read = () => {
   const client = useApolloClient();
   const [viewStyleDisplayString, setViewStyleDisplayString] = useState("Book View");
 
+  const defaultBookValue = "John";
   const defaultChapterValue = "Select Chapter";
   const defaultVerseValue = "Select Verse";
   const metaData = getJohnMetaData();
   const [versesList, setVersesList] = useState<number[]>([]);
+  const [selectedBook, setSelectedBook] = useState(defaultBookValue);
   const [selectedChapter, setSelectedChapter] = useState(defaultChapterValue);
   const [selectedVerse, setSelectedVerse] = useState(defaultVerseValue);
 
@@ -55,6 +57,7 @@ export const VersesList_Read = () => {
       doQuery_basic({
         limit: pageSize,
         offset: pageNum * pageSize,
+        searchByBook: selectedBook,
       });
     } else if (isNaN(selectedVerse)) {
       // chapter selected - no verse selected
@@ -62,6 +65,7 @@ export const VersesList_Read = () => {
         limit: pageSize,
         offset: pageNum * pageSize,
         chapterNumberInput: selectedChapter,
+        searchByBook: selectedBook,
         searchByChapterNumber: selectedChapter,
       });
     } else {
@@ -138,6 +142,10 @@ export const VersesList_Read = () => {
     setQueryLoading(false);
   };
 
+  const changeBook = e => {
+    setSelectedBook(e.target.value.toString());
+  };
+  
   const changeChapter = e => {
     setSelectedChapter(e.target.value.toString());
     setVersesList(getJohnMetaData().find(x => x.ChapterNumber.toString() === e.target.value.toString())?.Verses);
@@ -210,6 +218,15 @@ export const VersesList_Read = () => {
         <div className="flex flex-row justify-center mt-4 sm:justify-around lg:mt-0">
           {metaData !== undefined && metaData !== null && (
             <>
+              <select
+                className="w-32 px-2 py-2 mr-1 text-xs rounded-none sm:px-6 sm:py-2 sm:mr-2 sm:text-sm md:text-md lg:text-lg sm:w-44 btn btn-primary"
+                value={selectedBook}
+                onChange={changeBook}
+                aria-label="Change Book"
+              >
+                <option>{defaultBookValue}</option>
+                <option>Mark</option>
+              </select>
               <select
                 className="w-32 px-2 py-2 mr-1 text-xs rounded-none sm:px-6 sm:py-2 sm:mr-2 sm:text-sm md:text-md lg:text-lg sm:w-44 btn btn-primary"
                 value={selectedChapter}

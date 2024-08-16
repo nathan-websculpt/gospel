@@ -10,6 +10,24 @@ import {
   BigInt
 } from "@graphprotocol/graph-ts";
 
+export class Book extends ethereum.Event {
+  get params(): Book__Params {
+    return new Book__Params(this);
+  }
+}
+
+export class Book__Params {
+  _event: Book;
+
+  constructor(event: Book) {
+    this._event = event;
+  }
+
+  get title(): string {
+    return this._event.parameters[0].value.toString();
+  }
+}
+
 export class Confirmation extends ethereum.Event {
   get params(): Confirmation__Params {
     return new Confirmation__Params(this);
@@ -93,20 +111,24 @@ export class Verse__Params {
     return this._event.parameters[0].value.toAddress();
   }
 
-  get verseId(): BigInt {
-    return this._event.parameters[1].value.toBigInt();
+  get bookId(): Bytes {
+    return this._event.parameters[1].value.toBytes();
   }
 
-  get verseNumber(): BigInt {
+  get verseId(): BigInt {
     return this._event.parameters[2].value.toBigInt();
   }
 
-  get chapterNumber(): BigInt {
+  get verseNumber(): BigInt {
     return this._event.parameters[3].value.toBigInt();
   }
 
+  get chapterNumber(): BigInt {
+    return this._event.parameters[4].value.toBigInt();
+  }
+
   get verseContent(): string {
-    return this._event.parameters[4].value.toString();
+    return this._event.parameters[5].value.toString();
   }
 }
 
@@ -303,16 +325,20 @@ export class AddBatchVersesCall__Inputs {
     this._call = call;
   }
 
-  get _verseNumber(): Array<BigInt> {
-    return this._call.inputValues[0].value.toBigIntArray();
+  get _bookId(): Bytes {
+    return this._call.inputValues[0].value.toBytes();
   }
 
-  get _chapterNumber(): Array<BigInt> {
+  get _verseNumber(): Array<BigInt> {
     return this._call.inputValues[1].value.toBigIntArray();
   }
 
+  get _chapterNumber(): Array<BigInt> {
+    return this._call.inputValues[2].value.toBigIntArray();
+  }
+
   get _verseContent(): Array<string> {
-    return this._call.inputValues[2].value.toStringArray();
+    return this._call.inputValues[3].value.toStringArray();
   }
 }
 
@@ -320,44 +346,6 @@ export class AddBatchVersesCall__Outputs {
   _call: AddBatchVersesCall;
 
   constructor(call: AddBatchVersesCall) {
-    this._call = call;
-  }
-}
-
-export class AddVerseCall extends ethereum.Call {
-  get inputs(): AddVerseCall__Inputs {
-    return new AddVerseCall__Inputs(this);
-  }
-
-  get outputs(): AddVerseCall__Outputs {
-    return new AddVerseCall__Outputs(this);
-  }
-}
-
-export class AddVerseCall__Inputs {
-  _call: AddVerseCall;
-
-  constructor(call: AddVerseCall) {
-    this._call = call;
-  }
-
-  get _verseNumber(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-
-  get _chapterNumber(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-
-  get _verseContent(): string {
-    return this._call.inputValues[2].value.toString();
-  }
-}
-
-export class AddVerseCall__Outputs {
-  _call: AddVerseCall;
-
-  constructor(call: AddVerseCall) {
     this._call = call;
   }
 }

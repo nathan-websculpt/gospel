@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "./Main.sol";
 
-contract Book is Main {
+contract BookManager is Main {
 	struct VerseStr {
 		uint256 verseId;
 		uint256 verseNumber;
@@ -17,9 +17,12 @@ contract Book is Main {
 	mapping(address => uint256[]) public confirmations;
 	uint256 public numberOfVerses = 0;
 
+	event Book(string title);
+	
 	//TODO: indexed parameters
 	event Verse(
 		address signer,
+		bytes bookId,
 		uint256 verseId,
 		uint256 verseNumber,
 		uint256 chapterNumber,
@@ -42,15 +45,8 @@ contract Book is Main {
 
 	//would-be constructor
 
-	function addVerse(
-		uint256 _verseNumber,
-		uint256 _chapterNumber,
-		string memory _verseContent
-	) external onlyOwner {
-		_storeVerse(_verseNumber, _chapterNumber, _verseContent);
-	}
-
 	function addBatchVerses(
+		bytes memory _bookId,
 		uint256[] memory _verseNumber,
 		uint256[] memory _chapterNumber,
 		string[] memory _verseContent
@@ -66,7 +62,7 @@ contract Book is Main {
 		);
 
 		for (uint256 i = 0; i < length; i++) {
-			_storeVerse(_verseNumber[i], _chapterNumber[i], _verseContent[i]);
+			_storeVerse(_bookId, _verseNumber[i], _chapterNumber[i], _verseContent[i]);
 		}
 	}
 
@@ -79,6 +75,7 @@ contract Book is Main {
 	}
 
 	function _storeVerse(
+		bytes memory _bookId,
 		uint256 _verseNumber,
 		uint256 _chapterNumber,
 		string memory _verseContent
@@ -92,6 +89,7 @@ contract Book is Main {
 
 		emit Verse(
 			msg.sender,
+			_bookId,
 			numberOfVerses,
 			_verseNumber,
 			_chapterNumber,

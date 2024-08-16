@@ -16,7 +16,7 @@ export const VersesList_Confirm = () => {
       limit: pageSize,
       offset: pageNum * pageSize,
     },
-    pollInterval: 6000, //no longer needs to poll
+    pollInterval: 6000,
   });
 
   useEffect(() => {
