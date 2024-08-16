@@ -15,6 +15,19 @@
     "inputs": [
       {
         "indexed": false,
+        "internalType": "string",
+        "name": "title",
+        "type": "string"
+      }
+    ],
+    "name": "Book",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
         "internalType": "address",
         "name": "confirmedBy",
         "type": "address"
@@ -78,6 +91,12 @@
       },
       {
         "indexed": false,
+        "internalType": "bytes",
+        "name": "bookId",
+        "type": "bytes"
+      },
+      {
+        "indexed": false,
         "internalType": "uint256",
         "name": "verseId",
         "type": "uint256"
@@ -107,6 +126,11 @@
   {
     "inputs": [
       {
+        "internalType": "bytes",
+        "name": "_bookId",
+        "type": "bytes"
+      },
+      {
         "internalType": "uint256[]",
         "name": "_verseNumber",
         "type": "uint256[]"
@@ -123,29 +147,6 @@
       }
     ],
     "name": "addBatchVerses",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_verseNumber",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_chapterNumber",
-        "type": "uint256"
-      },
-      {
-        "internalType": "string",
-        "name": "_verseContent",
-        "type": "string"
-      }
-    ],
-    "name": "addVerse",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

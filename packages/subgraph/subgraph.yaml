@@ -9,7 +9,7 @@ dataSources:
     network: localhost
     source:
       abi: John
-      address: "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9"
+      address: "0x8A791620dd6260079BF849Dc5567aDC3F2FdC318"
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -18,23 +18,26 @@ dataSources:
         - Verse
         - Confirmation
         - Donation
+        - Book
       abis:
         - name: John
           file: ./abis/localhost_John.json
       eventHandlers:
-        - event: Verse(address,uint256,uint256,uint256,string)
+        - event: Verse(address,bytes,uint256,uint256,uint256,string)
           handler: handleVerse
         - event: Confirmation(address,bytes)
           handler: handleConfirmation
         - event: Donation(address,uint256)
           handler: handleDonation
+        - event: Book(string)
+          handler: handleBook
       file: ./src/johnMapping.ts
   - kind: ethereum/contract
     name: Mark
     network: localhost
     source:
       abi: Mark
-      address: "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9"
+      address: "0x610178dA211FEF7D417bC0e6FeD39F05609AD788"
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -43,14 +46,17 @@ dataSources:
         - Verse
         - Confirmation
         - Donation
+        - Book
       abis:
         - name: Mark
           file: ./abis/localhost_Mark.json
       eventHandlers:
-        - event: Verse(address,uint256,uint256,uint256,string)
+        - event: Verse(address,bytes,uint256,uint256,uint256,string)
           handler: handleVerse
         - event: Confirmation(address,bytes)
           handler: handleConfirmation
         - event: Donation(address,uint256)
           handler: handleDonation
+        - event: Book(string)
+          handler: handleBook
       file: ./src/markMapping.ts

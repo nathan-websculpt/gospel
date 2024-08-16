@@ -301,19 +301,7 @@ const deployedContracts = {
           type: "receive",
         },
       ],
-      inheritedFunctions: {
-        addBatchVerses: "contracts/Book.sol",
-        addVerse: "contracts/Book.sol",
-        confirmVerse: "contracts/Book.sol",
-        confirmations: "contracts/Book.sol",
-        donate: "contracts/Book.sol",
-        numberOfVerses: "contracts/Book.sol",
-        owner: "contracts/Book.sol",
-        renounceOwnership: "contracts/Book.sol",
-        transferOwnership: "contracts/Book.sol",
-        verses: "contracts/Book.sol",
-        withdraw: "contracts/Book.sol",
-      },
+      inheritedFunctions: {},
     },
     Mark: {
       address: "0x821001b6Bcf64d65C4258219B5559725Ca095bf6",
@@ -610,24 +598,12 @@ const deployedContracts = {
           type: "receive",
         },
       ],
-      inheritedFunctions: {
-        addBatchVerses: "contracts/Book.sol",
-        addVerse: "contracts/Book.sol",
-        confirmVerse: "contracts/Book.sol",
-        confirmations: "contracts/Book.sol",
-        donate: "contracts/Book.sol",
-        numberOfVerses: "contracts/Book.sol",
-        owner: "contracts/Book.sol",
-        renounceOwnership: "contracts/Book.sol",
-        transferOwnership: "contracts/Book.sol",
-        verses: "contracts/Book.sol",
-        withdraw: "contracts/Book.sol",
-      },
+      inheritedFunctions: {},
     },
   },
   31337: {
     John: {
-      address: "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
+      address: "0x8A791620dd6260079BF849Dc5567aDC3F2FdC318",
       abi: [
         {
           inputs: [
@@ -639,6 +615,19 @@ const deployedContracts = {
           ],
           stateMutability: "nonpayable",
           type: "constructor",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "string",
+              name: "title",
+              type: "string",
+            },
+          ],
+          name: "Book",
+          type: "event",
         },
         {
           anonymous: false,
@@ -708,6 +697,12 @@ const deployedContracts = {
             },
             {
               indexed: false,
+              internalType: "bytes",
+              name: "bookId",
+              type: "bytes",
+            },
+            {
+              indexed: false,
               internalType: "uint256",
               name: "verseId",
               type: "uint256",
@@ -737,6 +732,11 @@ const deployedContracts = {
         {
           inputs: [
             {
+              internalType: "bytes",
+              name: "_bookId",
+              type: "bytes",
+            },
+            {
               internalType: "uint256[]",
               name: "_verseNumber",
               type: "uint256[]",
@@ -753,29 +753,6 @@ const deployedContracts = {
             },
           ],
           name: "addBatchVerses",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "_verseNumber",
-              type: "uint256",
-            },
-            {
-              internalType: "uint256",
-              name: "_chapterNumber",
-              type: "uint256",
-            },
-            {
-              internalType: "string",
-              name: "_verseContent",
-              type: "string",
-            },
-          ],
-          name: "addVerse",
           outputs: [],
           stateMutability: "nonpayable",
           type: "function",
@@ -922,21 +899,20 @@ const deployedContracts = {
         },
       ],
       inheritedFunctions: {
-        addBatchVerses: "contracts/Book.sol",
-        addVerse: "contracts/Book.sol",
-        confirmVerse: "contracts/Book.sol",
-        confirmations: "contracts/Book.sol",
-        donate: "contracts/Book.sol",
-        numberOfVerses: "contracts/Book.sol",
-        owner: "contracts/Book.sol",
-        renounceOwnership: "contracts/Book.sol",
-        transferOwnership: "contracts/Book.sol",
-        verses: "contracts/Book.sol",
-        withdraw: "contracts/Book.sol",
+        addBatchVerses: "contracts/BookManager.sol",
+        confirmVerse: "contracts/BookManager.sol",
+        confirmations: "contracts/BookManager.sol",
+        donate: "contracts/BookManager.sol",
+        numberOfVerses: "contracts/BookManager.sol",
+        owner: "contracts/BookManager.sol",
+        renounceOwnership: "contracts/BookManager.sol",
+        transferOwnership: "contracts/BookManager.sol",
+        verses: "contracts/BookManager.sol",
+        withdraw: "contracts/BookManager.sol",
       },
     },
     Mark: {
-      address: "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9",
+      address: "0x610178dA211FEF7D417bC0e6FeD39F05609AD788",
       abi: [
         {
           inputs: [
@@ -948,6 +924,19 @@ const deployedContracts = {
           ],
           stateMutability: "nonpayable",
           type: "constructor",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "string",
+              name: "title",
+              type: "string",
+            },
+          ],
+          name: "Book",
+          type: "event",
         },
         {
           anonymous: false,
@@ -1017,6 +1006,12 @@ const deployedContracts = {
             },
             {
               indexed: false,
+              internalType: "bytes",
+              name: "bookId",
+              type: "bytes",
+            },
+            {
+              indexed: false,
               internalType: "uint256",
               name: "verseId",
               type: "uint256",
@@ -1046,6 +1041,11 @@ const deployedContracts = {
         {
           inputs: [
             {
+              internalType: "bytes",
+              name: "_bookId",
+              type: "bytes",
+            },
+            {
               internalType: "uint256[]",
               name: "_verseNumber",
               type: "uint256[]",
@@ -1062,29 +1062,6 @@ const deployedContracts = {
             },
           ],
           name: "addBatchVerses",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "_verseNumber",
-              type: "uint256",
-            },
-            {
-              internalType: "uint256",
-              name: "_chapterNumber",
-              type: "uint256",
-            },
-            {
-              internalType: "string",
-              name: "_verseContent",
-              type: "string",
-            },
-          ],
-          name: "addVerse",
           outputs: [],
           stateMutability: "nonpayable",
           type: "function",
@@ -1231,17 +1208,16 @@ const deployedContracts = {
         },
       ],
       inheritedFunctions: {
-        addBatchVerses: "contracts/Book.sol",
-        addVerse: "contracts/Book.sol",
-        confirmVerse: "contracts/Book.sol",
-        confirmations: "contracts/Book.sol",
-        donate: "contracts/Book.sol",
-        numberOfVerses: "contracts/Book.sol",
-        owner: "contracts/Book.sol",
-        renounceOwnership: "contracts/Book.sol",
-        transferOwnership: "contracts/Book.sol",
-        verses: "contracts/Book.sol",
-        withdraw: "contracts/Book.sol",
+        addBatchVerses: "contracts/BookManager.sol",
+        confirmVerse: "contracts/BookManager.sol",
+        confirmations: "contracts/BookManager.sol",
+        donate: "contracts/BookManager.sol",
+        numberOfVerses: "contracts/BookManager.sol",
+        owner: "contracts/BookManager.sol",
+        renounceOwnership: "contracts/BookManager.sol",
+        transferOwnership: "contracts/BookManager.sol",
+        verses: "contracts/BookManager.sol",
+        withdraw: "contracts/BookManager.sol",
       },
     },
   },

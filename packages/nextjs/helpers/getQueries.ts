@@ -6,9 +6,9 @@ import { gql } from "@apollo/client";
 export const GQL_VERSES_by_chapter = (chapterNumberInput: string) => {
   if (chapterNumberInput.trim().length !== 0)
     return gql`
-      query ($limit: Int!, $offset: Int!, $searchByChapterNumber: String) {
+      query ($limit: Int!, $offset: Int!, $searchByBook: String, $searchByChapterNumber: String) {
         verses(
-          where: { chapterNumber_gte: $searchByChapterNumber }
+          where: { book_: { title: $searchByBook }, chapterNumber_gte: $searchByChapterNumber }
           orderBy: verseId
           orderDirection: asc
           first: $limit
@@ -24,8 +24,14 @@ export const GQL_VERSES_by_chapter = (chapterNumberInput: string) => {
     `;
   else
     return gql`
-      query ($limit: Int!, $offset: Int!) {
-        verses(orderBy: verseId, orderDirection: asc, first: $limit, skip: $offset) {
+      query ($limit: Int!, $offset: Int!, $searchByBook: String) {
+        verses(
+          where: { book_: { title: $searchByBook } }
+          orderBy: verseId
+          orderDirection: asc
+          first: $limit
+          skip: $offset
+        ) {
           id
           verseId
           chapterNumber
@@ -135,6 +141,18 @@ export const GQL_VERSE_Last_Added = () => {
         chapterNumber
         verseNumber
         verseContent
+      }
+    }
+  `;
+};
+
+//currently just need this for Book (bytes) ID from subgraph
+export const GQL_BOOKS_List = () => {
+  return gql`
+    query {
+      books {
+        id
+        title
       }
     }
   `;

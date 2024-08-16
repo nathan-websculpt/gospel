@@ -1,3 +1,12 @@
+type Book @entity {
+  id: Bytes!
+  title: String!
+  verses: [Verse!] @derivedFrom(field: "book")
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
 type Verse @entity {
   id: Bytes!
   signer: Bytes!
@@ -10,6 +19,7 @@ type Verse @entity {
   transactionHash: Bytes!
   confirmations: [Confirmation!] @derivedFrom(field: "verse")
   confirmationCount: Int!
+  book: Book
 }
 
 type Confirmation @entity(immutable: true) {
