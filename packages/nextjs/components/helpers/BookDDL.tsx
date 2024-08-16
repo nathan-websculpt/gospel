@@ -6,10 +6,9 @@ interface BookDDLProps {
   selectedContract: string;
   setSelectedContract?: Dispatch<SetStateAction<string | null>>;
   setSelectedBookId: Dispatch<SetStateAction<string>>;
-  changeContract: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-export const BookDDL = ({ selectedContract, setSelectedContract, setSelectedBookId, changeContract }: BookDDLProps) => {
+export const BookDDL = ({ selectedContract, setSelectedContract, setSelectedBookId }: BookDDLProps) => {
   const { loading, error, data } = useQuery(GQL_BOOKS_List());
 
   useEffect(() => {
@@ -23,6 +22,11 @@ export const BookDDL = ({ selectedContract, setSelectedContract, setSelectedBook
       console.log("GQL_BOOKS_List Query DATA: ", data);
     }
   }, [data]);
+
+  const changeContract = e => {
+    setSelectedContract(e.target.value);
+    setSelectedBookId(e.target.selectedOptions[0].getAttribute("data-bookid"));
+  };
 
   return (
     <>

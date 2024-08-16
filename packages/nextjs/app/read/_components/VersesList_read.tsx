@@ -3,6 +3,7 @@ import { ArticleOne } from "./ArticleOne";
 import { ArticleTwo } from "./ArticleTwo";
 import { useApolloClient } from "@apollo/client";
 import { VersesDisplay_ListView } from "~~/components/VersesDisplay_listview";
+import { BookDDL } from "~~/components/helpers/BookDDL";
 import { LoadingSpinner } from "~~/components/helpers/LoadingSpinner";
 import { PaginationBottom } from "~~/components/helpers/PaginationBottom";
 import { PaginationTop } from "~~/components/helpers/PaginationTop";
@@ -19,12 +20,12 @@ export const VersesList_Read = () => {
   const client = useApolloClient();
   const [viewStyleDisplayString, setViewStyleDisplayString] = useState("Book View");
 
-  const defaultBookValue = "John";
   const defaultChapterValue = "Select Chapter";
   const defaultVerseValue = "Select Verse";
   const metaData = getJohnMetaData();
   const [versesList, setVersesList] = useState<number[]>([]);
-  const [selectedBook, setSelectedBook] = useState(defaultBookValue);
+  const [selectedBookId, setSelectedBookId] = useState<string>("");
+  const [selectedBook, setSelectedBook] = useState<string>("");
   const [selectedChapter, setSelectedChapter] = useState(defaultChapterValue);
   const [selectedVerse, setSelectedVerse] = useState(defaultVerseValue);
 
@@ -57,7 +58,7 @@ export const VersesList_Read = () => {
       doQuery_basic({
         limit: pageSize,
         offset: pageNum * pageSize,
-        searchByBook: selectedBook,
+        searchByBook: selectedBookId,
       });
     } else if (isNaN(selectedVerse)) {
       // chapter selected - no verse selected
@@ -65,7 +66,7 @@ export const VersesList_Read = () => {
         limit: pageSize,
         offset: pageNum * pageSize,
         chapterNumberInput: selectedChapter,
-        searchByBook: selectedBook,
+        searchByBook: selectedBookId,
         searchByChapterNumber: selectedChapter,
       });
     } else {
@@ -75,6 +76,7 @@ export const VersesList_Read = () => {
       // returning all verses with a Numerical ID that is
       // greater-than/equal-to the selected verse
       doQuery_getVerseId({
+        searchByBook: selectedBookId,
         searchByChapterNumber: selectedChapter,
         searchByVerseNumber: selectedVerse,
       });
@@ -113,6 +115,7 @@ export const VersesList_Read = () => {
           doQuery_searchByVerseId({
             limit: pageSize,
             offset: pageNum * pageSize,
+            searchByBook: selectedBookId,
             searchByNumericalVerseId: d?.data?.verses[0].verseId,
           });
         } else {
@@ -142,10 +145,6 @@ export const VersesList_Read = () => {
     setQueryLoading(false);
   };
 
-  const changeBook = e => {
-    setSelectedBook(e.target.value.toString());
-  };
-  
   const changeChapter = e => {
     setSelectedChapter(e.target.value.toString());
     setVersesList(getJohnMetaData().find(x => x.ChapterNumber.toString() === e.target.value.toString())?.Verses);
@@ -218,15 +217,11 @@ export const VersesList_Read = () => {
         <div className="flex flex-row justify-center mt-4 sm:justify-around lg:mt-0">
           {metaData !== undefined && metaData !== null && (
             <>
-              <select
-                className="w-32 px-2 py-2 mr-1 text-xs rounded-none sm:px-6 sm:py-2 sm:mr-2 sm:text-sm md:text-md lg:text-lg sm:w-44 btn btn-primary"
-                value={selectedBook}
-                onChange={changeBook}
-                aria-label="Change Book"
-              >
-                <option>{defaultBookValue}</option>
-                <option>Mark</option>
-              </select>
+              <BookDDL
+                selectedContract={selectedBook}
+                setSelectedContract={setSelectedBook}
+                setSelectedBookId={setSelectedBookId}
+              />
               <select
                 className="w-32 px-2 py-2 mr-1 text-xs rounded-none sm:px-6 sm:py-2 sm:mr-2 sm:text-sm md:text-md lg:text-lg sm:w-44 btn btn-primary"
                 value={selectedChapter}
