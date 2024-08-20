@@ -31,11 +31,11 @@ const FAQ: React.FC = () => {
   ];
 
   return (
-    <div className="w-3/4 mx-auto mt-12 mb-12 md:mt-16 md:mb-16 lg:mt-20 lg:mb-20 bg-slate-300">
+    <div className="max-w-md mx-auto bg-slate-300">
       {faqItems.map((item, index) => (
-        <div key={index} className="mt-4 md:mt-6 lg:mt-8">
+        <div key={index} className="mt-4">
           <button
-            className={`flex justify-between w-full px-4 py-2 text-lg font-medium text-left text-gray-900 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 transition duration-150 ease-in-out ${
+            className={`flex justify-between w-full px-4 py-2 text-lg font-medium text-left text-gray-900 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 ${
               expandedIndex === index ? "bg-gray-100" : ""
             }`}
             onClick={() => handleClick(index)}
@@ -45,7 +45,7 @@ const FAQ: React.FC = () => {
             {item.question}
             <span className="ml-auto">{expandedIndex === index ? "-" : "+"}</span>
           </button>
-          <div className={`mt-2 md:mt-4 lg:mt-6 ${expandedIndex === index ? "block" : "hidden"}`} id={`faq-${index}`}>
+          <div className={`mt-2 ${expandedIndex === index ? "block" : "hidden"}`} id={`faq-${index}`}>
             <p className="text-gray-500">{item.answer}</p>
           </div>
         </div>

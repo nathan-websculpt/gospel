@@ -6,9 +6,9 @@ export const FeaturesSection = () => {
             <div className="mb-4 text-center">
               <i className="text-3xl text-blue-500 fas fa-lock"></i>
             </div>
-            <h3 className="mb-2 text-xl font-bold text-slate-800">Secure</h3>
-            <p className="mb-4 text-lg text-gray-600">Subtitle text</p>
-            <p className="text-gray-600 text-md">
+            <h3 className="mb-2 text-lg font-bold">Secure</h3>
+            <p className="mb-4 text-sm text-gray-600">Subtitle text</p>
+            <p className="text-sm text-gray-600">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet nulla auctor, vestibulum magna sed, convallis ex.
             </p>
           </div>
@@ -16,9 +16,9 @@ export const FeaturesSection = () => {
             <div className="mb-4 text-center">
               <i className="text-3xl text-blue-500 fas fa-cog"></i>
             </div>
-            <h3 className="mb-2 text-xl font-bold text-slate-800">Configurable</h3>
-            <p className="mb-4 text-lg text-gray-600">Subtitle text</p>
-            <p className="text-gray-600 text-md">
+            <h3 className="mb-2 text-lg font-bold">Configurable</h3>
+            <p className="mb-4 text-sm text-gray-600">Subtitle text</p>
+            <p className="text-sm text-gray-600">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet nulla auctor, vestibulum magna sed, convallis ex.
             </p>
           </div>
@@ -26,9 +26,9 @@ export const FeaturesSection = () => {
             <div className="mb-4 text-center">
               <i className="text-3xl text-blue-500 fas fa-cloud"></i>
             </div>
-            <h3 className="mb-2 text-xl font-bold text-slate-800">Scalable</h3>
-            <p className="mb-4 text-lg text-gray-600">Subtitle text</p>
-            <p className="text-gray-600 text-md">
+            <h3 className="mb-2 text-lg font-bold">Scalable</h3>
+            <p className="mb-4 text-sm text-gray-600">Subtitle text</p>
+            <p className="text-sm text-gray-600">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet nulla auctor, vestibulum magna sed, convallis ex.
             </p>
           </div>
@@ -36,9 +36,9 @@ export const FeaturesSection = () => {
             <div className="mb-4 text-center">
               <i className="text-3xl text-blue-500 fas fa-user"></i>
             </div>
-            <h3 className="mb-2 text-xl font-bold text-slate-800">User-friendly</h3>
-            <p className="mb-4 text-lg text-gray-600">Subtitle text</p>
-            <p className="text-gray-600 text-md">
+            <h3 className="mb-2 text-lg font-bold">User-friendly</h3>
+            <p className="mb-4 text-sm text-gray-600">Subtitle text</p>
+            <p className="text-sm text-gray-600">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet nulla auctor, vestibulum magna sed, convallis ex.
             </p>
           </div>
@@ -46,9 +46,9 @@ export const FeaturesSection = () => {
             <div className="mb-4 text-center">
               <i className="text-3xl text-blue-500 fas fa-chart-line"></i>
             </div>
-            <h3 className="mb-2 text-xl font-bold text-slate-800">Insightful</h3>
-            <p className="mb-4 text-lg text-gray-600">Subtitle text</p>
-            <p className="text-gray-600 text-md">
+            <h3 className="mb-2 text-lg font-bold">Insightful</h3>
+            <p className="mb-4 text-sm text-gray-600">Subtitle text</p>
+            <p className="text-sm text-gray-600">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet nulla auctor, vestibulum magna sed, convallis ex.
             </p>
           </div>
@@ -56,9 +56,9 @@ export const FeaturesSection = () => {
             <div className="mb-4 text-center">
               <i className="text-3xl text-blue-500 fas fa-life-ring"></i>
             </div>
-            <h3 className="mb-2 text-xl font-bold text-slate-800">Supportive</h3>
-            <p className="mb-4 text-lg text-gray-600">Subtitle text</p>
-            <p className="text-gray-600 text-md">
+            <h3 className="mb-2 text-lg font-bold">Supportive</h3>
+            <p className="mb-4 text-sm text-gray-600">Subtitle text</p>
+            <p className="text-sm text-gray-600">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet nulla auctor, vestibulum magna sed, convallis ex.
             </p>
           </div>
