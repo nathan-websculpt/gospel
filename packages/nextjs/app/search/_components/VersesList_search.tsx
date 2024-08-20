@@ -3,10 +3,14 @@ import { ArticleOne } from "./ArticleOne";
 import { useApolloClient } from "@apollo/client";
 import { MagnifyingGlassCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import { VersesDisplay_ListView } from "~~/components/VersesDisplay_listview";
+import { BookDDL } from "~~/components/helpers/BookDDL";
 import { LoadingSpinner } from "~~/components/helpers/LoadingSpinner";
 import { PaginationBottom } from "~~/components/helpers/PaginationBottom";
 import { PaginationTop } from "~~/components/helpers/PaginationTop";
-import { GQL_VERSES_For_Display_with_search } from "~~/helpers/getQueries";
+import {
+  GQL_VERSES_For_Display_with_search_all_books,
+  GQL_VERSES_For_Display_with_search_one_book,
+} from "~~/helpers/getQueries";
 
 export const VersesList_Search = () => {
   const [isFirstRun, setIsFirstRun] = useState(true);
@@ -15,9 +19,15 @@ export const VersesList_Search = () => {
   const [userSearchInput, setUserSearchInput] = useState("");
   const [pageSize, setPageSize] = useState(25);
   const [pageNum, setPageNum] = useState(0);
-  const [data, setData] = useState({});
+  const [data_allbooks, setData_allbooks] = useState({});
+  const [data_onebook, setData_onebook] = useState({});
   const [queryLoading, setQueryLoading] = useState(true);
   const scrollToRef = useRef(null);
+
+  const [selectedBookId, setSelectedBookId] = useState<string>("");
+  const [selectedBook, setSelectedBook] = useState<string>("");
+
+  const [booksCleared, setBooksCleared] = useState<boolean>(false);
 
   useEffect(() => {
     if (!isFirstRun) preQuery();
@@ -34,35 +44,78 @@ export const VersesList_Search = () => {
     if (!isFirstRun && userSearchInput.trim().length === 0) preQuery();
   }, [userSearchInput]);
 
+  //so that changing books will trigger a query
+  useEffect(() => {
+    if (!isFirstRun) preQuery("");
+  }, [selectedBook]);
+
+  useEffect(() => {
+    if (booksCleared) setSelectedBook("");
+  }, [booksCleared]);
+
   const preQuery = async () => {
     setQueryLoading(true);
-    if (userSearchInput.trim().length === 0) {
-      doQuery({
-        limit: pageSize,
-        offset: pageNum * pageSize,
-      });
+    if (selectedBook === "") {
+      if (userSearchInput.trim().length === 0) {
+        doQuery_allbooks({
+          limit: pageSize,
+          offset: pageNum * pageSize,
+        });
+      } else {
+        doQuery_allbooks({
+          limit: pageSize,
+          offset: pageNum * pageSize,
+          searchBy: userSearchInput,
+        });
+      }
     } else {
-      doQuery({
-        limit: pageSize,
-        offset: pageNum * pageSize,
-        searchBy: userSearchInput,
-      });
+      if (userSearchInput.trim().length === 0) {
+        doQuery_onebook({
+          limit: pageSize,
+          offset: pageNum * pageSize,
+          searchByBook: selectedBookId,
+        });
+      } else {
+        doQuery_onebook({
+          limit: pageSize,
+          offset: pageNum * pageSize,
+          searchByBook: selectedBookId,
+          searchBy: userSearchInput,
+        });
+      }
     }
   };
 
-  const doQuery = async (options: object) => {
+  const doQuery_onebook = async (options: object) => {
     setQueryLoading(true);
     await client
       .query({
-        query: GQL_VERSES_For_Display_with_search(userSearchInput),
+        query: GQL_VERSES_For_Display_with_search_one_book(userSearchInput),
         variables: options,
         fetchPolicy: "no-cache",
       })
       .then(d => {
-        setData(d.data);
+        setData_onebook(d.data);
       })
       .catch(e => {
-        console.log("QUERY ERROR: ", e);
+        console.log("GQL_VERSES_For_Display_with_search_one_book QUERY ERROR: ", e);
+      });
+    setQueryLoading(false);
+  };
+
+  const doQuery_allbooks = async (options: object) => {
+    setQueryLoading(true);
+    await client
+      .query({
+        query: GQL_VERSES_For_Display_with_search_all_books(userSearchInput),
+        variables: options,
+        fetchPolicy: "no-cache",
+      })
+      .then(d => {
+        setData_allbooks(d.data);
+      })
+      .catch(e => {
+        console.log("GQL_VERSES_For_Display_with_search_all_books QUERY ERROR: ", e);
       });
     setQueryLoading(false);
   };
@@ -81,9 +134,33 @@ export const VersesList_Search = () => {
     }
   };
 
+  const clearBooks = () => {
+    setBooksCleared(!booksCleared);
+  };
+
   return (
     <>
       <ArticleOne />
+      <div className="flex flex-row justify-center w-full gap-1 px-4 mx-auto mb-12 lg:w-11/12 xl:w-3/4 xl:px-0">
+        <div className="flex flex-row w-11/12 xl:w-3/4">
+          {!booksCleared && (
+            <BookDDL
+              selectedContract={selectedBook}
+              setSelectedContract={setSelectedBook}
+              setSelectedBookId={setSelectedBookId}
+            />
+          )}
+
+          <button
+            className="px-2 ml-2 rounded-none md:px-10 btn btn-primary"
+            onClick={() => clearBooks()}
+            aria-labelledby="Clear Books Button"
+          >
+            <XCircleIcon className="w-8 h-8" />
+          </button>
+        </div>
+      </div>
+
       <div className="flex flex-row justify-center w-full gap-1 px-4 mx-auto mb-12 lg:w-11/12 xl:w-3/4 xl:px-0">
         <div className="flex flex-row w-11/12 xl:w-3/4">
           <input
@@ -112,10 +189,17 @@ export const VersesList_Search = () => {
       </div>
       <div ref={scrollToRef}>
         <PaginationTop pageNum={pageNum} pageSize={pageSize} setPageNum={setPageNum} setPageSize={setPageSize} />
+
         {queryLoading ? (
           <LoadingSpinner />
         ) : (
-          <>{data?.verses?.length > 0 && <VersesDisplay_ListView verses={data.verses} />}</>
+          <>
+            {selectedBook === "" ? (
+              <>{data_allbooks?.verses?.length > 0 && <VersesDisplay_ListView verses={data_allbooks.verses} />}</>
+            ) : (
+              <>{data_onebook?.verses?.length > 0 && <VersesDisplay_ListView verses={data_onebook.verses} />}</>
+            )}
+          </>
         )}
 
         <PaginationBottom pageNum={pageNum} setPageNum={setPageNum} scrollTo={scrollToRef} />
