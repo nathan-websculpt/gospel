@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { SaveVerses } from "./SaveVerses";
+import { BookDDL } from "~~/components/helpers/BookDDL";
 import { isValidNumber } from "~~/helpers/utils";
 import { getGospelOfJohn } from "~~/json_bible/John";
 import { notification } from "~~/utils/scaffold-eth";
@@ -13,6 +14,9 @@ export const AddVerses = () => {
   const [amountInBatch, setAmountInBatch] = useState("8");
   const [selectedVersesObject, setSelectedVersesObject] = useState<object[]>(undefined);
   const [isFirstRun, setIsFirstRun] = useState(true);
+
+  const [selectedContract, setSelectedContract] = useState<string>("");
+  const [selectedBookId, setSelectedBookId] = useState<string>("");
 
   useEffect(() => {
     if (!isFirstRun) setSelectedVersesObject(versesArray.slice(selectedIndex, Number(amountInBatch) + selectedIndex));
@@ -60,6 +64,11 @@ export const AddVerses = () => {
 
   return (
     <>
+      <BookDDL
+        selectedContract={selectedContract}
+        setSelectedContract={setSelectedContract}
+        setSelectedBookId={setSelectedBookId}
+      />
       <p className="text-sm font-bold md:text-md lg:text-lg">how many in batch?</p>
       <input
         className="w-full sm:w-3/4 input input-bordered input-accent"
@@ -118,6 +127,10 @@ export const AddVerses = () => {
               content={selectedVersesObject.map(x => x.VerseContent)}
               chapterNum={selectedVersesObject.map(x => BigInt(x.ChapterNumber))}
               verseNum={selectedVersesObject.map(x => BigInt(x.VerseNumber))}
+              selectedContract={selectedContract}
+              setSelectedContract={setSelectedContract}
+              selectedBookId={selectedBookId}
+              setSelectedBookId={setSelectedBookId}
             />
           </>
         )}
