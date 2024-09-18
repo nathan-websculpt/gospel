@@ -3,10 +3,11 @@ import { SaveVerses } from "./SaveVerses";
 import { BookDDL } from "~~/components/helpers/BookDDL";
 import { isValidNumber } from "~~/helpers/utils";
 import { getGospelOfJohn } from "~~/json_bible/John";
+import { getGospelOfMark } from "~~/json_bible/Mark";
 import { notification } from "~~/utils/scaffold-eth";
 
 export const AddVerses = () => {
-  const versesArray = getGospelOfJohn();
+  const [versesArray, setVersesArray] = useState<object[]>(getGospelOfJohn);
   const [selectedChapter, setSelectedChapter] = useState("");
   const [selectedVerse, setSelectedVerse] = useState("");
   const [selectedIndex, setSelectedIndex] = useState("");
@@ -17,6 +18,15 @@ export const AddVerses = () => {
 
   const [selectedContract, setSelectedContract] = useState<string>("");
   const [selectedBookId, setSelectedBookId] = useState<string>("");
+
+  useEffect(() => {
+    // reset 
+    setSelectedChapter("1");
+    setSelectedVerse("1");
+
+    if(selectedIndex === 0) setSelectedVersesObject(versesArray.slice(selectedIndex, Number(amountInBatch) + selectedIndex));
+    else setSelectedIndex(0); //triggers setSelectedVersesObject change
+  }, [versesArray]);
 
   useEffect(() => {
     if (!isFirstRun) setSelectedVersesObject(versesArray.slice(selectedIndex, Number(amountInBatch) + selectedIndex));
@@ -68,6 +78,7 @@ export const AddVerses = () => {
         selectedContract={selectedContract}
         setSelectedContract={setSelectedContract}
         setSelectedBookId={setSelectedBookId}
+        setVersesArray={setVersesArray}
       />
       <p className="text-sm font-bold md:text-md lg:text-lg">how many in batch?</p>
       <input
