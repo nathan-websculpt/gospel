@@ -25,7 +25,11 @@ contract BookDeployer {
 		emit NewB(address(b), index, title);
 	}
 
-    function getDeployments() public view returns (Deployment[] memory) {
-        return deployments;
+    function getDeployments() public view returns (address[] memory) {
+        address[] memory result = new address[](deployments.length);
+		for (uint256 i = 0; i < deployments.length; i++){
+			result[i] = deployments[i].bAddr;
+		}
+		return result;
     }
 }
