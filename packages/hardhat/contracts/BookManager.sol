@@ -16,6 +16,9 @@ contract BookManager is Main {
 	mapping(uint256 => VerseStr) public verses;
 	mapping(address => uint256[]) public confirmations;
 	uint256 public numberOfVerses = 0;
+	uint256 public bookIndex;
+	string public bookTitle;
+
 
 	event Book(string title);
 	
@@ -43,7 +46,15 @@ contract BookManager is Main {
 		_;
 	}
 
-	//would-be constructor
+	constructor(uint256 index, string memory title) {
+		// numberOfBooks++;
+		// bookAtIndex[index] = title;
+		// emit Book(title);
+		bookIndex = index;
+		bookTitle = title;
+
+		_transferOwnership(msg.sender); //todo:
+	}
 
 	function addBatchVerses(
 		bytes memory _bookId,
