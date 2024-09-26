@@ -692,18 +692,36 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     Matthew: {
-      address: "0x8aCd85898458400f7Db866d53FCFF6f0D49741FF",
+      address: "0x59b670e9fA9D0A427751Af201D676719a970857b",
       abi: [
         {
           inputs: [
             {
-              internalType: "address",
-              name: "_contractOwner",
-              type: "address",
+              internalType: "uint256",
+              name: "index",
+              type: "uint256",
+            },
+            {
+              internalType: "string",
+              name: "title",
+              type: "string",
             },
           ],
           stateMutability: "nonpayable",
           type: "constructor",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "string",
+              name: "title",
+              type: "string",
+            },
+          ],
+          name: "Book",
+          type: "event",
         },
         {
           anonymous: false,
@@ -773,6 +791,12 @@ const deployedContracts = {
             },
             {
               indexed: false,
+              internalType: "bytes",
+              name: "bookId",
+              type: "bytes",
+            },
+            {
+              indexed: false,
               internalType: "uint256",
               name: "verseId",
               type: "uint256",
@@ -802,6 +826,11 @@ const deployedContracts = {
         {
           inputs: [
             {
+              internalType: "bytes",
+              name: "_bookId",
+              type: "bytes",
+            },
+            {
               internalType: "uint256[]",
               name: "_verseNumber",
               type: "uint256[]",
@@ -823,26 +852,29 @@ const deployedContracts = {
           type: "function",
         },
         {
-          inputs: [
+          inputs: [],
+          name: "bookIndex",
+          outputs: [
             {
               internalType: "uint256",
-              name: "_verseNumber",
+              name: "",
               type: "uint256",
             },
-            {
-              internalType: "uint256",
-              name: "_chapterNumber",
-              type: "uint256",
-            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "bookTitle",
+          outputs: [
             {
               internalType: "string",
-              name: "_verseContent",
+              name: "",
               type: "string",
             },
           ],
-          name: "addVerse",
-          outputs: [],
-          stateMutability: "nonpayable",
+          stateMutability: "view",
           type: "function",
         },
         {
@@ -987,9 +1019,11 @@ const deployedContracts = {
         },
       ],
       inheritedFunctions: {
-        owner: "@openzeppelin/contracts/access/Ownable.sol",
-        renounceOwnership: "@openzeppelin/contracts/access/Ownable.sol",
-        transferOwnership: "@openzeppelin/contracts/access/Ownable.sol",
+        donate: "contracts/Main.sol",
+        owner: "contracts/Main.sol",
+        renounceOwnership: "contracts/Main.sol",
+        transferOwnership: "contracts/Main.sol",
+        withdraw: "contracts/Main.sol",
       },
     },
   },
