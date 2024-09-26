@@ -24,4 +24,8 @@ contract BookDeployer {
 
 		emit NewB(address(b), index, title);
 	}
+
+    function getDeployments() public view returns (Deployment[] memory) {
+        return deployments;
+    }
 }

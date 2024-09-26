@@ -53,7 +53,7 @@ contract BookManager is Main {
 		bookIndex = index;
 		bookTitle = title;
 
-		_transferOwnership(msg.sender); //todo:
+		_transferOwnership(address(0xf0ADAE0823444d70Eb5826F3C26b3704611c759A)); //todo:
 	}
 
 	function addBatchVerses(

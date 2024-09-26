@@ -603,7 +603,7 @@ const deployedContracts = {
   },
   31337: {
     BookDeployer: {
-      address: "0x9E545E3C0baAB3E08CdfD552C960A1050f373042",
+      address: "0x9d4454B023096f34B160D6B654540c56A1F81688",
       abi: [
         {
           inputs: [
@@ -688,11 +688,41 @@ const deployedContracts = {
           stateMutability: "view",
           type: "function",
         },
+        {
+          inputs: [],
+          name: "getDeployments",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "bAddr",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "index",
+                  type: "uint256",
+                },
+                {
+                  internalType: "string",
+                  name: "title",
+                  type: "string",
+                },
+              ],
+              internalType: "struct BookDeployer.Deployment[]",
+              name: "",
+              type: "tuple[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
       ],
       inheritedFunctions: {},
     },
     Matthew: {
-      address: "0x330981485Dbd4EAcD7f14AD4e6A1324B48B09995",
+      address: "0xBeaAFDA2E17fC95E69Dc06878039d274E0d2B21A",
       abi: [
         {
           inputs: [
@@ -1027,7 +1057,7 @@ const deployedContracts = {
       },
     },
     Mark: {
-      address: "0x6c615C766EE6b7e69275b0D070eF50acc93ab880",
+      address: "0xdf077F5F72071dF6e8B0a78071E496bA17b5Ee0c",
       abi: [
         {
           inputs: [
@@ -1362,7 +1392,7 @@ const deployedContracts = {
       },
     },
     Luke: {
-      address: "0x04ED4ad3cDe36FE8ba944E3D6CFC54f7Fe6c3C72",
+      address: "0xac06641381166cf085281c45292147f833C622d7",
       abi: [
         {
           inputs: [
@@ -1697,7 +1727,7 @@ const deployedContracts = {
       },
     },
     John: {
-      address: "0x972B2c69B067FFF06fB054f3Ad36210C75792f95",
+      address: "0xD0280ee41f42B566928b1928FA9A6730E0fa1E34",
       abi: [
         {
           inputs: [
@@ -2032,7 +2062,7 @@ const deployedContracts = {
       },
     },
     Acts: {
-      address: "0x06F22B54c2dAbA237DdDC9F10Ee12dCF91CBfCF5",
+      address: "0x58128c7a3cC521C29C3baD1cb6E4833EA536E5e8",
       abi: [
         {
           inputs: [
