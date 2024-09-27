@@ -5,9 +5,9 @@ import deployedContracts from "~~/contracts/deployedContracts";
 import { isValidNumber } from "~~/helpers/utils";
 import { useScaffoldReadContract } from "~~/hooks/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
-import { getGospelOfJohn } from "~~/json_bible/John";
 import { notification } from "~~/utils/scaffold-eth";
 import { getGospelOfMark } from "~~/json_bible/Mark";
+import { getGospelOfJohn } from "~~/json_bible/John";
 
 export const AddVerses = () => {
   const { targetNetwork } = useTargetNetwork();
