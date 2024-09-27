@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Address } from "../scaffold-eth";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useOutsideClick } from "~~/hooks/scaffold-eth";
@@ -9,7 +9,12 @@ interface BookContractDDLProps {
   setSelectedContractTitle: Dispatch<String>;
 }
 
-export const BookContractDDL = ({ listOfBookContracts, setSelectedContract, setSelectedContractTitle }: BookContractDDLProps) => {
+export const BookContractDDL = ({
+  listOfBookContracts,
+  setSelectedContract,
+  setSelectedContractTitle,
+}: BookContractDDLProps) => {
+  const [userSelected, setUserSelected] = useState<string>("");
   const dropdownRef = useRef<HTMLDetailsElement>(null);
   const closeDropdown = () => {
     dropdownRef.current?.removeAttribute("open");
@@ -21,8 +26,8 @@ export const BookContractDDL = ({ listOfBookContracts, setSelectedContract, setS
       {listOfBookContracts?.length > 1 && (
         <div className="flex flex-row flex-wrap w-full gap-2 px-6 pb-1 max-w-7xl lg:px-10">
           <details ref={dropdownRef} className="leading-3 dropdown dropdown-right">
-            <summary tabIndex={0} className="btn btn-secondary btn-sm shadow-md dropdown-toggle gap-0 !h-auto">
-              Select Clone Contract
+            <summary tabIndex={0} className="btn btn-primary btn-sm shadow-md dropdown-toggle gap-0 !h-auto">
+              {userSelected !== "" ? <span>{userSelected}</span> : <span>Select Clone Contract</span>}
               <ChevronDownIcon className="w-4 h-6 ml-2 sm:ml-0" />
             </summary>
             <ul className="dropdown-content menu z-[100] p-2 mt-2 shadow-center shadow-accent bg-base-200 rounded-box gap-1">
@@ -32,6 +37,7 @@ export const BookContractDDL = ({ listOfBookContracts, setSelectedContract, setS
                   onClick={() => {
                     setSelectedContract(b.bAddr);
                     setSelectedContractTitle(b.title);
+                    setUserSelected(b.title);
                     closeDropdown();
                   }}
                   // onKeyUp={() => setSelectedContract(b.bAddr); setSelectedContractTitle(b.title);}
