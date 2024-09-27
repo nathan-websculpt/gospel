@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
-import { useDeployedContractInfo, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
+import { useEffect } from "react";
+import { Abi } from "abitype";
+import { useAccount, useWriteContract } from "wagmi";
+import { useTransactor } from "~~/hooks/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 
 interface VerseProps {
@@ -14,39 +16,34 @@ interface VerseProps {
 }
 
 export const SaveVerses = (_v: VerseProps) => {
-
-  
+  const { chain } = useAccount();
+  const writeTxn = useTransactor();
   const { targetNetwork } = useTargetNetwork();
-  const { data: deployedContractData, isLoading: deployedContractLoading } = useDeployedContractInfo(contractName);
+  const writeDisabled = !chain || chain?.id !== targetNetwork.id;
 
-
-  console.log("this contract", _v.deployedContractData)
-  const { writeContractAsync: writeToJohn } = useScaffoldWriteContract("John");
-  const { writeContractAsync: writeToMark } = useScaffoldWriteContract("Mark");
+  const { data: result, isPending, writeContractAsync } = useWriteContract();
 
   useEffect(() => {
-    console.log("Selected contract changed to:", _v.selectedContract);
-  }, [_v.selectedContract]);
-
-  useEffect(() => {
-    console.log("Selected book ID changed to:", _v.selectedBookId);
-  }, [_v.selectedBookId]);
+    console.log("deployedContractData:", _v.deployedContractData);
+  }, [_v.deployedContractData]);
 
   const writeAsync = async () => {
     try {
-      const args = [_v.selectedBookId, _v?.verseNum, _v?.chapterNum, _v?.content];
-      const contractCall = {
-        functionName: "addBatchVerses",
-        args: args,
-      };
-
-      if (_v.selectedContract === "Mark") {
-        await writeToMark(contractCall);
-      } else {
-        await writeToJohn(contractCall);
+      if (writeDisabled) {
+        notification.error("There is a discrepency - chain and targetNetwork mismatch");
+        return;
       }
-    } catch (e) {
-      console.error("Error calling addBatchVerses on contract:", e);
+      const args = [_v.selectedBookId, _v?.verseNum, _v?.chapterNum, _v?.content];
+      const makeWriteWithParams = () =>
+        writeContractAsync({
+          address: _v.selectedContract,
+          functionName: "addBatchVerses",
+          abi: _v.deployedContractData.abi as Abi,
+          args: args,
+        });
+      await writeTxn(makeWriteWithParams);
+    } catch (e: any) {
+      console.error("SaveVerses.tsx:writeAsync - err:", e);
     }
   };
 

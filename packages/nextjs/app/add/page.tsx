@@ -18,7 +18,7 @@ const AddVersesPage: NextPage = () => {
             </h1>
           </div>
           <div className="mt-8">
-            <DiplayLastAdded />
+            {/* <DiplayLastAdded /> */}
             <AddVerses />
           </div>
         </div>
