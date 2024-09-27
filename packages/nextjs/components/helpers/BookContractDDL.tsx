@@ -6,9 +6,10 @@ import { useOutsideClick } from "~~/hooks/scaffold-eth";
 interface BookContractDDLProps {
   listOfBookContracts: any[];
   setSelectedContract: Dispatch<String>;
+  setSelectedContractTitle: Dispatch<String>;
 }
 
-export const BookContractDDL = ({ listOfBookContracts, setSelectedContract }: BookContractDDLProps) => {
+export const BookContractDDL = ({ listOfBookContracts, setSelectedContract, setSelectedContractTitle }: BookContractDDLProps) => {
   const dropdownRef = useRef<HTMLDetailsElement>(null);
   const closeDropdown = () => {
     dropdownRef.current?.removeAttribute("open");
@@ -30,9 +31,10 @@ export const BookContractDDL = ({ listOfBookContracts, setSelectedContract }: Bo
                   key={b.bAddr}
                   onClick={() => {
                     setSelectedContract(b.bAddr);
+                    setSelectedContractTitle(b.title);
                     closeDropdown();
                   }}
-                  onKeyUp={() => setSelectedContract(b.bAddr)}
+                  // onKeyUp={() => setSelectedContract(b.bAddr); setSelectedContractTitle(b.title);}
                 >
                   <span>
                     {b.title} <Address address={b.bAddr} disableAddressLink={true} size="sm" format="short" />
