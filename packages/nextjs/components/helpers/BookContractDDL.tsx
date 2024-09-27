@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { Address } from "../scaffold-eth";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useOutsideClick } from "~~/hooks/scaffold-eth";
@@ -14,10 +14,6 @@ export const BookContractDDL = ({ listOfBookContracts, setSelectedContract }: Bo
     dropdownRef.current?.removeAttribute("open");
   };
   useOutsideClick(dropdownRef, closeDropdown);
-
-  useEffect(() => {
-    console.log("listOfBookContracts: ", listOfBookContracts);
-  }, [listOfBookContracts]);
 
   return (
     <>

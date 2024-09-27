@@ -603,7 +603,7 @@ const deployedContracts = {
   },
   31337: {
     BookDeployer: {
-      address: "0x67d269191c92Caf3cD7723F116c85e6E9bf55933",
+      address: "0x1613beB3B2C4f22Ee086B2b38C1476A3cE7f78E8",
       abi: [
         {
           inputs: [
@@ -693,19 +693,6 @@ const deployedContracts = {
           name: "getDeployments",
           outputs: [
             {
-              internalType: "address[]",
-              name: "",
-              type: "address[]",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [],
-          name: "getDeployments2",
-          outputs: [
-            {
               components: [
                 {
                   internalType: "address",
@@ -735,7 +722,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     BookManager: {
-      address: "0xE6E340D132b5f46d1e472DebcD681B2aBc16e57E",
+      address: "0x851356ae760d987E095750cCeb3bC6014560891C",
       abi: [
         {
           inputs: [
