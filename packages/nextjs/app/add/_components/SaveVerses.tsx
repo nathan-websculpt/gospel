@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
-import { Abi, AbiFunction } from "abitype";
+import { useEffect } from "react";
+import { Abi } from "abitype";
 import { useAccount, useWriteContract } from "wagmi";
-import { useDeployedContractInfo, useScaffoldWriteContract, useTransactor } from "~~/hooks/scaffold-eth";
+import { useTransactor } from "~~/hooks/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
+import { notification } from "~~/utils/scaffold-eth";
 
 interface VerseProps {
   content: string[];
@@ -27,30 +28,11 @@ export const SaveVerses = (_v: VerseProps) => {
     console.log("deployedContractData:", _v.deployedContractData);
   }, [_v.deployedContractData]);
 
-  // useEffect(() => {
-  //   console.log("Selected contract changed to:", _v.selectedContract);
-  // }, [_v.selectedContract]);
-
-  // useEffect(() => {
-  //   console.log("Selected book ID changed to:", _v.selectedBookId);
-  // }, [_v.selectedBookId]);
-
   const writeAsync = async () => {
-    // try {
-    //   const args = [_v.selectedBookId, _v?.verseNum, _v?.chapterNum, _v?.content];
-    //   const contractCall = {
-    //     functionName: "addBatchVerses",
-    //     args: args,
-    //   };
-    //   if (_v.selectedContract === "Mark") {
-    //     await writeToMark(contractCall);
-    //   } else {
-    //     await writeToJohn(contractCall);
-    //   }
-    // } catch (e) {
-    //   console.error("Error calling addBatchVerses on contract:", e);
-    // }
-
+    if (writeDisabled) {
+      notification.error("Chain/targetNetwork mismatch");
+      return;
+    }
     try {
       const args = [_v.selectedBookId, _v?.verseNum, _v?.chapterNum, _v?.content];
       const makeWriteWithParams = () =>
@@ -61,9 +43,8 @@ export const SaveVerses = (_v: VerseProps) => {
           args: args,
         });
       await writeTxn(makeWriteWithParams);
-      onChange();
     } catch (e: any) {
-      console.error("⚡️ ~ file: WriteOnlyFunctionForm.tsx:handleWrite ~ error", e);
+      console.error("error from SaveVerses.tsx writeAsync()", e);
     }
   };
 
