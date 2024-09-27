@@ -1,13 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { ContractClonesUI } from "../debug/_components/contract/ContractClonesUI";
 import type { NextPage } from "next";
 import { useLocalStorage } from "usehooks-ts";
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
-import { Address } from "~~/components/scaffold-eth";
+import { BookContractDDL } from "~~/components/helpers/BookContractDDL";
 import deployedContracts from "~~/contracts/deployedContracts";
-import { useOutsideClick, useScaffoldReadContract } from "~~/hooks/scaffold-eth";
+import { useScaffoldReadContract } from "~~/hooks/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 import { ContractName } from "~~/utils/scaffold-eth/contract";
 import { getAllContracts } from "~~/utils/scaffold-eth/contractsData";
@@ -31,12 +30,6 @@ const DebugClone: NextPage = () => {
     contractName: "BookDeployer",
     functionName: "getDeployments",
   });
-
-  const dropdownRef = useRef<HTMLDetailsElement>(null);
-  const closeDropdown = () => {
-    dropdownRef.current?.removeAttribute("open");
-  };
-  useOutsideClick(dropdownRef, closeDropdown);
 
   useEffect(() => {
     if (listOfContractAddresses) setClonedContractsAddresses(listOfContractAddresses?.data);
@@ -65,30 +58,11 @@ const DebugClone: NextPage = () => {
           <p className="text-3xl mt-14">No clones found!</p>
         ) : (
           <>
-            {contractNames?.length > 1 && (
-              <div className="flex flex-row flex-wrap w-full gap-2 px-6 pb-1 max-w-7xl lg:px-10">
-                <details ref={dropdownRef} className="leading-3 dropdown dropdown-right">
-                  <summary tabIndex={0} className="btn btn-secondary btn-sm shadow-md dropdown-toggle gap-0 !h-auto">
-                    Select Clone Contract
-                    <ChevronDownIcon className="w-4 h-6 ml-2 sm:ml-0" />
-                  </summary>
-                  <ul className="dropdown-content menu z-[100] p-2 mt-2 shadow-center shadow-accent bg-base-200 rounded-box gap-1">
-                    {clonedContractsAddresses?.map(address => (
-                      <li
-                        key={address}
-                        onClick={() => {
-                          setSelectedContract(address);
-                          closeDropdown();
-                        }}
-                        onKeyUp={() => setSelectedContract(address)}
-                      >
-                        <Address address={address} disableAddressLink={true} />
-                      </li>
-                    ))}
-                  </ul>
-                </details>
-              </div>
-            )}
+            <BookContractDDL
+              contractNames={contractNames}
+              clonedContractsAddresses={clonedContractsAddresses}
+              setSelectedContract={setSelectedContract}
+            />
             {cloneContractData?.map(data => (
               <ContractClonesUI
                 key={data.address}

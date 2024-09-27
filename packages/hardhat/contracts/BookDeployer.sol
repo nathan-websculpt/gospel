@@ -32,4 +32,12 @@ contract BookDeployer {
 		}
 		return result;
     }
+
+    function getDeployments2() public view returns (Deployment[] memory) {
+        Deployment[] memory result = new Deployment[](deployments.length);
+		for (uint256 i = 0; i < deployments.length; i++){
+			result[i] = deployments[i];
+		}
+		return result;
+    }
 }

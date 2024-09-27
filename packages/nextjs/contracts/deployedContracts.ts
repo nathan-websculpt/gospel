@@ -603,7 +603,7 @@ const deployedContracts = {
   },
   31337: {
     BookDeployer: {
-      address: "0x4ed7c70F96B99c776995fB64377f0d4aB3B0e1C1",
+      address: "0x67d269191c92Caf3cD7723F116c85e6E9bf55933",
       abi: [
         {
           inputs: [
@@ -701,11 +701,41 @@ const deployedContracts = {
           stateMutability: "view",
           type: "function",
         },
+        {
+          inputs: [],
+          name: "getDeployments2",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "bAddr",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "index",
+                  type: "uint256",
+                },
+                {
+                  internalType: "string",
+                  name: "title",
+                  type: "string",
+                },
+              ],
+              internalType: "struct BookDeployer.Deployment[]",
+              name: "",
+              type: "tuple[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
       ],
       inheritedFunctions: {},
     },
     BookManager: {
-      address: "0x322813Fd9A801c5507c9de605d63CEA4f2CE6c44",
+      address: "0xE6E340D132b5f46d1e472DebcD681B2aBc16e57E",
       abi: [
         {
           inputs: [
