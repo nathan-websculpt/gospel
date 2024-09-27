@@ -26,30 +26,25 @@ const DebugClone: NextPage = () => {
 
   const [selectedContract, setSelectedContract] = useLocalStorage(selectedContractStorageKey, "");
 
-  const listOfContractAddresses = useScaffoldReadContract({
+  const listOfBookContracts = useScaffoldReadContract({
     contractName: "BookDeployer",
-    functionName: "getDeployments",
+    functionName: "getDeployments2",
   });
 
   useEffect(() => {
-    if (listOfContractAddresses) setClonedContractsAddresses(listOfContractAddresses?.data);
-    if (listOfContractAddresses?.data?.length < 2) setSelectedContract(listOfContractAddresses.data[0]);
-  }, [listOfContractAddresses]);
-
-  useEffect(() => {
     const dataArray = [];
-
-    const iterate = () => {
-      for (let index = 0; index < clonedContractsAddresses.length; index++) {
+    if (listOfBookContracts?.data) {
+      for (const deployment of listOfBookContracts.data) {
         const data = Object.create(bookManager);
-        data.address = clonedContractsAddresses[index];
+        data.address = deployment.bAddr;
         dataArray.push(data);
       }
-    };
+    }
 
-    if (clonedContractsAddresses?.length > 0) iterate();
+    if (listOfBookContracts?.data?.length < 2) setSelectedContract(listOfBookContracts.data[0].bAddr); //todo:
+
     setCloneContractData(dataArray);
-  }, [clonedContractsAddresses]);
+  }, [listOfBookContracts]);
 
   return (
     <>
@@ -58,11 +53,7 @@ const DebugClone: NextPage = () => {
           <p className="text-3xl mt-14">No clones found!</p>
         ) : (
           <>
-            <BookContractDDL
-              contractNames={contractNames}
-              clonedContractsAddresses={clonedContractsAddresses}
-              setSelectedContract={setSelectedContract}
-            />
+            <BookContractDDL listOfBookContracts={listOfBookContracts.data} setSelectedContract={setSelectedContract} />
             {cloneContractData?.map(data => (
               <ContractClonesUI
                 key={data.address}
