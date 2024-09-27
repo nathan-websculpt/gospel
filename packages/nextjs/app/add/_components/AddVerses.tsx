@@ -37,7 +37,19 @@ export const AddVerses = () => {
 
 
 
-
+useEffect(() => {
+  if (selectedContract) {
+    // cloneContractData where addr == selectedContract
+    console.log("whoa boi ___>");
+    for(let i = 0; i < cloneContractData.length; i++) {
+        console.log("i:", cloneContractData[i].abi);
+    }
+    console.log("whoa boi _________________________________>");
+    const theSelectedCloneContractData = cloneContractData.find((c) => c.address === selectedContract);
+    console.log("theSelectedCloneContractData:", theSelectedCloneContractData.abi);
+    setTheSelectedCloneContractData(theSelectedCloneContractData)
+  }
+}, [selectedContract]);
 
 
 
@@ -45,29 +57,17 @@ export const AddVerses = () => {
 
   
 
-
-
-
-
-  const chain = scaffoldConfig.targetNetworks[0];//TODO:
-  const factory = deployedContracts[chain.id].BookDeployer;
-  const yourContract = deployedContracts[chain.id].BookManager;
-
-  useEffect(() => {
-    console.log("factory", factory);
-  }, [factory]);
+  const { targetNetwork } = useTargetNetwork();
+  const bookManager = deployedContracts[targetNetwork.id].BookManager;
 
   const [cloneContracts, setCloneContracts] = useState<string[]>();
   const [cloneContractData, setCloneContractData] = useState<object[]>();
+  const [theSelectedContractData, setTheSelectedCloneContractData] = useState<any>();
 
   const listOfContractAddresses = useScaffoldReadContract({
     contractName: "BookDeployer",
     functionName: "getDeployments",
   });
-
-  useEffect(() => {
-    console.log("listOfContractAddresses", listOfContractAddresses);
-  }, [listOfContractAddresses]);
 
   const dropdownRef = useRef<HTMLDetailsElement>(null);
   const closeDropdown = () => {
@@ -81,13 +81,11 @@ export const AddVerses = () => {
   }, [listOfContractAddresses]);
 
   useEffect(() => {
-    console.log("ur contr", yourContract);
-    console.log("clone contracts", cloneContracts);
     const dataArray = [];
 
     const iterate = () => {
       for (let index = 0; index < cloneContracts.length; index++) {
-        const data = Object.create(yourContract);
+        const data = Object.create(bookManager);
         data.address = cloneContracts[index];
         dataArray.push(data);
       }
@@ -95,6 +93,7 @@ export const AddVerses = () => {
 
     if (cloneContracts?.length > 0) iterate();
     setCloneContractData(dataArray);
+    console.log("halp cloneContractData:", dataArray);
   }, [cloneContracts]);
 
 
@@ -253,7 +252,7 @@ export const AddVerses = () => {
               setSelectedContract={setSelectedContract}
               selectedBookId={selectedBookId}
               setSelectedBookId={setSelectedBookId}
-              deployedContractData={cloneContractData}
+              deployedContractData={theSelectedContractData} //at this point it is for the .abi
             />
           </>
         )}

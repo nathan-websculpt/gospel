@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import { useDeployedContractInfo, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
+import { Abi, AbiFunction } from "abitype";
+import { useAccount, useWriteContract } from "wagmi";
+import { useDeployedContractInfo, useScaffoldWriteContract, useTransactor } from "~~/hooks/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 
 interface VerseProps {
@@ -14,39 +16,54 @@ interface VerseProps {
 }
 
 export const SaveVerses = (_v: VerseProps) => {
-
-  
+  const { chain } = useAccount();
+  const writeTxn = useTransactor();
   const { targetNetwork } = useTargetNetwork();
-  const { data: deployedContractData, isLoading: deployedContractLoading } = useDeployedContractInfo(contractName);
+  const writeDisabled = !chain || chain?.id !== targetNetwork.id;
 
-
-  console.log("this contract", _v.deployedContractData)
-  const { writeContractAsync: writeToJohn } = useScaffoldWriteContract("John");
-  const { writeContractAsync: writeToMark } = useScaffoldWriteContract("Mark");
+  const { data: result, isPending, writeContractAsync } = useWriteContract();
 
   useEffect(() => {
-    console.log("Selected contract changed to:", _v.selectedContract);
-  }, [_v.selectedContract]);
+    console.log("deployedContractData:", _v.deployedContractData);
+  }, [_v.deployedContractData]);
 
-  useEffect(() => {
-    console.log("Selected book ID changed to:", _v.selectedBookId);
-  }, [_v.selectedBookId]);
+  // useEffect(() => {
+  //   console.log("Selected contract changed to:", _v.selectedContract);
+  // }, [_v.selectedContract]);
+
+  // useEffect(() => {
+  //   console.log("Selected book ID changed to:", _v.selectedBookId);
+  // }, [_v.selectedBookId]);
 
   const writeAsync = async () => {
+    // try {
+    //   const args = [_v.selectedBookId, _v?.verseNum, _v?.chapterNum, _v?.content];
+    //   const contractCall = {
+    //     functionName: "addBatchVerses",
+    //     args: args,
+    //   };
+    //   if (_v.selectedContract === "Mark") {
+    //     await writeToMark(contractCall);
+    //   } else {
+    //     await writeToJohn(contractCall);
+    //   }
+    // } catch (e) {
+    //   console.error("Error calling addBatchVerses on contract:", e);
+    // }
+
     try {
       const args = [_v.selectedBookId, _v?.verseNum, _v?.chapterNum, _v?.content];
-      const contractCall = {
-        functionName: "addBatchVerses",
-        args: args,
-      };
-
-      if (_v.selectedContract === "Mark") {
-        await writeToMark(contractCall);
-      } else {
-        await writeToJohn(contractCall);
-      }
-    } catch (e) {
-      console.error("Error calling addBatchVerses on contract:", e);
+      const makeWriteWithParams = () =>
+        writeContractAsync({
+          address: _v.selectedContract,
+          functionName: "addBatchVerses",
+          abi: _v.deployedContractData.abi as Abi,
+          args: args,
+        });
+      await writeTxn(makeWriteWithParams);
+      onChange();
+    } catch (e: any) {
+      console.error("⚡️ ~ file: WriteOnlyFunctionForm.tsx:handleWrite ~ error", e);
     }
   };
 
