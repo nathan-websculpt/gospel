@@ -23,6 +23,8 @@ const deployBookDeployer: DeployFunction = async function (hre: HardhatRuntimeEn
   const { deploy } = hre.deployments;
   //const owner = "0x1e7aAbB9D0C701208E875131d0A1cFcDAba79350"; //PROD WALLET
   const owner = "0xf0ADAE0823444d70Eb5826F3C26b3704611c759A"; //todo change to fe wallet
+  
+  console.log("\n");
 
   await deploy("BookDeployer", {
     from: deployer,
@@ -37,14 +39,7 @@ const deployBookDeployer: DeployFunction = async function (hre: HardhatRuntimeEn
 
   // Get the deployed contract to interact with it after deploying.
   const bookDeployer = await hre.ethers.getContract<Contract>("BookDeployer", deployer);
-  console.log("👋 deployed BookDeployer at address:", await bookDeployer.getAddress());
-
-  // Deploy Books
-  let matt = await bookDeployer.deployBook(40, "Matthew");
-  await bookDeployer.deployBook(41, "Mark");
-  await bookDeployer.deployBook(42, "Luke");
-  await bookDeployer.deployBook(43, "John");
-  await bookDeployer.deployBook(44, "Acts");
+  console.log("\n 👋 deployed BookDeployer at address:", await bookDeployer.getAddress());
 };
 
 export default deployBookDeployer;

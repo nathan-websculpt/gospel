@@ -35,7 +35,7 @@ const deployBookManager: DeployFunction = async function (hre: HardhatRuntimeEnv
 
   // Get the deployed contract to interact with it after deploying.
   const bookManager = await hre.ethers.getContract<Contract>("BookManager", deployer);
-  console.log("👋 deployed BookManager at address:", await bookManager.getAddress());
+  console.log("\n 👋👋 deployed BookManager at address:", await bookManager.getAddress());
 
 };
 
