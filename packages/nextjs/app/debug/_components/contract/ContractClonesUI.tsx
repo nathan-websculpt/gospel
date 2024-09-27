@@ -11,20 +11,16 @@ import { ContractName } from "~~/utils/scaffold-eth/contract";
 
 // from: https://github.com/gotnoshoeson/se-clone-factory
 
-type ContractClonesUIProps = {
+interface ContractClonesUIProps {
   contractName: ContractName;
   className?: string;
   deployedContractData: object;
-};
+}
 
-/**
- * UI component to interface with deployed contracts.
- **/
 export const ContractClonesUI = ({ className = "", deployedContractData }: ContractClonesUIProps) => {
   const [refreshDisplayVariables, triggerRefreshDisplayVariables] = useReducer(value => !value, false);
   const { targetNetwork } = useTargetNetwork();
   const networkColor = useNetworkColor();
-
 
   return (
     <div className={`grid grid-cols-1 lg:grid-cols-6 px-6 lg:px-10 lg:gap-12 w-full max-w-7xl my-0 ${className}`}>

@@ -8,7 +8,7 @@ import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { Address } from "~~/components/scaffold-eth";
 import deployedContracts from "~~/contracts/deployedContracts";
 import { useOutsideClick, useScaffoldReadContract } from "~~/hooks/scaffold-eth";
-import scaffoldConfig from "~~/scaffold.config";
+import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 import { ContractName } from "~~/utils/scaffold-eth/contract";
 import { getAllContracts } from "~~/utils/scaffold-eth/contractsData";
 
@@ -19,16 +19,10 @@ const contractNames = Object.keys(contractsData) as ContractName[];
 // started from: https://github.com/gotnoshoeson/se-clone-factory
 
 const DebugClone: NextPage = () => {
-  // add networks in scaffoldConfig, change the number in the targetNetwork[] below for deployed public network contracts
-  const chain = scaffoldConfig.targetNetworks[0];
-  const factory = deployedContracts[chain.id].BookDeployer;
-  const yourContract = deployedContracts[chain.id].BookManager;
+  const { targetNetwork } = useTargetNetwork();
+  const bookManager = deployedContracts[targetNetwork.id].BookManager;
 
-  useEffect(() => {
-    console.log("factory", factory);
-  }, [factory]);
-
-  const [cloneContracts, setCloneContracts] = useState<string[]>();
+  const [clonedContractsAddresses, setClonedContractsAddresses] = useState<string[]>();
   const [cloneContractData, setCloneContractData] = useState<object[]>();
 
   const [selectedContract, setSelectedContract] = useLocalStorage(selectedContractStorageKey, "");
@@ -38,10 +32,6 @@ const DebugClone: NextPage = () => {
     functionName: "getDeployments",
   });
 
-  useEffect(() => {
-    console.log("listOfContractAddresses", listOfContractAddresses);
-  }, [listOfContractAddresses]);
-
   const dropdownRef = useRef<HTMLDetailsElement>(null);
   const closeDropdown = () => {
     dropdownRef.current?.removeAttribute("open");
@@ -49,26 +39,24 @@ const DebugClone: NextPage = () => {
   useOutsideClick(dropdownRef, closeDropdown);
 
   useEffect(() => {
-    if (listOfContractAddresses) setCloneContracts(listOfContractAddresses?.data);
+    if (listOfContractAddresses) setClonedContractsAddresses(listOfContractAddresses?.data);
     if (listOfContractAddresses?.data?.length < 2) setSelectedContract(listOfContractAddresses.data[0]);
   }, [listOfContractAddresses]);
 
   useEffect(() => {
-    console.log("ur contr", yourContract);
-    console.log("clone contracts", cloneContracts);
     const dataArray = [];
 
     const iterate = () => {
-      for (let index = 0; index < cloneContracts.length; index++) {
-        const data = Object.create(yourContract);
-        data.address = cloneContracts[index];
+      for (let index = 0; index < clonedContractsAddresses.length; index++) {
+        const data = Object.create(bookManager);
+        data.address = clonedContractsAddresses[index];
         dataArray.push(data);
       }
     };
 
-    if (cloneContracts?.length > 0) iterate();
+    if (clonedContractsAddresses?.length > 0) iterate();
     setCloneContractData(dataArray);
-  }, [cloneContracts]);
+  }, [clonedContractsAddresses]);
 
   return (
     <>
@@ -85,7 +73,7 @@ const DebugClone: NextPage = () => {
                     <ChevronDownIcon className="w-4 h-6 ml-2 sm:ml-0" />
                   </summary>
                   <ul className="dropdown-content menu z-[100] p-2 mt-2 shadow-center shadow-accent bg-base-200 rounded-box gap-1">
-                    {cloneContracts?.map(address => (
+                    {clonedContractsAddresses?.map(address => (
                       <li
                         key={address}
                         onClick={() => {
