@@ -21,7 +21,8 @@ const DebugClone: NextPage = () => {
   const { targetNetwork } = useTargetNetwork();
   const bookManager = deployedContracts[targetNetwork.id].BookManager;
 
-  const [cloneContractData, setCloneContractData] = useState<object[]>();
+  const [cloneContractsData, setCloneContractsData] = useState<object[]>();
+  const [selectedContractTitle, setSelectedContractTitle] = useState<string>(""); //after user selects from ddl, set book title from contract, Probably won't be used on this page
   const [selectedContract, setSelectedContract] = useLocalStorage(selectedContractStorageKey, "");
 
   const { data: listOfBookContracts, isLoading: isListLoading } = useScaffoldReadContract({
@@ -39,10 +40,9 @@ const DebugClone: NextPage = () => {
         dataArray.push(data);
       }
     }
+    setCloneContractsData(dataArray);
 
     if (listOfBookContracts?.length < 2) setSelectedContract(listOfBookContracts[0].bAddr); //todo:
-
-    setCloneContractData(dataArray);
   }, [listOfBookContracts]);
 
   return (
@@ -52,8 +52,12 @@ const DebugClone: NextPage = () => {
           <p className="text-3xl mt-14">No clones found!</p>
         ) : (
           <>
-            <BookContractDDL listOfBookContracts={listOfBookContracts} setSelectedContract={setSelectedContract} />
-            {cloneContractData?.map(data => (
+            <BookContractDDL
+              listOfBookContracts={listOfBookContracts}
+              setSelectedContract={setSelectedContract}
+              setSelectedContractTitle={setSelectedContractTitle}
+            />
+            {cloneContractsData?.map(data => (
               <ContractClonesUI
                 key={data.address}
                 className={data.address === selectedContract ? "" : "hidden"}

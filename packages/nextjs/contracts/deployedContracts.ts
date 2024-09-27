@@ -603,7 +603,7 @@ const deployedContracts = {
   },
   31337: {
     BookDeployer: {
-      address: "0x1613beB3B2C4f22Ee086B2b38C1476A3cE7f78E8",
+      address: "0x36C02dA8a0983159322a80FFE9F24b1acfF8B570",
       abi: [
         {
           inputs: [
@@ -722,7 +722,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     BookManager: {
-      address: "0x851356ae760d987E095750cCeb3bC6014560891C",
+      address: "0x809d550fca64d94Bd9F66E60752A544199cfAC3D",
       abi: [
         {
           inputs: [
