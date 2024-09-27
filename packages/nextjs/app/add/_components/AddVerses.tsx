@@ -1,28 +1,21 @@
-
-import { SaveVerses } from "./SaveVerses";
-import { BookDDL } from "~~/components/helpers/BookDDL";
-import { isValidNumber } from "~~/helpers/utils";
-import { getGospelOfJohn } from "~~/json_bible/John";
-import { getGospelOfMark } from "~~/json_bible/Mark";
-import { notification } from "~~/utils/scaffold-eth";
-import { ContractName } from "~~/utils/scaffold-eth/contract";
-import { getAllContracts } from "~~/utils/scaffold-eth/contractsData";
 import { useEffect, useRef, useState } from "react";
-import { useLocalStorage } from "usehooks-ts";
+import { SaveVerses } from "./SaveVerses";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { Address } from "~~/components/scaffold-eth";
 import deployedContracts from "~~/contracts/deployedContracts";
-import { useDeployedContractInfo, useOutsideClick, useScaffoldReadContract } from "~~/hooks/scaffold-eth";
-import scaffoldConfig from "~~/scaffold.config";
-import { ContractName } from "~~/utils/scaffold-eth/contract";
+import { isValidNumber } from "~~/helpers/utils";
+import { useOutsideClick, useScaffoldReadContract } from "~~/hooks/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
+import { notification } from "~~/utils/scaffold-eth";
+import { ContractName } from "~~/utils/scaffold-eth/contract";
+import { getAllContracts } from "~~/utils/scaffold-eth/contractsData";
+import { getGospelOfJohn } from "~~/json_bible/John";
 
 export const AddVerses = () => {
-  const [versesArray, setVersesArray] = useState<object[]>(getGospelOfJohn);
+  const [versesArray, setVersesArray] = useState<object[]>(getGospelOfJohn());
   const [selectedChapter, setSelectedChapter] = useState("");
   const [selectedVerse, setSelectedVerse] = useState("");
   const [selectedIndex, setSelectedIndex] = useState("");
-  // const [amountInBatch, setAmountInBatch] = useState("150");
   const [amountInBatch, setAmountInBatch] = useState("8");
   const [selectedVersesObject, setSelectedVersesObject] = useState<object[]>(undefined);
   const [isFirstRun, setIsFirstRun] = useState(true);
@@ -33,29 +26,12 @@ export const AddVerses = () => {
   const contractsData = getAllContracts();
   const contractNames = Object.keys(contractsData) as ContractName[];
 
-
-
-
-
-useEffect(() => {
-  if (selectedContract) {
-    // cloneContractData where addr == selectedContract
-    console.log("whoa boi ___>");
-    for(let i = 0; i < cloneContractData.length; i++) {
-        console.log("i:", cloneContractData[i].abi);
+  useEffect(() => {
+    if (selectedContract) {
+      const theSelectedCloneContractData = cloneContractData.find(c => c.address === selectedContract);
+      setTheSelectedCloneContractData(theSelectedCloneContractData);
     }
-    console.log("whoa boi _________________________________>");
-    const theSelectedCloneContractData = cloneContractData.find((c) => c.address === selectedContract);
-    console.log("theSelectedCloneContractData:", theSelectedCloneContractData.abi);
-    setTheSelectedCloneContractData(theSelectedCloneContractData)
-  }
-}, [selectedContract]);
-
-
-
-
-
-  
+  }, [selectedContract]);
 
   const { targetNetwork } = useTargetNetwork();
   const bookManager = deployedContracts[targetNetwork.id].BookManager;
@@ -93,14 +69,7 @@ useEffect(() => {
 
     if (cloneContracts?.length > 0) iterate();
     setCloneContractData(dataArray);
-    console.log("halp cloneContractData:", dataArray);
   }, [cloneContracts]);
-
-
-
-
-
-  
 
   useEffect(() => {
     // reset
@@ -158,13 +127,6 @@ useEffect(() => {
 
   return (
     <>
-      {/* <BookDDL
-        selectedContract={selectedContract}
-        setSelectedContract={setSelectedContract}
-        setSelectedBookId={setSelectedBookId}
-        setVersesArray={setVersesArray}
-      /> */}
-
       {contractNames?.length > 1 && (
         <div className="flex flex-row flex-wrap w-full gap-2 px-6 pb-1 max-w-7xl lg:px-10">
           <details ref={dropdownRef} className="leading-3 dropdown dropdown-right">
