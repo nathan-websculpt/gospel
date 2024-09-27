@@ -18,9 +18,13 @@ interface VerseProps {
 export const SaveVerses = (_v: VerseProps) => {
   const { chain } = useAccount();
   const writeTxn = useTransactor();
+  const { chain } = useAccount();
+  const writeTxn = useTransactor();
   const { targetNetwork } = useTargetNetwork();
   const writeDisabled = !chain || chain?.id !== targetNetwork.id;
+  const writeDisabled = !chain || chain?.id !== targetNetwork.id;
 
+  const { data: result, isPending, writeContractAsync } = useWriteContract();
   const { data: result, isPending, writeContractAsync } = useWriteContract();
 
   useEffect(() => {

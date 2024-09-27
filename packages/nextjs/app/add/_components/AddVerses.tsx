@@ -68,7 +68,6 @@ export const AddVerses = () => {
 
     if (cloneContracts?.length > 0) iterate();
     setCloneContractData(dataArray);
-    console.log("halp cloneContractData:", dataArray);
   }, [cloneContracts]);
 
   useEffect(() => {
