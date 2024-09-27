@@ -7,10 +7,9 @@ import { useScaffoldReadContract } from "~~/hooks/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 import { getGospelOfJohn } from "~~/json_bible/John";
 import { notification } from "~~/utils/scaffold-eth";
-import { ContractName } from "~~/utils/scaffold-eth/contract";
-import { getAllContracts } from "~~/utils/scaffold-eth/contractsData";
 
 export const AddVerses = () => {
+  const { targetNetwork } = useTargetNetwork();
   const [versesArray, setVersesArray] = useState<object[]>(getGospelOfJohn());
   const [selectedChapter, setSelectedChapter] = useState("");
   const [selectedVerse, setSelectedVerse] = useState("");
@@ -22,23 +21,18 @@ export const AddVerses = () => {
   const [selectedContract, setSelectedContract] = useState<string>("");
   const [selectedBookId, setSelectedBookId] = useState<string>("");
 
-  const contractsData = getAllContracts();
-  const contractNames = Object.keys(contractsData) as ContractName[];
-
-  const { targetNetwork } = useTargetNetwork();
   const bookManager = deployedContracts[targetNetwork.id].BookManager;
 
-  const [clonedContractsAddresses, setClonedContractsAddresses] = useState<string[]>();
   const [cloneContractData, setCloneContractData] = useState<object[]>();
   const [theSelectedContractData, setTheSelectedCloneContractData] = useState<any>();
 
-  const listOfBookContracts = useScaffoldReadContract({
+  const { data: listOfBookContracts, isLoading: isListLoading } = useScaffoldReadContract({
     contractName: "BookDeployer",
-    functionName: "getDeployments2",
-    watch: false,
+    functionName: "getDeployments",
   });
 
   useEffect(() => {
+    console.log("AAA");
     if (selectedContract) {
       const theSelectedCloneContractData = cloneContractData.find(c => c.address === selectedContract);
       console.log("theSelectedCloneContractData", theSelectedCloneContractData);
@@ -47,19 +41,19 @@ export const AddVerses = () => {
   }, [selectedContract]);
 
   useEffect(() => {
+    console.log("BBB", listOfBookContracts);
     const dataArray = [];
-    if (listOfBookContracts?.data) {
-      for (const deployment of listOfBookContracts.data) {
+    if (listOfBookContracts) {
+      for (const deployment of listOfBookContracts) {
         const data = Object.create(bookManager);
         data.address = deployment.bAddr;
         dataArray.push(data);
       }
     }
 
-    if (listOfBookContracts?.data?.length < 2) setSelectedContract(listOfBookContracts.data[0].bAddr); //todo:
+    if (listOfBookContracts?.length < 2) setSelectedContract(listOfBookContracts[0].bAddr); //todo:
 
     setCloneContractData(dataArray);
-
   }, [listOfBookContracts]);
 
   useEffect(() => {
@@ -118,10 +112,7 @@ export const AddVerses = () => {
 
   return (
     <>
-      <BookContractDDL
-        listOfBookContracts={listOfBookContracts.data}
-        setSelectedContract={setSelectedContract}
-      />
+      <BookContractDDL listOfBookContracts={listOfBookContracts} setSelectedContract={setSelectedContract} />
 
       <p className="text-sm font-bold md:text-md lg:text-lg">how many in batch?</p>
       <input
