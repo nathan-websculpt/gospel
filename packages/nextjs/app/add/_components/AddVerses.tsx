@@ -5,9 +5,12 @@ import deployedContracts from "~~/contracts/deployedContracts";
 import { isValidNumber } from "~~/helpers/utils";
 import { useScaffoldReadContract } from "~~/hooks/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
-import { notification } from "~~/utils/scaffold-eth";
-import { getGospelOfMark } from "~~/json_bible/Mark";
+import { getActs } from "~~/json_bible/Acts";
 import { getGospelOfJohn } from "~~/json_bible/John";
+import { getGospelOfLuke } from "~~/json_bible/Luke";
+import { getGospelOfMark } from "~~/json_bible/Mark";
+import { getGospelOfMatthew } from "~~/json_bible/Matthew";
+import { notification } from "~~/utils/scaffold-eth";
 
 export const AddVerses = () => {
   const { targetNetwork } = useTargetNetwork();
@@ -38,21 +41,27 @@ export const AddVerses = () => {
       console.log("selectedContractTitle", selectedContractTitle);
       // switch case for selectedContractTitle
       switch (selectedContractTitle) {
-        // case "Matthew":
-        //   setVersesArray(getGospelOfMatthew());
-        //   break;
+        case "Matthew":
+          setVersesArray(getGospelOfMatthew());
+          break;
         case "Mark":
           setVersesArray(getGospelOfMark());
           break;
+        case "Luke":
+          setVersesArray(getGospelOfLuke());
+          break;
         case "John":
           setVersesArray(getGospelOfJohn());
+          break;
+        case "Acts":
+          setVersesArray(getActs());
           break;
         default:
           console.log("wat do?", selectedContractTitle);
           break;
       }
     }
-   }, [selectedContractTitle]);
+  }, [selectedContractTitle]);
 
   useEffect(() => {
     console.log("AAA", selectedContract);
@@ -135,7 +144,11 @@ export const AddVerses = () => {
 
   return (
     <>
-      <BookContractDDL listOfBookContracts={listOfBookContracts} setSelectedContract={setSelectedContract} setSelectedContractTitle={setSelectedContractTitle} />
+      <BookContractDDL
+        listOfBookContracts={listOfBookContracts}
+        setSelectedContract={setSelectedContract}
+        setSelectedContractTitle={setSelectedContractTitle}
+      />
 
       <p className="text-sm font-bold md:text-md lg:text-lg">how many in batch?</p>
       <input
