@@ -1,10 +1,21 @@
-import { useEffect, useState } from "react";
+
 import { SaveVerses } from "./SaveVerses";
 import { BookDDL } from "~~/components/helpers/BookDDL";
 import { isValidNumber } from "~~/helpers/utils";
 import { getGospelOfJohn } from "~~/json_bible/John";
 import { getGospelOfMark } from "~~/json_bible/Mark";
 import { notification } from "~~/utils/scaffold-eth";
+import { ContractName } from "~~/utils/scaffold-eth/contract";
+import { getAllContracts } from "~~/utils/scaffold-eth/contractsData";
+import { useEffect, useRef, useState } from "react";
+import { useLocalStorage } from "usehooks-ts";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import { Address } from "~~/components/scaffold-eth";
+import deployedContracts from "~~/contracts/deployedContracts";
+import { useDeployedContractInfo, useOutsideClick, useScaffoldReadContract } from "~~/hooks/scaffold-eth";
+import scaffoldConfig from "~~/scaffold.config";
+import { ContractName } from "~~/utils/scaffold-eth/contract";
+import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 
 export const AddVerses = () => {
   const [versesArray, setVersesArray] = useState<object[]>(getGospelOfJohn);
@@ -19,12 +30,86 @@ export const AddVerses = () => {
   const [selectedContract, setSelectedContract] = useState<string>("");
   const [selectedBookId, setSelectedBookId] = useState<string>("");
 
+  const contractsData = getAllContracts();
+  const contractNames = Object.keys(contractsData) as ContractName[];
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  const chain = scaffoldConfig.targetNetworks[0];//TODO:
+  const factory = deployedContracts[chain.id].BookDeployer;
+  const yourContract = deployedContracts[chain.id].BookManager;
+
   useEffect(() => {
-    // reset 
+    console.log("factory", factory);
+  }, [factory]);
+
+  const [cloneContracts, setCloneContracts] = useState<string[]>();
+  const [cloneContractData, setCloneContractData] = useState<object[]>();
+
+  const listOfContractAddresses = useScaffoldReadContract({
+    contractName: "BookDeployer",
+    functionName: "getDeployments",
+  });
+
+  useEffect(() => {
+    console.log("listOfContractAddresses", listOfContractAddresses);
+  }, [listOfContractAddresses]);
+
+  const dropdownRef = useRef<HTMLDetailsElement>(null);
+  const closeDropdown = () => {
+    dropdownRef.current?.removeAttribute("open");
+  };
+  useOutsideClick(dropdownRef, closeDropdown);
+
+  useEffect(() => {
+    if (listOfContractAddresses) setCloneContracts(listOfContractAddresses?.data);
+    if (listOfContractAddresses?.data?.length < 2) setSelectedContract(listOfContractAddresses.data[0]);
+  }, [listOfContractAddresses]);
+
+  useEffect(() => {
+    console.log("ur contr", yourContract);
+    console.log("clone contracts", cloneContracts);
+    const dataArray = [];
+
+    const iterate = () => {
+      for (let index = 0; index < cloneContracts.length; index++) {
+        const data = Object.create(yourContract);
+        data.address = cloneContracts[index];
+        dataArray.push(data);
+      }
+    };
+
+    if (cloneContracts?.length > 0) iterate();
+    setCloneContractData(dataArray);
+  }, [cloneContracts]);
+
+
+
+
+
+  
+
+  useEffect(() => {
+    // reset
     setSelectedChapter("1");
     setSelectedVerse("1");
 
-    if(selectedIndex === 0) setSelectedVersesObject(versesArray.slice(selectedIndex, Number(amountInBatch) + selectedIndex));
+    if (selectedIndex === 0)
+      setSelectedVersesObject(versesArray.slice(selectedIndex, Number(amountInBatch) + selectedIndex));
     else setSelectedIndex(0); //triggers setSelectedVersesObject change
   }, [versesArray]);
 
@@ -74,12 +159,38 @@ export const AddVerses = () => {
 
   return (
     <>
-      <BookDDL
+      {/* <BookDDL
         selectedContract={selectedContract}
         setSelectedContract={setSelectedContract}
         setSelectedBookId={setSelectedBookId}
         setVersesArray={setVersesArray}
-      />
+      /> */}
+
+      {contractNames?.length > 1 && (
+        <div className="flex flex-row flex-wrap w-full gap-2 px-6 pb-1 max-w-7xl lg:px-10">
+          <details ref={dropdownRef} className="leading-3 dropdown dropdown-right">
+            <summary tabIndex={0} className="btn btn-secondary btn-sm shadow-md dropdown-toggle gap-0 !h-auto">
+              Select Clone Contract
+              <ChevronDownIcon className="w-4 h-6 ml-2 sm:ml-0" />
+            </summary>
+            <ul className="dropdown-content menu z-[100] p-2 mt-2 shadow-center shadow-accent bg-base-200 rounded-box gap-1">
+              {cloneContracts?.map(address => (
+                <li
+                  key={address}
+                  onClick={() => {
+                    setSelectedContract(address);
+                    closeDropdown();
+                  }}
+                  onKeyUp={() => setSelectedContract(address)}
+                >
+                  <Address address={address} disableAddressLink={true} />
+                </li>
+              ))}
+            </ul>
+          </details>
+        </div>
+      )}
+
       <p className="text-sm font-bold md:text-md lg:text-lg">how many in batch?</p>
       <input
         className="w-full sm:w-3/4 input input-bordered input-accent"
@@ -142,6 +253,7 @@ export const AddVerses = () => {
               setSelectedContract={setSelectedContract}
               selectedBookId={selectedBookId}
               setSelectedBookId={setSelectedBookId}
+              deployedContractData={cloneContractData}
             />
           </>
         )}

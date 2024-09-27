@@ -30,12 +30,12 @@ const deployBookManager: DeployFunction = async function (hre: HardhatRuntimeEnv
     // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
     // automatically mining the contract deployment transaction. There is no effect on live networks.
     autoMine: true,
-    gasPrice: 100,
+    gasPrice: 371463905,
   });
 
   // Get the deployed contract to interact with it after deploying.
   const bookManager = await hre.ethers.getContract<Contract>("BookManager", deployer);
-  console.log("👋 deployed at address:", await bookManager.getAddress());
+  console.log("👋 deployed BookManager at address:", await bookManager.getAddress());
 
 };
 

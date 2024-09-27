@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
+import { useDeployedContractInfo, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
+import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 
 interface VerseProps {
   content: string[];
@@ -9,9 +10,17 @@ interface VerseProps {
   setSelectedContract: Dispatch<SetStateAction<string | null>>;
   selectedBookId: string;
   setSelectedBookId: Dispatch<SetStateAction<string>>;
+  deployedContractData: any; //todo:
 }
 
 export const SaveVerses = (_v: VerseProps) => {
+
+  
+  const { targetNetwork } = useTargetNetwork();
+  const { data: deployedContractData, isLoading: deployedContractLoading } = useDeployedContractInfo(contractName);
+
+
+  console.log("this contract", _v.deployedContractData)
   const { writeContractAsync: writeToJohn } = useScaffoldWriteContract("John");
   const { writeContractAsync: writeToMark } = useScaffoldWriteContract("Mark");
 
