@@ -209,3 +209,14 @@ export const GQL_BOOKS_List = () => {
     }
   `;
 };
+
+// for getting the Book (bytes) ID from subgraph
+export const GQL_BOOK_ID_By_Title = () => {
+  return gql`
+    query ($searchByBook: String) {
+      books(first: 1, where: { title: $searchByBook }) {
+        id
+      }
+    }
+  `;
+};
