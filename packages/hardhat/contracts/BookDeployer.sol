@@ -11,7 +11,7 @@ contract BookDeployer {
 	}
 	Deployment[] public deployments;
 
-	event NewB(address indexed b, uint256 indexed index, string title);
+	event NewBookContract(address contractAddress, uint256 index, string title);
 
 	constructor(address _contractOwner) {
 		//_transferOwnership(_contractOwner);
@@ -22,7 +22,7 @@ contract BookDeployer {
 		BookManager b = new BookManager(index, title);
 		deployments.push(Deployment(address(b), index, title));
 
-		emit NewB(address(b), index, title);
+		emit NewBookContract(address(b), index, title);
 	}
 
     function getDeployments() public view returns (Deployment[] memory) {
