@@ -49,7 +49,7 @@ contract BookManager is Main {
 	constructor(uint256 index, string memory title) {
 		// numberOfBooks++;
 		// bookAtIndex[index] = title;
-		// emit Book(title);
+		emit Book(title);
 		bookIndex = index;
 		bookTitle = title;
 

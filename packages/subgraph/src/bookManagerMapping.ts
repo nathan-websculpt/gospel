@@ -4,7 +4,7 @@ import {
   Confirmation as ConfirmationEvent,
   Donation as DonationEvent,
   Book as BookEvent,
-} from "../generated/Mark/Mark";
+} from "../generated/BookManager/BookManager";
 import { Verse, Confirmation, Donation, Book } from "../generated/schema";
 
 export function handleVerse(event: VerseEvent): void {
