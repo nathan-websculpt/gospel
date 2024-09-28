@@ -210,6 +210,7 @@ export const AddVerses = () => {
               verseNum={selectedVersesObject.map(x => BigInt(x.VerseNumber))}
               selectedContract={selectedContract}
               setSelectedContract={setSelectedContract}
+              selectedContractTitle={selectedContractTitle}
               selectedBookId={selectedBookId}
               setSelectedBookId={setSelectedBookId}
               deployedContractData={theSelectedContractData} //at this point it is for the .abi
