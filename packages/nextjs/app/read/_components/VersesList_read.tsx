@@ -12,7 +12,11 @@ import {
   GQL_VERSES_after_verseid,
   GQL_VERSES_by_chapter,
 } from "~~/helpers/getQueries";
+import { getActsMetaData } from "~~/json_bible/ActsMeta";
 import { getJohnMetaData } from "~~/json_bible/JohnMeta";
+import { getLukeMetaData } from "~~/json_bible/LukeMeta";
+import { getMarkMetaData } from "~~/json_bible/MarkMeta";
+import { getMatthewMetaData } from "~~/json_bible/MatthewMeta";
 
 export const VersesList_Read = () => {
   const [isFirstRun, setIsFirstRun] = useState(true);
@@ -22,7 +26,7 @@ export const VersesList_Read = () => {
 
   const defaultChapterValue = "Select Chapter";
   const defaultVerseValue = "Select Verse";
-  const metaData = getJohnMetaData();
+  const [metaData, setMetaData] = useState<any[]>(getJohnMetaData());
   const [versesList, setVersesList] = useState<number[]>([]);
   const [selectedBookId, setSelectedBookId] = useState<string>("");
   const [selectedBook, setSelectedBook] = useState<string>("");
@@ -35,6 +39,31 @@ export const VersesList_Read = () => {
   const [data, setData] = useState({});
   const [queryLoading, setQueryLoading] = useState(true);
   const scrollToRef = useRef(null);
+
+  useEffect(() => {
+    console.log("Changing chapter and verse drop downs to book:", selectedBook);
+    switch (selectedBook) {
+      case "Matthew":
+        setMetaData(getMatthewMetaData());
+        break;
+      case "Mark":
+        setMetaData(getMarkMetaData());
+        break;
+      case "Luke":
+        setMetaData(getLukeMetaData());
+        break;
+      case "John":
+        setMetaData(getJohnMetaData());
+        break;
+      case "Acts":
+        setMetaData(getActsMetaData());
+        break;
+      default:
+        console.log("...defaulting to Matthew's Meta Data for chapter and verse drop downs");
+        setMetaData(getMatthewMetaData());
+        break;
+    }
+  }, [selectedBook]);
 
   useEffect(() => {
     if (!isFirstRun) preQuery();
