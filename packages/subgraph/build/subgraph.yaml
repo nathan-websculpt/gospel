@@ -1,15 +1,15 @@
 specVersion: 0.0.4
-description: JohnSubGraph
+description: BookManagerSubGraph
 repository: https://github.com/scaffold-eth/se-2/packages/subgraph/
 schema:
   file: schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: John
+    name: BookManager
     network: localhost
     source:
-      abi: John
-      address: "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+      abi: BookManager
+      address: "0x322813Fd9A801c5507c9de605d63CEA4f2CE6c44"
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -20,8 +20,8 @@ dataSources:
         - Donation
         - Book
       abis:
-        - name: John
-          file: John\abis\localhost_John.json
+        - name: BookManager
+          file: BookManager\abis\localhost_BookManager.json
       eventHandlers:
         - event: Verse(address,bytes,uint256,uint256,uint256,string)
           handler: handleVerse
@@ -31,32 +31,4 @@ dataSources:
           handler: handleDonation
         - event: Book(string)
           handler: handleBook
-      file: John\John.wasm
-  - kind: ethereum/contract
-    name: Mark
-    network: localhost
-    source:
-      abi: Mark
-      address: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.7
-      language: wasm/assemblyscript
-      entities:
-        - Verse
-        - Confirmation
-        - Donation
-        - Book
-      abis:
-        - name: Mark
-          file: Mark\abis\localhost_Mark.json
-      eventHandlers:
-        - event: Verse(address,bytes,uint256,uint256,uint256,string)
-          handler: handleVerse
-        - event: Confirmation(address,bytes)
-          handler: handleConfirmation
-        - event: Donation(address,uint256)
-          handler: handleDonation
-        - event: Book(string)
-          handler: handleBook
-      file: Mark\Mark.wasm
+      file: BookManager\BookManager.wasm
