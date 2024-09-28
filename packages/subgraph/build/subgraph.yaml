@@ -5,11 +5,30 @@ schema:
   file: schema.graphql
 dataSources:
   - kind: ethereum/contract
+    name: BookDeployer
+    network: localhost
+    source:
+      abi: BookDeployer
+      address: "0x1291Be112d480055DaFd8a610b7d1e203891C274"
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - NewBookContract
+      abis:
+        - name: BookDeployer
+          file: BookDeployer\abis\localhost_BookDeployer.json
+      eventHandlers:
+        - event: NewBookContract(address,uint256,string)
+          handler: handleNewBookContract
+      file: BookDeployer\BookDeployer.wasm
+templates:
+  - kind: ethereum/contract
     name: BookManager
     network: localhost
     source:
       abi: BookManager
-      address: "0x322813Fd9A801c5507c9de605d63CEA4f2CE6c44"
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -31,4 +50,4 @@ dataSources:
           handler: handleDonation
         - event: Book(string)
           handler: handleBook
-      file: BookManager\BookManager.wasm
+      file: templates\BookManager\BookManager.wasm

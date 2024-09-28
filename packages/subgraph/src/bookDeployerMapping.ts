@@ -1,9 +1,7 @@
 import { Bytes, log, BigInt } from "@graphprotocol/graph-ts";
-import {
-  NewBookContract as NewBookContractEvent,
-} from "../generated/BookDeployer/BookDeployer";
+import { NewBookContract as NewBookContractEvent } from "../generated/BookDeployer/BookDeployer";
 import { NewBookContract } from "../generated/schema";
-import { BookManager } from "../generated/templates/BookManager/BookManager";
+import { BookManager } from "../generated/templates";
 
 export function handleNewBookContract(event: NewBookContractEvent): void {
   let entity = new NewBookContract(

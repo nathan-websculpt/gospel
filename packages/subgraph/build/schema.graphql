@@ -1,3 +1,13 @@
+type NewBookContract @entity(immutable: true) {
+  id: Bytes!
+  contractAddress: Bytes!
+  index: BigInt!
+  title: String!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
 type Book @entity {
   id: Bytes!
   title: String!
