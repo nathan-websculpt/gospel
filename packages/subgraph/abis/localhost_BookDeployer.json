@@ -14,13 +14,13 @@
     "anonymous": false,
     "inputs": [
       {
-        "indexed": true,
+        "indexed": false,
         "internalType": "address",
-        "name": "b",
+        "name": "contractAddress",
         "type": "address"
       },
       {
-        "indexed": true,
+        "indexed": false,
         "internalType": "uint256",
         "name": "index",
         "type": "uint256"
@@ -32,7 +32,7 @@
         "type": "string"
       }
     ],
-    "name": "NewB",
+    "name": "NewBookContract",
     "type": "event"
   },
   {
