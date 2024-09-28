@@ -1,14 +1,11 @@
 import { useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { GQL_BOOKS_List } from "~~/helpers/getQueries";
-import { getGospelOfJohn } from "~~/json_bible/John";
-import { getGospelOfMark } from "~~/json_bible/Mark";
 
 interface BookDDLProps {
   selectedContract: string;
   setSelectedContract?: Dispatch<SetStateAction<string | null>>;
   setSelectedBookId: Dispatch<SetStateAction<string>>;
-  setVersesArray: Dispatch<SetStateAction<object[]>>;
 }
 
 export const BookDDL = ({ selectedContract, setSelectedContract, setSelectedBookId, setVersesArray }: BookDDLProps) => {
@@ -29,8 +26,6 @@ export const BookDDL = ({ selectedContract, setSelectedContract, setSelectedBook
   const changeContract = e => {
     setSelectedContract(e.target.value);
     setSelectedBookId(e.target.selectedOptions[0].getAttribute("data-bookid"));
-    if (e.target.value === "Mark") setVersesArray(getGospelOfMark);
-    else if (e.target.value === "John") setVersesArray(getGospelOfJohn);
   };
 
   return (
