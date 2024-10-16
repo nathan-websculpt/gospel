@@ -17,6 +17,8 @@ type AddressProps = {
   disableAddressLink?: boolean;
   format?: "short" | "long";
   size?: "xs" | "sm" | "base" | "lg" | "xl" | "2xl" | "3xl";
+  //custom
+  disableCopyButton?: boolean;
 };
 
 const blockieSizeMap = {
@@ -32,7 +34,7 @@ const blockieSizeMap = {
 /**
  * Displays an address (or ENS) with a Blockie image and option to copy address.
  */
-export const Address = ({ address, disableAddressLink, format, size = "base" }: AddressProps) => {
+export const Address = ({ address, disableAddressLink, format, size = "base", disableCopyButton }: AddressProps) => {
   const [ens, setEns] = useState<string | null>();
   const [ensAvatar, setEnsAvatar] = useState<string | null>();
   const [addressCopied, setAddressCopied] = useState(false);
@@ -68,10 +70,10 @@ export const Address = ({ address, disableAddressLink, format, size = "base" }: 
   // Skeleton UI
   if (!checkSumAddress) {
     return (
-      <div className="animate-pulse flex space-x-4">
-        <div className="rounded-md bg-slate-300 h-6 w-6"></div>
+      <div className="flex space-x-4 animate-pulse">
+        <div className="w-6 h-6 rounded-md bg-slate-300"></div>
         <div className="flex items-center space-y-6">
-          <div className="h-2 w-28 bg-slate-300 rounded"></div>
+          <div className="h-2 rounded w-28 bg-slate-300"></div>
         </div>
       </div>
     );
@@ -121,20 +123,24 @@ export const Address = ({ address, disableAddressLink, format, size = "base" }: 
           aria-hidden="true"
         />
       ) : (
-        <CopyToClipboard
-          text={checkSumAddress}
-          onCopy={() => {
-            setAddressCopied(true);
-            setTimeout(() => {
-              setAddressCopied(false);
-            }, 800);
-          }}
-        >
-          <DocumentDuplicateIcon
-            className="ml-1.5 text-xl font-normal text-sky-600 h-5 w-5 cursor-pointer"
-            aria-hidden="true"
-          />
-        </CopyToClipboard>
+        <>
+          {!disableCopyButton && (
+            <CopyToClipboard
+              text={checkSumAddress}
+              onCopy={() => {
+                setAddressCopied(true);
+                setTimeout(() => {
+                  setAddressCopied(false);
+                }, 800);
+              }}
+            >
+              <DocumentDuplicateIcon
+                className="ml-1.5 text-xl font-normal text-sky-600 h-5 w-5 cursor-pointer"
+                aria-hidden="true"
+              />
+            </CopyToClipboard>
+          )}
+        </>
       )}
     </div>
   );

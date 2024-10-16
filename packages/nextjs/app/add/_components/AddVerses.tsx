@@ -144,11 +144,28 @@ export const AddVerses = () => {
 
   return (
     <>
-      <BookContractDDL
-        listOfBookContracts={listOfBookContracts}
-        setSelectedContract={setSelectedContract}
-        setSelectedContractTitle={setSelectedContractTitle}
-      />
+      <div className="flex flex-row justify-around mb-12">
+        <BookContractDDL
+          listOfBookContracts={listOfBookContracts}
+          setSelectedContract={setSelectedContract}
+          setSelectedContractTitle={setSelectedContractTitle}
+        />
+        {selectedVersesObject !== undefined && (
+          <>
+            <SaveVerses
+              content={selectedVersesObject.map(x => x.VerseContent)}
+              chapterNum={selectedVersesObject.map(x => BigInt(x.ChapterNumber))}
+              verseNum={selectedVersesObject.map(x => BigInt(x.VerseNumber))}
+              selectedContract={selectedContract}
+              setSelectedContract={setSelectedContract}
+              selectedContractTitle={selectedContractTitle}
+              selectedBookId={selectedBookId}
+              setSelectedBookId={setSelectedBookId}
+              deployedContractData={theSelectedContractData} //at this point it is for the .abi
+            />
+          </>
+        )}
+      </div>
 
       <p className="text-sm font-bold md:text-md lg:text-lg">how many in batch?</p>
       <input
@@ -200,24 +217,6 @@ export const AddVerses = () => {
       </div>
 
       <hr />
-
-      <div className="mt-32">
-        {selectedVersesObject !== undefined && (
-          <>
-            <SaveVerses
-              content={selectedVersesObject.map(x => x.VerseContent)}
-              chapterNum={selectedVersesObject.map(x => BigInt(x.ChapterNumber))}
-              verseNum={selectedVersesObject.map(x => BigInt(x.VerseNumber))}
-              selectedContract={selectedContract}
-              setSelectedContract={setSelectedContract}
-              selectedContractTitle={selectedContractTitle}
-              selectedBookId={selectedBookId}
-              setSelectedBookId={setSelectedBookId}
-              deployedContractData={theSelectedContractData} //at this point it is for the .abi
-            />
-          </>
-        )}
-      </div>
     </>
   );
 };
