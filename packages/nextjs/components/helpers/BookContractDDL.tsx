@@ -30,7 +30,7 @@ export const BookContractDDL = ({
               {userSelected !== "" ? <span>{userSelected}</span> : <span>Select Clone Contract</span>}
               <ChevronDownIcon className="w-4 h-6 ml-2 sm:ml-0" />
             </summary>
-            <ul className="dropdown-content menu z-[100] p-2 mt-2 shadow-center shadow-accent bg-base-200 rounded-box gap-1">
+            <ul className="dropdown-content menu z-[100] pr-6 py-2 mt-2 shadow-center shadow-accent bg-base-200 rounded-box gap-1">
               {listOfBookContracts?.map(b => (
                 <li
                   key={b.bAddr}
@@ -43,7 +43,7 @@ export const BookContractDDL = ({
                   // onKeyUp={() => setSelectedContract(b.bAddr); setSelectedContractTitle(b.title);}
                 >
                   <span>
-                    {b.title} <Address address={b.bAddr} disableAddressLink={true} size="sm" format="short" />
+                    {b.title} <Address address={b.bAddr} disableAddressLink={true} size="sm" format="short" disableCopyButton={true} />
                   </span>
                 </li>
               ))}

@@ -204,7 +204,8 @@ export const VersesList_Read = () => {
       <div className="flex self-center w-full mb-6">
         {data?.verses?.length > 0 && (
           <>
-            <ArticleTwo />
+            {/* TODO: */}
+            {/* <ArticleTwo /> */}
           </>
         )}
       </div>

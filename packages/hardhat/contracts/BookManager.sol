@@ -19,9 +19,8 @@ contract BookManager is Main {
 	uint256 public bookIndex;
 	string public bookTitle;
 
-
 	event Book(string title);
-	
+
 	//TODO: indexed parameters
 	event Verse(
 		address signer,
@@ -71,11 +70,100 @@ contract BookManager is Main {
 			length == _verseContent.length,
 			"Invalid array lengths - lengths did not match."
 		);
-
+		//make sure a verse has been added before checking for skipped verses/chapters
+		if (verses[1].verseNumber != 0) {
+			require(
+				preventSkippingVerse(_verseNumber[0], _chapterNumber[0]),
+				"The contract is preventing you from skipping a verse."
+			);
+			require(
+				preventSkippingChapter(_chapterNumber[0]),
+				"The contract is preventing you from skipping a chapter."
+			);
+			require(
+				enforceFirstVerseOfNewChapter(
+					_verseNumber[0],
+					_chapterNumber[0]
+				),
+				"The contract is preventing you from starting a new chapter with a verse that is not 1."
+			);
+		} else {
+			//this is a first-verse scenario
+			require(
+				enforceFirstVerse(_verseNumber[0], _chapterNumber[0]),
+				"The contract is preventing you from starting with a verse that is not 1:1"
+			);
+		}
 		for (uint256 i = 0; i < length; i++) {
-			_storeVerse(_bookId, _verseNumber[i], _chapterNumber[i], _verseContent[i]);
+			_storeVerse(
+				_bookId,
+				_verseNumber[i],
+				_chapterNumber[i],
+				_verseContent[i]
+			);
 		}
 	}
+
+	// verse-skip prevention
+	//to prevent skipping verses
+	//prevents the situation of storing 1:1 and then storing 1:3
+	function preventSkippingVerse(
+		uint256 _verseNumber,
+		uint256 _chapterNumber
+	) private view returns (bool) {
+		bool canContinue = true;
+		VerseStr storage lastVerseAdded = verses[numberOfVerses];
+
+		if (lastVerseAdded.chapterNumber == _chapterNumber) {
+			if (_verseNumber != lastVerseAdded.verseNumber + 1) {
+				canContinue = false; //in this situation, they are skipping a verse;
+				//likely no real way to know if they are skipping verses IF the chapter number changes
+			}
+		}
+		return canContinue;
+	}
+
+	//to prevent skipping chapters
+	//prevents the situation of storing 1:1 and then storing 3:1
+	function preventSkippingChapter(
+		uint256 _chapterNumber
+	) private view returns (bool) {
+		bool canContinue = true;
+		VerseStr storage lastVerseAdded = verses[numberOfVerses];
+		if (
+			_chapterNumber != lastVerseAdded.chapterNumber &&
+			_chapterNumber != lastVerseAdded.chapterNumber + 1
+		) {
+			canContinue = false; //in this situation, they are skipping a chapter;
+		}
+		return canContinue;
+	}
+
+	function enforceFirstVerseOfNewChapter(
+		uint256 _verseNumber,
+		uint256 _chapterNumber
+	) private view returns (bool) {
+		bool canContinue = true;
+		VerseStr storage lastVerseAdded = verses[numberOfVerses];
+		if (
+			_chapterNumber != lastVerseAdded.chapterNumber && _verseNumber != 1
+		) {
+			canContinue = false;
+		}
+		return canContinue;
+	}
+
+	function enforceFirstVerse(
+		uint256 _verseNumber,
+		uint256 _chapterNumber
+	) private pure returns (bool) {
+		bool canContinue = true;
+		if (_chapterNumber != 1 || _verseNumber != 1) {
+			canContinue = false;
+		}
+		return canContinue;
+	}
+	// end: verse-skip prevention
 
 	function confirmVerse(
 		bytes memory _verseId,
