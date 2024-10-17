@@ -3,43 +3,37 @@ import { gql } from "@apollo/client";
 // for the READ page (after done uploading book)
 // initial query on page load
 // and for Chapter DDL
-export const GQL_VERSES_by_chapter = (chapterNumberInput: string) => {
-  if (chapterNumberInput.trim().length !== 0)
-    return gql`
-      query ($limit: Int!, $offset: Int!, $searchByBook: String, $searchByChapterNumber: String) {
-        verses(
-          where: { book_: { id: $searchByBook }, chapterNumber_gte: $searchByChapterNumber }
-          orderBy: verseId
-          orderDirection: asc
-          first: $limit
-          skip: $offset
-        ) {
-          id
-          verseId
-          chapterNumber
-          verseNumber
-          verseContent
-        }
+export const GQL_VERSES_by_chapter = () => {
+  return gql`
+    query ($searchByBook: String, $searchByChapterNumber: Int) {
+      verses(
+        where: { book_: { id: $searchByBook }, chapterNumber: $searchByChapterNumber }
+        orderBy: verseId
+        orderDirection: asc
+        first: 1000 #TODO:
+        skip: 0 #TODO:
+      ) {
+        id
+        verseId
+        chapterNumber
+        verseNumber
+        verseContent
       }
-    `;
-  else
-    return gql`
-      query ($limit: Int!, $offset: Int!, $searchByBook: String) {
-        verses(
-          where: { book_: { id: $searchByBook } }
-          orderBy: verseId
-          orderDirection: asc
-          first: $limit
-          skip: $offset
-        ) {
-          id
-          verseId
-          chapterNumber
-          verseNumber
-          verseContent
-        }
+    }
+  `;
+};
+
+//used on read page
+//so other queries have access to book titles
+export const GQL_BOOK_TITLES = () => {
+  return gql`
+    query {
+      books(orderBy: blockTimestamp) {
+        id
+        title
       }
-    `;
+    }
+  `;
 };
 
 // for the READ page

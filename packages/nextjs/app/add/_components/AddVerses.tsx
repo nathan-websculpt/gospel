@@ -18,7 +18,7 @@ export const AddVerses = () => {
   const [selectedChapter, setSelectedChapter] = useState("");
   const [selectedVerse, setSelectedVerse] = useState("");
   const [selectedIndex, setSelectedIndex] = useState("");
-  const [amountInBatch, setAmountInBatch] = useState("8");
+  const [amountInBatch, setAmountInBatch] = useState("100");
   const [selectedVersesObject, setSelectedVersesObject] = useState<object[]>(undefined);
   const [isFirstRun, setIsFirstRun] = useState(true);
 
@@ -196,6 +196,12 @@ export const AddVerses = () => {
           GET VERSES
         </button>
       </div>
+      
+      <div className="mt-6 mb-6">
+        <button className="btn btn-primary" onClick={() => getNextVerse()}>
+          GET NEXT
+        </button>
+      </div>
 
       {selectedVersesObject?.length > 0 && (
         <>
@@ -210,11 +216,6 @@ export const AddVerses = () => {
         </>
       )}
 
-      <div className="mt-6 mb-6">
-        <button className="btn btn-primary" onClick={() => getNextVerse()}>
-          GET NEXT
-        </button>
-      </div>
 
       <hr />
     </>
