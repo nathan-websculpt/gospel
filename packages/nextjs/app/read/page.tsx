@@ -1,14 +1,19 @@
 "use client";
 
-import { VersesList_Read } from "./_components/VersesList_read";
+import { VersesList_Read } from "./_components/VersesList_read_old";
 import { NextPage } from "next";
 import { JsonLD } from "~~/components/helpers/JsonLD";
 import { Wrapper_VerseViewer } from "~~/components/wrappers/Wrapper_VerseViewer";
+import { Base } from "./_components/Base";
 
 const Read: NextPage = () => {
   return (
     <>
-      <Wrapper_VerseViewer innerComponent={VersesList_Read} />
+      {/* new code: branch ux: updating ux, requires new queries */}
+      <Base />
+
+      {/* old code */}
+      {/* <Wrapper_VerseViewer innerComponent={VersesList_Read} /> */}
 
       <JsonLD
         jsonLd={{
