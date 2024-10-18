@@ -23,10 +23,12 @@ export const Base = () => {
   //TODO: look for null-breaks and checks before moving away from ':any' here
   const [verses, setVerses]: any = useState(null);
 
+  const [prelimBookId, setPrelimBookId] = useState("");
+  const [currentBookId, setCurrentBookId] = useState("");
+  const [prelimBookTitle, setPrelimBookTitle] = useState("");
   const [currentBookTitle, setCurrentBookTitle] = useState("");
   const [currentChapterTitle, setCurrentChapterTitle] = useState(""); //str version o chapter number
 
-  const [currentBookId, setCurrentBookId] = useState("");
   const [currentChapterId, setCurrentChapterId] = useState<number | undefined>(undefined);
 
   const [queryLoading, setQueryLoading] = useState(true);
@@ -125,13 +127,7 @@ export const Base = () => {
         setMetaData(getMatthewMetaData());
         break;
     }
-  }, [currentBookTitle]);
-
-  useEffect(() => {
-    if (metaData) {
-      console.log("metaData:", metaData);
-    }
-  }, [metaData]);
+  }, [prelimBookTitle]);
 
   return (
     <>
@@ -151,7 +147,11 @@ export const Base = () => {
             <ViewChapters
               setIsInViewChaptersMode={setIsInViewChaptersMode}
               setIsInViewBooksMode={setIsInViewBooksMode}
+              setCurrentBookId={setCurrentBookId}
+              setCurrentBookTitle={setCurrentBookTitle}
               setCurrentChapterId={setCurrentChapterId}
+              prelimBookId={prelimBookId}
+              prelimBookTitle={prelimBookTitle}
               chapters={metaData}
               justdoit={justdoit}
               setjustdoit={setjustdoit}
@@ -159,10 +159,9 @@ export const Base = () => {
           ) : (
             <ViewBooks
               books={booksList.books}
-              setCurrentBookId={setCurrentBookId}
+              setPrelimBookId={setPrelimBookId}
+              setPrelimBookTitle={setPrelimBookTitle}
               setIsInViewChaptersMode={setIsInViewChaptersMode}
-              setIsInViewBooksMode={setIsInViewBooksMode}
-              setCurrentBookTitle={setCurrentBookTitle}
             />
           )}
         </>
