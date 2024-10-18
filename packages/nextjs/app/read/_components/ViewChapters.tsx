@@ -6,6 +6,10 @@ interface ViewChaptersProps {
   setIsInViewChaptersMode: Dispatch<boolean>;
   setIsInViewBooksMode: Dispatch<boolean>;
   setCurrentChapterId: Dispatch<number>;
+  setCurrentBookId: Dispatch<string>;
+  setCurrentBookTitle: Dispatch<string>;
+  prelimBookId: string;
+  prelimBookTitle: string;
   chapters: [];
   setjustdoit: Dispatch<boolean>;
   justdoit: boolean;
@@ -15,6 +19,10 @@ export const ViewChapters = ({
   setIsInViewChaptersMode,
   setIsInViewBooksMode,
   setCurrentChapterId,
+  setCurrentBookId,
+  setCurrentBookTitle,
+  prelimBookId,
+  prelimBookTitle,
   chapters,
   setjustdoit,
   justdoit,
@@ -27,6 +35,11 @@ export const ViewChapters = ({
     setIsInViewChaptersMode(false);
     setIsInViewBooksMode(false);
 
+    //turn prelim vals into actual vals
+    setCurrentBookId(prelimBookId);
+    setCurrentBookTitle(prelimBookTitle);
+
+    //triggers query
     setjustdoit(!justdoit); //justdoit's val is irrelevant, just triggering a fetch of verses
   };
 

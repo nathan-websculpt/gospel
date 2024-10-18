@@ -4,28 +4,19 @@ import { Dispatch } from "react";
 
 interface ViewBooksProps {
   books: [];
-  setCurrentBookId: Dispatch<string>;
+  setPrelimBookId: Dispatch<string>;
+  setPrelimBookTitle: Dispatch<string>;
   setIsInViewChaptersMode: Dispatch<boolean>;
-  setIsInViewBooksMode: Dispatch<boolean>;
-  setCurrentBookTitle: Dispatch<string>;
 }
 
-export const ViewBooks = ({
-  books,
-  setCurrentBookId,
-  setIsInViewChaptersMode,
-  setIsInViewBooksMode,
-  setCurrentBookTitle,
-}: ViewBooksProps) => {
+export const ViewBooks = ({ books, setPrelimBookId, setPrelimBookTitle, setIsInViewChaptersMode }: ViewBooksProps) => {
   const handleChangeBook = async (e: React.SyntheticEvent) => {
     const bookId = e.target.getAttribute("data-bookid");
     const bookTitle = e.target.getAttribute("data-booktitle");
-    //I guess we need to store this in case they close before selecting a chapter...like a preliminary var
-    setCurrentBookId(bookId); //bytes subgraph id // the verses do not get swapped until chapter is selected
-    setCurrentBookTitle(bookTitle); // changes metadata on base
-    
-    // setIsInViewBooksMode(false);
-    
+
+    setPrelimBookId(bookId); //bytes subgraph id // the verses do not get swapped until chapter is selected
+    setPrelimBookTitle(bookTitle); // changes metadata on base
+
     setIsInViewChaptersMode(true);
   };
 
