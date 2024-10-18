@@ -25,7 +25,7 @@ export const ConfirmVerse = (_verse: DisplayVerseProps) => {
 
   return (
     <>
-      <div className="w-full px-6 pt-10 pb-8 mx-auto mt-6 shadow-xl bg-primary md:w-11/12 xl:w-4/5 sm:rounded-lg sm:px-10">
+      <div className="w-full px-6 pt-10 pb-8 mx-auto mt-6 shadow-xl bg-secondary md:w-11/12 xl:w-4/5 sm:rounded-lg sm:px-10">
         <p className="text-lg">
           {_verse?.chapterNum} : {_verse?.verseNum}
         </p>
@@ -34,7 +34,7 @@ export const ConfirmVerse = (_verse: DisplayVerseProps) => {
           Confirmations: <span>{_verse?.confirmationCount}</span>
         </p>
 
-        <button className="btn btn-secondary" onClick={() => writeAsync()}>
+        <button className="btn btn-primary" onClick={() => writeAsync()}>
           CONFIRM ONCHAIN
         </button>
       </div>

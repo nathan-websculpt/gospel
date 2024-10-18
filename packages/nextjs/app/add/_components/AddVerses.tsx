@@ -205,7 +205,7 @@ export const AddVerses = () => {
 
       {selectedVersesObject?.length > 0 && (
         <>
-          <div className="px-6 pt-10 pb-8 mt-6 shadow-xl bg-primary sm:mx-auto sm:max-w-11/12 md:w-full sm:rounded-lg sm:px-10">
+          <div className="px-6 pt-10 pb-8 mt-6 shadow-xl bg-base-300 sm:mx-auto sm:max-w-11/12 md:w-full sm:rounded-lg sm:px-10">
             {selectedVersesObject?.map(verse => (
               <div key={verse.FullVerseChapter} className="flex flex-row gap-6">
                 <p className="text-lg text-nowrap">{verse?.FullVerseChapter}</p>

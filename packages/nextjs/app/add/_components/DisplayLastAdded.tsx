@@ -24,7 +24,7 @@ export const DiplayLastAdded = () => {
     return (
       <>
         <div className="flex flex-row mb-12">
-          <div className="px-6 pt-10 pb-8 mt-6 shadow-xl bg-primary sm:mx-auto sm:max-w-11/12 md:w-full sm:rounded-lg sm:px-10">
+          <div className="px-6 pt-10 pb-8 mt-6 shadow-xl bg-base-300 sm:mx-auto sm:max-w-11/12 md:w-full sm:rounded-lg sm:px-10">
             <p className="mb-12 text-xl underline">LAST VERSE ADDED</p>
             <p className="text-md">
               {data?.verses[0].chapterNumber} : {data?.verses[0].verseNumber}
@@ -38,7 +38,7 @@ export const DiplayLastAdded = () => {
     return (
         <>
         <div className="flex flex-row mb-12">
-          <div className="px-6 pt-10 pb-8 mt-6 shadow-xl bg-primary sm:mx-auto sm:max-w-11/12 md:w-full sm:rounded-lg sm:px-10">
+          <div className="px-6 pt-10 pb-8 mt-6 shadow-xl bg-base-300 sm:mx-auto sm:max-w-11/12 md:w-full sm:rounded-lg sm:px-10">
             <p className="mb-12 text-xl underline">NO VERSES ADDED, YET.</p>
           </div>
         </div>

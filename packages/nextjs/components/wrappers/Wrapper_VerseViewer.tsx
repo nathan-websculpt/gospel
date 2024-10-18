@@ -15,7 +15,7 @@ export const Wrapper_VerseViewer = (_this: Comp) => {
     // 2xl  : bigger screens
     <>
       <div className="flex items-center justify-center">
-        <div className="flex flex-col w-full px-2 py-4 md:py-6 md:px-6 lg:py-10 lg:px-8 xl:px-0 xl:py-12 lg:w-11/12 xl:w-3/5 bg-base-200 xl:border xl:border-base-300 xl:rounded-lg xl:shadow-xl ">
+        <div className="flex flex-col w-full px-2 py-4 md:py-6 md:px-6 lg:py-10 lg:px-8 xl:px-0 xl:py-12 lg:w-11/12 xl:w-3/5">
           <_this.innerComponent />
         </div>
       </div>

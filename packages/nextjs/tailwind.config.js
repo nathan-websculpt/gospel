@@ -41,19 +41,23 @@ module.exports = {
       },
       {
         dark: {
-          primary: "#212638",
+          primary: "#030B0E", //L1, BTNs
           "primary-content": "#F9FBFF",
-          secondary: "#323f61",
+          secondary: "#0F191C", //TBs ... or L1???
           "secondary-content": "#F9FBFF",
           accent: "#4969A6",
           "accent-content": "#F9FBFF",
           neutral: "#F9FBFF",
-          "neutral-content": "#385183",
-          "base-100": "#385183",
-          "base-200": "#2A3655",
-          "base-300": "#212638",
+          "neutral-content": "#385183", //inputs, debug L1
+          "base-100": "#081114", //inputs, navbar
+          "base-200": "#081920",//main bg
+          /////////////////////////////////////////////////////////
+          // "base-200": "#091C24",//main bg
+          // "base-200": "#071419",//main bg
+          // "base-200": "#081114",//main bg ... og
+          "base-300": "#030B0E", //L1 (especially on debug), BTNS ... same as primary for now
           "base-content": "#F9FBFF",
-          info: "#385183",
+          info: "#385183", //inputs
           success: "#34EEB6",
           warning: "#FFCF72",
           error: "#FF8863",
