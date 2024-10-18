@@ -53,7 +53,7 @@ export const BaseButtons = ({
       {/* this back button is only on the chapters page - takes you back to the book list */}
       {isInViewChaptersMode && (
         <>
-          <button className="ml-4 btn-circle btn btn-primary" onClick={backButtonOnChapters}>
+          <button className="mr-6 xl:mr-0 btn-circle btn btn-primary" onClick={backButtonOnChapters}>
             <ArrowLeftIcon className="w-6 h-6" />
           </button>
         </>
