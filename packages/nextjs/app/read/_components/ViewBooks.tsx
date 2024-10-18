@@ -23,7 +23,9 @@ export const ViewBooks = ({
     //I guess we need to store this in case they close before selecting a chapter...like a preliminary var
     setCurrentBookId(bookId); //bytes subgraph id // the verses do not get swapped until chapter is selected
     setCurrentBookTitle(bookTitle); // changes metadata on base
-    setIsInViewBooksMode(false);
+    
+    // setIsInViewBooksMode(false);
+    
     setIsInViewChaptersMode(true);
   };
 
