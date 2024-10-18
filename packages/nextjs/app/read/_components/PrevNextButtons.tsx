@@ -1,9 +1,5 @@
 // way to change chapters with Prev/Next buttons
 import { Dispatch } from "react";
-import { set } from "nprogress";
-
-//I guess this could change the chapter number which
-// will useEffect and doQuery???
 
 interface PrevNextProps {
   currentChapterId: number;
@@ -11,6 +7,9 @@ interface PrevNextProps {
   setjustdoit: Dispatch<boolean>;
   justdoit: boolean;
 }
+
+//TODO: Handle out of bounds, next book, etc
+
 export const PrevNextButtons = ({ currentChapterId, setCurrentChapterId, setjustdoit, justdoit }: PrevNextProps) => {
   const handlePrevPageClick = async (e: React.SyntheticEvent) => {
     if (currentChapterId > 1) setCurrentChapterId(currentChapterId - 1);

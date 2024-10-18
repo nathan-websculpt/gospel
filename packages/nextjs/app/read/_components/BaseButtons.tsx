@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import { ArrowLeftIcon, Bars4Icon, BookOpenIcon, ListBulletIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import { ArrowLeftIcon, BookOpenIcon, ListBulletIcon } from "@heroicons/react/24/solid";
 
 // Buttons that toggle book/chapter view,
 // and the chapter-view contains a back button that will go back to the book view.
@@ -24,8 +24,6 @@ export const BaseButtons = ({
 
   const backButtonOnChapters = async () => {
     setIsInViewChaptersMode(false);
-    
-    // setIsInViewBooksMode(true);
   };
 
   return (

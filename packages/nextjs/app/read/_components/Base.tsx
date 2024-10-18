@@ -61,24 +61,15 @@ export const Base = () => {
   }, [currentChapterId]);
 
   useEffect(() => {
-    setjustdoit(!justdoit);
+    if (isInitialized) setjustdoit(!justdoit);
   }, [isInitialized]);
 
   useEffect(() => {
-    if (isInitialized) preQuery();
-  }, [justdoit]); //justdoit's value is irrelevant
+    if (isInitialized) doQuery_basic();
+  }, [justdoit]); //justdoit's value is irrelevant, other components change it to trigger a query
 
-  const preQuery = async () => {
-    setQueryLoading(true); //TODO:
-    console.log("currentChapterId, currentBookId: ", currentChapterId, currentBookId);
-    doQuery_basic({
-      chapterNumberInput: currentChapterId,
-      searchByBook: currentBookId,
-      searchByChapterNumber: currentChapterId,
-    });
-  };
-
-  const doQuery_basic = async (options: object) => {
+  const doQuery_basic = async () => {
+    setQueryLoading(true);
     if (currentChapterId === undefined) {
       //todo: alert user? this will never occur...
       console.log("PROCESS STOPPED: in doQuery_basic with an undefined currentChapterId");
@@ -88,8 +79,11 @@ export const Base = () => {
 
     await client
       .query({
-        query: GQL_VERSES_by_chapter(currentChapterId),
-        variables: options,
+        query: GQL_VERSES_by_chapter(),
+        variables: {
+          searchByBook: currentBookId,
+          searchByChapterNumber: currentChapterId,
+        },
         fetchPolicy: "no-cache", //TODO:
       })
       .then(d => {
@@ -123,7 +117,7 @@ export const Base = () => {
         setMetaData(getActsMetaData());
         break;
       default:
-        console.log("...defaulting to Matthew's Meta Data for chapter and verse drop downs");
+        console.log("...defaulting to Matthew's Meta Data.......");
         setMetaData(getMatthewMetaData());
         break;
     }
