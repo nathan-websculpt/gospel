@@ -5,10 +5,7 @@ interface BookDetailsProps {
   currentChapterTitle: string;
 }
 
-export const BookDetails = ({
-  currentBookTitle,
-  currentChapterTitle,
-}: BookDetailsProps) => {
+export const BookDetails = ({ currentBookTitle, currentChapterTitle }: BookDetailsProps) => {
   return (
     <>
       <div className="text-center">
