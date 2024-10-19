@@ -28,9 +28,11 @@ export const GQL_VERSES_by_chapter = () => {
 export const GQL_BOOK_TITLES = () => {
   return gql`
     query {
-      books(orderBy: blockTimestamp) {
+      books(orderBy: index, orderDirection: asc) {
         id
+        index
         title
+        chapterCount
       }
     }
   `;

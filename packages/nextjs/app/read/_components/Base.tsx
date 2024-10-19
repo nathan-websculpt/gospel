@@ -27,7 +27,8 @@ export const Base = () => {
   const [currentBookId, setCurrentBookId] = useState("");
   const [prelimBookTitle, setPrelimBookTitle] = useState("");
   const [currentBookTitle, setCurrentBookTitle] = useState("");
-  const [currentChapterTitle, setCurrentChapterTitle] = useState(""); //str version o chapter number
+  const [currentChapterTitle, setCurrentChapterTitle] = useState(""); //str version of chapter number
+  const [chapterCount, setChapterCount] = useState(0);
 
   const [currentChapterId, setCurrentChapterId] = useState<number | undefined>(undefined);
 
@@ -37,22 +38,31 @@ export const Base = () => {
 
   const [justdoit, setjustdoit] = useState(false); // stupid, but instead of checking if a chapter changed, going to use this as a "get verses" ... its value is irrelevant ... just in a useEffect
 
-  const { loading, error, data: booksList } = useQuery(GQL_BOOK_TITLES(), {});
+  const { loading: booksListLoading, error, data: booksList } = useQuery(GQL_BOOK_TITLES(), {});
   useEffect(() => {
     if (error !== undefined && error !== null) console.log("GQL_BOOK_TITLES Query Error: ", error);
   }, [error]);
   useEffect(() => {
-    if (booksList !== undefined && booksList !== null) console.log("GQL_BOOK_TITLES Query DATA: ", booksList);
-  }, [booksList]);
-
-  useEffect(() => {
-    if (!isInitialized) {
-      //TODO: get dynamically
-      setCurrentBookId("0xd044190d1f7ead4dee7663cc8b819f48edaa1740d99865e87a98ef9b1d0efdfa01000000");
-      setCurrentBookTitle("Matthew");
+    if (booksList !== undefined && booksList !== null) {
+      console.log("GQL_BOOK_TITLES Query DATA: ", booksList);
+      setCurrentBookId(booksList?.books[0].id);
+      setCurrentBookTitle(booksList?.books[0].title);
       setCurrentChapterId(1);
       setCurrentChapterTitle("1");
-      setIsInitialized(true);
+      setChapterCount(booksList?.books[0].chapterCount);
+
+      setIsInitialized(true); //TODO: may not need in prod
+    }
+  }, [booksList]);
+
+  // todo: was useful for debugging/testing
+  useEffect(() => {
+    if (!isInitialized) {
+      // setCurrentBookId("0xd044190d1f7ead4dee7663cc8b819f48edaa1740d99865e87a98ef9b1d0efdfa01000000");
+      // setCurrentBookTitle("Matthew");
+      // setCurrentChapterId(1);
+      // setCurrentChapterTitle("1");
+      // setIsInitialized(true);
     }
   }, []); //componentDidMount
 
@@ -123,6 +133,11 @@ export const Base = () => {
     }
   }, [prelimBookTitle]);
 
+  //TODO: remove
+  useEffect(() => {
+    console.log("chapterCount: ", chapterCount);
+  }, [chapterCount]);
+
   return (
     <>
       <div className="flex flex-row justify-between w-full mt-2 md:w-4/5 xl:w-3/5 md:mt-6">
@@ -166,6 +181,7 @@ export const Base = () => {
             currentChapterId={currentChapterId}
             setCurrentChapterId={setCurrentChapterId}
             justdoit={justdoit}
+            chapterCount={chapterCount}
             setjustdoit={setjustdoit}
           />
 
@@ -177,6 +193,7 @@ export const Base = () => {
             currentChapterId={currentChapterId}
             setCurrentChapterId={setCurrentChapterId}
             justdoit={justdoit}
+            chapterCount={chapterCount}
             setjustdoit={setjustdoit}
           />
         </div>

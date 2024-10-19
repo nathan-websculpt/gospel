@@ -5,12 +5,19 @@ interface PrevNextProps {
   currentChapterId: number;
   setCurrentChapterId: Dispatch<number>;
   setjustdoit: Dispatch<boolean>;
+  chapterCount: number;
   justdoit: boolean;
 }
 
 //TODO: Handle out of bounds, next book, etc
 
-export const PrevNextButtons = ({ currentChapterId, setCurrentChapterId, setjustdoit, justdoit }: PrevNextProps) => {
+export const PrevNextButtons = ({
+  currentChapterId,
+  setCurrentChapterId,
+  setjustdoit,
+  chapterCount,
+  justdoit,
+}: PrevNextProps) => {
   const handlePrevPageClick = async (e: React.SyntheticEvent) => {
     if (currentChapterId > 1) setCurrentChapterId(currentChapterId - 1);
     setjustdoit(!justdoit); //triggers fetch verses
@@ -24,11 +31,11 @@ export const PrevNextButtons = ({ currentChapterId, setCurrentChapterId, setjust
   return (
     <>
       <div className="flex flex-row justify-around w-screen mx-auto mt-4 mb-8 xl:justify-between md:w-11/12 xl:w-4/5">
-        <button className="btn btn-primary" onClick={handlePrevPageClick}>
+        <button className="btn btn-primary" onClick={handlePrevPageClick} disabled={currentChapterId <= 1}>
           PREV
         </button>
 
-        <button className="btn btn-primary" onClick={handleNextPageClick}>
+        <button className="btn btn-primary" onClick={handleNextPageClick} disabled={currentChapterId >= chapterCount}>
           NEXT
         </button>
       </div>
