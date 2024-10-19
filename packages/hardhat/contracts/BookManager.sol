@@ -23,8 +23,7 @@ contract BookManager is Main {
 	string public bookTitle;
 	bool public hasBeenFinalized = false;
 
-	//only want chapterCount so subgraph mapping can use a non-nullable bigint
-	event Book(string title, uint256 index, uint256 chapterCount);
+	event Book(string title, uint256 index);
 
 	//TODO: indexed parameters
 	event Verse(
@@ -58,7 +57,7 @@ contract BookManager is Main {
 	constructor(uint256 index, string memory title) {
 		// numberOfBooks++;
 		// bookAtIndex[index] = title;
-		emit Book(title, index, numberOfChapters);
+		emit Book(title, index);
 		bookIndex = index;
 		bookTitle = title;
 
