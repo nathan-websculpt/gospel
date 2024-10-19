@@ -21,7 +21,7 @@ contract BookManager is Main {
 	uint256 public numberOfVerses = 0;
 	uint256 public bookIndex;
 	string public bookTitle;
-	bool public hasBeenFinalized = false;
+	bool public hasBeenFinalized = false; //NEW oct 18th
 
 	event Book(string title, uint256 index);
 
@@ -69,7 +69,7 @@ contract BookManager is Main {
 		uint256[] memory _verseNumber,
 		uint256[] memory _chapterNumber,
 		string[] memory _verseContent
-	) external onlyOwner {
+	) external notFinalized onlyOwner {
 		uint256 length = _verseNumber.length;
 		require(
 			length == _chapterNumber.length,
