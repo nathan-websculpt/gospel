@@ -48,6 +48,6 @@ templates:
           handler: handleConfirmation
         - event: Donation(address,uint256)
           handler: handleDonation
-        - event: Book(string)
+        - event: Book(string,uint256,uint256)
           handler: handleBook
       file: templates\BookManager\BookManager.wasm

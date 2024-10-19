@@ -12,6 +12,8 @@ type Book @entity {
   id: Bytes!
   title: String!
   verses: [Verse!] @derivedFrom(field: "book")
+  index: BigInt!
+  chapterCount: BigInt! #todo: change to Int! ... uint8?? ... note: not sent in event, set in mapping
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!

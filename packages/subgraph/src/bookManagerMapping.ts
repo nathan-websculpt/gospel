@@ -4,7 +4,8 @@ import {
   Confirmation as ConfirmationEvent,
   Donation as DonationEvent,
   Book as BookEvent,
-} from "../generated/BookManager/BookManager";
+} from "../generated/templates/BookManager/BookManager"; // Oct 18th, changing events to templates dir, because the old one wasn't working with Event updates
+// } from "../generated/BookManager/BookManager";
 import { Verse, Confirmation, Donation, Book } from "../generated/schema";
 
 export function handleVerse(event: VerseEvent): void {
@@ -25,9 +26,15 @@ export function handleVerse(event: VerseEvent): void {
 
   let bookEntity = Book.load(event.params.bookId);
   if (bookEntity !== null) {
-    // bookEntity.verses.push(entity.id);
-    // bookEntity.save();
     entity.book = bookEntity.id;
+
+    //if this verse's chapter number is greater than the book's chapter count, increment chapter count
+    if (event.params.chapterNumber > bookEntity.chapterCount) {
+      bookEntity.chapterCount = event.params.chapterNumber;      //TODO: causes nothing to save
+      // bookEntity.index = event.params.verseNumber; //so does this...
+      
+      bookEntity.save();
+    }
   }
 
   entity.save();
@@ -73,6 +80,8 @@ export function handleBook(event: BookEvent): void {
     event.transaction.hash.concatI32(event.logIndex.toI32())
   );
   entity.title = event.params.title;
+  entity.index = event.params.index;
+  entity.chapterCount = event.params.chapterCount;
 
   entity.blockNumber = event.block.number;
   entity.blockTimestamp = event.block.timestamp;

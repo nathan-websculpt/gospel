@@ -5,6 +5,8 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "./Main.sol";
 
+// TODO: add notFinalized modifier to functions
+
 contract BookManager is Main {
 	struct VerseStr {
 		uint256 verseId;
@@ -15,17 +17,20 @@ contract BookManager is Main {
 
 	mapping(uint256 => VerseStr) public verses;
 	mapping(address => uint256[]) public confirmations;
+	uint256 public  numberOfChapters = 0; //NEW oct 18th
 	uint256 public numberOfVerses = 0;
 	uint256 public bookIndex;
 	string public bookTitle;
+	bool public hasBeenFinalized = false;
 
-	event Book(string title);
+	//only want chapterCount so subgraph mapping can use a non-nullable bigint
+	event Book(string title, uint256 index, uint256 chapterCount);
 
 	//TODO: indexed parameters
 	event Verse(
 		address signer,
 		bytes bookId,
-		uint256 verseId,
+		uint256 verseId, //todo: change to uint16?
 		uint256 verseNumber,
 		uint256 chapterNumber,
 		string verseContent
@@ -45,10 +50,15 @@ contract BookManager is Main {
 		_;
 	}
 
+	modifier notFinalized() {
+		require(!hasBeenFinalized, "This contract has already been finalized.");
+		_;
+	}
+
 	constructor(uint256 index, string memory title) {
 		// numberOfBooks++;
 		// bookAtIndex[index] = title;
-		emit Book(title);
+		emit Book(title, index, numberOfChapters);
 		bookIndex = index;
 		bookTitle = title;
 
@@ -94,6 +104,7 @@ contract BookManager is Main {
 				"The contract is preventing you from starting with a verse that is not 1:1"
 			);
 		}
+
 		for (uint256 i = 0; i < length; i++) {
 			_storeVerse(
 				_bookId,
@@ -102,6 +113,10 @@ contract BookManager is Main {
 				_verseContent[i]
 			);
 		}
+
+		//if last chapter number (being added) is greater than current number of chapters, set the number of chapters
+		if (_chapterNumber[length - 1] > numberOfChapters)
+			numberOfChapters = _chapterNumber[length - 1];
 	}
 
 	// verse-skip prevention
@@ -171,6 +186,11 @@ contract BookManager is Main {
 	) external hasNotConfirmed(msg.sender, _numericalId) {
 		confirmations[msg.sender].push(_numericalId);
 		emit Confirmation(msg.sender, _verseId);
+	}
+
+	//can't be un-done -- books can't be edited once finished
+	function finalizeBook() external notFinalized onlyOwner {
+		hasBeenFinalized = true;
 	}
 
 	function _storeVerse(
