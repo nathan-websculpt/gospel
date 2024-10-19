@@ -26,6 +26,14 @@ export class Book__Params {
   get title(): string {
     return this._event.parameters[0].value.toString();
   }
+
+  get index(): BigInt {
+    return this._event.parameters[1].value.toBigInt();
+  }
+
+  get chapterCount(): BigInt {
+    return this._event.parameters[2].value.toBigInt();
+  }
 }
 
 export class Confirmation extends ethereum.Event {
@@ -238,6 +246,52 @@ export class BookManager extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
+  hasBeenFinalized(): boolean {
+    let result = super.call(
+      "hasBeenFinalized",
+      "hasBeenFinalized():(bool)",
+      []
+    );
+
+    return result[0].toBoolean();
+  }
+
+  try_hasBeenFinalized(): ethereum.CallResult<boolean> {
+    let result = super.tryCall(
+      "hasBeenFinalized",
+      "hasBeenFinalized():(bool)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBoolean());
+  }
+
+  numberOfChapters(): BigInt {
+    let result = super.call(
+      "numberOfChapters",
+      "numberOfChapters():(uint256)",
+      []
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_numberOfChapters(): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "numberOfChapters",
+      "numberOfChapters():(uint256)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
   numberOfVerses(): BigInt {
     let result = super.call("numberOfVerses", "numberOfVerses():(uint256)", []);
 
@@ -440,6 +494,32 @@ export class DonateCall__Outputs {
   _call: DonateCall;
 
   constructor(call: DonateCall) {
+    this._call = call;
+  }
+}
+
+export class FinalizeBookCall extends ethereum.Call {
+  get inputs(): FinalizeBookCall__Inputs {
+    return new FinalizeBookCall__Inputs(this);
+  }
+
+  get outputs(): FinalizeBookCall__Outputs {
+    return new FinalizeBookCall__Outputs(this);
+  }
+}
+
+export class FinalizeBookCall__Inputs {
+  _call: FinalizeBookCall;
+
+  constructor(call: FinalizeBookCall) {
+    this._call = call;
+  }
+}
+
+export class FinalizeBookCall__Outputs {
+  _call: FinalizeBookCall;
+
+  constructor(call: FinalizeBookCall) {
     this._call = call;
   }
 }

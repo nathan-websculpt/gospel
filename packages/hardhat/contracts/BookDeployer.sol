@@ -11,6 +11,7 @@ contract BookDeployer {
 	}
 	Deployment[] public deployments;
 
+	//TODO: use index on subgraph and queries
 	event NewBookContract(address contractAddress, uint256 index, string title);
 
 	constructor(address _contractOwner) {

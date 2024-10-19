@@ -197,6 +197,32 @@ export class Book extends Entity {
     );
   }
 
+  get index(): BigInt {
+    let value = this.get("index");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set index(value: BigInt) {
+    this.set("index", Value.fromBigInt(value));
+  }
+
+  get chapterCount(): BigInt {
+    let value = this.get("chapterCount");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set chapterCount(value: BigInt) {
+    this.set("chapterCount", Value.fromBigInt(value));
+  }
+
   get blockNumber(): BigInt {
     let value = this.get("blockNumber");
     if (!value || value.kind == ValueKind.NULL) {
