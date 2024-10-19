@@ -30,10 +30,6 @@ export class Book__Params {
   get index(): BigInt {
     return this._event.parameters[1].value.toBigInt();
   }
-
-  get chapterCount(): BigInt {
-    return this._event.parameters[2].value.toBigInt();
-  }
 }
 
 export class Confirmation extends ethereum.Event {

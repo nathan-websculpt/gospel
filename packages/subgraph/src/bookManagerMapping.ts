@@ -28,11 +28,9 @@ export function handleVerse(event: VerseEvent): void {
   if (bookEntity !== null) {
     entity.book = bookEntity.id;
 
-    //if this verse's chapter number is greater than the book's chapter count, increment chapter count
+    //if this verse's chapter number is greater than the book's chapter count, increment chapter count (on book)
     if (event.params.chapterNumber > bookEntity.chapterCount) {
-      bookEntity.chapterCount = event.params.chapterNumber;      //TODO: causes nothing to save
-      // bookEntity.index = event.params.verseNumber; //so does this...
-      
+      bookEntity.chapterCount = event.params.chapterNumber;
       bookEntity.save();
     }
   }
@@ -81,7 +79,7 @@ export function handleBook(event: BookEvent): void {
   );
   entity.title = event.params.title;
   entity.index = event.params.index;
-  entity.chapterCount = event.params.chapterCount;
+  entity.chapterCount = BigInt.fromI32(0); //start at 0 chapters
 
   entity.blockNumber = event.block.number;
   entity.blockTimestamp = event.block.timestamp;

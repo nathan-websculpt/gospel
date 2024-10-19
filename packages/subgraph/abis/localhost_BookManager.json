@@ -29,12 +29,6 @@
         "internalType": "uint256",
         "name": "index",
         "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "chapterCount",
-        "type": "uint256"
       }
     ],
     "name": "Book",
