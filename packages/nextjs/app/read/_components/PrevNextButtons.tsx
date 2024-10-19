@@ -4,8 +4,8 @@ import { Dispatch } from "react";
 interface PrevNextProps {
   currentChapterId: number;
   setCurrentChapterId: Dispatch<number>;
-  setjustdoit: Dispatch<boolean>;
   chapterCount: number;
+  setjustdoit: Dispatch<boolean>;
   justdoit: boolean;
 }
 
@@ -14,8 +14,8 @@ interface PrevNextProps {
 export const PrevNextButtons = ({
   currentChapterId,
   setCurrentChapterId,
-  setjustdoit,
   chapterCount,
+  setjustdoit,
   justdoit,
 }: PrevNextProps) => {
   const handlePrevPageClick = async (e: React.SyntheticEvent) => {
