@@ -382,6 +382,10 @@ export class ConstructorCall__Inputs {
   get title(): string {
     return this._call.inputValues[1].value.toString();
   }
+
+  get contractOwner(): Address {
+    return this._call.inputValues[2].value.toAddress();
+  }
 }
 
 export class ConstructorCall__Outputs {
