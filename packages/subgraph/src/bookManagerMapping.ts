@@ -77,6 +77,7 @@ export function handleBook(event: BookEvent): void {
   let entity = new Book(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   );
+  // entity.contractAddress = event.params.contractAddress;
   entity.title = event.params.title;
   entity.index = event.params.index;
   entity.chapterCount = BigInt.fromI32(0); //start at 0 chapters

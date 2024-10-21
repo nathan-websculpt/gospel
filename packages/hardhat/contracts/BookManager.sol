@@ -5,27 +5,27 @@ import "./Main.sol";
 
 contract BookManager is Main {
 	struct VerseStr {
-		uint256 verseId;
-		uint256 verseNumber;
+		uint256 verseId; // overall verse number, starting with 1
+		uint256 verseNumber; // the verse number within the chapter
 		uint256 chapterNumber;
 		string verseContent;
 	}
 
 	mapping(uint256 => VerseStr) public verses;
 	mapping(address => uint256[]) public confirmations;
-	uint256 public  numberOfChapters = 0; //NEW oct 18th
+	uint256 public numberOfChapters = 0; //NEW oct 18th
 	uint256 public numberOfVerses = 0;
 	uint256 public bookIndex;
 	string public bookTitle;
 	bool public hasBeenFinalized = false; //NEW oct 18th
 
-	event Book(string title, uint256 index);
+	event Book(address indexed contractAddress, string title, uint256 index);
 
 	//TODO: indexed parameters
 	event Verse(
-		address signer,
-		bytes bookId,
-		uint256 verseId, //todo: change to uint16?
+		address indexed signer,
+		bytes bookId, // used to find book in mapping (event handler)
+		uint256 verseId,
 		uint256 verseNumber,
 		uint256 chapterNumber,
 		string verseContent
@@ -52,7 +52,7 @@ contract BookManager is Main {
 
 	constructor(uint256 index, string memory title, address contractOwner) {
 		_transferOwnership(contractOwner);
-		emit Book(title, index);
+		emit Book(address(this), title, index);
 		bookIndex = index;
 		bookTitle = title;
 	}

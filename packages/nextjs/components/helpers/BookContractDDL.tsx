@@ -33,17 +33,17 @@ export const BookContractDDL = ({
             <ul className="dropdown-content menu z-[100] pr-6 py-2 mt-2 shadow-center shadow-accent bg-base-200 rounded-box gap-1">
               {listOfBookContracts?.map(b => (
                 <li
-                  key={b.bAddr}
+                  key={b.bookAddress}
                   onClick={() => {
-                    setSelectedContract(b.bAddr);
+                    setSelectedContract(b.bookAddress);
                     setSelectedContractTitle(b.title);
                     setUserSelected(b.title);
                     closeDropdown();
                   }}
-                  // onKeyUp={() => setSelectedContract(b.bAddr); setSelectedContractTitle(b.title);}
+                  // onKeyUp={() => setSelectedContract(b.bookAddress); setSelectedContractTitle(b.title);}
                 >
                   <span>
-                    {b.title} <Address address={b.bAddr} disableAddressLink={true} size="sm" format="short" disableCopyButton={true} />
+                    {b.title} <Address address={b.bookAddress} disableAddressLink={true} size="sm" format="short" disableCopyButton={true} />
                   </span>
                 </li>
               ))}

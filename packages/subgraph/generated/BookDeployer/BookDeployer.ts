@@ -10,29 +10,29 @@ import {
   BigInt
 } from "@graphprotocol/graph-ts";
 
-export class NewBookContract extends ethereum.Event {
-  get params(): NewBookContract__Params {
-    return new NewBookContract__Params(this);
+export class Deployer extends ethereum.Event {
+  get params(): Deployer__Params {
+    return new Deployer__Params(this);
   }
 }
 
-export class NewBookContract__Params {
-  _event: NewBookContract;
+export class Deployer__Params {
+  _event: Deployer;
 
-  constructor(event: NewBookContract) {
+  constructor(event: Deployer) {
     this._event = event;
   }
 
-  get contractAddress(): Address {
+  get signer(): Address {
     return this._event.parameters[0].value.toAddress();
   }
 
-  get index(): BigInt {
-    return this._event.parameters[1].value.toBigInt();
+  get deployerAddress(): Address {
+    return this._event.parameters[1].value.toAddress();
   }
 
-  get title(): string {
-    return this._event.parameters[2].value.toString();
+  get blankBookAddress(): Address {
+    return this._event.parameters[2].value.toAddress();
   }
 }
 
@@ -77,7 +77,7 @@ export class BookDeployer__deploymentsResult {
     return map;
   }
 
-  getBAddr(): Address {
+  getBookAddress(): Address {
     return this.value0;
   }
 
@@ -91,7 +91,7 @@ export class BookDeployer__deploymentsResult {
 }
 
 export class BookDeployer__getDeploymentsResultValue0Struct extends ethereum.Tuple {
-  get bAddr(): Address {
+  get bookAddress(): Address {
     return this[0].toAddress();
   }
 

@@ -40,20 +40,20 @@ export const AddVerses = () => {
     if (selectedContractTitle && selectedContractTitle !== "") {
       console.log("selectedContractTitle", selectedContractTitle);
       // switch case for selectedContractTitle
-      switch (selectedContractTitle) {
-        case "Matthew":
+      switch (selectedContractTitle.trim().toLowerCase()) {
+        case "matthew":
           setVersesArray(getGospelOfMatthew());
           break;
-        case "Mark":
+        case "mark":
           setVersesArray(getGospelOfMark());
           break;
-        case "Luke":
+        case "luke":
           setVersesArray(getGospelOfLuke());
           break;
-        case "John":
+        case "john":
           setVersesArray(getGospelOfJohn());
           break;
-        case "Acts":
+        case "acts":
           setVersesArray(getActs());
           break;
         default:
@@ -78,12 +78,12 @@ export const AddVerses = () => {
     if (listOfBookContracts) {
       for (const deployment of listOfBookContracts) {
         const data = Object.create(bookManager);
-        data.address = deployment.bAddr;
+        data.address = deployment.bookAddress;
         dataArray.push(data);
       }
     }
 
-    if (listOfBookContracts?.length < 2) setSelectedContract(listOfBookContracts[0].bAddr); //todo:
+    if (listOfBookContracts?.length < 2) setSelectedContract(listOfBookContracts[0].bookAddress); //todo:
 
     setCloneContractsData(dataArray);
   }, [listOfBookContracts]);

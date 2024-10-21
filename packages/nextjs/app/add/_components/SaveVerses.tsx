@@ -56,6 +56,7 @@ export const SaveVerses = (_v: VerseProps) => {
         fetchPolicy: "no-cache",
       })
       .then(d => {
+        console.log("GQL_BOOK_ID_By_Title", d);
         setData_onebook(d.data);
       })
       .catch(e => {

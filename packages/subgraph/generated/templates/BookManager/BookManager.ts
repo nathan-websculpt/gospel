@@ -23,12 +23,16 @@ export class Book__Params {
     this._event = event;
   }
 
+  get contractAddress(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
   get title(): string {
-    return this._event.parameters[0].value.toString();
+    return this._event.parameters[1].value.toString();
   }
 
   get index(): BigInt {
-    return this._event.parameters[1].value.toBigInt();
+    return this._event.parameters[2].value.toBigInt();
   }
 }
 

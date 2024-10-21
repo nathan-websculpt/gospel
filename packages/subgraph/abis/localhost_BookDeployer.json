@@ -8,25 +8,25 @@
     "anonymous": false,
     "inputs": [
       {
-        "indexed": false,
+        "indexed": true,
         "internalType": "address",
-        "name": "contractAddress",
+        "name": "signer",
         "type": "address"
       },
       {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "index",
-        "type": "uint256"
+        "indexed": true,
+        "internalType": "address",
+        "name": "deployerAddress",
+        "type": "address"
       },
       {
-        "indexed": false,
-        "internalType": "string",
-        "name": "title",
-        "type": "string"
+        "indexed": true,
+        "internalType": "address",
+        "name": "blankBookAddress",
+        "type": "address"
       }
     ],
-    "name": "NewBookContract",
+    "name": "Deployer",
     "type": "event"
   },
   {
@@ -91,7 +91,7 @@
     "outputs": [
       {
         "internalType": "address",
-        "name": "bAddr",
+        "name": "bookAddress",
         "type": "address"
       },
       {
@@ -116,7 +116,7 @@
         "components": [
           {
             "internalType": "address",
-            "name": "bAddr",
+            "name": "bookAddress",
             "type": "address"
           },
           {

@@ -603,7 +603,7 @@ const deployedContracts = {
   },
   31337: {
     BookDeployer: {
-      address: "0xa85233C63b9Ee964Add6F2cffe00Fd84eb32338f",
+      address: "0xB7f8BC63BbcaD18155201308C8f3540b07f84F5e",
       abi: [
         {
           inputs: [],
@@ -614,25 +614,25 @@ const deployedContracts = {
           anonymous: false,
           inputs: [
             {
-              indexed: false,
+              indexed: true,
               internalType: "address",
-              name: "contractAddress",
+              name: "signer",
               type: "address",
             },
             {
-              indexed: false,
-              internalType: "uint256",
-              name: "index",
-              type: "uint256",
+              indexed: true,
+              internalType: "address",
+              name: "deployerAddress",
+              type: "address",
             },
             {
-              indexed: false,
-              internalType: "string",
-              name: "title",
-              type: "string",
+              indexed: true,
+              internalType: "address",
+              name: "blankBookAddress",
+              type: "address",
             },
           ],
-          name: "NewBookContract",
+          name: "Deployer",
           type: "event",
         },
         {
@@ -697,7 +697,7 @@ const deployedContracts = {
           outputs: [
             {
               internalType: "address",
-              name: "bAddr",
+              name: "bookAddress",
               type: "address",
             },
             {
@@ -722,7 +722,7 @@ const deployedContracts = {
               components: [
                 {
                   internalType: "address",
-                  name: "bAddr",
+                  name: "bookAddress",
                   type: "address",
                 },
                 {
@@ -785,7 +785,7 @@ const deployedContracts = {
       },
     },
     BookManager: {
-      address: "0x4A679253410272dd5232B3Ff7cF5dbB88f295319",
+      address: "0xA51c1fc2f0D1a1b8494Ed1FE312d7C3a78Ed91C0",
       abi: [
         {
           inputs: [
@@ -811,6 +811,12 @@ const deployedContracts = {
         {
           anonymous: false,
           inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "contractAddress",
+              type: "address",
+            },
             {
               indexed: false,
               internalType: "string",
@@ -888,7 +894,7 @@ const deployedContracts = {
           anonymous: false,
           inputs: [
             {
-              indexed: false,
+              indexed: true,
               internalType: "address",
               name: "signer",
               type: "address",
