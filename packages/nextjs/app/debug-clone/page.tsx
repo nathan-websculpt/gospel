@@ -31,18 +31,17 @@ const DebugClone: NextPage = () => {
   });
 
   useEffect(() => {
-    console.log("AAA");
     const dataArray = [];
-    if (listOfBookContracts) {
+    if (listOfBookContracts && listOfBookContracts?.length > 0) {
       for (const deployment of listOfBookContracts) {
         const data = Object.create(bookManager);
         data.address = deployment.bAddr;
         dataArray.push(data);
       }
-    }
     setCloneContractsData(dataArray);
 
     if (listOfBookContracts?.length < 2) setSelectedContract(listOfBookContracts[0].bAddr); //todo:
+    }
   }, [listOfBookContracts]);
 
   return (

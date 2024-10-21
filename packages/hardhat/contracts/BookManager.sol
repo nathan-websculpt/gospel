@@ -1,11 +1,7 @@
 //SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0 <0.9.0;
 
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "./Main.sol";
-
-// TODO: add notFinalized modifier to functions
 
 contract BookManager is Main {
 	struct VerseStr {
@@ -54,14 +50,11 @@ contract BookManager is Main {
 		_;
 	}
 
-	constructor(uint256 index, string memory title) {
-		// numberOfBooks++;
-		// bookAtIndex[index] = title;
+	constructor(uint256 index, string memory title, address contractOwner) {
+		_transferOwnership(contractOwner);
 		emit Book(title, index);
 		bookIndex = index;
 		bookTitle = title;
-
-		_transferOwnership(address(0xf0ADAE0823444d70Eb5826F3C26b3704611c759A)); //todo:
 	}
 
 	function addBatchVerses(
