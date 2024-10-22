@@ -86,7 +86,6 @@ export const Base = () => {
   const doQuery_basic = async () => {
     setQueryLoading(true);
     if (currentChapterId === undefined) {
-      //todo: alert user? this will never occur...
       console.log("PROCESS STOPPED: in doQuery_basic with an undefined currentChapterId");
       setQueryLoading(false);
       return;
@@ -137,11 +136,6 @@ export const Base = () => {
         break;
     }
   }, [prelimBookTitle]);
-
-  //TODO: remove
-  useEffect(() => {
-    console.log("chapterCount: ", chapterCount);
-  }, [chapterCount]);
 
   return (
     <>

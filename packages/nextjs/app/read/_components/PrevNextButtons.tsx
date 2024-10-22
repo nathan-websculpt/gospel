@@ -9,8 +9,6 @@ interface PrevNextProps {
   justdoit: boolean;
 }
 
-//TODO: Handle out of bounds, next book, etc
-
 export const PrevNextButtons = ({
   currentChapterId,
   setCurrentChapterId,

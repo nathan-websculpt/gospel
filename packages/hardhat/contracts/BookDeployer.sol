@@ -13,7 +13,11 @@ contract BookDeployer is Ownable {
 
 	Deployment[] public deployments;
 
-	event Book(address indexed contractAddress, uint256 indexed index, string title);
+	event Book(
+		address indexed contractAddress,
+		uint256 indexed index,
+		string title
+	);
 
 	constructor(address contractOwner) {
 		_transferOwnership(contractOwner);
