@@ -9,7 +9,7 @@ dataSources:
     network: localhost
     source:
       abi: BookDeployer
-      address: "0x998abeb3E57409262aE5b751f60747921B33613E"
+      address: "0x4826533B4897376654Bb4d4AD88B7faFD0C98528"
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
