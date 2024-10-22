@@ -13,13 +13,12 @@ contract BookManager is Main {
 
 	mapping(uint256 => VerseStr) public verses;
 	mapping(address => uint256[]) public confirmations;
-	uint256 public  numberOfChapters = 0;
+	uint256 public numberOfChapters = 0;
 	uint256 public numberOfVerses = 0;
 	uint256 public bookIndex;
 	string public bookTitle;
 	bool public hasBeenFinalized = false;
 
-	//TODO: indexed parameters
 	event Verse(
 		address indexed signer,
 		bytes bookId,
