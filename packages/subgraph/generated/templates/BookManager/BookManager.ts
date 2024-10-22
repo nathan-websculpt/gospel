@@ -10,28 +10,6 @@ import {
   BigInt
 } from "@graphprotocol/graph-ts";
 
-export class Book extends ethereum.Event {
-  get params(): Book__Params {
-    return new Book__Params(this);
-  }
-}
-
-export class Book__Params {
-  _event: Book;
-
-  constructor(event: Book) {
-    this._event = event;
-  }
-
-  get title(): string {
-    return this._event.parameters[0].value.toString();
-  }
-
-  get index(): BigInt {
-    return this._event.parameters[1].value.toBigInt();
-  }
-}
-
 export class Confirmation extends ethereum.Event {
   get params(): Confirmation__Params {
     return new Confirmation__Params(this);

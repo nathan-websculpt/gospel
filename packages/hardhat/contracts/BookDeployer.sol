@@ -6,14 +6,14 @@ import "./BookManager.sol";
 
 contract BookDeployer is Ownable {
 	struct Deployment {
-		address bookAddress; //TODO: rename
+		address bookAddress;
 		uint256 index;
 		string title;
 	}
 
 	Deployment[] public deployments;
 
-	event NewBookContract(address contractAddress);
+	event Book(address contractAddress, string title, uint256 index);
 
 	constructor(address contractOwner) {
 		_transferOwnership(contractOwner);
@@ -22,15 +22,15 @@ contract BookDeployer is Ownable {
 	function deployBook(uint256 index, string memory title) external onlyOwner {
 		BookManager b = new BookManager(index, title, msg.sender);
 		deployments.push(Deployment(address(b), index, title));
-		emit NewBookContract(address(b));
+		emit Book(address(b), title, index);
 	}
 
 	//TODO: read by var and del func?
-    function getDeployments() public view returns (Deployment[] memory) {
-        Deployment[] memory result = new Deployment[](deployments.length);
-		for (uint256 i = 0; i < deployments.length; i++){
+	function getDeployments() public view returns (Deployment[] memory) {
+		Deployment[] memory result = new Deployment[](deployments.length);
+		for (uint256 i = 0; i < deployments.length; i++) {
 			result[i] = deployments[i];
 		}
 		return result;
-    }
+	}
 }

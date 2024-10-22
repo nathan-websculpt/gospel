@@ -19,8 +19,6 @@ contract BookManager is Main {
 	string public bookTitle;
 	bool public hasBeenFinalized = false; //NEW oct 18th
 
-	event Book(string title, uint256 index);
-
 	//TODO: indexed parameters
 	event Verse(
 		address signer,
@@ -52,7 +50,6 @@ contract BookManager is Main {
 
 	constructor(uint256 index, string memory title, address contractOwner) {
 		_transferOwnership(contractOwner);
-		emit Book(title, index);
 		bookIndex = index;
 		bookTitle = title;
 	}
