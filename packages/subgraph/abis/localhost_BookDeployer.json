@@ -18,9 +18,21 @@
         "internalType": "address",
         "name": "contractAddress",
         "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "index",
+        "type": "uint256"
       }
     ],
-    "name": "NewBookContract",
+    "name": "Book",
     "type": "event"
   },
   {

@@ -603,7 +603,7 @@ const deployedContracts = {
   },
   31337: {
     BookDeployer: {
-      address: "0x9A9f2CCfdE556A7E9Ff0848998Aa4a0CFD8863AE",
+      address: "0x322813Fd9A801c5507c9de605d63CEA4f2CE6c44",
       abi: [
         {
           inputs: [
@@ -625,8 +625,20 @@ const deployedContracts = {
               name: "contractAddress",
               type: "address",
             },
+            {
+              indexed: false,
+              internalType: "string",
+              name: "title",
+              type: "string",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "index",
+              type: "uint256",
+            },
           ],
-          name: "NewBookContract",
+          name: "Book",
           type: "event",
         },
         {
@@ -766,7 +778,7 @@ const deployedContracts = {
       },
     },
     BookManager: {
-      address: "0x68B1D87F95878fE05B998F19b66F4baba5De1aed",
+      address: "0xa85233C63b9Ee964Add6F2cffe00Fd84eb32338f",
       abi: [
         {
           inputs: [
@@ -788,25 +800,6 @@ const deployedContracts = {
           ],
           stateMutability: "nonpayable",
           type: "constructor",
-        },
-        {
-          anonymous: false,
-          inputs: [
-            {
-              indexed: false,
-              internalType: "string",
-              name: "title",
-              type: "string",
-            },
-            {
-              indexed: false,
-              internalType: "uint256",
-              name: "index",
-              type: "uint256",
-            },
-          ],
-          name: "Book",
-          type: "event",
         },
         {
           anonymous: false,

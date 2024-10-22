@@ -1,13 +1,6 @@
-type NewBookContract @entity(immutable: true) {
-  id: Bytes!
-  contractAddress: Bytes!
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
 type Book @entity {
   id: Bytes!
+  contractAddress: Bytes!
   title: String!
   verses: [Verse!] @derivedFrom(field: "book")
   index: BigInt!
