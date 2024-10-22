@@ -5,16 +5,18 @@ import { useOutsideClick } from "~~/hooks/scaffold-eth";
 
 interface BookContractDDLProps {
   listOfBookContracts: any[];
+  selectedContract: String;
   setSelectedContract: Dispatch<String>;
   setSelectedContractTitle: Dispatch<String>;
 }
 
 export const BookContractDDL = ({
   listOfBookContracts,
+  selectedContract,
   setSelectedContract,
   setSelectedContractTitle,
 }: BookContractDDLProps) => {
-  const [userSelected, setUserSelected] = useState<string>("");
+  const [bookSelected, setBookSelected] = useState<string>("");
   const dropdownRef = useRef<HTMLDetailsElement>(null);
   const closeDropdown = () => {
     dropdownRef.current?.removeAttribute("open");
@@ -27,7 +29,24 @@ export const BookContractDDL = ({
         <div className="flex flex-row flex-wrap w-full gap-2 px-6 pb-1 max-w-7xl lg:px-10">
           <details ref={dropdownRef} className="leading-3 dropdown dropdown-right">
             <summary tabIndex={0} className="btn btn-primary btn-sm shadow-md dropdown-toggle gap-0 !h-auto">
-              {userSelected !== "" ? <span>{userSelected}</span> : <span>Select Clone Contract</span>}
+              {bookSelected !== "" ? (
+                <span>
+                  {bookSelected}{" "}
+                  {selectedContract && selectedContract !== "" && (
+                    <span>
+                      <Address
+                        address={selectedContract}
+                        disableAddressLink={true}
+                        size="sm"
+                        format="short"
+                        disableCopyButton={true}
+                      />
+                    </span>
+                  )}
+                </span>
+              ) : (
+                <span>Select Clone Contract</span>
+              )}
               <ChevronDownIcon className="w-4 h-6 ml-2 sm:ml-0" />
             </summary>
             <ul className="dropdown-content menu z-[100] pr-6 py-2 mt-2 shadow-center shadow-accent bg-base-200 rounded-box gap-1">
@@ -37,13 +56,19 @@ export const BookContractDDL = ({
                   onClick={() => {
                     setSelectedContract(b.bookAddress);
                     setSelectedContractTitle(b.title);
-                    setUserSelected(b.title);
+                    setBookSelected(b.title);
                     closeDropdown();
                   }}
-                  // onKeyUp={() => setSelectedContract(b.bookAddress); setSelectedContractTitle(b.title);}
                 >
                   <span>
-                    {b.title} <Address address={b.bookAddress} disableAddressLink={true} size="sm" format="short" disableCopyButton={true} />
+                    {b.title}{" "}
+                    <Address
+                      address={b.bookAddress}
+                      disableAddressLink={true}
+                      size="sm"
+                      format="short"
+                      disableCopyButton={true}
+                    />
                   </span>
                 </li>
               ))}

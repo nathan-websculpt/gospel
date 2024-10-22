@@ -603,7 +603,7 @@ const deployedContracts = {
   },
   31337: {
     BookDeployer: {
-      address: "0x4826533B4897376654Bb4d4AD88B7faFD0C98528",
+      address: "0x5f3f1dBD7B74C6B46e8c44f98792A1dAf8d69154",
       abi: [
         {
           inputs: [
@@ -778,7 +778,7 @@ const deployedContracts = {
       },
     },
     BookManager: {
-      address: "0x99bbA657f2BbC93c02D617f8bA121cB8Fc104Acf",
+      address: "0xb7278A61aa25c888815aFC32Ad3cC52fF24fE575",
       abi: [
         {
           inputs: [
@@ -837,6 +837,25 @@ const deployedContracts = {
             },
           ],
           name: "Donation",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "finalizedBy",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "bytes",
+              name: "bookId",
+              type: "bytes",
+            },
+          ],
+          name: "Finalization",
           type: "event",
         },
         {
@@ -1005,7 +1024,13 @@ const deployedContracts = {
           type: "function",
         },
         {
-          inputs: [],
+          inputs: [
+            {
+              internalType: "bytes",
+              name: "_bookId",
+              type: "bytes",
+            },
+          ],
           name: "finalizeBook",
           outputs: [],
           stateMutability: "nonpayable",

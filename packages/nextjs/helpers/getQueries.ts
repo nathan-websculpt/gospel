@@ -23,6 +23,8 @@ export const GQL_VERSES_by_chapter = () => {
   `;
 };
 
+// PRODTODO: Read page needs to query where isFinalizeed is true to get production books
+
 //used on read page
 //so other queries have access to book titles
 export const GQL_BOOK_TITLES = () => {

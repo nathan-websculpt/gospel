@@ -54,6 +54,28 @@ export class Donation__Params {
   }
 }
 
+export class Finalization extends ethereum.Event {
+  get params(): Finalization__Params {
+    return new Finalization__Params(this);
+  }
+}
+
+export class Finalization__Params {
+  _event: Finalization;
+
+  constructor(event: Finalization) {
+    this._event = event;
+  }
+
+  get finalizedBy(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get bookId(): Bytes {
+    return this._event.parameters[1].value.toBytes();
+  }
+}
+
 export class OwnershipTransferred extends ethereum.Event {
   get params(): OwnershipTransferred__Params {
     return new OwnershipTransferred__Params(this);
@@ -491,6 +513,10 @@ export class FinalizeBookCall__Inputs {
 
   constructor(call: FinalizeBookCall) {
     this._call = call;
+  }
+
+  get _bookId(): Bytes {
+    return this._call.inputValues[0].value.toBytes();
   }
 }
 

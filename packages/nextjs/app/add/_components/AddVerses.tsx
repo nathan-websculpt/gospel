@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { LockBook } from "./LockBook";
 import { SaveVerses } from "./SaveVerses";
 import { BookContractDDL } from "~~/components/helpers/BookContractDDL";
 import deployedContracts from "~~/contracts/deployedContracts";
@@ -64,7 +65,6 @@ export const AddVerses = () => {
   }, [selectedContractTitle]);
 
   useEffect(() => {
-    console.log("AAA", selectedContract);
     if (selectedContract) {
       const theSelectedCloneContractData = cloneContractsData.find(c => c.address === selectedContract);
       console.log("theSelectedCloneContractData", theSelectedCloneContractData);
@@ -73,7 +73,6 @@ export const AddVerses = () => {
   }, [selectedContract]);
 
   useEffect(() => {
-    console.log("BBB", listOfBookContracts);
     const dataArray = [];
     if (listOfBookContracts) {
       for (const deployment of listOfBookContracts) {
@@ -147,6 +146,7 @@ export const AddVerses = () => {
       <div className="flex flex-row justify-around mb-12">
         <BookContractDDL
           listOfBookContracts={listOfBookContracts}
+          selectedContract={selectedContract} //just to display on ddl
           setSelectedContract={setSelectedContract}
           setSelectedContractTitle={setSelectedContractTitle}
         />
@@ -196,11 +196,17 @@ export const AddVerses = () => {
           GET VERSES
         </button>
       </div>
-      
-      <div className="mt-6 mb-6">
+
+      <div className="flex flex-row justify-around mt-6 mb-6">
         <button className="btn btn-primary" onClick={() => getNextVerse()}>
           GET NEXT
         </button>
+        <LockBook
+          selectedContract={selectedContract}
+          selectedContractTitle={selectedContractTitle}
+          deployedContractData={theSelectedContractData}
+          bookId={selectedBookId}
+        />
       </div>
 
       {selectedVersesObject?.length > 0 && (
@@ -215,7 +221,6 @@ export const AddVerses = () => {
           </div>
         </>
       )}
-
 
       <hr />
     </>
