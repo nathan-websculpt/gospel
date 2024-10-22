@@ -8,8 +8,6 @@ export function handleNewBookContract(event: NewBookContractEvent): void {
     event.transaction.hash.concatI32(event.logIndex.toI32())
   );
   entity.contractAddress = event.params.contractAddress;
-  entity.index = event.params.index;
-  entity.title = event.params.title;
 
   entity.blockNumber = event.block.number;
   entity.blockTimestamp = event.block.timestamp;
