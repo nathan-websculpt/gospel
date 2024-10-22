@@ -2,11 +2,9 @@ import { Bytes, log, BigInt } from "@graphprotocol/graph-ts";
 import {
   Verse as VerseEvent,
   Confirmation as ConfirmationEvent,
-  Donation as DonationEvent,
   Finalization as FinalizationEvent
-} from "../generated/templates/BookManager/BookManager"; // Oct 18th, changing events to templates dir, because the old one wasn't working with Event updates
-// } from "../generated/BookManager/BookManager";
-import { Verse, Confirmation, Donation, Book, Finalization } from "../generated/schema";
+} from "../generated/templates/BookManager/BookManager";
+import { Verse, Confirmation, Book, Finalization } from "../generated/schema";
 
 export function handleVerse(event: VerseEvent): void {
   let entity = new Verse(
@@ -55,20 +53,6 @@ export function handleConfirmation(event: ConfirmationEvent): void {
     verseEntity.confirmationCount++;
     verseEntity.save();
   }
-
-  entity.save();
-}
-
-export function handleDonation(event: DonationEvent): void {
-  let entity = new Donation(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  );
-  entity.donor = event.params.donor;
-  entity.amount = event.params.amount;
-
-  entity.blockNumber = event.block.number;
-  entity.blockTimestamp = event.block.timestamp;
-  entity.transactionHash = event.transaction.hash;
 
   entity.save();
 }

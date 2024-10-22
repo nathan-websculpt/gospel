@@ -36,15 +36,6 @@ type Confirmation @entity(immutable: true) {
   verse: Verse
 }
 
-type Donation @entity(immutable: true) {
-  id: Bytes!
-  donor: Bytes! # address
-  amount: BigInt!
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
 type Finalization @entity(immutable: true) {
   id: Bytes!
   finalizedBy: Bytes!
