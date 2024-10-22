@@ -6,9 +6,6 @@ import {
 } from "../generated/templates/BookManager/BookManager"; // Oct 18th, changing events to templates dir, because the old one wasn't working with Event updates
 // } from "../generated/BookManager/BookManager";
 import { Verse, Confirmation, Donation, Book } from "../generated/schema";
-import {
-  Book as BookEvent,
-} from "../generated/BookDeployer/BookDeployer";
 
 export function handleVerse(event: VerseEvent): void {
   let entity = new Verse(

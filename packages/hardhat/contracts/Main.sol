@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 contract Main is Ownable, ReentrancyGuard {
-	event Donation(address donor, uint256 amount);
+	event Donation(address indexed donor, uint256 amount);
 
 	receive() external payable {
 		donate();
