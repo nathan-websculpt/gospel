@@ -67,32 +67,6 @@ export class NewBookContract extends Entity {
     this.set("contractAddress", Value.fromBytes(value));
   }
 
-  get index(): BigInt {
-    let value = this.get("index");
-    if (!value || value.kind == ValueKind.NULL) {
-      throw new Error("Cannot return null for a required field.");
-    } else {
-      return value.toBigInt();
-    }
-  }
-
-  set index(value: BigInt) {
-    this.set("index", Value.fromBigInt(value));
-  }
-
-  get title(): string {
-    let value = this.get("title");
-    if (!value || value.kind == ValueKind.NULL) {
-      throw new Error("Cannot return null for a required field.");
-    } else {
-      return value.toString();
-    }
-  }
-
-  set title(value: string) {
-    this.set("title", Value.fromString(value));
-  }
-
   get blockNumber(): BigInt {
     let value = this.get("blockNumber");
     if (!value || value.kind == ValueKind.NULL) {

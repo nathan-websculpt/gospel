@@ -35,12 +35,12 @@ const DebugClone: NextPage = () => {
     if (listOfBookContracts && listOfBookContracts?.length > 0) {
       for (const deployment of listOfBookContracts) {
         const data = Object.create(bookManager);
-        data.address = deployment.bAddr;
+        data.address = deployment.bookAddress;
         dataArray.push(data);
       }
     setCloneContractsData(dataArray);
 
-    if (listOfBookContracts?.length < 2) setSelectedContract(listOfBookContracts[0].bAddr); //todo:
+    if (listOfBookContracts?.length < 2) setSelectedContract(listOfBookContracts[0].bookAddress); //todo:
     }
   }, [listOfBookContracts]);
 

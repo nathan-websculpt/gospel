@@ -1,6 +1,12 @@
 [
   {
-    "inputs": [],
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "contractOwner",
+        "type": "address"
+      }
+    ],
     "stateMutability": "nonpayable",
     "type": "constructor"
   },
@@ -12,18 +18,6 @@
         "internalType": "address",
         "name": "contractAddress",
         "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "index",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "title",
-        "type": "string"
       }
     ],
     "name": "NewBookContract",
@@ -47,19 +41,6 @@
     ],
     "name": "OwnershipTransferred",
     "type": "event"
-  },
-  {
-    "inputs": [],
-    "name": "OWNER_ADDR",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
   },
   {
     "inputs": [
@@ -91,7 +72,7 @@
     "outputs": [
       {
         "internalType": "address",
-        "name": "bAddr",
+        "name": "bookAddress",
         "type": "address"
       },
       {
@@ -116,7 +97,7 @@
         "components": [
           {
             "internalType": "address",
-            "name": "bAddr",
+            "name": "bookAddress",
             "type": "address"
           },
           {

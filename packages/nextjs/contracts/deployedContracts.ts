@@ -603,10 +603,16 @@ const deployedContracts = {
   },
   31337: {
     BookDeployer: {
-      address: "0xa85233C63b9Ee964Add6F2cffe00Fd84eb32338f",
+      address: "0x9A9f2CCfdE556A7E9Ff0848998Aa4a0CFD8863AE",
       abi: [
         {
-          inputs: [],
+          inputs: [
+            {
+              internalType: "address",
+              name: "contractOwner",
+              type: "address",
+            },
+          ],
           stateMutability: "nonpayable",
           type: "constructor",
         },
@@ -618,18 +624,6 @@ const deployedContracts = {
               internalType: "address",
               name: "contractAddress",
               type: "address",
-            },
-            {
-              indexed: false,
-              internalType: "uint256",
-              name: "index",
-              type: "uint256",
-            },
-            {
-              indexed: false,
-              internalType: "string",
-              name: "title",
-              type: "string",
             },
           ],
           name: "NewBookContract",
@@ -653,19 +647,6 @@ const deployedContracts = {
           ],
           name: "OwnershipTransferred",
           type: "event",
-        },
-        {
-          inputs: [],
-          name: "OWNER_ADDR",
-          outputs: [
-            {
-              internalType: "address",
-              name: "",
-              type: "address",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
         },
         {
           inputs: [
@@ -697,7 +678,7 @@ const deployedContracts = {
           outputs: [
             {
               internalType: "address",
-              name: "bAddr",
+              name: "bookAddress",
               type: "address",
             },
             {
@@ -722,7 +703,7 @@ const deployedContracts = {
               components: [
                 {
                   internalType: "address",
-                  name: "bAddr",
+                  name: "bookAddress",
                   type: "address",
                 },
                 {
@@ -785,7 +766,7 @@ const deployedContracts = {
       },
     },
     BookManager: {
-      address: "0x4A679253410272dd5232B3Ff7cF5dbB88f295319",
+      address: "0x68B1D87F95878fE05B998F19b66F4baba5De1aed",
       abi: [
         {
           inputs: [

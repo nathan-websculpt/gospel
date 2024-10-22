@@ -26,14 +26,6 @@ export class NewBookContract__Params {
   get contractAddress(): Address {
     return this._event.parameters[0].value.toAddress();
   }
-
-  get index(): BigInt {
-    return this._event.parameters[1].value.toBigInt();
-  }
-
-  get title(): string {
-    return this._event.parameters[2].value.toString();
-  }
 }
 
 export class OwnershipTransferred extends ethereum.Event {
@@ -77,7 +69,7 @@ export class BookDeployer__deploymentsResult {
     return map;
   }
 
-  getBAddr(): Address {
+  getBookAddress(): Address {
     return this.value0;
   }
 
@@ -91,7 +83,7 @@ export class BookDeployer__deploymentsResult {
 }
 
 export class BookDeployer__getDeploymentsResultValue0Struct extends ethereum.Tuple {
-  get bAddr(): Address {
+  get bookAddress(): Address {
     return this[0].toAddress();
   }
 
@@ -107,21 +99,6 @@ export class BookDeployer__getDeploymentsResultValue0Struct extends ethereum.Tup
 export class BookDeployer extends ethereum.SmartContract {
   static bind(address: Address): BookDeployer {
     return new BookDeployer("BookDeployer", address);
-  }
-
-  OWNER_ADDR(): Address {
-    let result = super.call("OWNER_ADDR", "OWNER_ADDR():(address)", []);
-
-    return result[0].toAddress();
-  }
-
-  try_OWNER_ADDR(): ethereum.CallResult<Address> {
-    let result = super.tryCall("OWNER_ADDR", "OWNER_ADDR():(address)", []);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
   deployments(param0: BigInt): BookDeployer__deploymentsResult {
@@ -219,6 +196,10 @@ export class ConstructorCall__Inputs {
 
   constructor(call: ConstructorCall) {
     this._call = call;
+  }
+
+  get contractOwner(): Address {
+    return this._call.inputValues[0].value.toAddress();
   }
 }
 
