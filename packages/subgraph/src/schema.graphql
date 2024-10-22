@@ -5,6 +5,7 @@ type Book @entity {
   verses: [Verse!] @derivedFrom(field: "book")
   index: BigInt!
   chapterCount: BigInt! #note: not sent in event, set in mapping
+  isFinalized: Boolean!
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
@@ -39,6 +40,15 @@ type Donation @entity(immutable: true) {
   id: Bytes!
   donor: Bytes! # address
   amount: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Finalization @entity(immutable: true) {
+  id: Bytes!
+  finalizedBy: Bytes!
+  bookId: Bytes!
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!

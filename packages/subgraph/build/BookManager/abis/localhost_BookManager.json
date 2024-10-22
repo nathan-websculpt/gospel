@@ -64,6 +64,25 @@
       {
         "indexed": true,
         "internalType": "address",
+        "name": "finalizedBy",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes",
+        "name": "bookId",
+        "type": "bytes"
+      }
+    ],
+    "name": "Finalization",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
         "name": "previousOwner",
         "type": "address"
       },
@@ -224,7 +243,13 @@
     "type": "function"
   },
   {
-    "inputs": [],
+    "inputs": [
+      {
+        "internalType": "bytes",
+        "name": "_bookId",
+        "type": "bytes"
+      }
+    ],
     "name": "finalizeBook",
     "outputs": [],
     "stateMutability": "nonpayable",

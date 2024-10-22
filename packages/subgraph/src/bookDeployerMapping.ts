@@ -11,6 +11,7 @@ export function handleBook(event: BookEvent): void {
   entity.title = event.params.title;
   entity.index = event.params.index;
   entity.chapterCount = BigInt.fromI32(0); //start at 0 chapters
+  entity.isFinalized = false;
 
   entity.blockNumber = event.block.number;
   entity.blockTimestamp = event.block.timestamp;

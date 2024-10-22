@@ -30,6 +30,8 @@ contract BookManager is Main {
 
 	event Confirmation(address indexed confirmedBy, bytes verseId);
 
+	event Finalization(address indexed finalizedBy, bytes bookId);
+
 	modifier hasNotConfirmed(address addr, uint256 verseId) {
 		bool canContinue = true;
 		for (uint256 i = 0; i < confirmations[addr].length; i++) {
@@ -176,9 +178,10 @@ contract BookManager is Main {
 		emit Confirmation(msg.sender, _verseId);
 	}
 
-	//can't be un-done -- books can't be edited once finished
-	function finalizeBook() external notFinalized onlyOwner {
+	//can't be un-done -- verses can't be added once book is finalized
+	function finalizeBook(bytes memory _bookId) external notFinalized onlyOwner {
 		hasBeenFinalized = true;
+		emit Finalization(msg.sender, _bookId);
 	}
 
 	function _storeVerse(
