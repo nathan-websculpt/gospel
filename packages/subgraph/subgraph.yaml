@@ -9,18 +9,18 @@ dataSources:
     network: localhost
     source:
       abi: BookDeployer
-      address: "0x322813Fd9A801c5507c9de605d63CEA4f2CE6c44"
+      address: "0x998abeb3E57409262aE5b751f60747921B33613E"
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
-        - NewBookContract
+        - Book
       abis:
         - name: BookDeployer
           file: ./abis/localhost_BookDeployer.json
       eventHandlers:
-        - event: Book(address,string,uint256)
+        - event: Book(indexed address,indexed uint256,string)
           handler: handleBook
       file: ./src/bookDeployerMapping.ts
 templates:
@@ -37,15 +37,14 @@ templates:
         - Verse
         - Confirmation
         - Donation
-        - Book
       abis:
         - name: BookManager
           file: ./abis/localhost_BookManager.json
       eventHandlers:
-        - event: Verse(address,bytes,uint256,uint256,uint256,string)
+        - event: Verse(indexed address,bytes,uint256,uint256,uint256,string)
           handler: handleVerse
-        - event: Confirmation(address,bytes)
+        - event: Confirmation(indexed address,bytes)
           handler: handleConfirmation
-        - event: Donation(address,uint256)
+        - event: Donation(indexed address,uint256)
           handler: handleDonation
       file: ./src/bookManagerMapping.ts

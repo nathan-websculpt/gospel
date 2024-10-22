@@ -13,23 +13,23 @@ contract BookManager is Main {
 
 	mapping(uint256 => VerseStr) public verses;
 	mapping(address => uint256[]) public confirmations;
-	uint256 public  numberOfChapters = 0; //NEW oct 18th
+	uint256 public  numberOfChapters = 0;
 	uint256 public numberOfVerses = 0;
 	uint256 public bookIndex;
 	string public bookTitle;
-	bool public hasBeenFinalized = false; //NEW oct 18th
+	bool public hasBeenFinalized = false;
 
 	//TODO: indexed parameters
 	event Verse(
-		address signer,
+		address indexed signer,
 		bytes bookId,
-		uint256 verseId, //todo: change to uint16?
+		uint256 verseId,
 		uint256 verseNumber,
 		uint256 chapterNumber,
 		string verseContent
 	);
 
-	event Confirmation(address confirmedBy, bytes verseId);
+	event Confirmation(address indexed confirmedBy, bytes verseId);
 
 	modifier hasNotConfirmed(address addr, uint256 verseId) {
 		bool canContinue = true;

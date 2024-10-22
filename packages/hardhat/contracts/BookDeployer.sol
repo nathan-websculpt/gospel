@@ -13,7 +13,7 @@ contract BookDeployer is Ownable {
 
 	Deployment[] public deployments;
 
-	event Book(address contractAddress, string title, uint256 index);
+	event Book(address indexed contractAddress, uint256 indexed index, string title);
 
 	constructor(address contractOwner) {
 		_transferOwnership(contractOwner);
@@ -22,7 +22,7 @@ contract BookDeployer is Ownable {
 	function deployBook(uint256 index, string memory title) external onlyOwner {
 		BookManager b = new BookManager(index, title, msg.sender);
 		deployments.push(Deployment(address(b), index, title));
-		emit Book(address(b), title, index);
+		emit Book(address(b), index, title);
 	}
 
 	//TODO: read by var and del func?
