@@ -1,9 +1,9 @@
 //SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0 <0.9.0;
 
-import "./Main.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract BookManager is Main {
+contract BookManager is Ownable {
 	struct VerseStr {
 		uint256 verseId;
 		uint256 verseNumber;

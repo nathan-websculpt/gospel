@@ -32,28 +32,6 @@ export class Confirmation__Params {
   }
 }
 
-export class Donation extends ethereum.Event {
-  get params(): Donation__Params {
-    return new Donation__Params(this);
-  }
-}
-
-export class Donation__Params {
-  _event: Donation;
-
-  constructor(event: Donation) {
-    this._event = event;
-  }
-
-  get donor(): Address {
-    return this._event.parameters[0].value.toAddress();
-  }
-
-  get amount(): BigInt {
-    return this._event.parameters[1].value.toBigInt();
-  }
-}
-
 export class Finalization extends ethereum.Event {
   get params(): Finalization__Params {
     return new Finalization__Params(this);
@@ -472,32 +450,6 @@ export class ConfirmVerseCall__Outputs {
   }
 }
 
-export class DonateCall extends ethereum.Call {
-  get inputs(): DonateCall__Inputs {
-    return new DonateCall__Inputs(this);
-  }
-
-  get outputs(): DonateCall__Outputs {
-    return new DonateCall__Outputs(this);
-  }
-}
-
-export class DonateCall__Inputs {
-  _call: DonateCall;
-
-  constructor(call: DonateCall) {
-    this._call = call;
-  }
-}
-
-export class DonateCall__Outputs {
-  _call: DonateCall;
-
-  constructor(call: DonateCall) {
-    this._call = call;
-  }
-}
-
 export class FinalizeBookCall extends ethereum.Call {
   get inputs(): FinalizeBookCall__Inputs {
     return new FinalizeBookCall__Inputs(this);
@@ -580,32 +532,6 @@ export class TransferOwnershipCall__Outputs {
   _call: TransferOwnershipCall;
 
   constructor(call: TransferOwnershipCall) {
-    this._call = call;
-  }
-}
-
-export class WithdrawCall extends ethereum.Call {
-  get inputs(): WithdrawCall__Inputs {
-    return new WithdrawCall__Inputs(this);
-  }
-
-  get outputs(): WithdrawCall__Outputs {
-    return new WithdrawCall__Outputs(this);
-  }
-}
-
-export class WithdrawCall__Inputs {
-  _call: WithdrawCall;
-
-  constructor(call: WithdrawCall) {
-    this._call = call;
-  }
-}
-
-export class WithdrawCall__Outputs {
-  _call: WithdrawCall;
-
-  constructor(call: WithdrawCall) {
     this._call = call;
   }
 }

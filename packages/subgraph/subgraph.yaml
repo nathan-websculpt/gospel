@@ -9,7 +9,7 @@ dataSources:
     network: localhost
     source:
       abi: BookDeployer
-      address: "0x5f3f1dBD7B74C6B46e8c44f98792A1dAf8d69154"
+      address: "0xFD471836031dc5108809D173A067e8486B9047A3"
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -36,7 +36,7 @@ templates:
       entities:
         - Verse
         - Confirmation
-        - Donation
+        - Finalization
       abis:
         - name: BookManager
           file: ./abis/localhost_BookManager.json
@@ -45,8 +45,6 @@ templates:
           handler: handleVerse
         - event: Confirmation(indexed address,bytes)
           handler: handleConfirmation
-        - event: Donation(indexed address,uint256)
-          handler: handleDonation
         - event: Finalization(indexed address,bytes)
           handler: handleFinalization
       file: ./src/bookManagerMapping.ts

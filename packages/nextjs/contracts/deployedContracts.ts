@@ -603,7 +603,7 @@ const deployedContracts = {
   },
   31337: {
     BookDeployer: {
-      address: "0x5f3f1dBD7B74C6B46e8c44f98792A1dAf8d69154",
+      address: "0xFD471836031dc5108809D173A067e8486B9047A3",
       abi: [
         {
           inputs: [
@@ -778,7 +778,7 @@ const deployedContracts = {
       },
     },
     BookManager: {
-      address: "0xb7278A61aa25c888815aFC32Ad3cC52fF24fE575",
+      address: "0xcbEAF3BDe82155F56486Fb5a1072cb8baAf547cc",
       abi: [
         {
           inputs: [
@@ -818,25 +818,6 @@ const deployedContracts = {
             },
           ],
           name: "Confirmation",
-          type: "event",
-        },
-        {
-          anonymous: false,
-          inputs: [
-            {
-              indexed: true,
-              internalType: "address",
-              name: "donor",
-              type: "address",
-            },
-            {
-              indexed: false,
-              internalType: "uint256",
-              name: "amount",
-              type: "uint256",
-            },
-          ],
-          name: "Donation",
           type: "event",
         },
         {
@@ -1017,13 +998,6 @@ const deployedContracts = {
           type: "function",
         },
         {
-          inputs: [],
-          name: "donate",
-          outputs: [],
-          stateMutability: "payable",
-          type: "function",
-        },
-        {
           inputs: [
             {
               internalType: "bytes",
@@ -1142,24 +1116,11 @@ const deployedContracts = {
           stateMutability: "view",
           type: "function",
         },
-        {
-          inputs: [],
-          name: "withdraw",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          stateMutability: "payable",
-          type: "receive",
-        },
       ],
       inheritedFunctions: {
-        donate: "contracts/Main.sol",
-        owner: "contracts/Main.sol",
-        renounceOwnership: "contracts/Main.sol",
-        transferOwnership: "contracts/Main.sol",
-        withdraw: "contracts/Main.sol",
+        owner: "@openzeppelin/contracts/access/Ownable.sol",
+        renounceOwnership: "@openzeppelin/contracts/access/Ownable.sol",
+        transferOwnership: "@openzeppelin/contracts/access/Ownable.sol",
       },
     },
   },
