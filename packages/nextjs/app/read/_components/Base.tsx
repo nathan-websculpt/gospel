@@ -145,6 +145,7 @@ export const Base = () => {
           isInViewBooksMode={isInViewBooksMode}
           setIsInViewBooksMode={setIsInViewBooksMode}
           setIsInViewChaptersMode={setIsInViewChaptersMode}
+          queryLoading={queryLoading}
         />
       </div>
 
@@ -174,28 +175,34 @@ export const Base = () => {
           )}
         </>
       ) : (
-        //prev-next buttons, book-chapter details, and verses
-        <div className="flex flex-col gap-1 mx-auto mb-4 prose prose-xl lg:px-12 xl:w-full">
-          <PrevNextButtons
-            currentChapterId={currentChapterId}
-            setCurrentChapterId={setCurrentChapterId}
-            chapterCount={chapterCount}
-            justdoit={justdoit}
-            setjustdoit={setjustdoit}
-          />
+        <>
+          {queryLoading ? (
+            <LoadingSpinner />
+          ) : (
+            // prev-next buttons, book-chapter details, and verses
+            <div className="flex flex-col gap-1 mx-auto mb-4 prose prose-xl lg:px-12 xl:w-full">
+              <PrevNextButtons
+                currentChapterId={currentChapterId}
+                setCurrentChapterId={setCurrentChapterId}
+                chapterCount={chapterCount}
+                justdoit={justdoit}
+                setjustdoit={setjustdoit}
+              />
 
-          <BookDetails currentBookTitle={currentBookTitle} currentChapterTitle={currentChapterTitle} />
+              <BookDetails currentBookTitle={currentBookTitle} currentChapterTitle={currentChapterTitle} />
 
-          {queryLoading ? <LoadingSpinner /> : <Verses verses={verses} />}
+              <Verses verses={verses} />
 
-          <PrevNextButtons
-            currentChapterId={currentChapterId}
-            setCurrentChapterId={setCurrentChapterId}
-            chapterCount={chapterCount}
-            justdoit={justdoit}
-            setjustdoit={setjustdoit}
-          />
-        </div>
+              <PrevNextButtons
+                currentChapterId={currentChapterId}
+                setCurrentChapterId={setCurrentChapterId}
+                chapterCount={chapterCount}
+                justdoit={justdoit}
+                setjustdoit={setjustdoit}
+              />
+            </div>
+          )}
+        </>
       )}
     </>
   );

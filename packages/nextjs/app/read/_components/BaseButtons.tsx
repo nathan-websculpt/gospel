@@ -9,6 +9,7 @@ interface BaseButtonsProps {
   isInViewBooksMode: boolean;
   setIsInViewBooksMode: Dispatch<boolean>;
   setIsInViewChaptersMode: Dispatch<boolean>;
+  queryLoading: boolean;
 }
 
 export const BaseButtons = ({
@@ -16,6 +17,7 @@ export const BaseButtons = ({
   isInViewBooksMode,
   setIsInViewBooksMode,
   setIsInViewChaptersMode,
+  queryLoading,
 }: BaseButtonsProps) => {
   const handleToggle = () => {
     if (isInViewChaptersMode) setIsInViewChaptersMode(false); //either way, chapter list should be hidden
@@ -29,24 +31,26 @@ export const BaseButtons = ({
   return (
     <>
       {/* the book-view / verses-view toggle button */}
-      <div className="flex flex-row pl-4">
-        <label className="btn btn-circle btn-primary swap swap-rotate">
-          {/* this hidden checkbox controls the state */}
-          <input
-            className="focus:outline-none"
-            type="checkbox"
-            onChange={handleToggle}
-            checked={isInViewBooksMode}
-            aria-label="Change View Mode"
-          />
+      {!queryLoading && (
+        <div className="flex flex-row pl-4">
+          <label className="btn btn-circle btn-primary swap swap-rotate">
+            {/* this hidden checkbox controls the state */}
+            <input
+              className="focus:outline-none"
+              type="checkbox"
+              onChange={handleToggle}
+              checked={isInViewBooksMode}
+              aria-label="Change View Mode"
+            />
 
-          {/* LIST icon */}
-          <ListBulletIcon className="w-6 h-6 swap-on" />
+            {/* LIST icon */}
+            <ListBulletIcon className="w-6 h-6 swap-on" />
 
-          {/* BOOK icon */}
-          <BookOpenIcon className="w-6 h-6 swap-off" />
-        </label>
-      </div>
+            {/* BOOK icon */}
+            <BookOpenIcon className="w-6 h-6 swap-off" />
+          </label>
+        </div>
+      )}
 
       {/* this back button is only on the chapters page - takes you back to the book list */}
       {isInViewChaptersMode && (

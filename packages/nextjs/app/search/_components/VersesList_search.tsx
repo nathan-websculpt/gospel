@@ -46,7 +46,7 @@ export const VersesList_Search = () => {
 
   //so that changing books will trigger a query
   useEffect(() => {
-    if (!isFirstRun) preQuery("");
+    if (!isFirstRun) preQuery();
   }, [selectedBook]);
 
   useEffect(() => {
@@ -151,13 +151,13 @@ export const VersesList_Search = () => {
             />
           )}
 
-          <button
+          {/* <button
             className="px-2 ml-2 rounded-none md:px-10 btn btn-primary"
             onClick={() => clearBooks()}
             aria-labelledby="Clear Books Button"
           >
             <XCircleIcon className="w-8 h-8" />
-          </button>
+          </button> */}
         </div>
       </div>
 
@@ -197,7 +197,11 @@ export const VersesList_Search = () => {
             {selectedBook === "" ? (
               <>{data_allbooks?.verses?.length > 0 && <VersesDisplay_ListView verses={data_allbooks.verses} />}</>
             ) : (
-              <>{data_onebook?.verses?.length > 0 && <VersesDisplay_ListView verses={data_onebook.verses} />}</>
+              <>
+                {data_onebook?.verses?.length > 0 && (
+                  <VersesDisplay_ListView selectedBook={selectedBook} verses={data_onebook.verses} />
+                )}
+              </>
             )}
           </>
         )}

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { LockBook } from "./LockBook";
 import { SaveVerses } from "./SaveVerses";
 import { BookContractDDL } from "~~/components/helpers/BookContractDDL";
+import { LoadingSpinner } from "~~/components/helpers/LoadingSpinner";
 import deployedContracts from "~~/contracts/deployedContracts";
 import { isValidNumber } from "~~/helpers/utils";
 import { useScaffoldReadContract } from "~~/hooks/scaffold-eth";
@@ -15,7 +16,8 @@ import { notification } from "~~/utils/scaffold-eth";
 
 export const AddVerses = () => {
   const { targetNetwork } = useTargetNetwork();
-  const [versesArray, setVersesArray] = useState<object[]>(getGospelOfJohn());
+  const [versesArray, setVersesArray] = useState<object[]>([]);
+  const [isInitialized, setIsInitialized] = useState(false);
   const [selectedChapter, setSelectedChapter] = useState("");
   const [selectedVerse, setSelectedVerse] = useState("");
   const [selectedIndex, setSelectedIndex] = useState("");
@@ -36,6 +38,17 @@ export const AddVerses = () => {
     contractName: "BookDeployer",
     functionName: "getDeployments",
   });
+
+  useEffect(() => {
+    if (isListLoading) {
+      setIsInitialized(false);
+    } else if (listOfBookContracts && listOfBookContracts?.length > 0) {
+      setIsInitialized(true);
+    } else {
+      setIsInitialized(false);
+      notification.error("No Book Deployments Found");
+    }
+  }, [isListLoading]);
 
   useEffect(() => {
     if (selectedContractTitle && selectedContractTitle !== "") {
@@ -143,86 +156,104 @@ export const AddVerses = () => {
 
   return (
     <>
-      <div className="flex flex-row justify-around mb-12">
-        <BookContractDDL
-          listOfBookContracts={listOfBookContracts}
-          selectedContract={selectedContract} //just to display on ddl
-          setSelectedContract={setSelectedContract}
-          setSelectedContractTitle={setSelectedContractTitle}
-        />
-        {selectedVersesObject !== undefined && (
-          <>
-            <SaveVerses
-              content={selectedVersesObject.map(x => x.VerseContent)}
-              chapterNum={selectedVersesObject.map(x => BigInt(x.ChapterNumber))}
-              verseNum={selectedVersesObject.map(x => BigInt(x.VerseNumber))}
-              selectedContract={selectedContract}
-              setSelectedContract={setSelectedContract}
-              selectedContractTitle={selectedContractTitle}
-              selectedBookId={selectedBookId}
-              setSelectedBookId={setSelectedBookId}
-              deployedContractData={theSelectedContractData} //at this point it is for the .abi
-            />
-          </>
-        )}
-      </div>
-
-      <p className="text-sm font-bold md:text-md lg:text-lg">how many in batch?</p>
-      <input
-        className="w-full sm:w-3/4 input input-bordered input-accent"
-        value={amountInBatch}
-        onChange={e => handleAmtInBatchChange(e.target.value)}
-        aria-label="Amount"
-      />
-      <p className="text-sm font-bold md:text-md lg:text-lg">choose where to start</p>
-      <div className="flex flex-col gap-2 md:flex-row md:justfy-between">
-        <input
-          placeholder="chapter number"
-          className="w-full sm:w-3/4 input input-bordered input-accent"
-          value={selectedChapter}
-          onChange={e => handleSelectedChapterChange(e.target.value)}
-          aria-label="Chapter"
-        />
-
-        <input
-          placeholder="verse number"
-          className="w-full sm:w-3/4 input input-bordered input-accent"
-          value={selectedVerse}
-          onChange={e => handleSelectedVerseChange(e.target.value)}
-          aria-label="Verse"
-        />
-
-        <button className="btn btn-primary" onClick={() => getVerses()}>
-          GET VERSES
-        </button>
-      </div>
-
-      <div className="flex flex-row justify-around mt-6 mb-6">
-        <button className="btn btn-primary" onClick={() => getNextVerse()}>
-          GET NEXT
-        </button>
-        <LockBook
-          selectedContract={selectedContract}
-          selectedContractTitle={selectedContractTitle}
-          deployedContractData={theSelectedContractData}
-          bookId={selectedBookId}
-        />
-      </div>
-
-      {selectedVersesObject?.length > 0 && (
+      {isListLoading || !isInitialized ? (
         <>
-          <div className="px-6 pt-10 pb-8 mt-6 shadow-xl bg-primary sm:mx-auto sm:max-w-11/12 md:w-full sm:rounded-lg sm:px-10">
-            {selectedVersesObject?.map(verse => (
-              <div key={verse.FullVerseChapter} className="flex flex-row gap-6">
-                <p className="text-lg text-nowrap">{verse?.FullVerseChapter}</p>
-                <p className="text-2xl">{verse?.VerseContent}</p>
-              </div>
-            ))}
+          <div className="flex flex-col w-full mt-12 prose">
+            <h1 className="text-center">Loading...</h1>
+            <h2 className="text-center">May take a second, grabbing deployed books</h2>
+            <LoadingSpinner />
           </div>
         </>
-      )}
+      ) : (
+        <>
+          <div className="flex flex-row justify-around mb-12">
+            <BookContractDDL
+              listOfBookContracts={listOfBookContracts}
+              selectedContract={selectedContract} //just to display on ddl
+              setSelectedContract={setSelectedContract}
+              setSelectedContractTitle={setSelectedContractTitle}
+            />
+            {selectedVersesObject !== undefined && (
+              <>
+                <SaveVerses
+                  content={selectedVersesObject.map(x => x.VerseContent)}
+                  chapterNum={selectedVersesObject.map(x => BigInt(x.ChapterNumber))}
+                  verseNum={selectedVersesObject.map(x => BigInt(x.VerseNumber))}
+                  selectedContract={selectedContract}
+                  setSelectedContract={setSelectedContract}
+                  selectedContractTitle={selectedContractTitle}
+                  selectedBookId={selectedBookId}
+                  setSelectedBookId={setSelectedBookId}
+                  deployedContractData={theSelectedContractData} //at this point it is for the .abi
+                />
+              </>
+            )}
+          </div>
 
-      <hr />
+          <p className="text-sm font-bold md:text-md lg:text-lg">how many in batch?</p>
+          <input
+            className="w-full sm:w-3/4 input input-bordered input-accent"
+            value={amountInBatch}
+            onChange={e => handleAmtInBatchChange(e.target.value)}
+            aria-label="Amount"
+          />
+          <p className="text-sm font-bold md:text-md lg:text-lg">choose where to start</p>
+          <div className="flex flex-col gap-2 md:flex-row md:justfy-between">
+            <input
+              placeholder="chapter number"
+              className="w-full sm:w-3/4 input input-bordered input-accent"
+              value={selectedChapter}
+              onChange={e => handleSelectedChapterChange(e.target.value)}
+              aria-label="Chapter"
+            />
+
+            <input
+              placeholder="verse number"
+              className="w-full sm:w-3/4 input input-bordered input-accent"
+              value={selectedVerse}
+              onChange={e => handleSelectedVerseChange(e.target.value)}
+              aria-label="Verse"
+            />
+
+            <button className="btn btn-primary" onClick={() => getVerses()}>
+              GET VERSES
+            </button>
+          </div>
+
+          <div className="flex flex-row justify-around mt-6 mb-6">
+            <button className="btn btn-primary" onClick={() => getNextVerse()}>
+              GET NEXT
+            </button>
+            <LockBook
+              selectedContract={selectedContract}
+              selectedContractTitle={selectedContractTitle}
+              deployedContractData={theSelectedContractData}
+              bookId={selectedBookId}
+            />
+          </div>
+
+          {selectedVersesObject?.length > 0 ? (
+            <>
+              <div className="px-6 pt-10 pb-8 mt-6 shadow-xl bg-primary sm:mx-auto sm:max-w-11/12 md:w-full sm:rounded-lg sm:px-10">
+                {selectedVersesObject?.map(verse => (
+                  <div key={verse.FullVerseChapter} className="flex flex-row gap-6">
+                    <p className="text-lg text-nowrap">{verse?.FullVerseChapter}</p>
+                    <p className="text-2xl">{verse?.VerseContent}</p>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="flex flex-col w-full prose-2xl">
+                <p className="text-center">Select a deployed book to get started</p>
+              </div>
+            </>
+          )}
+
+          <hr />
+        </>
+      )}
     </>
   );
 };

@@ -194,6 +194,59 @@ export class BookManager extends ethereum.SmartContract {
     return new BookManager("BookManager", address);
   }
 
+  BIBLE_VERSION(): string {
+    let result = super.call("BIBLE_VERSION", "BIBLE_VERSION():(string)", []);
+
+    return result[0].toString();
+  }
+
+  try_BIBLE_VERSION(): ethereum.CallResult<string> {
+    let result = super.tryCall("BIBLE_VERSION", "BIBLE_VERSION():(string)", []);
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toString());
+  }
+
+  BIBLE_VERSION_LONG(): string {
+    let result = super.call(
+      "BIBLE_VERSION_LONG",
+      "BIBLE_VERSION_LONG():(string)",
+      []
+    );
+
+    return result[0].toString();
+  }
+
+  try_BIBLE_VERSION_LONG(): ethereum.CallResult<string> {
+    let result = super.tryCall(
+      "BIBLE_VERSION_LONG",
+      "BIBLE_VERSION_LONG():(string)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toString());
+  }
+
+  CODE_VERSION(): string {
+    let result = super.call("CODE_VERSION", "CODE_VERSION():(string)", []);
+
+    return result[0].toString();
+  }
+
+  try_CODE_VERSION(): ethereum.CallResult<string> {
+    let result = super.tryCall("CODE_VERSION", "CODE_VERSION():(string)", []);
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toString());
+  }
+
   bookIndex(): BigInt {
     let result = super.call("bookIndex", "bookIndex():(uint256)", []);
 
@@ -254,6 +307,29 @@ export class BookManager extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
+  deployerAddress(): Address {
+    let result = super.call(
+      "deployerAddress",
+      "deployerAddress():(address)",
+      []
+    );
+
+    return result[0].toAddress();
+  }
+
+  try_deployerAddress(): ethereum.CallResult<Address> {
+    let result = super.tryCall(
+      "deployerAddress",
+      "deployerAddress():(address)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
   getLastVerseAdded(): BookManager__getLastVerseAddedResultValue0Struct {
