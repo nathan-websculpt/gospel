@@ -184,6 +184,14 @@ contract BookManager is Ownable {
 		emit Finalization(msg.sender, _bookId);
 	}
 
+	function getLastVerseAdded() external view returns (VerseStr memory) {
+		return verses[numberOfVerses];
+	}
+
+	function getVerseByNumber(uint256 _numericalId) external view returns(VerseStr memory) {
+		return verses[_numericalId];
+	}
+
 	function _storeVerse(
 		bytes memory _bookId,
 		uint256 _verseNumber,
