@@ -32,6 +32,8 @@ export const LockBook = ({ selectedContract, selectedContractTitle, deployedCont
     } catch (e: any) {
       console.error("error from LockBook.tsx writeAsync()", e);
     }
+
+    setEnableButton(false);
   };
 
   return (

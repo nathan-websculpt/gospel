@@ -27,10 +27,10 @@ export const menuLinks: HeaderMenuLink[] = [
     label: "Search",
     href: "/search",
   },
-  {
-    label: "Confirm",
-    href: "/confirm",
-  },
+  // {
+  //   label: "Confirm",
+  //   href: "/confirm",
+  // },
   {
     label: "Donate",
     href: "/donate",
@@ -39,10 +39,10 @@ export const menuLinks: HeaderMenuLink[] = [
     label: "About",
     href: "/about",
   },
-  {
-    label: "FOR DEVS",
-    href: "/developers",
-  },
+  // {
+  //   label: "FOR DEVS",
+  //   href: "/developers",
+  // },
   {
     label: "DEBUG",
     href: "/debug",

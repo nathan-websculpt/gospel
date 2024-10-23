@@ -109,6 +109,59 @@ export class BookDeployer extends ethereum.SmartContract {
     return new BookDeployer("BookDeployer", address);
   }
 
+  BIBLE_VERSION(): string {
+    let result = super.call("BIBLE_VERSION", "BIBLE_VERSION():(string)", []);
+
+    return result[0].toString();
+  }
+
+  try_BIBLE_VERSION(): ethereum.CallResult<string> {
+    let result = super.tryCall("BIBLE_VERSION", "BIBLE_VERSION():(string)", []);
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toString());
+  }
+
+  BIBLE_VERSION_LONG(): string {
+    let result = super.call(
+      "BIBLE_VERSION_LONG",
+      "BIBLE_VERSION_LONG():(string)",
+      []
+    );
+
+    return result[0].toString();
+  }
+
+  try_BIBLE_VERSION_LONG(): ethereum.CallResult<string> {
+    let result = super.tryCall(
+      "BIBLE_VERSION_LONG",
+      "BIBLE_VERSION_LONG():(string)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toString());
+  }
+
+  CODE_VERSION(): string {
+    let result = super.call("CODE_VERSION", "CODE_VERSION():(string)", []);
+
+    return result[0].toString();
+  }
+
+  try_CODE_VERSION(): ethereum.CallResult<string> {
+    let result = super.tryCall("CODE_VERSION", "CODE_VERSION():(string)", []);
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toString());
+  }
+
   deployments(param0: BigInt): BookDeployer__deploymentsResult {
     let result = super.call(
       "deployments",
