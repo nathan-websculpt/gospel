@@ -114,6 +114,42 @@ export class Verse__Params {
   }
 }
 
+export class BookManager__getLastVerseAddedResultValue0Struct extends ethereum.Tuple {
+  get verseId(): BigInt {
+    return this[0].toBigInt();
+  }
+
+  get verseNumber(): BigInt {
+    return this[1].toBigInt();
+  }
+
+  get chapterNumber(): BigInt {
+    return this[2].toBigInt();
+  }
+
+  get verseContent(): string {
+    return this[3].toString();
+  }
+}
+
+export class BookManager__getVerseByNumberResultValue0Struct extends ethereum.Tuple {
+  get verseId(): BigInt {
+    return this[0].toBigInt();
+  }
+
+  get verseNumber(): BigInt {
+    return this[1].toBigInt();
+  }
+
+  get chapterNumber(): BigInt {
+    return this[2].toBigInt();
+  }
+
+  get verseContent(): string {
+    return this[3].toString();
+  }
+}
+
 export class BookManager__versesResult {
   value0: BigInt;
   value1: BigInt;
@@ -218,6 +254,70 @@ export class BookManager extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
+  getLastVerseAdded(): BookManager__getLastVerseAddedResultValue0Struct {
+    let result = super.call(
+      "getLastVerseAdded",
+      "getLastVerseAdded():((uint256,uint256,uint256,string))",
+      []
+    );
+
+    return changetype<BookManager__getLastVerseAddedResultValue0Struct>(
+      result[0].toTuple()
+    );
+  }
+
+  try_getLastVerseAdded(): ethereum.CallResult<
+    BookManager__getLastVerseAddedResultValue0Struct
+  > {
+    let result = super.tryCall(
+      "getLastVerseAdded",
+      "getLastVerseAdded():((uint256,uint256,uint256,string))",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(
+      changetype<BookManager__getLastVerseAddedResultValue0Struct>(
+        value[0].toTuple()
+      )
+    );
+  }
+
+  getVerseByNumber(
+    _numericalId: BigInt
+  ): BookManager__getVerseByNumberResultValue0Struct {
+    let result = super.call(
+      "getVerseByNumber",
+      "getVerseByNumber(uint256):((uint256,uint256,uint256,string))",
+      [ethereum.Value.fromUnsignedBigInt(_numericalId)]
+    );
+
+    return changetype<BookManager__getVerseByNumberResultValue0Struct>(
+      result[0].toTuple()
+    );
+  }
+
+  try_getVerseByNumber(
+    _numericalId: BigInt
+  ): ethereum.CallResult<BookManager__getVerseByNumberResultValue0Struct> {
+    let result = super.tryCall(
+      "getVerseByNumber",
+      "getVerseByNumber(uint256):((uint256,uint256,uint256,string))",
+      [ethereum.Value.fromUnsignedBigInt(_numericalId)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(
+      changetype<BookManager__getVerseByNumberResultValue0Struct>(
+        value[0].toTuple()
+      )
+    );
   }
 
   hasBeenFinalized(): boolean {

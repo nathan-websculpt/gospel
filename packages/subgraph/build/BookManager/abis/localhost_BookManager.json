@@ -231,6 +231,82 @@
   },
   {
     "inputs": [],
+    "name": "getLastVerseAdded",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "verseId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "verseNumber",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "chapterNumber",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "verseContent",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct BookManager.VerseStr",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_numericalId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getVerseByNumber",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "verseId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "verseNumber",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "chapterNumber",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "verseContent",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct BookManager.VerseStr",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "hasBeenFinalized",
     "outputs": [
       {

@@ -1,10 +1,10 @@
 {
   "localhost": {
     "BookDeployer": {
-      "address": "0xFD471836031dc5108809D173A067e8486B9047A3"
+      "address": "0x1fA02b2d6A771842690194Cf62D91bdd92BfE28d"
     },
     "BookManager": {
-      "address": "0xcbEAF3BDe82155F56486Fb5a1072cb8baAf547cc"
+      "address": "0xdbC43Ba45381e02825b14322cDdd15eC4B3164E6"
     }
   },
   "optimismSepolia": {

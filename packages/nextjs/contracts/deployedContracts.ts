@@ -603,7 +603,7 @@ const deployedContracts = {
   },
   31337: {
     BookDeployer: {
-      address: "0xFD471836031dc5108809D173A067e8486B9047A3",
+      address: "0x1fA02b2d6A771842690194Cf62D91bdd92BfE28d",
       abi: [
         {
           inputs: [
@@ -778,7 +778,7 @@ const deployedContracts = {
       },
     },
     BookManager: {
-      address: "0xcbEAF3BDe82155F56486Fb5a1072cb8baAf547cc",
+      address: "0xdbC43Ba45381e02825b14322cDdd15eC4B3164E6",
       abi: [
         {
           inputs: [
@@ -1008,6 +1008,82 @@ const deployedContracts = {
           name: "finalizeBook",
           outputs: [],
           stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getLastVerseAdded",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "uint256",
+                  name: "verseId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "verseNumber",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "chapterNumber",
+                  type: "uint256",
+                },
+                {
+                  internalType: "string",
+                  name: "verseContent",
+                  type: "string",
+                },
+              ],
+              internalType: "struct BookManager.VerseStr",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_numericalId",
+              type: "uint256",
+            },
+          ],
+          name: "getVerseByNumber",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "uint256",
+                  name: "verseId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "verseNumber",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "chapterNumber",
+                  type: "uint256",
+                },
+                {
+                  internalType: "string",
+                  name: "verseContent",
+                  type: "string",
+                },
+              ],
+              internalType: "struct BookManager.VerseStr",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
           type: "function",
         },
         {
