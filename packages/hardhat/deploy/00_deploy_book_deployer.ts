@@ -21,8 +21,8 @@ const deployBookDeployer: DeployFunction = async function (hre: HardhatRuntimeEn
   */
   const { deployer } = await hre.getNamedAccounts();
   const { deploy } = hre.deployments;
-  //const owner = "0x1e7aAbB9D0C701208E875131d0A1cFcDAba79350"; //PROD WALLET
-  const owner = "0xf0ADAE0823444d70Eb5826F3C26b3704611c759A"; //todo: PRODTODO:: change to fe wallet
+  const owner = "0x1e7aAbB9D0C701208E875131d0A1cFcDAba79350"; //PROD WALLET
+  // const owner = "0xf0ADAE0823444d70Eb5826F3C26b3704611c759A"; //todo: PRODTODO:: change to fe wallet
   
   console.log("\n");
 

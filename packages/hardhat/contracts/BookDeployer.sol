@@ -15,7 +15,7 @@ import "./BookManager.sol";
  * I strongly suspect that I will upload the Gospels + Acts, gather more data from this process, and then begin on another version of these contracts.
  * Since I can not come back to update this later, I will say that as of the time of writing this,
  * I think it is important to protect the Gospels and the history of the early Church BEFORE the American election.
- * This is more important than waiting another 3 months for a "perfect" smart contract to be written (by the one person working on this).
+ * This is more important than waiting another 3 months for a "perfect" smart contract to be written (there is only one person working on this).
  *
  * If you are reading this from a future time: The year is 2024, and my world is in a fallen state.
  * This is not just a project that some developer used for a portfolio ... it is a move against a type of tyranny very few people from my time saw. 
