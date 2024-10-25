@@ -13,7 +13,7 @@ export default function robots(): MetadataRoute.Robots {
       rules: {
         userAgent: "*",
         allow: ["/"],
-        disallow: ["/debug/", "/add/", "/donate-dev/"],
+        disallow: ["/debug/", "/debug-books/", "/add/"],
       },
       sitemap: ["https://www.gospelonchain.com/sitemap.xml"],
     };

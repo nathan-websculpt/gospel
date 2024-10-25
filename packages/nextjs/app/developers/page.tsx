@@ -52,13 +52,13 @@ const Developers: NextPage = () => {
 
             <CardDisplay
               isLocalOnlyFeature={false}
-              localHref={"/donate-dev"}
+              localHref={"/debug-books"}
               prodHref={"https://github.com/nathan-websculpt/gospel"}
               prodBadge={"GitHub"}
-              imgSrc={"/img/mock_img/donate_dev.png"}
-              imgAlt={"donate"}
-              title={"Donate"}
-              more={"Test donating directly to Contract."}
+              imgSrc={"/img/mock_img/debug_contract.png"}
+              imgAlt={"debug book contracts"}
+              title={"Debug Book Contracts"}
+              more={"Debug book contracts one by one."}
             />
 
             <CardDisplay
