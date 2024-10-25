@@ -54,7 +54,7 @@ export const VersesList_Confirm = () => {
       setIsInitialized(true);
     } else {
       setIsInitialized(false);
-      notification.error("No Book Deployments Found");
+      // notification.error("No Book Deployments Found"); //TODO
     }
   }, [isListLoading]);
 
@@ -177,8 +177,8 @@ export const VersesList_Confirm = () => {
           <p className="mt-12 text-center">** Select a book to get started...</p>
         </article>
       </div>
-
-      <div className="flex flex-col w-full mb-12 xl:justify-center xl:mx-auto xl:w-1-5">
+      {/* todo: figure out this css */}
+      <div className="flex items-center justify-center w-3/5 mx-auto mb-12 xl:w-1/5 max-w-4/5">
         <BookContractDDL
           listOfBookContracts={listOfBookContracts}
           selectedContract={selectedContract} //just to display on ddl
