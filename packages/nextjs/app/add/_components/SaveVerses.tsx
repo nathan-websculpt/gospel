@@ -78,7 +78,6 @@ export const SaveVerses = (_v: VerseProps) => {
     }
     try {
       const args = [_v.selectedBookId, _v?.verseNum, _v?.chapterNum, _v?.content];
-      console.log("args", args);
 
       const makeWriteWithParams = () =>
         writeContractAsync({

@@ -45,7 +45,7 @@ export const BookContractDDL = ({
                   )}
                 </span>
               ) : (
-                <span>Select Clone Contract</span>
+                <span>Select Book Contract</span>
               )}
               <ChevronDownIcon className="w-4 h-6 ml-2 sm:ml-0" />
             </summary>
