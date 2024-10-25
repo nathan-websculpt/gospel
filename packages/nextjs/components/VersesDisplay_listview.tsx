@@ -11,7 +11,7 @@ export const VersesDisplay_ListView = (_this: VersesListDisplay) => {
         {_this?.verses?.map(verse => (
           <div key={verse.id.toString()} className="flex flex-row gap-6">
             <p className="text-md xl:text-lg text-nowrap">
-              {_this.selectedBook && _this.selectedBook !== "" && <>{_this.selectedBook} </>}
+              {/* {_this.selectedBook && _this.selectedBook !== "" && <>{_this.selectedBook} </>} */}
               {verse.chapterNumber} : {verse.verseNumber}
             </p>
             <p className="text-xl xl:text-2xl">{verse.verseContent}</p>

@@ -163,13 +163,6 @@ export const VersesList_Confirm = () => {
 
   return (
     <>
-      <BookContractDDL
-        listOfBookContracts={listOfBookContracts}
-        selectedContract={selectedContract} //just to display on ddl
-        setSelectedContract={setSelectedContract}
-        setSelectedContractTitle={setSelectedContractTitle}
-      />
-
       <div className="flex self-center w-full">
         <article className="px-4 mx-auto mt-8 prose mb-14 lg:prose-lg md:px-0">
           <h2 className="text-center">Want to confirm a verse?</h2>
@@ -181,8 +174,19 @@ export const VersesList_Confirm = () => {
               Optimism
             </Link>{" "}
           </h4>
+          <p className="mt-12 text-center">** Select a book to get started...</p>
         </article>
       </div>
+
+      <div className="flex flex-col justify-center mx-auto mb-12 w-1-5">
+        <BookContractDDL
+          listOfBookContracts={listOfBookContracts}
+          selectedContract={selectedContract} //just to display on ddl
+          setSelectedContract={setSelectedContract}
+          setSelectedContractTitle={setSelectedContractTitle}
+        />
+      </div>
+
       <PaginationTop pageNum={pageNum} pageSize={pageSize} setPageNum={setPageNum} setPageSize={setPageSize} />
 
       {queryLoading ? (

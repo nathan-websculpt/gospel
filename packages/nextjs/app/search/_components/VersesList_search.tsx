@@ -142,7 +142,7 @@ export const VersesList_Search = () => {
     <>
       <ArticleOne />
       <div className="flex flex-row justify-center w-full gap-1 px-4 mx-auto mb-12 lg:w-11/12 xl:w-3/4 xl:px-0">
-        <div className="flex flex-row w-11/12 xl:w-3/4">
+        <div className="flex flex-row justify-center w-11/12 xl:w-3/4">
           {!booksCleared && (
             <BookDDL
               selectedContract={selectedBook}
