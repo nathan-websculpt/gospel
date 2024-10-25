@@ -39,18 +39,18 @@ export const menuLinks: HeaderMenuLink[] = [
     label: "About",
     href: "/about",
   },
+  {
+    label: "FOR DEVS",
+    href: "/developers",
+  },
   // {
-  //   label: "FOR DEVS",
-  //   href: "/developers",
+  //   label: "DEBUG",
+  //   href: "/debug",
   // },
-  {
-    label: "DEBUG",
-    href: "/debug",
-  },
-  {
-    label: "DEBUG BOOKS",
-    href: "/debug-clone",
-  },
+  // {
+  //   label: "DEBUG BOOKS",
+  //   href: "/debug-books",
+  // },
 ];
 
 export const HeaderMenuLinks = () => {
