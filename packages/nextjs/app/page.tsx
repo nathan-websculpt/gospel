@@ -8,6 +8,12 @@ import { JsonLD } from "~~/components/helpers/JsonLD";
 const Home: NextPage = () => {
   return (
     <>
+      <div className="flex w-full px-4 mx-auto xl:w-3/5 xl:justify-center bg-slate-900 xl:bg-opacity-75">
+        <p className="prose text-white xl:text-lg">
+          UPDATE: The 4 Gospels + Acts are now available onchain! <br /> &mdash; Oct. 24th, 2024
+        </p>
+      </div>
+
       <div className="flex flex-col w-full">
         <article className="px-4 mx-auto mt-8 mb-12 prose md:px-0 lg:prose-lg xl:prose-xl">
           <h1>onchain Gospel of John</h1>
@@ -33,7 +39,7 @@ const Home: NextPage = () => {
           </p>
           <Link href="/read" passHref className="link">
             <h2 className="flex flex-col pb-6 text-2xl xl:text-5xl">
-              <span className="font-thin">Read [from the blockchain] Now: </span>(KJV) Gospel of John
+              <span className="font-thin">Read [from the blockchain] Now: </span>(KJV) Gospels + Acts
             </h2>
           </Link>{" "}
           <blockquote>
@@ -41,7 +47,7 @@ const Home: NextPage = () => {
             a proof-of-concept.
           </blockquote>
           <p>
-            Can not currently confirm that this properly represents The Gospel of John (KJV) [neither in-part, nor
+            Can not currently confirm that this properly represents The Gospels + Acts (KJV) [neither in-part, nor
             in-full]. But, that is sort of the point of this project.
           </p>
           <p className="lead">This will hopefully serve the purpose of saying, "Look, it is possible."</p>

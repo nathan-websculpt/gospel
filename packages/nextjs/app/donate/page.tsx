@@ -6,6 +6,12 @@ import { JsonLD } from "~~/components/helpers/JsonLD";
 const DonatePage: NextPage = () => {
   return (
     <>
+      <div className="flex w-full px-4 mx-auto xl:w-3/5 xl:justify-center bg-slate-900 xl:bg-opacity-75">
+        <p className="prose text-white xl:text-lg">
+          UPDATE: The 4 Gospels + Acts are now available onchain! <br /> &mdash; Oct. 24th, 2024
+        </p>
+      </div>
+
       <article className="px-4 mx-auto mt-8 mb-12 prose lg:prose-lg md:px-0">
         <h1 className="flex flex-col">
           <span className="font-thin text-md xl:text-xl">Ready for a Bible on the blockchain?</span>Donations would help
