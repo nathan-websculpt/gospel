@@ -46,7 +46,7 @@ export const AddVerses = () => {
       setIsInitialized(true);
     } else {
       setIsInitialized(false);
-      notification.error("No Book Deployments Found");
+      // notification.error("No Book Deployments Found"); //TODO: 
     }
   }, [isListLoading]);
 
