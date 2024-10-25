@@ -178,7 +178,7 @@ export const VersesList_Confirm = () => {
         </article>
       </div>
 
-      <div className="flex flex-col justify-center mx-auto mb-12 w-1-5">
+      <div className="flex flex-col w-full mb-12 xl:justify-center xl:mx-auto xl:w-1-5">
         <BookContractDDL
           listOfBookContracts={listOfBookContracts}
           selectedContract={selectedContract} //just to display on ddl
