@@ -113,8 +113,8 @@ export const Base = () => {
   //metadata
   //I want prod to work this way to spare extra graph queries until funded
   useEffect(() => {
-    if (!currentBookTitle || currentBookTitle === "") return;
-    switch (currentBookTitle) {
+    if (!prelimBookTitle || prelimBookTitle === "") return;
+    switch (prelimBookTitle) {
       case "Matthew":
         setMetaData(getMatthewMetaData());
         break;
