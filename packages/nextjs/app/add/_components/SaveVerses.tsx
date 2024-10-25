@@ -66,7 +66,7 @@ export const SaveVerses = (_v: VerseProps) => {
 
   const writeAsync = async () => {
     if (writeDisabled) {
-      notification.error("Chain/targetNetwork mismatch");
+      notification.error("Wallet could be disconnected or there is a chain/targetNetwork mismatch.");
       return;
     }
     if (!_v.selectedBookId || _v.selectedBookId === "") {

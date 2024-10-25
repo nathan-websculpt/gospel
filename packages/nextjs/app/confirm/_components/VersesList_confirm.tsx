@@ -30,12 +30,15 @@ export const VersesList_Confirm = () => {
   const [selectedContract, setSelectedContract] = useState<string>("");
   const [theSelectedContractData, setTheSelectedCloneContractData] = useState<any>();
   const [selectedBookId, setSelectedBookId] = useState<string>("");
-  const [selectedBook, setSelectedBook] = useState<string>("");
 
   const bookManager = deployedContracts[targetNetwork.id].BookManager;
 
-  //to get the book id later  
-  const { loading:simpleBookListLoading, error:simpleBookListError, data:simpleBookList } = useQuery(GQL_BOOKS_List());
+  //to get the book id later
+  const {
+    loading: simpleBookListLoading,
+    error: simpleBookListError,
+    data: simpleBookList,
+  } = useQuery(GQL_BOOKS_List());
 
   const { data: listOfBookContracts, isLoading: isListLoading } = useScaffoldReadContract({
     contractName: "BookDeployer",
@@ -65,7 +68,6 @@ export const VersesList_Confirm = () => {
   }, [selectedContract]);
 
   useEffect(() => {
-    console.log("useEffect: listOfBookContracts", listOfBookContracts);
     const dataArray = [];
     if (listOfBookContracts) {
       for (const deployment of listOfBookContracts) {
@@ -84,6 +86,9 @@ export const VersesList_Confirm = () => {
     setCloneContractsData(dataArray);
   }, [listOfBookContracts]);
 
+  //TODO: If ddl defaults to no selection, then there is no need to preQuery ... still not sure what code these ddls share, so it's getting dirty
+  //still not sure if this shared ddl should default to anything
+
   useEffect(() => {
     console.log("useEffect: isFirstRun", isFirstRun);
     if (!isFirstRun) preQuery();
@@ -98,14 +103,14 @@ export const VersesList_Confirm = () => {
 
   //when DDL change, use Contract Title to get the book id (which is needed to query verses)
   useEffect(() => {
-    if(!simpleBookList) return;
+    if (!simpleBookList) return;
     const theBook = simpleBookList?.books?.find(b => b.title === selectedContractTitle);
     if (theBook) setSelectedBookId(theBook.id);
   }, [selectedContractTitle]);
 
   useEffect(() => {
     console.log("useEffect: selectedBookId", selectedBookId);
-    if(selectedBookId !== "") preQuery();
+    if (selectedBookId !== "") preQuery();
   }, [selectedBookId]);
 
   const preQuery = async () => {
@@ -139,6 +144,23 @@ export const VersesList_Confirm = () => {
     setQueryLoading(false);
   };
 
+  //TODO: Do this better, this is a hack
+  //I will probably have to do manual polling for these queries since the addresses are dynamic
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCount(prevCount => prevCount + 1);
+      if (data_onebook?.verses?.length > 0) {
+        console.log("Timer ... running preQuery");
+        preQuery();
+      } else {
+        console.log("Timer ... nothing to run.");
+      }
+    }, 10000);
+
+    return () => clearInterval(interval);
+  }, [count, data_onebook]);
+
   return (
     <>
       <BookContractDDL
@@ -170,7 +192,6 @@ export const VersesList_Confirm = () => {
           {data_onebook?.verses?.map(verse => (
             <div key={verse.id.toString()} className="flex flex-row">
               <ConfirmVerse
-                bookId={selectedBookId}
                 content={verse.verseContent}
                 chapterNum={verse.chapterNumber}
                 verseNum={verse.verseNumber}

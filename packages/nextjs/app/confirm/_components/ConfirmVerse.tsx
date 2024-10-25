@@ -1,11 +1,11 @@
-import { useApolloClient } from "@apollo/client";
+import { useEffect } from "react";
+import { Abi } from "abitype";
 import { useAccount, useWriteContract } from "wagmi";
-import { useScaffoldWriteContract, useTransactor } from "~~/hooks/scaffold-eth";
+import { useTransactor } from "~~/hooks/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 import { notification } from "~~/utils/scaffold-eth";
 
 interface DisplayVerseProps {
-  bookId: string;
   verseId: string;
   content: string;
   chapterNum: string;
@@ -17,27 +17,25 @@ interface DisplayVerseProps {
 }
 
 export const ConfirmVerse = (_verse: DisplayVerseProps) => {
-  const client = useApolloClient();
   const { chain } = useAccount();
   const writeTxn = useTransactor();
   const { targetNetwork } = useTargetNetwork();
   const writeDisabled = !chain || chain?.id !== targetNetwork.id;
-  
+
   const { data: result, isPending, writeContractAsync } = useWriteContract();
+
+  useEffect(() => {
+    if (result) {
+      notification.success("Verse confirmed");
+    }
+  }, [result]);
 
   const writeAsync = async () => {
     if (writeDisabled) {
-      notification.error("Chain/targetNetwork mismatch");
+      notification.error("Wallet could be disconnected or there is a chain/targetNetwork mismatch.");
       return;
     }
-    //TODO: book id may not be needed
-    if (!_verse.bookId || _verse.bookId === "") {
-      notification.error("There is no book ID (bytes subgraph id) selected");
-      console.log(
-        "There is no book ID (bytes subgraph id) selected - This is a query that should be automatically occurring",
-      );
-      return;
-    }
+
     try {
       const args = [_verse?.verseId, _verse?.numericalId];
 
@@ -50,7 +48,7 @@ export const ConfirmVerse = (_verse: DisplayVerseProps) => {
         });
       await writeTxn(makeWriteWithParams);
     } catch (e: any) {
-      console.error("error from SaveVerses.tsx writeAsync()", e);
+      console.error("error from ConfirmVerse.tsx writeAsync()", e);
     }
   };
 
