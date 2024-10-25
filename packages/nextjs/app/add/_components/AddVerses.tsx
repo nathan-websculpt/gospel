@@ -99,7 +99,6 @@ export const AddVerses = () => {
       return;
     }
 
-    console.log("halp", listOfBookContracts[0].bookAddress)
     if (listOfBookContracts?.length < 2) setSelectedContract(listOfBookContracts[0].bookAddress); //todo:
 
     setCloneContractsData(dataArray);

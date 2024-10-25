@@ -165,8 +165,14 @@ export const GQL_VERSES_For_Display_with_search_one_book = (searchInput: string)
 //for the CONFIRMATION page
 export const GQL_VERSES_For_Confirmation = () => {
   return gql`
-    query ($limit: Int!, $offset: Int!) {
-      verses(orderBy: verseId, orderDirection: asc, first: $limit, skip: $offset) {
+    query ($limit: Int!, $offset: Int!, $searchByBook: String!) {
+      verses(
+        where: { book_: { id: $searchByBook } }
+        orderBy: verseId
+        orderDirection: asc
+        first: $limit
+        skip: $offset
+      ) {
         id
         verseId
         chapterNumber
@@ -200,7 +206,7 @@ export const GQL_VERSE_Last_Added = () => {
 export const GQL_BOOKS_List = () => {
   return gql`
     query {
-      books {
+      books(orderBy: index, orderDirection: asc) {
         id
         title
       }
