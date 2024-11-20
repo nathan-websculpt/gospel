@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useQuery } from "@apollo/client";
-import { getBooks } from "~~/helpers/getBooks";
 import { GQL_BOOKS_List } from "~~/helpers/getQueries";
 
 interface BookDDLProps {
@@ -10,14 +9,11 @@ interface BookDDLProps {
 }
 
 export const BookDDL = ({ selectedContract, setSelectedContract, setSelectedBookId, setVersesArray }: BookDDLProps) => {
-  // const { loading, error, data } = useQuery(GQL_BOOKS_List());
+  const { loading, error, data } = useQuery(GQL_BOOKS_List());
 
-  // useEffect(() => {
-  //   if (error !== undefined && error !== null) console.log("GQL_BOOKS_List Query Error: ", error);
-  // }, [error]);
-
-  //PRODTODO: replace for the code above ^^^
-  const [data, setBooksList] = useState<any>(getBooks());
+  useEffect(() => {
+    if (error !== undefined && error !== null) console.log("GQL_BOOKS_List Query Error: ", error);
+  }, [error]);
 
   useEffect(() => {
     if (data !== undefined && data !== null) {
