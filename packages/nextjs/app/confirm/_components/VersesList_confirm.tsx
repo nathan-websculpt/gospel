@@ -3,7 +3,6 @@ import Link from "next/link";
 import { ConfirmVerse } from "./ConfirmVerse";
 import { useApolloClient, useQuery } from "@apollo/client";
 import { BookContractDDL } from "~~/components/helpers/BookContractDDL";
-import { BookDDL } from "~~/components/helpers/BookDDL";
 import { LoadingSpinner } from "~~/components/helpers/LoadingSpinner";
 import { PaginationBottom } from "~~/components/helpers/PaginationBottom";
 import { PaginationTop } from "~~/components/helpers/PaginationTop";
