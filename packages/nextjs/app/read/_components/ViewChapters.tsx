@@ -1,6 +1,6 @@
 //Displays all chapters
 //When user clicks on a chapter, displays the verses
-import { Dispatch } from "react";
+import { Dispatch, useEffect } from "react";
 
 interface ViewChaptersProps {
   setIsInViewChaptersMode: Dispatch<boolean>;
@@ -10,7 +10,7 @@ interface ViewChaptersProps {
   setCurrentBookTitle: Dispatch<string>;
   prelimBookId: string;
   prelimBookTitle: string;
-  chapters: [];
+  chapterCount: number;
   setjustdoit: Dispatch<boolean>;
   justdoit: boolean;
 }
@@ -23,7 +23,7 @@ export const ViewChapters = ({
   setCurrentBookTitle,
   prelimBookId,
   prelimBookTitle,
-  chapters,
+  chapterCount,
   setjustdoit,
   justdoit,
 }: ViewChaptersProps) => {
@@ -46,14 +46,9 @@ export const ViewChapters = ({
   return (
     <>
       <div className="grid grid-cols-4 gap-4 mt-12 mb-12 xl:grid-cols-10 xl:mt-24">
-        {chapters?.map((chapter: any) => (
-          <button
-            className="btn btn-primary"
-            key={chapter.ChapterNumber}
-            onClick={handleChangeChapter}
-            data-chapterid={chapter.ChapterNumber}
-          >
-            {chapter.ChapterNumber}
+        {Array.from({ length: chapterCount }).map((_, i) => (
+          <button className="btn btn-primary" key={i + 1} onClick={handleChangeChapter} data-chapterid={i + 1}>
+            {i + 1}
           </button>
         ))}
       </div>

@@ -8,11 +8,6 @@ import { ViewChapters } from "./ViewChapters";
 import { useApolloClient, useQuery } from "@apollo/client";
 import { LoadingSpinner } from "~~/components/helpers/LoadingSpinner";
 import { GQL_BOOK_TITLES, GQL_VERSES_by_chapter } from "~~/helpers/getQueries";
-import { getActsMetaData } from "~~/json_bible/ActsMeta";
-import { getJohnMetaData } from "~~/json_bible/JohnMeta";
-import { getLukeMetaData } from "~~/json_bible/LukeMeta";
-import { getMarkMetaData } from "~~/json_bible/MarkMeta";
-import { getMatthewMetaData } from "~~/json_bible/MatthewMeta";
 
 export const Base = () => {
   const client = useApolloClient();
@@ -33,8 +28,6 @@ export const Base = () => {
   const [currentChapterId, setCurrentChapterId] = useState<number | undefined>(undefined);
 
   const [queryLoading, setQueryLoading] = useState(true);
-
-  const [metaData, setMetaData] = useState<any[]>(getMatthewMetaData());
 
   const [justdoit, setjustdoit] = useState(false); // stupid, but instead of checking if a chapter changed, going to use this as a "get verses" ... its value is irrelevant ... just in a useEffect
 
@@ -57,9 +50,9 @@ export const Base = () => {
 
   // Just to reset the chapter count when a book is selected
   useEffect(() => {
-    const book = booksList?.books.find(b => b.id === currentBookId);
+    const book = booksList?.books.find(b => b.id === prelimBookId);
     if (book) setChapterCount(book.chapterCount);
-  }, [currentBookId]);
+  }, [prelimBookId]);
 
   // todo: was useful for debugging/testing
   useEffect(() => {
@@ -111,33 +104,6 @@ export const Base = () => {
     setQueryLoading(false);
   };
 
-  //metadata
-  //I want prod to work this way to spare extra graph queries until funded
-  useEffect(() => {
-    if (!prelimBookTitle || prelimBookTitle === "") return;
-    switch (prelimBookTitle) {
-      case "Matthew":
-        setMetaData(getMatthewMetaData());
-        break;
-      case "Mark":
-        setMetaData(getMarkMetaData());
-        break;
-      case "Luke":
-        setMetaData(getLukeMetaData());
-        break;
-      case "John":
-        setMetaData(getJohnMetaData());
-        break;
-      case "Acts":
-        setMetaData(getActsMetaData());
-        break;
-      default:
-        console.log("...defaulting to Matthew's Meta Data.......");
-        setMetaData(getMatthewMetaData());
-        break;
-    }
-  }, [prelimBookTitle]);
-
   return (
     <>
       <div className="flex flex-row justify-between w-full mt-2 md:w-4/5 xl:w-3/5 md:mt-6">
@@ -162,7 +128,7 @@ export const Base = () => {
               setCurrentChapterId={setCurrentChapterId}
               prelimBookId={prelimBookId}
               prelimBookTitle={prelimBookTitle}
-              chapters={metaData}
+              chapterCount={chapterCount}
               justdoit={justdoit}
               setjustdoit={setjustdoit}
             />
