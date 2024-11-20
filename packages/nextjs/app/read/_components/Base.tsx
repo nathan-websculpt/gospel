@@ -13,6 +13,7 @@ import { getJohnMetaData } from "~~/json_bible/JohnMeta";
 import { getLukeMetaData } from "~~/json_bible/LukeMeta";
 import { getMarkMetaData } from "~~/json_bible/MarkMeta";
 import { getMatthewMetaData } from "~~/json_bible/MatthewMeta";
+import { getBooks } from "~~/helpers/getBooks";
 
 export const Base = () => {
   const client = useApolloClient();
@@ -38,10 +39,15 @@ export const Base = () => {
 
   const [justdoit, setjustdoit] = useState(false); // stupid, but instead of checking if a chapter changed, going to use this as a "get verses" ... its value is irrelevant ... just in a useEffect
 
-  const { loading: booksListLoading, error, data: booksList } = useQuery(GQL_BOOK_TITLES(), {});
-  useEffect(() => {
-    if (error !== undefined && error !== null) console.log("GQL_BOOK_TITLES Query Error: ", error);
-  }, [error]);
+  //PRODTODO: bring back in when done uploading books
+  // const { loading: booksListLoading, error, data: booksList } = useQuery(GQL_BOOK_TITLES(), {});
+  // useEffect(() => {
+  //   if (error !== undefined && error !== null) console.log("GQL_BOOK_TITLES Query Error: ", error);
+  // }, [error]);
+
+  //PRODTODO: replace for the code above ^^^
+  const [booksList, setBooksList] =useState<any>(getBooks());
+
   useEffect(() => {
     if (booksList !== undefined && booksList !== null) {
       console.log("GQL_BOOK_TITLES Query DATA: ", booksList);

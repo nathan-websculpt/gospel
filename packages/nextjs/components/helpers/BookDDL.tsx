@@ -1,5 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
+import { getBooks } from "~~/helpers/getBooks";
 import { GQL_BOOKS_List } from "~~/helpers/getQueries";
 
 interface BookDDLProps {
@@ -9,11 +10,14 @@ interface BookDDLProps {
 }
 
 export const BookDDL = ({ selectedContract, setSelectedContract, setSelectedBookId, setVersesArray }: BookDDLProps) => {
-  const { loading, error, data } = useQuery(GQL_BOOKS_List());
+  // const { loading, error, data } = useQuery(GQL_BOOKS_List());
 
-  useEffect(() => {
-    if (error !== undefined && error !== null) console.log("GQL_BOOKS_List Query Error: ", error);
-  }, [error]);
+  // useEffect(() => {
+  //   if (error !== undefined && error !== null) console.log("GQL_BOOKS_List Query Error: ", error);
+  // }, [error]);
+
+  //PRODTODO: replace for the code above ^^^
+  const [data, setBooksList] = useState<any>(getBooks());
 
   useEffect(() => {
     if (data !== undefined && data !== null) {
@@ -30,20 +34,20 @@ export const BookDDL = ({ selectedContract, setSelectedContract, setSelectedBook
 
   return (
     <>
-      {!loading && (
-        <select
-          className="w-32 px-2 py-2 mr-1 text-xs rounded-none sm:px-6 sm:py-2 sm:mr-2 sm:text-sm md:text-md lg:text-lg sm:w-44 btn btn-primary"
-          value={selectedContract}
-          onChange={changeContract}
-          aria-label="Change Book"
-        >
-          {data?.books.map(b => (
-            <option key={b.id} data-bookid={b.id} value={b.title}>
-              {b.title}
-            </option>
-          ))}
-        </select>
-      )}
+      {/* {!loading && ( */}
+      <select
+        className="w-32 px-2 py-2 mr-1 text-xs rounded-none sm:px-6 sm:py-2 sm:mr-2 sm:text-sm md:text-md lg:text-lg sm:w-44 btn btn-primary"
+        value={selectedContract}
+        onChange={changeContract}
+        aria-label="Change Book"
+      >
+        {data?.books.map(b => (
+          <option key={b.id} data-bookid={b.id} value={b.title}>
+            {b.title}
+          </option>
+        ))}
+      </select>
+      {/* )} */}
     </>
   );
 };
