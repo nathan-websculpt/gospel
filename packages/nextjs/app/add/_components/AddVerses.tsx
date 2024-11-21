@@ -38,6 +38,11 @@ import { getSongOfSolomon } from "~~/json_bible/SongofSolomon";
 import { getIsaiah } from "~~/json_bible/Isaiah";
 import { getJeremiah } from "~~/json_bible/Jeremiah";
 import { getLamentations } from "~~/json_bible/Lamentations";
+import { getEzekiel } from "~~/json_bible/Ezekiel";
+import { getDaniel } from "~~/json_bible/Daniel";
+import { getHosea } from "~~/json_bible/Hosea";
+import { getJoel } from "~~/json_bible/Joel";
+import { getAmos } from "~~/json_bible/Amos";
 
 export const AddVerses = () => {
   const { targetNetwork } = useTargetNetwork();
@@ -80,20 +85,20 @@ export const AddVerses = () => {
       console.log("selectedContractTitle", selectedContractTitle);
       // switch case for selectedContractTitle
       switch (selectedContractTitle.trim()) {
-        case "Ecclesiastes":
-          setVersesArray(getEcclesiastes());
+        case "Ezekiel":
+          setVersesArray(getEzekiel());
           break;
-        case "Song of Solomon":
-          setVersesArray(getSongOfSolomon());
+        case "Daniel":
+          setVersesArray(getDaniel());
           break;
-        case "Isaiah":
-          setVersesArray(getIsaiah());
+        case "Hosea":
+          setVersesArray(getHosea());
           break;
-        case "Jeremiah":
-          setVersesArray(getJeremiah());
+        case "Joel":
+          setVersesArray(getJoel());
           break;
-        case "Lamentations":
-          setVersesArray(getLamentations());
+        case "Amos":
+          setVersesArray(getAmos());
           break;
         default:
           console.log("wat do?", selectedContractTitle);
