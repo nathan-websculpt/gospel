@@ -13,6 +13,11 @@ import { getGospelOfLuke } from "~~/json_bible/Luke";
 import { getGospelOfMark } from "~~/json_bible/Mark";
 import { getGospelOfMatthew } from "~~/json_bible/Matthew";
 import { notification } from "~~/utils/scaffold-eth";
+import { getGenesis } from "~~/json_bible/Genesis";
+import { getExodus } from "~~/json_bible/Exodus";
+import { getLeviticus } from "~~/json_bible/Leviticus";
+import { getNumbers } from "~~/json_bible/Numbers";
+import { getDeuteronomy } from "~~/json_bible/Deuteronomy";
 
 export const AddVerses = () => {
   const { targetNetwork } = useTargetNetwork();
@@ -55,23 +60,24 @@ export const AddVerses = () => {
       console.log("selectedContractTitle", selectedContractTitle);
       // switch case for selectedContractTitle
       switch (selectedContractTitle.trim().toLowerCase()) {
-        case "matthew":
-          setVersesArray(getGospelOfMatthew());
+        case "genesis":
+          setVersesArray(getGenesis());
           break;
-        case "mark":
-          setVersesArray(getGospelOfMark());
+        case "exodus":
+          setVersesArray(getExodus());
           break;
-        case "luke":
-          setVersesArray(getGospelOfLuke());
+        case "leviticus":
+          setVersesArray(getLeviticus());
           break;
-        case "john":
-          setVersesArray(getGospelOfJohn());
+        case "numbers":
+          setVersesArray(getNumbers());
           break;
-        case "acts":
-          setVersesArray(getActs());
+        case "deuteronomy":
+          setVersesArray(getDeuteronomy());
           break;
         default:
           console.log("wat do?", selectedContractTitle);
+          notification.error("Book not found, check switch case on AddVerses.tsx ~line: 58");
           break;
       }
     }
