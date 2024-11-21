@@ -43,6 +43,11 @@ import { getDaniel } from "~~/json_bible/Daniel";
 import { getHosea } from "~~/json_bible/Hosea";
 import { getJoel } from "~~/json_bible/Joel";
 import { getAmos } from "~~/json_bible/Amos";
+import { getObadiah } from "~~/json_bible/Obadiah";
+import { getJonah } from "~~/json_bible/Jonah";
+import { getMicah } from "~~/json_bible/Micah";
+import { getNahum } from "~~/json_bible/Nahum";
+import { getHabakkuk } from "~~/json_bible/Habakkuk";
 
 export const AddVerses = () => {
   const { targetNetwork } = useTargetNetwork();
@@ -85,20 +90,20 @@ export const AddVerses = () => {
       console.log("selectedContractTitle", selectedContractTitle);
       // switch case for selectedContractTitle
       switch (selectedContractTitle.trim()) {
-        case "Ezekiel":
-          setVersesArray(getEzekiel());
+        case "Obadiah":
+          setVersesArray(getObadiah());
           break;
-        case "Daniel":
-          setVersesArray(getDaniel());
+        case "Jonah":
+          setVersesArray(getJonah());
           break;
-        case "Hosea":
-          setVersesArray(getHosea());
+        case "Micah":
+          setVersesArray(getMicah());
           break;
-        case "Joel":
-          setVersesArray(getJoel());
+        case "Nahum":
+          setVersesArray(getNahum());
           break;
-        case "Amos":
-          setVersesArray(getAmos());
+        case "Habakkuk":
+          setVersesArray(getHabakkuk());
           break;
         default:
           console.log("wat do?", selectedContractTitle);
