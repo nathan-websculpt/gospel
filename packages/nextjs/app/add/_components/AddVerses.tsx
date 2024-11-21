@@ -18,6 +18,11 @@ import { getExodus } from "~~/json_bible/Exodus";
 import { getLeviticus } from "~~/json_bible/Leviticus";
 import { getNumbers } from "~~/json_bible/Numbers";
 import { getDeuteronomy } from "~~/json_bible/Deuteronomy";
+import { getJoshua } from "~~/json_bible/Joshua";
+import { getJudges } from "~~/json_bible/Judges";
+import { getRuth } from "~~/json_bible/Ruth";
+import { getFirstSamuel } from "~~/json_bible/FirstSamuel";
+import { getSecondSamuel } from "~~/json_bible/SecondSamuel";
 
 export const AddVerses = () => {
   const { targetNetwork } = useTargetNetwork();
@@ -60,20 +65,20 @@ export const AddVerses = () => {
       console.log("selectedContractTitle", selectedContractTitle);
       // switch case for selectedContractTitle
       switch (selectedContractTitle.trim().toLowerCase()) {
-        case "genesis":
-          setVersesArray(getGenesis());
+        case "joshua":
+          setVersesArray(getJoshua());
           break;
-        case "exodus":
-          setVersesArray(getExodus());
+        case "judges":
+          setVersesArray(getJudges());
           break;
-        case "leviticus":
-          setVersesArray(getLeviticus());
+        case "ruth":
+          setVersesArray(getRuth());
           break;
-        case "numbers":
-          setVersesArray(getNumbers());
+        case "1st samuel":
+          setVersesArray(getFirstSamuel());
           break;
-        case "deuteronomy":
-          setVersesArray(getDeuteronomy());
+        case "2nd samuel":
+          setVersesArray(getSecondSamuel());
           break;
         default:
           console.log("wat do?", selectedContractTitle);
