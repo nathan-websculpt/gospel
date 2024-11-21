@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { LockBook } from "./LockBook";
 import { SaveVerses } from "./SaveVerses";
+import { get } from "http";
 import { BookContractDDL } from "~~/components/helpers/BookContractDDL";
 import { LoadingSpinner } from "~~/components/helpers/LoadingSpinner";
 import deployedContracts from "~~/contracts/deployedContracts";
@@ -8,51 +9,56 @@ import { isValidNumber } from "~~/helpers/utils";
 import { useScaffoldReadContract } from "~~/hooks/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 import { getActs } from "~~/json_bible/Acts";
-import { getGospelOfJohn } from "~~/json_bible/John";
-import { getGospelOfLuke } from "~~/json_bible/Luke";
-import { getGospelOfMark } from "~~/json_bible/Mark";
-import { getGospelOfMatthew } from "~~/json_bible/Matthew";
-import { notification } from "~~/utils/scaffold-eth";
-import { getGenesis } from "~~/json_bible/Genesis";
-import { getExodus } from "~~/json_bible/Exodus";
-import { getLeviticus } from "~~/json_bible/Leviticus";
-import { getNumbers } from "~~/json_bible/Numbers";
+import { getAmos } from "~~/json_bible/Amos";
+import { getDaniel } from "~~/json_bible/Daniel";
 import { getDeuteronomy } from "~~/json_bible/Deuteronomy";
-import { getJoshua } from "~~/json_bible/Joshua";
-import { getJudges } from "~~/json_bible/Judges";
-import { getRuth } from "~~/json_bible/Ruth";
-import { getFirstSamuel } from "~~/json_bible/FirstSamuel";
-import { getSecondSamuel } from "~~/json_bible/SecondSamuel";
-import { getFirstKings } from "~~/json_bible/FirstKings";
-import { getSecondKings } from "~~/json_bible/SecondKings";
-import { getFirstChronicles } from "~~/json_bible/FirstChronicles";
-import { getSecondChronicles } from "~~/json_bible/SecondChronicles";
-import { getEzra } from "~~/json_bible/Ezra";
-import { getNehemiah } from "~~/json_bible/Nehemiah";
-import { getEsther } from "~~/json_bible/Esther";
-import { getJob } from "~~/json_bible/Job";
-import { getPsalms } from "~~/json_bible/Psalms";
-import { getProverbs } from "~~/json_bible/Proverbs";
 import { getEcclesiastes } from "~~/json_bible/Ecclesiastes";
-import { getSongOfSolomon } from "~~/json_bible/SongofSolomon";
+import { getEsther } from "~~/json_bible/Esther";
+import { getExodus } from "~~/json_bible/Exodus";
+import { getEzekiel } from "~~/json_bible/Ezekiel";
+import { getEzra } from "~~/json_bible/Ezra";
+import { getFirstChronicles } from "~~/json_bible/FirstChronicles";
+import { getFirstKings } from "~~/json_bible/FirstKings";
+import { getFirstSamuel } from "~~/json_bible/FirstSamuel";
+import { getGenesis } from "~~/json_bible/Genesis";
+import { getHabakkuk } from "~~/json_bible/Habakkuk";
+import { getHaggai } from "~~/json_bible/Haggai";
+import { getHosea } from "~~/json_bible/Hosea";
 import { getIsaiah } from "~~/json_bible/Isaiah";
 import { getJeremiah } from "~~/json_bible/Jeremiah";
-import { getLamentations } from "~~/json_bible/Lamentations";
-import { getEzekiel } from "~~/json_bible/Ezekiel";
-import { getDaniel } from "~~/json_bible/Daniel";
-import { getHosea } from "~~/json_bible/Hosea";
+import { getJob } from "~~/json_bible/Job";
 import { getJoel } from "~~/json_bible/Joel";
-import { getAmos } from "~~/json_bible/Amos";
-import { getObadiah } from "~~/json_bible/Obadiah";
+import { getGospelOfJohn } from "~~/json_bible/John";
 import { getJonah } from "~~/json_bible/Jonah";
+import { getJoshua } from "~~/json_bible/Joshua";
+import { getJudges } from "~~/json_bible/Judges";
+import { getLamentations } from "~~/json_bible/Lamentations";
+import { getLeviticus } from "~~/json_bible/Leviticus";
+import { getGospelOfLuke } from "~~/json_bible/Luke";
+import { getMalachi } from "~~/json_bible/Malachi";
+import { getGospelOfMark } from "~~/json_bible/Mark";
+import { getGospelOfMatthew } from "~~/json_bible/Matthew";
 import { getMicah } from "~~/json_bible/Micah";
 import { getNahum } from "~~/json_bible/Nahum";
-import { getHabakkuk } from "~~/json_bible/Habakkuk";
-import { getZephaniah } from "~~/json_bible/Zephaniah";
-import { getHaggai } from "~~/json_bible/Haggai";
+import { getNehemiah } from "~~/json_bible/Nehemiah";
+import { getNumbers } from "~~/json_bible/Numbers";
+import { getObadiah } from "~~/json_bible/Obadiah";
+import { getProverbs } from "~~/json_bible/Proverbs";
+import { getPsalms } from "~~/json_bible/Psalms";
+import { getRuth } from "~~/json_bible/Ruth";
+import { getSecondChronicles } from "~~/json_bible/SecondChronicles";
+import { getSecondKings } from "~~/json_bible/SecondKings";
+import { getSecondSamuel } from "~~/json_bible/SecondSamuel";
+import { getSongOfSolomon } from "~~/json_bible/SongofSolomon";
 import { getZechariah } from "~~/json_bible/Zechariah";
-import { get } from "http";
-import { getMalachi } from "~~/json_bible/Malachi";
+import { getZephaniah } from "~~/json_bible/Zephaniah";
+import { notification } from "~~/utils/scaffold-eth";
+import { getRomans } from "~~/json_bible/Romans";
+import { getFirstCorinthians } from "~~/json_bible/FirstCorinthians";
+import { getSecondCorinthians } from "~~/json_bible/SecondCorinthians";
+import { getGalatians } from "~~/json_bible/Galatians";
+import { getEphesians } from "~~/json_bible/Ephesians";
+import { getPhilippians } from "~~/json_bible/Philippians";
 
 export const AddVerses = () => {
   const { targetNetwork } = useTargetNetwork();
@@ -86,7 +92,7 @@ export const AddVerses = () => {
       setIsInitialized(true);
     } else {
       setIsInitialized(false);
-      // notification.error("No Book Deployments Found"); //TODO: 
+      // notification.error("No Book Deployments Found"); //TODO:
     }
   }, [isListLoading]);
 
@@ -95,20 +101,23 @@ export const AddVerses = () => {
       console.log("selectedContractTitle", selectedContractTitle);
       // switch case for selectedContractTitle
       switch (selectedContractTitle.trim()) {
-        case "Zephaniah":
-          setVersesArray(getZephaniah());
+        case "Romans":
+          setVersesArray(getRomans());
           break;
-        case "Haggai":
-          setVersesArray(getHaggai());
+        case "1st Corinthians":
+          setVersesArray(getFirstCorinthians());
           break;
-        case "Zechariah":
-          setVersesArray(getZechariah());
+        case "2nd Corinthians":
+          setVersesArray(getSecondCorinthians());
           break;
-        case "Malachi":
-          setVersesArray(getMalachi());
+        case "Galatians":
+          setVersesArray(getGalatians());
           break;
-        case "Habakkuk":
-          setVersesArray(getHabakkuk());
+        case "Ephesians":
+          setVersesArray(getEphesians());
+          break;
+        case "Philippians":
+          setVersesArray(getPhilippians());
           break;
         default:
           console.log("wat do?", selectedContractTitle);
