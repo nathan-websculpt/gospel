@@ -28,6 +28,11 @@ import { getSecondKings } from "~~/json_bible/SecondKings";
 import { getFirstChronicles } from "~~/json_bible/FirstChronicles";
 import { getSecondChronicles } from "~~/json_bible/SecondChronicles";
 import { getEzra } from "~~/json_bible/Ezra";
+import { getNehemiah } from "~~/json_bible/Nehemiah";
+import { getEsther } from "~~/json_bible/Esther";
+import { getJob } from "~~/json_bible/Job";
+import { getPsalms } from "~~/json_bible/Psalms";
+import { getProverbs } from "~~/json_bible/Proverbs";
 
 export const AddVerses = () => {
   const { targetNetwork } = useTargetNetwork();
@@ -70,20 +75,20 @@ export const AddVerses = () => {
       console.log("selectedContractTitle", selectedContractTitle);
       // switch case for selectedContractTitle
       switch (selectedContractTitle.trim().toLowerCase()) {
-        case "1st kings":
-          setVersesArray(getFirstKings());
+        case "nehemiah":
+          setVersesArray(getNehemiah());
           break;
-        case "2nd kings":
-          setVersesArray(getSecondKings());
+        case "esther":
+          setVersesArray(getEsther());
           break;
-        case "1st chronicles":
-          setVersesArray(getFirstChronicles());
+        case "job":
+          setVersesArray(getJob());
           break;
-        case "2nd chronicles":
-          setVersesArray(getSecondChronicles());
+        case "psalms":
+          setVersesArray(getPsalms());
           break;
-        case "ezra":
-          setVersesArray(getEzra());
+        case "proverbs":
+          setVersesArray(getProverbs());
           break;
         default:
           console.log("wat do?", selectedContractTitle);
