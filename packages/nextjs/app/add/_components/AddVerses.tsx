@@ -48,6 +48,11 @@ import { getJonah } from "~~/json_bible/Jonah";
 import { getMicah } from "~~/json_bible/Micah";
 import { getNahum } from "~~/json_bible/Nahum";
 import { getHabakkuk } from "~~/json_bible/Habakkuk";
+import { getZephaniah } from "~~/json_bible/Zephaniah";
+import { getHaggai } from "~~/json_bible/Haggai";
+import { getZechariah } from "~~/json_bible/Zechariah";
+import { get } from "http";
+import { getMalachi } from "~~/json_bible/Malachi";
 
 export const AddVerses = () => {
   const { targetNetwork } = useTargetNetwork();
@@ -90,17 +95,17 @@ export const AddVerses = () => {
       console.log("selectedContractTitle", selectedContractTitle);
       // switch case for selectedContractTitle
       switch (selectedContractTitle.trim()) {
-        case "Obadiah":
-          setVersesArray(getObadiah());
+        case "Zephaniah":
+          setVersesArray(getZephaniah());
           break;
-        case "Jonah":
-          setVersesArray(getJonah());
+        case "Haggai":
+          setVersesArray(getHaggai());
           break;
-        case "Micah":
-          setVersesArray(getMicah());
+        case "Zechariah":
+          setVersesArray(getZechariah());
           break;
-        case "Nahum":
-          setVersesArray(getNahum());
+        case "Malachi":
+          setVersesArray(getMalachi());
           break;
         case "Habakkuk":
           setVersesArray(getHabakkuk());
