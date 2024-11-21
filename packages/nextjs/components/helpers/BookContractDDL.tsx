@@ -49,29 +49,31 @@ export const BookContractDDL = ({
               )}
               <ChevronDownIcon className="w-4 h-6 ml-2 sm:ml-0" />
             </summary>
-            <ul className="dropdown-content menu z-[100] pr-6 py-2 mt-2 shadow-center shadow-accent bg-base-200 rounded-box gap-1">
-              {listOfBookContracts?.map(b => (
-                <li
-                  key={b.bookAddress}
-                  onClick={() => {
-                    setSelectedContract(b.bookAddress);
-                    setSelectedContractTitle(b.title);
-                    setBookSelected(b.title);
-                    closeDropdown();
-                  }}
-                >
-                  <span>
-                    {b.title}{" "}
-                    <Address
-                      address={b.bookAddress}
-                      disableAddressLink={true}
-                      size="sm"
-                      format="short"
-                      disableCopyButton={true}
-                    />
-                  </span>
-                </li>
-              ))}
+            <ul className="dropdown-content menu z-[100] py-2 mt-2 shadow-center shadow-accent bg-base-200 rounded-box gap-1">
+              <div className="overflow-y-auto max-h-96 overflow-x-clip">
+                {listOfBookContracts?.map(b => (
+                  <li
+                    key={b.bookAddress}
+                    onClick={() => {
+                      setSelectedContract(b.bookAddress);
+                      setSelectedContractTitle(b.title);
+                      setBookSelected(b.title);
+                      closeDropdown();
+                    }}
+                  >
+                    <span>
+                      {b.title}{" "}
+                      <Address
+                        address={b.bookAddress}
+                        disableAddressLink={true}
+                        size="sm"
+                        format="short"
+                        disableCopyButton={true}
+                      />
+                    </span>
+                  </li>
+                ))}
+              </div>
             </ul>
           </details>
         </div>

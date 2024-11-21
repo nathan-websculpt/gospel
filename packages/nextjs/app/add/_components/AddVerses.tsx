@@ -70,19 +70,19 @@ export const AddVerses = () => {
       console.log("selectedContractTitle", selectedContractTitle);
       // switch case for selectedContractTitle
       switch (selectedContractTitle.trim().toLowerCase()) {
-        case "1st Kings":
+        case "1st kings":
           setVersesArray(getFirstKings());
           break;
-        case "2nd Kings":
+        case "2nd kings":
           setVersesArray(getSecondKings());
           break;
-        case "1st Chronicles":
+        case "1st chronicles":
           setVersesArray(getFirstChronicles());
           break;
-        case "2nd Chronicles":
+        case "2nd chronicles":
           setVersesArray(getSecondChronicles());
           break;
-        case "Ezra":
+        case "ezra":
           setVersesArray(getEzra());
           break;
         default:
