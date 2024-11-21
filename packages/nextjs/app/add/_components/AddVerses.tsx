@@ -10,16 +10,22 @@ import { useScaffoldReadContract } from "~~/hooks/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 import { getActs } from "~~/json_bible/Acts";
 import { getAmos } from "~~/json_bible/Amos";
+import { getColossians } from "~~/json_bible/Colossians";
 import { getDaniel } from "~~/json_bible/Daniel";
 import { getDeuteronomy } from "~~/json_bible/Deuteronomy";
 import { getEcclesiastes } from "~~/json_bible/Ecclesiastes";
+import { getEphesians } from "~~/json_bible/Ephesians";
 import { getEsther } from "~~/json_bible/Esther";
 import { getExodus } from "~~/json_bible/Exodus";
 import { getEzekiel } from "~~/json_bible/Ezekiel";
 import { getEzra } from "~~/json_bible/Ezra";
 import { getFirstChronicles } from "~~/json_bible/FirstChronicles";
+import { getFirstCorinthians } from "~~/json_bible/FirstCorinthians";
 import { getFirstKings } from "~~/json_bible/FirstKings";
 import { getFirstSamuel } from "~~/json_bible/FirstSamuel";
+import { getFirstThessalonians } from "~~/json_bible/FirstThessalonians";
+import { getFirstTimothy } from "~~/json_bible/FirstTimothy";
+import { getGalatians } from "~~/json_bible/Galatians";
 import { getGenesis } from "~~/json_bible/Genesis";
 import { getHabakkuk } from "~~/json_bible/Habakkuk";
 import { getHaggai } from "~~/json_bible/Haggai";
@@ -43,22 +49,22 @@ import { getNahum } from "~~/json_bible/Nahum";
 import { getNehemiah } from "~~/json_bible/Nehemiah";
 import { getNumbers } from "~~/json_bible/Numbers";
 import { getObadiah } from "~~/json_bible/Obadiah";
+import { getPhilippians } from "~~/json_bible/Philippians";
 import { getProverbs } from "~~/json_bible/Proverbs";
 import { getPsalms } from "~~/json_bible/Psalms";
+import { getRomans } from "~~/json_bible/Romans";
 import { getRuth } from "~~/json_bible/Ruth";
 import { getSecondChronicles } from "~~/json_bible/SecondChronicles";
+import { getSecondCorinthians } from "~~/json_bible/SecondCorinthians";
 import { getSecondKings } from "~~/json_bible/SecondKings";
 import { getSecondSamuel } from "~~/json_bible/SecondSamuel";
+import { getSecondThessalonians } from "~~/json_bible/SecondThessalonians";
+import { getSecondTimothy } from "~~/json_bible/SecondTimothy";
 import { getSongOfSolomon } from "~~/json_bible/SongofSolomon";
+import { getTitus } from "~~/json_bible/Titus";
 import { getZechariah } from "~~/json_bible/Zechariah";
 import { getZephaniah } from "~~/json_bible/Zephaniah";
 import { notification } from "~~/utils/scaffold-eth";
-import { getRomans } from "~~/json_bible/Romans";
-import { getFirstCorinthians } from "~~/json_bible/FirstCorinthians";
-import { getSecondCorinthians } from "~~/json_bible/SecondCorinthians";
-import { getGalatians } from "~~/json_bible/Galatians";
-import { getEphesians } from "~~/json_bible/Ephesians";
-import { getPhilippians } from "~~/json_bible/Philippians";
 
 export const AddVerses = () => {
   const { targetNetwork } = useTargetNetwork();
@@ -101,23 +107,23 @@ export const AddVerses = () => {
       console.log("selectedContractTitle", selectedContractTitle);
       // switch case for selectedContractTitle
       switch (selectedContractTitle.trim()) {
-        case "Romans":
-          setVersesArray(getRomans());
+        case "Colossians":
+          setVersesArray(getColossians());
           break;
-        case "1st Corinthians":
-          setVersesArray(getFirstCorinthians());
+        case "1st Thessalonians":
+          setVersesArray(getFirstThessalonians());
           break;
-        case "2nd Corinthians":
-          setVersesArray(getSecondCorinthians());
+        case "2nd Thessalonians":
+          setVersesArray(getSecondThessalonians());
           break;
-        case "Galatians":
-          setVersesArray(getGalatians());
+        case "1st Timothy":
+          setVersesArray(getFirstTimothy());
           break;
-        case "Ephesians":
-          setVersesArray(getEphesians());
+        case "2nd Timothy":
+          setVersesArray(getSecondTimothy());
           break;
-        case "Philippians":
-          setVersesArray(getPhilippians());
+        case "Titus":
+          setVersesArray(getTitus());
           break;
         default:
           console.log("wat do?", selectedContractTitle);
