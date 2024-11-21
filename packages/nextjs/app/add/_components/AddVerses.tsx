@@ -65,6 +65,16 @@ import { getTitus } from "~~/json_bible/Titus";
 import { getZechariah } from "~~/json_bible/Zechariah";
 import { getZephaniah } from "~~/json_bible/Zephaniah";
 import { notification } from "~~/utils/scaffold-eth";
+import { getPhilemon } from "~~/json_bible/Philemon";
+import { getHebrews } from "~~/json_bible/Hebrews";
+import { getJames } from "~~/json_bible/James";
+import { getFirstPeter } from "~~/json_bible/FirstPeter";
+import { getSecondPeter } from "~~/json_bible/SecondPeter";
+import { getFirstJohn } from "~~/json_bible/FirstJohn";
+import { getSecondJohn } from "~~/json_bible/SecondJohn";
+import { getThirdJohn } from "~~/json_bible/ThirdJohn";
+import { getJude } from "~~/json_bible/Jude";
+import { getRevelation } from "~~/json_bible/Revelation";
 
 export const AddVerses = () => {
   const { targetNetwork } = useTargetNetwork();
@@ -107,23 +117,35 @@ export const AddVerses = () => {
       console.log("selectedContractTitle", selectedContractTitle);
       // switch case for selectedContractTitle
       switch (selectedContractTitle.trim()) {
-        case "Colossians":
-          setVersesArray(getColossians());
+        case "Philemon":
+          setVersesArray(getPhilemon());
           break;
-        case "1st Thessalonians":
-          setVersesArray(getFirstThessalonians());
+        case "Hebrews":
+          setVersesArray(getHebrews());
           break;
-        case "2nd Thessalonians":
-          setVersesArray(getSecondThessalonians());
+        case "James":
+          setVersesArray(getJames());
           break;
-        case "1st Timothy":
-          setVersesArray(getFirstTimothy());
+        case "1st Peter":
+          setVersesArray(getFirstPeter());
           break;
-        case "2nd Timothy":
-          setVersesArray(getSecondTimothy());
+        case "2nd Peter":
+          setVersesArray(getSecondPeter());
           break;
-        case "Titus":
-          setVersesArray(getTitus());
+        case "1st John":
+          setVersesArray(getFirstJohn());
+          break;
+        case "2nd John":
+          setVersesArray(getSecondJohn());
+          break;
+        case "3rd John":
+          setVersesArray(getThirdJohn());
+          break;
+        case "Jude":
+          setVersesArray(getJude());
+          break;
+        case "Revelation":
+          setVersesArray(getRevelation());
           break;
         default:
           console.log("wat do?", selectedContractTitle);
