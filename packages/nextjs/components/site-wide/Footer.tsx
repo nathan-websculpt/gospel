@@ -1,11 +1,12 @@
 import React from "react";
 import Link from "next/link";
 import { hardhat } from "viem/chains";
-import { CurrencyDollarIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { Faucet } from "~~/components/scaffold-eth";
-import { SwitchTheme } from "~~/components/site-wide/SwitchTheme";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 import { useGlobalState } from "~~/services/store/store";
+
+// import { SwitchTheme } from "~~/components/site-wide/SwitchTheme";
 
 /**
  * Site footer
@@ -31,7 +32,7 @@ export const Footer = () => {
               </>
             )}
           </div>
-          <SwitchTheme className={`pointer-events-auto ${isLocalNetwork ? "self-end md:self-auto" : ""}`} />
+          {/* <SwitchTheme className={`pointer-events-auto ${isLocalNetwork ? "self-end md:self-auto" : ""}`} /> */}
         </div>
       </div>
       <div className="w-full">
