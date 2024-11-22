@@ -39,8 +39,10 @@ export const Base = () => {
   useEffect(() => {
     if (booksList !== undefined && booksList !== null) {
       console.log("GQL_BOOK_TITLES Query DATA: ", booksList);
-      setCurrentBookId(booksList?.books[0].id); //triggers chapter count to be set
+      setCurrentBookId(booksList?.books[0].id); 
       setCurrentBookTitle(booksList?.books[0].title);
+      setPrelimBookId(booksList?.books[0].id); 
+      setPrelimBookTitle(booksList?.books[0].title);
       setCurrentChapterId(1);
       setCurrentChapterTitle("1");
 
@@ -50,6 +52,7 @@ export const Base = () => {
 
   // Just to reset the chapter count when a book is selected
   useEffect(() => {
+    if (!prelimBookId) return;
     const book = booksList?.books.find(b => b.id === prelimBookId);
     if (book) setChapterCount(book.chapterCount);
   }, [prelimBookId]);
