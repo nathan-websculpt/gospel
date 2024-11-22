@@ -8,7 +8,10 @@ const AboutPage: NextPage = () => {
     <>
       <div className="flex w-full px-4 mx-auto xl:w-3/5 xl:justify-center bg-slate-900 xl:bg-opacity-75">
         <p className="prose text-white xl:text-lg">
-          UPDATE: The 4 Gospels + Acts are now available onchain! <br /> &mdash; Oct. 24th, 2024
+          UPDATE: The entire KJV Bible is now available onchain!!!!
+          <br />
+          I am almost certain that this is the first time in history that the Bible was stored directly on the
+          blockchain. <br /> &mdash; Nov. 21st, 2024
         </p>
       </div>
 
@@ -155,8 +158,7 @@ const AboutPage: NextPage = () => {
           .
         </p>
         <p>
-          Click to view progress on the :{" "}
-          <span> </span>
+          Click to view progress on the : <span> </span>
           <a href="https://github.com/nathan-websculpt/council" target="_blank" className="link">
             Council Project
           </a>
