@@ -37,7 +37,7 @@ export const Base = () => {
   }, [error]);
 
   useEffect(() => {
-    if (booksList !== undefined && booksList !== null) {
+    if (booksList !== undefined && booksList !== null && !isInitialized) {
       console.log("GQL_BOOK_TITLES Query DATA: ", booksList);
       setCurrentBookId(booksList?.books[0].id); 
       setCurrentBookTitle(booksList?.books[0].title);
@@ -46,7 +46,7 @@ export const Base = () => {
       setCurrentChapterId(1);
       setCurrentChapterTitle("1");
 
-      setIsInitialized(true); //TODO: may not need in prod
+      setIsInitialized(true); //needed to prevent light/dark-mode switch from running this code again (resetting book/chap)
     }
   }, [booksList]);
 
@@ -56,17 +56,6 @@ export const Base = () => {
     const book = booksList?.books.find(b => b.id === prelimBookId);
     if (book) setChapterCount(book.chapterCount);
   }, [prelimBookId]);
-
-  // todo: was useful for debugging/testing
-  useEffect(() => {
-    if (!isInitialized) {
-      // setCurrentBookId("0xd044190d1f7ead4dee7663cc8b819f48edaa1740d99865e87a98ef9b1d0efdfa01000000");
-      // setCurrentBookTitle("Matthew");
-      // setCurrentChapterId(1);
-      // setCurrentChapterTitle("1");
-      // setIsInitialized(true);
-    }
-  }, []); //componentDidMount
 
   useEffect(() => {
     if (currentChapterId) setCurrentChapterTitle(currentChapterId?.toString());

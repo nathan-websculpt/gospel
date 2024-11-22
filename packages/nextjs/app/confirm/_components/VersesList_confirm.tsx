@@ -13,7 +13,6 @@ import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 import { notification } from "~~/utils/scaffold-eth";
 
 export const VersesList_Confirm = () => {
-  console.log("VersesList_Confirm");
   const [isInitialized, setIsInitialized] = useState(false);
   const [isFirstRun, setIsFirstRun] = useState(true);
   const { targetNetwork } = useTargetNetwork();
@@ -45,8 +44,6 @@ export const VersesList_Confirm = () => {
   });
 
   useEffect(() => {
-    console.log("useEffect: isListLoading", isListLoading);
-    console.log("useEffect: listOfBookContracts", listOfBookContracts);
     if (isListLoading) {
       setIsInitialized(false);
     } else if (listOfBookContracts && listOfBookContracts?.length > 0) {
@@ -58,10 +55,8 @@ export const VersesList_Confirm = () => {
   }, [isListLoading]);
 
   useEffect(() => {
-    console.log("useEffect: selectedContract", selectedContract);
     if (selectedContract) {
       const theSelectedCloneContractData = cloneContractsData.find(c => c.address === selectedContract);
-      console.log("useEffect: theSelectedCloneContractData", theSelectedCloneContractData);
       setTheSelectedCloneContractData(theSelectedCloneContractData);
     }
   }, [selectedContract]);
@@ -89,7 +84,6 @@ export const VersesList_Confirm = () => {
   //still not sure if this shared ddl should default to anything
 
   useEffect(() => {
-    console.log("useEffect: isFirstRun", isFirstRun);
     if (!isFirstRun) preQuery();
     else setIsFirstRun(false);
   }, [pageSize, pageNum]);
@@ -108,13 +102,10 @@ export const VersesList_Confirm = () => {
   }, [selectedContractTitle]);
 
   useEffect(() => {
-    console.log("useEffect: selectedBookId", selectedBookId);
     if (selectedBookId !== "") preQuery();
   }, [selectedBookId]);
 
   const preQuery = async () => {
-    console.log("preQuery: selectedBookId", selectedBookId);
-    console.log("pageNum + pageSize", pageNum, pageSize);
     setQueryLoading(true);
 
     doQuery({
