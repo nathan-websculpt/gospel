@@ -1,3 +1,5 @@
+#### **UPDATE:** Entire KJV Bible is onchain as of Nov. 21st, 2024
+
 #### **NOTE:** Main branch will go ahead of prod branch
 
 - main will be used to work on adding books
