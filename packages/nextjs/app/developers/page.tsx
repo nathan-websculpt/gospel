@@ -17,19 +17,6 @@ const Developers: NextPage = () => {
           <div className="grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
             <CardDisplay
               isLocalOnlyFeature={false}
-              localHref={"/add"}
-              prodHref={"https://github.com/nathan-websculpt/gospel"}
-              prodBadge={"GitHub"}
-              imgSrc={"/img/mock_img/add_verses.png"}
-              imgAlt={"add verses"}
-              title={"Add Verses"}
-              more={
-                "Only users with special access can add new verses. Smart Contract will prevent you from adding more verses."
-              }
-            />
-
-            <CardDisplay
-              isLocalOnlyFeature={false}
               localHref={"/confirm"}
               prodHref={"https://github.com/nathan-websculpt/gospel"}
               prodBadge={"GitHub"}
