@@ -69,10 +69,18 @@ const AboutPage: NextPage = () => {
         </p>
         <h2>Imagine where the world would be if we were able to keep records in this way thousands of years ago</h2>
         <p>
-          Well, why not start now? It cost around $30 (in a total of 9 transactions) to upload this book, so the four
-          gospels aren’t prohibitively expensive. I know that I was curious as to exactly how much it would cost, so I
-          hope that information feeds the curiosity of blockchain devs out there. Side Note: I also have plans to tackle
-          items like The Declaration of Independence. <span> </span>
+          Well, why not start now? It cost around $30 (in a total of 9 transactions) to upload the first book (Gospel of
+          John), so the four gospels aren’t prohibitively expensive.
+          <br />
+          <br />
+          <span className="font-bold">
+            Nov. 21, 2024 Update: The first book ended up being the most expensive. Saving 100-verse batches ranged from
+            ~$0.02 to ~$1.10 when I finished.
+          </span>
+          <br />
+          <br />I know that I was curious as to exactly how much it would cost, so I hope that information feeds the
+          curiosity of blockchain devs out there. Side Note: I also have plans to tackle items like The Declaration of
+          Independence. <span> </span>
           <a href="https://twitter.com/sculpt_web" target="_blank" className="link">
             Tweet your suggestions for other documents to me here
           </a>
@@ -96,7 +104,7 @@ const AboutPage: NextPage = () => {
           </li>
           <li>
             <a
-              href="https://optimistic.etherscan.io/address/0x29BB1313321dbA27Ad074DD6AD2943040319B439"
+              href="https://optimistic.etherscan.io/address/0x3dce29F3444E4Fe00F47883C8CC2c9847bAb8e3f"
               target="_blank"
               className="link"
             >
@@ -105,7 +113,7 @@ const AboutPage: NextPage = () => {
           </li>
           <li>
             <a
-              href="https://optimistic.etherscan.io/tx/0x589597a96c3c2946975b466a03ea5355f10186b67da2245d22efdd825863f074"
+              href="https://optimistic.etherscan.io/tx/0x01502c020740e17cebbc5584d5858cad3c5efe176974470b9f5dd893ebf01ab6"
               target="_blank"
               className="link"
             >
@@ -114,7 +122,7 @@ const AboutPage: NextPage = () => {
           </li>
           <li>
             <a
-              href="https://optimistic.etherscan.io/tx/0xa4d047108f81334d3e184086754d0c1144f725305b14273547454bf007c7b139"
+              href="https://optimistic.etherscan.io/tx/0x494957bed3e5c4479d8d6d4e55950e9beca7d2430276ae2fdcdee4978cb93ca1"
               target="_blank"
               className="link"
             >
@@ -127,24 +135,7 @@ const AboutPage: NextPage = () => {
             </a>
           </li>
         </ul>
-        <h2 className="text-2xl font-extrabold xl:text-5xl">More Details</h2>
-        <blockquote>
-          <p>
-            <code>In Dev/Testing:</code> CONTRACT IS CURRENTLY FOR PROOF-OF-CONCEPT; CONTRACT HAS NOT BEEN AUDITED; The
-            intention of this smart contract is to store/confirm (verse-by-verse) The Gospel of John (KJV) on Optimism,
-            and (if all goes well) this could evolve to become a template for other books/documents.
-          </p>
-        </blockquote>
-        <p className="lead">
-          I can not assert that this will properly represent The Gospel of John (KJV) [neither in-part, nor in-full];
-          This will hopefully serve the purpose of saying, <em>"Look, it is possible."</em>
-        </p>
-        <p>
-          But, if you wanted to read The Gospel of John (KJV) yourself, this contract (or, this iteration of this
-          contract) is not the right source. One area where this text will be lacking is that it will not contain any of
-          the original italics.
-        </p>
-        <h2>What's next?</h2>
+        <h2 className="text-2xl font-extrabold xl:text-5xl">What's next?</h2>
         <blockquote>
           Ideally, I believe that this would be better with a council-of-members voting on the validity of a
           section-of-text BEFORE it is stored.

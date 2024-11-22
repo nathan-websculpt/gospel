@@ -17,7 +17,7 @@ const title =
     : "Gospel Onchain";
 const titleTemplate = "%s | Gospel Onchain";
 const description =
-  "Can we put the Bible on the blockchain? Could crypto provide a record of scripture that is available to all, forever unchangeable, and free from censorship?";
+  "The KJV Bible on the blockchain! Crypto can provide a record of scripture that is available to all, forever unchangeable, and free from censorship.";
 const keywords = "blockchain, bible, gospel, onchain, kjv, books, scripture, censorship";
 
 export const metadata: Metadata = {

@@ -51,13 +51,13 @@ export const Footer = () => {
             <span>·</span>
             <div className="text-center">
               <a
-                href="https://optimistic.etherscan.io/address/0x29BB1313321dbA27Ad074DD6AD2943040319B439"
+                href="https://optimistic.etherscan.io/address/0x3dce29F3444E4Fe00F47883C8CC2c9847bAb8e3f"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center justify-center gap-1"
               >
                 <span className="hidden xl:flex">Stored onto Optimism at </span>
-                <span className="link">Contract 0x29B...</span>
+                <span className="link">Contract 0x3dce...</span>
               </a>
             </div>
             <span>·</span>

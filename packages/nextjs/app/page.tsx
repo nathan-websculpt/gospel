@@ -19,12 +19,12 @@ const Home: NextPage = () => {
 
       <div className="flex flex-col w-full">
         <article className="px-4 mx-auto mt-8 mb-12 prose md:px-0 lg:prose-lg xl:prose-xl">
-          <h1>onchain Gospel of John</h1>
+          <h1>Gospel Onchain</h1>
           <h2 className="flex flex-col">
             <span className="font-thin text-md xl:text-xl">I set out to fully ask the question: </span>
             Could we put the Bible on the blockchain?
           </h2>
-          <h3>Could “crypto” become a new way to protect scripture?</h3>
+          <h3>Should “crypto” become a new way to protect scripture?</h3>
           <p>
             The blockchain could provide a decentralized and immutable record of the Bible &mdash; a way to ensure that
             the scriptures are:
@@ -42,21 +42,17 @@ const Home: NextPage = () => {
           </p>
           <Link href="/read" passHref className="link">
             <h2 className="flex flex-col pb-6 text-2xl xl:text-5xl">
-              <span className="font-thin">Read [from the blockchain] Now: </span>(KJV) Gospels + Acts
+              <span className="font-thin">Read from the blockchain Now: </span>The KJV Bible
             </h2>
           </Link>{" "}
           <blockquote>
-            While this Smart Contract is live on Optimism Mainnet, it has not been audited, and it should be considered
-            a proof-of-concept.
+            Books are live on Optimism Mainnet ... this is not an NFT project. The scriptures are stored directly
+            onchain.
           </blockquote>
-          <p>
-            Can not currently confirm that this properly represents The Gospels + Acts (KJV) [neither in-part, nor
-            in-full]. But, that is sort of the point of this project.
-          </p>
           <p className="lead">This will hopefully serve the purpose of saying, "Look, it is possible."</p>
           <p>Could it be better?</p>
           <p>
-            The problem with this project as it stands is that I have stored a book, and THEN I am asking for{" "}
+            The problem with this project as it stands is that I have stored the books, and THEN I am asking for{" "}
             <span> </span>
             <Link href="/confirm" passHref className="link" target="_blank">
               confirmations
