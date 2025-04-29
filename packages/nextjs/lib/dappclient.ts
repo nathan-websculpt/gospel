@@ -7,7 +7,7 @@ import { setContext } from "@apollo/client/link/context";
   
   const httpLink = createHttpLink({
     uri: subgraphUri,
-  });
+  });//
 
 // Middleware to add headers dynamically (e.g., from cookies or environment)
 const authLink = setContext(async (_, { headers }) => {  
