@@ -12,9 +12,10 @@ import { ProgressBar } from "~~/components/scaffold-eth/ProgressBar";
 import { Footer } from "~~/components/site-wide/Footer";
 import { Header } from "~~/components/site-wide/Header";
 import { useNativeCurrencyPrice } from "~~/hooks/scaffold-eth";
+import { client } from "~~/lib/dappclient";
 import { useGlobalState } from "~~/services/store/store";
 import { wagmiConfig } from "~~/services/web3/wagmiConfig";
-import { client } from "~~/lib/dappclient";
+
 const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
   const price = useNativeCurrencyPrice();
   const setNativeCurrencyPrice = useGlobalState(state => state.setNativeCurrencyPrice);
