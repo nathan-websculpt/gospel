@@ -1,5 +1,5 @@
 // lib/apollo-client.js
-import { ApolloClient, InMemoryCache, HttpLink, ApolloLink } from "@apollo/client";
+import { ApolloClient, InMemoryCache, ApolloLink, createHttpLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 
   const subgraphUri = "https://gateway.thegraph.com/api/subgraphs/id/FUv8Kpg9nkGhwtALr4YCYJwLDuCLKoA63LN7ZTF6dWN1"; //PRODTODO
