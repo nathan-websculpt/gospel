@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ApolloProvider } from "@apollo/client";
+import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from "@apollo/client";
+import { setContext } from '@apollo/client/link/context';
 import { RainbowKitProvider, darkTheme, lightTheme } from "@rainbow-me/rainbowkit";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useTheme } from "next-themes";
@@ -14,7 +15,6 @@ import { Header } from "~~/components/site-wide/Header";
 import { useNativeCurrencyPrice } from "~~/hooks/scaffold-eth";
 import { useGlobalState } from "~~/services/store/store";
 import { wagmiConfig } from "~~/services/web3/wagmiConfig";
-import dappClient from "~~/api/dappClient";
 
 const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
   const price = useNativeCurrencyPrice();
@@ -57,12 +57,34 @@ export const ScaffoldEthAppWithProviders = ({ children }: { children: React.Reac
 
   const [mounted, setMounted] = useState(false);
 
+  const subgraphUri = "https://gateway.thegraph.com/api/subgraphs/id/FUv8Kpg9nkGhwtALr4YCYJwLDuCLKoA63LN7ZTF6dWN1"; //PRODTODO
+  // const subgraphUri = "https://api.studio.thegraph.com/query/60402/gospel-v2/version/latest"; //PRODTODO
+  // const subgraphUri = "http://localhost:8000/subgraphs/name/scaffold-eth/your-contract"; //PRODTODO
+  
+  const httpLink = createHttpLink({
+    uri: subgraphUri,
+  });
+
+  const authLink = setContext((_, { headers }) => {
+    return {
+      headers: {
+        ...headers,
+        authorization: `Bearer ${process.env.NEXT_PUBLIC_GRAPH_API_KEY}`,
+      }
+    }
+  });
+
+  const apolloClient = new ApolloClient({
+    link: authLink.concat(httpLink),
+    cache: new InMemoryCache(),
+  });
+
   useEffect(() => {
     setMounted(true);
   }, []);
 
   return (
-    <ApolloProvider client={dappClient}>
+    <ApolloProvider client={apolloClient}>
       <WagmiProvider config={wagmiConfig}>
         <QueryClientProvider client={queryClient}>
           <ProgressBar />
