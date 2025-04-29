@@ -10,7 +10,9 @@ import { setContext } from "@apollo/client/link/context";
   });
 
 // Middleware to add headers dynamically (e.g., from cookies or environment)
-const authLink = setContext(async (_, { headers }) => {
+const authLink = setContext(async (_, { headers }) => {  
+  // Log the outgoing Authorization header to verify it
+  console.log('Outgoing Authorization header:', `Bearer ${process.env.NEXT_PUBLIC_GRAPH_API_KEY}`);
   return {
     headers: {
       ...headers,
@@ -19,11 +21,8 @@ const authLink = setContext(async (_, { headers }) => {
   }
 });
 
-// Export a function to create a new client (one per request on the server)
-// export function createApolloClient() {
   export const client = new ApolloClient({
     // ssrMode: typeof window === "undefined",
     link: authLink.concat(httpLink),
     cache: new InMemoryCache(),
   });
-// }
