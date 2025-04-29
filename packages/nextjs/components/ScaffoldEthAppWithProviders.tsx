@@ -14,6 +14,7 @@ import { Header } from "~~/components/site-wide/Header";
 import { useNativeCurrencyPrice } from "~~/hooks/scaffold-eth";
 import { useGlobalState } from "~~/services/store/store";
 import { wagmiConfig } from "~~/services/web3/wagmiConfig";
+import {apollo-client} from "~~/lib/apollo-client";
 
 const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
   const price = useNativeCurrencyPrice();
