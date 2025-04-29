@@ -44,7 +44,7 @@ export const queryClient = new QueryClient({
       refetchOnWindowFocus: false,
     },
   },
-});
+});//
 
 export const ScaffoldEthAppWithProviders = ({ children }: { children: React.ReactNode }) => {
   // const { resolvedTheme } = useTheme();
