@@ -21,11 +21,9 @@ const authLink = setContext(async (_, { headers }) => {
 
 // Export a function to create a new client (one per request on the server)
 // export function createApolloClient() {
-  const client = new ApolloClient({
+  export const client = new ApolloClient({
     // ssrMode: typeof window === "undefined",
     link: authLink.concat(httpLink),
     cache: new InMemoryCache(),
   });
 // }
-
-export default client;

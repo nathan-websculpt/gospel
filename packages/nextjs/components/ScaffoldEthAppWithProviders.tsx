@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import { ApolloProvider } from "@apollo/client";
 import { RainbowKitProvider, darkTheme, lightTheme } from "@rainbow-me/rainbowkit";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useTheme } from "next-themes";
@@ -14,7 +14,7 @@ import { Header } from "~~/components/site-wide/Header";
 import { useNativeCurrencyPrice } from "~~/hooks/scaffold-eth";
 import { useGlobalState } from "~~/services/store/store";
 import { wagmiConfig } from "~~/services/web3/wagmiConfig";
-
+import { client } from "~~/lib/dappclient";
 const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
   const price = useNativeCurrencyPrice();
   const setNativeCurrencyPrice = useGlobalState(state => state.setNativeCurrencyPrice);
@@ -56,20 +56,12 @@ export const ScaffoldEthAppWithProviders = ({ children }: { children: React.Reac
 
   const [mounted, setMounted] = useState(false);
 
-  const subgraphUri = `https://gateway.thegraph.com/api/${process.env.NEXT_PUBLIC_GRAPH_API_KEY}/subgraphs/id/FUv8Kpg9nkGhwtALr4YCYJwLDuCLKoA63LN7ZTF6dWN1`; //PRODTODO
-  // const subgraphUri = "https://api.studio.thegraph.com/query/60402/gospel-v2/version/latest"; //PRODTODO
-  // const subgraphUri = "http://localhost:8000/subgraphs/name/scaffold-eth/your-contract"; //PRODTODO
-  const apolloClient = new ApolloClient({
-    uri: subgraphUri,
-    cache: new InMemoryCache(),
-  });
-
   useEffect(() => {
     setMounted(true);
   }, []);
 
   return (
-    <ApolloProvider client={apolloClient}>
+    <ApolloProvider client={client}>
       <WagmiProvider config={wagmiConfig}>
         <QueryClientProvider client={queryClient}>
           <ProgressBar />
