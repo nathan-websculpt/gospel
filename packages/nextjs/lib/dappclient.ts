@@ -1,5 +1,4 @@
-// lib/apollo-client.js
-import { ApolloClient, InMemoryCache, ApolloLink, createHttpLink } from "@apollo/client";
+import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 
   const subgraphUri = "https://gateway.thegraph.com/api/subgraphs/id/FUv8Kpg9nkGhwtALr4YCYJwLDuCLKoA63LN7ZTF6dWN1"; //PRODTODO
@@ -21,10 +20,12 @@ const authLink = setContext(async (_, { headers }) => {
 });
 
 // Export a function to create a new client (one per request on the server)
-export function createApolloClient() {
-  return new ApolloClient({
-    ssrMode: typeof window === "undefined",
+// export function createApolloClient() {
+  const client = new ApolloClient({
+    // ssrMode: typeof window === "undefined",
     link: authLink.concat(httpLink),
     cache: new InMemoryCache(),
   });
-}
+// }
+
+export default client;
