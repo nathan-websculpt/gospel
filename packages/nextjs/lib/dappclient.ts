@@ -12,6 +12,7 @@ const httpLink = createHttpLink({
 });
 
 const authLink = setContext(async (_, { headers }) => {
+  console.log("TAG: A1");
   return {
     headers: {
       ...headers,
