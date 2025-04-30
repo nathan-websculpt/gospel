@@ -10,8 +10,6 @@ const httpLink = createHttpLink({
 });
 
 const authLink = setContext(async (_, { headers }) => {
-  console.log("doit, tryit: ", `Bearer ${process.env.NEXT_PUBLIC_GRAPH_API_KEY}`);
-
   return {
     headers: {
       ...headers,
