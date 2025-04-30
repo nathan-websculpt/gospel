@@ -12,7 +12,7 @@ import { ProgressBar } from "~~/components/scaffold-eth/ProgressBar";
 import { Footer } from "~~/components/site-wide/Footer";
 import { Header } from "~~/components/site-wide/Header";
 import { useNativeCurrencyPrice } from "~~/hooks/scaffold-eth";
-import { client } from "~~/lib/dappclient";
+import { subgraphClient } from "~~/lib/dappclient";
 import { useGlobalState } from "~~/services/store/store";
 import { wagmiConfig } from "~~/services/web3/wagmiConfig";
 
@@ -62,7 +62,7 @@ export const ScaffoldEthAppWithProviders = ({ children }: { children: React.Reac
   }, []);
 
   return (
-    <ApolloProvider client={client}>
+    <ApolloProvider client={subgraphClient}>
       <WagmiProvider config={wagmiConfig}>
         <QueryClientProvider client={queryClient}>
           <ProgressBar />

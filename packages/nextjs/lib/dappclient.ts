@@ -10,6 +10,8 @@ const httpLink = createHttpLink({
 });
 
 const authLink = setContext(async (_, { headers }) => {
+  console.log("doit, tryit: ", `Bearer ${process.env.NEXT_PUBLIC_GRAPH_API_KEY}`);
+
   return {
     headers: {
       ...headers,
@@ -18,7 +20,7 @@ const authLink = setContext(async (_, { headers }) => {
   };
 });
 
-export const client = new ApolloClient({
+export const subgraphClient = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
