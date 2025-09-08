@@ -60,18 +60,6 @@ export const Footer = () => {
                 <span className="link">Contract 0x29B...</span>
               </a>
             </div>
-            <span>·</span>
-            <div className="text-center">
-              <a
-                href="https://twitter.com/sculpt_web"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center justify-center gap-1"
-              >
-                <span className="hidden xl:flex">Follow this </span>
-                <span className="link">Developer on Twitter</span>
-              </a>
-            </div>
           </div>
         </div>
       </div>
